@@ -1,0 +1,1 @@
+export const USER_GET_NEWS = 'USER_GET_NEWS';
