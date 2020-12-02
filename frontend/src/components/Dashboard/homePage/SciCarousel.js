@@ -50,7 +50,7 @@ const SciCarousel = ({ news }) => {
                         title={article.title}
                         description={article.description}
                         url={article.url}
-                        img={article.urlToImage}
+                        img={article.image}
                         pubTime={article.publishedAt}
                     />
                 ))
