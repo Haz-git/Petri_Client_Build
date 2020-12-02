@@ -79,7 +79,6 @@ const StyledButton = styled.button`
 class Messenger extends Component {
     constructor(props) {
         super(props)
-        console.log('constructor running');
 
         this.props.restoreChats();
 
@@ -90,7 +89,6 @@ class Messenger extends Component {
 
     componentDidMount() {
         let server = 'https://petri-webapp-heroku.herokuapp.com';
-        console.log('Component mounted');
 
         //Gather all stored chat messages:
 
@@ -98,8 +96,6 @@ class Messenger extends Component {
         this.socket = io(server);
         this.socket.on('Output Chat Message', msg => {
             //We need to create another action creator to dispatch an 'updated state' when receiving new messages from backend:
-            console.log('Socket Created');
-            console.log(msg);
             this.props.updateStateAfterNewMessage(msg);
         })
 
