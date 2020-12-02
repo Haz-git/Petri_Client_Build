@@ -4,11 +4,9 @@ const ChatCard = (props) => {
 
     const renderNames = () => {
         if(props.sender.userName !== null && props.sender.userName !== undefined) {
-            return props.sender.userName
+            return <h2>props.sender.userName</h2>
         } else {
-            return (
-                'Deleted User'
-            )
+            return <h2>Deleted User</h2>
         }
     }
 
