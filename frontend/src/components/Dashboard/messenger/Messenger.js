@@ -11,39 +11,76 @@ import 'normalize.css';
 
 //Styles:
 
+import { PaperPlane } from '@styled-icons/boxicons-solid/PaperPlane';
+
 const MainMessengerContainer = styled.div`
     margin-left: 0;
     box-sizing: border-box;
     background-color: #f6f9fc;
     height: 100vh;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 10px;
 
+`
+
+const HeaderContainer = styled.div`
+    text-align: center;
 `
 const MainHeaderText = styled.h1`
     margin: 0;
-    padding: 10px 10px;
-    text-align: center;
-    font-family: Roboto, sans-serif;
-    color: #747fe0;
+    font-weight: 900;
+    font-size: 60px;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #293241;
+    font-family: 'Catamaran', sans-serif;
 
 `
 const NestedMessengerContainer = styled.div`
-    margin-left: 20px;
-    margin-right: 20px;
-    background-color: #e5f1fc;
-    box-shadow: 0 1px 2px rgba(0, 0, 0,0.07), 0 1px 1px rgba(0,0,0.07);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: white;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 9px;
+    box-shadow:
+        0 2.8px 20px rgba(0, 0, 0, 0.034),
+        0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+        0 12.5px 10px rgba(0, 0, 0, 0.06),
+        0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+        0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+        0 60px 40px rgba(0, 0, 0, 0.12);
+    
 `
 
 const ChatContainer = styled.div`
-    margin-left: 20px;
-    height: 600px;
-    background-color: #e5f1fc;
+    height: 1000px;
+    background-color: white;
     overflow-y: scroll;
+    padding: 40px 40px;
+
+    @media (max-height: 1000px) {
+        height: 750px;
+    }
+
+    @media (max-height: 900px) {
+        height: 650px;
+    }
+
+    @media (max-height: 800px) {
+        height: 550px;
+    }
 `
 
 const InputContainer = styled.div`
     padding: 40px 40px;
-    background-color: #e5f1fc;
+    background-color: white;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `
 const StyledInput = styled.input`
     width: 600px;
@@ -53,6 +90,8 @@ const StyledInput = styled.input`
     border-radius: 5px;
     border: 1px solid white;
     box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+    background-color: #293241;
+    color: white;
     &:focus {
         outline: none;
     }
@@ -65,12 +104,22 @@ const StyledButton = styled.button`
     margin-right: 10px;
     border: none;
     border-radius: 5px;
-    background-color: #35bdb2;
+    background-color: #293241;
     color: white;
     box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
     &:focus {
         outline: none;
     }
+`
+
+const StyledForm = styled.form`
+    display: flex;
+    align-items: center;
+`
+
+const StyledPaperPlane = styled(PaperPlane)`
+    width: 30px;
+    height: 30px;
 `
 
 
@@ -155,7 +204,9 @@ class Messenger extends Component {
         return(
             <>
                 <MainMessengerContainer>
-                    <MainHeaderText>Global Chat</MainHeaderText>
+                    <HeaderContainer>
+                        <MainHeaderText>The Petri Dish</MainHeaderText>
+                    </HeaderContainer>
                     <NestedMessengerContainer>
                         <div>
                             <ChatContainer>
@@ -168,7 +219,7 @@ class Messenger extends Component {
                             </ChatContainer>
                         </div>
                         <InputContainer>
-                            <form onSubmit={this.handleChatSubmit} autoComplete='off'>
+                            <StyledForm onSubmit={this.handleChatSubmit} autoComplete='off'>
                                 <StyledInput
                                     id='message'
                                     placeholder='Start Chatting!'
@@ -176,8 +227,10 @@ class Messenger extends Component {
                                     value={this.state.chatMessage}
                                     onChange={this.handleSearchChange}
                                 />
-                                <StyledButton type='submit'>Submit</StyledButton>
-                            </form>
+                                <StyledButton type='submit'>
+                                    <StyledPaperPlane />
+                                </StyledButton>
+                            </StyledForm>
                         </InputContainer>
                     </NestedMessengerContainer>
                 </MainMessengerContainer>
