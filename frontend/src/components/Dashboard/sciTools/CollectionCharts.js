@@ -118,8 +118,9 @@ const CollectionCharts = ({ ownProtocolId, laczAssayProtocols, addCollectionChar
                 for (let y = 0; y < parsedData[k].collectionData.length; y++) {
 
                     let pairArray = [];
-                    pairArray.push(Math.log2(Number(parsedData[k].collectionData[y].timeMinutes)));
-                    pairArray.push(Number(parsedData[k].collectionData[y].odValue));
+                    pairArray.push(Math.log2(Number(parsedData[k].collectionData[y].odValue)));
+                    pairArray.push(Number(parsedData[k].collectionData[y].timeMinutes));
+
 
 
                     linearRegressionArray.push(pairArray);
@@ -132,8 +133,8 @@ const CollectionCharts = ({ ownProtocolId, laczAssayProtocols, addCollectionChar
                 const rSquaredValue = rSquared(linearRegressionArray, regressionLine);
 
 
-                parsedData[k]['linearRegressionValueCollection'] = m;
-                parsedData[k]['doublingTime'] = (m * 100).toFixed(1);
+                parsedData[k]['linearRegressionValueCollection'] = 1/m;
+                parsedData[k]['doublingTime'] = (m).toFixed(2);
                 parsedData[k]['rSquaredValueCollection'] = rSquaredValue.toFixed(3);
 
             }
