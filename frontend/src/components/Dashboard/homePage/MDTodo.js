@@ -50,7 +50,6 @@ const MDTodo = ({ addNewTask, getTasks, taskList }) => {
     const [task, setTask] = useState('');
 
     useEffect(() => {
-        console.log('test');
         getTasks();
     },[])
 
