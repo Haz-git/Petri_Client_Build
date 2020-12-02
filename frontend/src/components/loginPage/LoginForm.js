@@ -37,7 +37,7 @@ const LoginForm = ({ handleSubmit, userLogin, notifier }) => {
     return (
         <>
             <MainContainer>
-                <MainHeader>Welcome Back!</MainHeader>
+                <MainHeader>Hey, there!</MainHeader>
                 <SecondaryHeader>Please log in to continue...</SecondaryHeader>
                 <div>
                     <form onSubmit={handleSubmit(dispatchFormValues)}>
