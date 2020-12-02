@@ -6,6 +6,8 @@ export function getTasks() {
         const { auth: { userLogIn: { data: { _id } }} } = getState();
         const response = await api.post('/users/getTasks', { _id });
 
+        console.log(response);
+
         dispatch({
             type: USER_GET_TASKS,
             payload: response.data.existingUserTaskList,
