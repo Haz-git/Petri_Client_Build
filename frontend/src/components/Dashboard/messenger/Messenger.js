@@ -89,7 +89,7 @@ class Messenger extends Component {
     }
 
     componentDidMount() {
-        let server = 'http://localhost:8080';
+        let server = 'https://petri-webapp-heroku.herokuapp.com';
         console.log('Component mounted');
 
         //Gather all stored chat messages:
