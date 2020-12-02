@@ -40,7 +40,7 @@ const SciCarousel = ({ news }) => {
 
     const renderNews = () => {
         
-        if (news.news.data.articles !== undefined && news.news.data.articles !== null) {
+        if (news.news !== undefined && news.news !== null) {
             return (
                 news.news.data.articles.map(article => (
                     <SciCard
