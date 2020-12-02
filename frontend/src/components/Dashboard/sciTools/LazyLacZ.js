@@ -105,18 +105,26 @@ const LazyLacZ = ({ addNewProtocols, getProtocols, laczAssayProtocols }) => {
         setProtocolInput(e.target.value);
     }
 
-    const renderProtocols = () => (
-        laczAssayProtocols.map(protocol => (
-            <ProtocolCard 
-                name={protocol.protocolName} 
-                collection={protocol.collection}
-                lacZ={protocol.lacZ}
-                protocolId={protocol.protocolId}
-                key={protocol.protocolId}
-                timeStamp={protocol.timeStamp}
-            />
-        ))
-    )
+    const renderProtocols = () => {
+        if (laczAssayProtocols !== undefined && laczAssayProtocols !== null) {
+
+            return (
+                laczAssayProtocols.map(protocol => (
+                    <ProtocolCard 
+                        name={protocol.protocolName} 
+                        collection={protocol.collection}
+                        lacZ={protocol.lacZ}
+                        protocolId={protocol.protocolId}
+                        key={protocol.protocolId}
+                        timeStamp={protocol.timeStamp}
+                    />
+                ))
+            )
+            
+        } else {
+            return null;
+        }
+    }
 
 
     return (
