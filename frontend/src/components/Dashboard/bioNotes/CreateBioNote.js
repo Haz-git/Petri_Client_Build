@@ -57,11 +57,18 @@ const CreateBioNote = ({ bionotes, getBioNotes }) => {
         getBioNotes();
     },[]);
 
-    const renderNotes = () => (
-        bionotes.map(note => (
-            <BioNoteCard key={uuid()} name={note.bioName} />
-        ))
-    )
+    const renderNotes = () => {
+        if (bionotes !== undefined && bionotes !== null) {
+            return (
+                bionotes.map(note => (
+                    <BioNoteCard key={uuid()} name={note.bioName} />
+                ))
+            )
+
+        } else {
+            return null;
+        }
+    }
 
     return (
         <>
