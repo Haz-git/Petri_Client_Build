@@ -58,8 +58,6 @@ class MainDashboard extends Component {
             userName,
             email,
         });
-
-        console.log(getJWT());
     }
 
 
