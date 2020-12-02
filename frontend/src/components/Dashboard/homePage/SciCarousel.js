@@ -38,20 +38,27 @@ const SciCarousel = ({ news }) => {
         prevArrow: <StyledLeft />,
     }
 
-    const renderNews = () => (
-        news.news.data.articles.map(article => (
-            <SciCard
-                key={uuid()}
-                source={article.source.name}
-                author={article.author}
-                title={article.title}
-                description={article.description}
-                url={article.url}
-                img={article.urlToImage}
-                pubTime={article.publishedAt}
-            />
-        ))
-    )
+    const renderNews = () => {
+        
+        if (news.news.data.articles !== undefined && news.news.data.articles !== null) {
+            return (
+                news.news.data.articles.map(article => (
+                    <SciCard
+                        key={uuid()}
+                        source={article.source.name}
+                        author={article.author}
+                        title={article.title}
+                        description={article.description}
+                        url={article.url}
+                        img={article.urlToImage}
+                        pubTime={article.publishedAt}
+                    />
+                ))
+            )
+        } else {
+            return null;
+        }
+    }
 
     return (
         <>

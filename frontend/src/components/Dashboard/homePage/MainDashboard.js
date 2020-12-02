@@ -86,4 +86,13 @@ class MainDashboard extends Component {
     }
 }
 
+/*
+Notes:
+
+I have finally gotten the backend and the frontend to render via heroku and netlify, respectively. However, there seems to be an issue that comes back to bite me. It appears that my reliance on redux-persist has failed now that I'm loading everything completing from scratch. The since in my useEffect() hook I am calling the API for information, the state does not exist when the component is rendered, leading to a blank page. This is very problematic.
+
+I'll have to look into this, but the first solution that comes to mind is having a loading page with a spinner that basically just calls ALL of the information stored in the DB for the particular user and sends it off to the reducer...
+
+*/
+
 export default MainDashboard;

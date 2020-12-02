@@ -70,11 +70,22 @@ const MDTodo = ({ addNewTask, getTasks, taskList }) => {
         setTask(e.target.value);
     }
 
-    const renderTasks = () => (
-        taskList.map(task => (
-            <TaskCard key={uuid()} item={task} />
-        ))
-    )
+    const renderTasks = () => {
+
+        if (taskList !== null && taskList !== undefined) {
+            return (
+                taskList.map(task => (
+                    <TaskCard key={uuid()} item={task} />
+                ))
+            )
+        } else {
+            return (
+                <div>
+                    It doesn't seem like you've added any tasks yet!
+                </div>
+            )
+        }
+    }
 
     return (
         <>
