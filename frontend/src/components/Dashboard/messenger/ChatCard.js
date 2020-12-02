@@ -1,6 +1,18 @@
-import React from 'react'
+import React from 'react';
 
 const ChatCard = (props) => {
+
+    const renderNames = () => {
+        if(props.sender.userName !== null && props.sender.userName !== undefined) {
+            return props.sender.userName
+        } else {
+            return (
+                'Deleted User'
+            )
+        }
+    }
+
+
     return (
         <div>
             <div>
