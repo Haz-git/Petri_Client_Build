@@ -1,10 +1,13 @@
 import axios from 'axios';
 import { USER_GET_NEWS } from './sciNewsTypes';
 
+
 export function getNews() {
     return async dispatch => {
 
-        const response = await axios.get('https://newsapi.org/v2/top-headlines?category=science&country=us&apiKey=3c9c2e2fa85142fb957890523a2bc4fc');
+        const response = await axios.get('https://gnews.io/api/v4/top-headlines?topic=science&lang=en&country=us&token=dcb305090c56e2139f572d0533ff0802');
+
+        console.log(response);
 
         dispatch({
             type: USER_GET_NEWS,
