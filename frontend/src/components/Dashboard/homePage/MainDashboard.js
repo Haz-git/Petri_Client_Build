@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { getJWT } from '../../../utils/jwthelper';
-import { getTasks } from '../../../redux/userTaskLog/userTaskLogActions';
-import { getNews } from '../../../redux/sciNews/sciNewsActions';
-import { connect } from 'react-redux';
+
 
 import styled from 'styled-components';
 
@@ -49,9 +47,6 @@ class MainDashboard extends Component {
     }
 
     componentDidMount() {
-        
-        this.props.getNews();
-        this.props.getTasks(); 
 
         const userDetails = getJWT();
 
@@ -91,4 +86,4 @@ class MainDashboard extends Component {
     }
 }
 
-export default connect(null, { getNews, getTasks })(MainDashboard);
+export default MainDashboard;
