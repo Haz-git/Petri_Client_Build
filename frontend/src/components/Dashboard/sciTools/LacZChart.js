@@ -126,7 +126,11 @@ const LacZChart = ({
     const handleButtonSave = () => {
         setShowAlert(true);
         console.log(bgalConfiguredData);
-        bgalDataToStrain(ownStrain.strainId, ownProtocolId, bgalConfiguredData);
+        bgalDataToStrain(ownStrain.strainId, ownProtocolId, {
+            bgalConfiguredData,
+            bgalSlope: bgalConfiguredData.linearRegressionValueLacZ,
+            bgalRSquared: bgalConfiguredData.rSquaredValueLacZ,
+        });
     }
 
 
