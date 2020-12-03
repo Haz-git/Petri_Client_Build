@@ -29,6 +29,7 @@ import SciToolsLanding from './Dashboard/sciTools/SciToolsLanding';
 import LazyLacZ from './Dashboard/sciTools/LazyLacZ';
 import Collection from './Dashboard/sciTools/Collection';
 import LacZ from './Dashboard/sciTools/LacZ';
+import LacZCompareCharts from './Dashboard/sciTools/LacZCompareCharts';
 
 //Styling:
 
@@ -68,6 +69,7 @@ const App = () => {
                                 <Route exact path='/scitools/lazylacz' component={LazyLacZ} />
                                 <Route exact path='/scitools/lazylacz/collection/:id' component={Collection} />
                                 <Route exact path='/scitools/lazylacz/lacz/:id' component={LacZ} />
+                                <Route exact path='/scitools/lazylacz/lacz/compare/:id' component={LacZCompareCharts} />
                             </DashboardContainer>
                         </AuthenticatedComponents>
                     </Switch>
