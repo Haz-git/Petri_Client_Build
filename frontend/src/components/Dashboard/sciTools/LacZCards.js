@@ -10,6 +10,8 @@ import Card from 'react-bootstrap/Card';
 import { v4 as uuid } from 'uuid';
 import { addlacZDataToStrain } from '../../../redux/userLacZ/LacZActions';
 import LacZChart from './LacZChart';
+import Accordion from 'react-bootstrap/Accordion';
+import { Cogs } from '@styled-icons/fa-solid/Cogs';
 
 //Styles:
 const MainCardContainer = styled.div`
@@ -78,12 +80,20 @@ const MainChartRenderingContainer = styled.div`
     background-color: white;
 `
 
+const AccordionContainer = styled.div`
+    display: flex;
+    justify-content: center;
+`
+
+const StyledCogs = styled(Cogs)`
+    height: 21px;
+    width: 21px;
+    margin-right: 7px;
+`
+
 
 //Render:
 const LacZCards = ({
-    minute,
-    dilutionFactor,
-    volume,
     ownProtocolId,
     ownStrainId,
     ownStrainName,
@@ -91,6 +101,9 @@ const LacZCards = ({
     addlacZDataToStrain,
     laczAssayProtocols,
 }) => {
+
+    const [ volume, setVolume ] = useState(0.05);
+    const [ minutes, setMinutes ] = useState(1.3333);
 
     const [lacZValue, setLacZValue] = useState([]);
 
@@ -128,6 +141,16 @@ const LacZCards = ({
                                 onChange={(e) => handleOnChange({ name:'odValue550', value: e.target.value, number: index + 1 })} 
                             />
                         </InputGroup.Prepend>
+                        <InputGroup.Prepend>
+                            <InputGroup.Text id="inputGroup-sizing-sm" >Dilution Factor</InputGroup.Text>
+                            <FormControl 
+                                aria-label="Small" 
+                                aria-describedby="inputGroup-sizing-sm" 
+                                type='number' 
+                                name='dilutionFactor'
+                                onChange={(e) => handleOnChange({ name:'dilutionFactor', value: e.target.value, number: index + 1 })} 
+                            />
+                        </InputGroup.Prepend>
                     </InputGroup>
                 </InputGroupContainer>
             </>
@@ -161,14 +184,30 @@ const LacZCards = ({
                 lacZInputs.push(inputObjectOD550);
                 setLacZValue(lacZInputs);
             }
+
+            if(name === 'dilutionFactor' && value !== null) {
+                let inputObjectDilutionFactor = {
+                    collectionNum: number,
+                    dilutionFactor: value,
+                }
+            }
         } else if (targetIndex > -1 && value !== null) {
             lacZInputs[targetIndex][name] = value;
             setLacZValue(lacZInputs);
         }
     }
 
+    const handleOnVolumeChange = e => {
+        setVolume(e.target.value);
+    }
+
+    const handleOnMinutesChange = e => {
+        setMinutes(e.target.value);
+    }
+
     const handleSaveCollectionData = () => {
-        addlacZDataToStrain(ownStrainId, ownProtocolId, lacZValue);
+        console.log(lacZValue);
+        addlacZDataToStrain(ownStrainId, ownProtocolId, lacZValue, minutes, volume);
     }
 
     const renderExistingLacZData = () => {
@@ -182,7 +221,8 @@ const LacZCards = ({
                                     <StyledExistingCData>
                                         Collection: {item.collectionNum} |||
                                         OD420: {item.odValue420} ||| 
-                                        OD550: {item.odValue550}
+                                        OD550: {item.odValue550} |||
+                                        Dilution Factor: {item.dilutionFactor}
                                     </StyledExistingCData>
                                 </Badge>
                             </BadgeDivider>
@@ -203,9 +243,6 @@ const LacZCards = ({
                 <>
                     <LacZChart
                         ownStrain={ownStrain}
-                        minute={minute}
-                        dilutionFactor={dilutionFactor}
-                        volume={volume}
                     />
                 </>
             )
@@ -240,6 +277,46 @@ const LacZCards = ({
                         </Dropdown>
                     </ButtonDivider>
                 </ButtonContainer>
+                <AccordionContainer>
+                    <Accordion>
+                            <Card>
+                                <Card.Header>
+                                    <Accordion.Toggle as={Button} variant='dark' eventKey='0'>
+                                        <StyledCogs />
+                                        Configure
+                                    </Accordion.Toggle>
+                                </Card.Header>
+                                <Accordion.Collapse eventKey='0'>
+                                    <Card.Body>
+                                        <InputGroup className="mb-3">
+                                            <InputGroup.Prepend>
+                                                <InputGroup.Text id="basic-addon1">Volume</InputGroup.Text>
+                                            </InputGroup.Prepend>
+                                            <FormControl
+                                            placeholder="0.05"
+                                            aria-label="Volume"
+                                            aria-describedby="basic-addon1"
+                                            type='number'
+                                            onChange={handleOnVolumeChange}
+                                            />
+                                        </InputGroup>
+                                        <InputGroup className="mb-3">
+                                            <InputGroup.Prepend>
+                                                <InputGroup.Text id="basic-addon1">Minutes Taken</InputGroup.Text>
+                                            </InputGroup.Prepend>
+                                            <FormControl
+                                            placeholder="1.3333"
+                                            aria-label="Minutes Taken"
+                                            aria-describedby="basic-addon1"
+                                            type='number'
+                                            onChange={handleOnMinutesChange}
+                                            />
+                                        </InputGroup>
+                                    </Card.Body>
+                                </Accordion.Collapse>
+                            </Card>
+                        </Accordion>
+                </AccordionContainer>
             </MainInputContainer>
             <MainChartRenderingContainer>
                 {renderCharts()}
