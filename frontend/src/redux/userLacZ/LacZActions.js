@@ -11,6 +11,7 @@ import {
     USER_ADD_COLLECTION_DATA_TO_STRAIN,
     USER_ADD_COLLECTION_PARSED_DATA_TO_STRAIN,
     USER_ADD_LACZ_DATA_TO_STRAIN,
+    USER_ADD_BGAL_DATA_TO_STRAIN,
 } from './LacZTypes';
 
 export function getProtocols() {
@@ -159,3 +160,24 @@ export function addlacZDataToStrain(strainId, protocolId, lacZArray, minutes, vo
         })
     }
 }
+
+export function bgalDataToStrain(strainId, protocolId, bgalData) {
+    return async(dispatch, getState) => {
+        const { auth: { userLogIn: { data: { _id } } } } = getState();
+
+        const response = await api.post('/users/scitools/lacz/laczdata/addbgaldata', {
+            _id,
+            currentStrainId: strainId,
+            currentProtocolId: protocolId,
+            bgalData: bgalData,
+        })
+
+        console.log(response);
+
+        // dispatch({
+        //     type: USER_ADD_BGAL_DATA_TO_STRAIN,
+        //     payload: response.data.laczAssayProtocols,
+        // })
+    }
+}
+
