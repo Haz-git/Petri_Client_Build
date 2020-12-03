@@ -48,6 +48,19 @@ const StyledButton = styled(Button)`
     justify-content: flex-end;
     margin-left: 6px;
     margin-right: 6px;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: none;
+    }
+`
+
+const StyledLink = styled(Link)`
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: none;
+    }
 `
 
 const ChartHeader = styled.h3`
@@ -240,12 +253,12 @@ const CollectionCharts = ({ ownProtocolId, laczAssayProtocols, addCollectionChar
                         <StyledDivider />
                         <StyledMainButtonContainer>
                             <StyledButton variant="primary" size='sm' onClick={handleUpdateDatabase}>Send Charts To Database</StyledButton>
-                            <Link to={`/scitools/lazylacz/lacz/${ownProtocolId}`}>
+                            <StyledLink to={`/scitools/lazylacz/lacz/${ownProtocolId}`}>
                                 <StyledButton variant='secondary' size='sm'>
                                     Lac-Z Data
                                     <TravelIcon />
                                 </StyledButton>
-                            </Link>
+                            </StyledLink>
                         </StyledMainButtonContainer>
                     </EditedMainHeader>
                 </MainHeaderDivider>
