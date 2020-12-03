@@ -74,6 +74,18 @@ const InputGroupHeaderContainer = styled.div`
 
 const StyledExistingCData = styled.div`
     color: #242746;
+
+    @media (max-width: 1450px) {
+        font-size: 10px;
+    }
+
+    @media (max-width: 1350px) {
+        font-size: 9px;
+    }
+
+    @media (max-width: 1200px) {
+        font-size: 8px;
+    }
 `
 
 const MainChartRenderingContainer = styled.div`
