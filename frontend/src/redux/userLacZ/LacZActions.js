@@ -172,12 +172,10 @@ export function bgalDataToStrain(strainId, protocolId, bgalData) {
             bgalData: bgalData,
         })
 
-        console.log(response);
-
-        // dispatch({
-        //     type: USER_ADD_BGAL_DATA_TO_STRAIN,
-        //     payload: response.data.laczAssayProtocols,
-        // })
+        dispatch({
+            type: USER_ADD_BGAL_DATA_TO_STRAIN,
+            payload: response.data.laczAssayProtocols,
+        })
     }
 }
 
