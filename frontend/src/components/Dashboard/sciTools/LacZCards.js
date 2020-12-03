@@ -295,7 +295,7 @@ const LacZCards = ({
                                 <Card.Header>
                                     <Accordion.Toggle as={Button} variant='dark' eventKey='0'>
                                         <StyledCogs />
-                                        Configure
+                                        Configure Volume and Minutes
                                     </Accordion.Toggle>
                                 </Card.Header>
                                 <Accordion.Collapse eventKey='0'>
