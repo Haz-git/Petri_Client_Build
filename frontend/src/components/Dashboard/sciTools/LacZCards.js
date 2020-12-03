@@ -309,7 +309,7 @@ const LacZCards = ({
                                     <Card.Body>
                                         <InputGroup className="mb-3">
                                             <InputGroup.Prepend>
-                                                <InputGroup.Text id="basic-addon1">Volume</InputGroup.Text>
+                                                <InputGroup.Text id="basic-addon1">Volume (ml)</InputGroup.Text>
                                             </InputGroup.Prepend>
                                             <FormControl
                                             placeholder="0.05"
