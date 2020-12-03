@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Label, ResponsiveContainer } from 'recharts';
-import { StyledMainHeader } from './Collection';
 import Badge from 'react-bootstrap/Badge';
 import { addCollectionChartParsedData } from '../../../redux/userLacZ/LacZActions';
 import { Link } from 'react-router-dom';
@@ -32,6 +31,18 @@ const StyledMainButtonContainer = styled.div`
     justify-content: space-around;
 `
 
+const EditedMainHeader = styled.h2`
+    margin: 0;
+    font-weight: 500;
+    font-size: 30px;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-bottom: 10px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+`
+
 const StyledButton = styled(Button)`
     display: flex;
     justify-content: flex-end;
@@ -55,7 +66,7 @@ const ResContainer = styled.div`
     margin-bottom: 20px;
     background-color: white;
     border-radius: 5px;
-    filter: drop-shadow(0 0 2.7px black);
+    filter: drop-shadow(0 0 1px white);
 `
 
 export const StyledBadge = styled(Badge)`
@@ -220,7 +231,7 @@ const CollectionCharts = ({ ownProtocolId, laczAssayProtocols, addCollectionChar
         <>
             <ChartMainContainer>
                 <MainHeaderDivider>
-                    <StyledMainHeader>
+                    <EditedMainHeader>
                         Your Charts
                         <StyledMainButtonContainer>
                             <StyledButton variant="primary" size='sm' onClick={handleUpdateDatabase}>Send Charts To Database</StyledButton>
@@ -231,7 +242,7 @@ const CollectionCharts = ({ ownProtocolId, laczAssayProtocols, addCollectionChar
                                 </StyledButton>
                             </Link>
                         </StyledMainButtonContainer>
-                    </StyledMainHeader>
+                    </EditedMainHeader>
                 </MainHeaderDivider>
                 {renderCharts()}
             </ChartMainContainer>

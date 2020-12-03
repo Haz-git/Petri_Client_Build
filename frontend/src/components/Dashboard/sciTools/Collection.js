@@ -76,10 +76,11 @@ export const CollectionContainer = styled.div`
 `
 
 const ChartContainer = styled(CollectionContainer)`
-    background-color: white;
+    background-color: #242746;
     padding-left: 20px;
     padding-right: 20px;
     justify-self: stretch;
+    border: none;
 
 
     @media (max-width: 1350px) {
