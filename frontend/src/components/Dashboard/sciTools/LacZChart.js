@@ -33,9 +33,6 @@ const LacZBadge = styled(StyledBadge)`
 //Render:
 const LacZChart = ({
     ownStrain,
-    minute,
-    dilutionFactor,
-    volume,
 }) => {
 
     let bgalParsedData;
@@ -56,8 +53,11 @@ const LacZChart = ({
         for (let k = 0; k < bgalParsedData.lacZData.length; k++) {
             const OD420 = bgalParsedData.lacZData[k].odValue420;
             const OD550 = bgalParsedData.lacZData[k].odValue550;
+            const dilutionFactor = bgalParsedData.lacZData[k].dilutionFactor;
+            const minutesTaken = bgalParsedData.lacZMinutesTaken;
+            const volumeUsed = bgalParsedData.lacZVolumeUsed;
 
-            const bgalUnit = ((1000 * (OD420 - 1.75 * OD550) * dilutionFactor)/(minute * volume));
+            const bgalUnit = ((1000 * (OD420 - 1.75 * OD550) * dilutionFactor)/(minutesTaken * volumeUsed));
 
             bgalConfiguredData[k]['bgalUnit'] = bgalUnit;
         }
@@ -85,8 +85,6 @@ const LacZChart = ({
 
     bgalConfiguredData['linearRegressionValueLacZ'] = m;
     bgalConfiguredData['rSquaredValueLacZ'] = rSquaredValue.toFixed(3);
-
-    console.log(bgalConfiguredData);
 
 
     return (
