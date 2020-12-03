@@ -43,8 +43,6 @@ const MessageContainer = styled.div`
 
 const ChatCard = (props) => {
 
-    console.log(props);
-
     return (
         <MainChatCardContainer>
             <ChatCardHeader>
