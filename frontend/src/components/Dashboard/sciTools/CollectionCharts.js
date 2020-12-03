@@ -38,7 +38,7 @@ const EditedMainHeader = styled.h2`
     padding-top: 10px;
     padding-right: 10px;
     padding-left: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     color: white;
     font-family: 'Montserrat', sans-serif;
 `
@@ -57,6 +57,10 @@ const ChartHeader = styled.h3`
     font-weight: 900;
     text-decoration: underline;
 
+`
+
+const StyledDivider = styled.hr`
+    background-color: white;
 `
 
 const ResContainer = styled.div`
@@ -233,6 +237,7 @@ const CollectionCharts = ({ ownProtocolId, laczAssayProtocols, addCollectionChar
                 <MainHeaderDivider>
                     <EditedMainHeader>
                         Your Charts
+                        <StyledDivider />
                         <StyledMainButtonContainer>
                             <StyledButton variant="primary" size='sm' onClick={handleUpdateDatabase}>Send Charts To Database</StyledButton>
                             <Link to={`/scitools/lazylacz/lacz/${ownProtocolId}`}>

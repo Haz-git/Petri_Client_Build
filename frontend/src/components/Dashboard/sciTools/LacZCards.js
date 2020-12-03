@@ -41,10 +41,15 @@ const MainInputContainer = styled.div`
 `
 
 const InputHeader = styled.h2`
-    font-family: 'Nunito', sans-serif, Arial, Helvetica;
-    font-weight: 500;
+    font-family: 'Montserrat', sans-serif, Arial, Helvetica;
+    font-weight: 400;
     font-size: 30px;
     color: white;
+    margin-bottom: 10px;
+`
+
+const StyledDivider = styled.hr`
+    background-color: white;
 `
 
 const ButtonContainer = styled.div`
@@ -271,6 +276,7 @@ const LacZCards = ({
         <MainCardContainer>
             <MainInputContainer>
                 <InputHeader>{ownStrainName}</InputHeader>
+                <StyledDivider />
                 <div>
                     {renderExistingLacZData()}
                 </div>
