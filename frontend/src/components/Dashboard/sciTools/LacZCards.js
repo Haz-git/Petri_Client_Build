@@ -260,6 +260,7 @@ const LacZCards = ({
                 <>
                     <LacZChart
                         ownStrain={ownStrain}
+                        ownProtocolId={ownProtocolId}
                     />
                 </>
             )
@@ -282,7 +283,7 @@ const LacZCards = ({
                 </div>
                 <ButtonContainer>
                     <ButtonDivider>
-                        <Button variant="success" size='sm' onClick={handleSaveCollectionData}>Save and Render</Button>
+                        <Button variant="success" size='sm' onClick={handleSaveCollectionData}>Render</Button>
                     </ButtonDivider>
                     <ButtonDivider>
                         <Dropdown drop='right'>
