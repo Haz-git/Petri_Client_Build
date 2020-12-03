@@ -14,7 +14,7 @@ const MainTaskCardContainer = styled(Card)`
     margin-top: 5px;
     margin-bottom: 5px;
     padding: 0;
-    grid-template-columns: 80% 20%;
+    grid-template-columns: 78% 22%;
 
 `
 
@@ -56,6 +56,7 @@ const RenderContainer = styled(Card.Body)`
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     color: white;
+    overflow-y: hidden;
 `
 const StyledDeleteButton = styled(StyledButton)`
     border-radius: 0;
