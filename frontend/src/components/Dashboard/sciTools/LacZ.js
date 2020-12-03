@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { MainHeader, SecondaryHeader } from '../../signupPage/SignUpForm';
 import { Button } from 'react-bootstrap';
 import { ArrowLeftSquare } from '@styled-icons/bootstrap/ArrowLeftSquare';
+import { Graph } from '@styled-icons/octicons/Graph';
 
 
 const StyledMainHeader = styled(MainHeader)`
@@ -31,6 +32,14 @@ const ArrowIcon = styled(ArrowLeftSquare)`
     height: 21px;
     width: 21px;
     margin-right: 7px;
+    vertical-align: sub;
+`
+
+const GraphIcon = styled(Graph)`
+    height: 21px;
+    width: 21px;
+    margin-right: 7px;
+    vertical-align: sub;
 `
 
 
@@ -78,6 +87,12 @@ const LacZ = ({ laczAssayProtocols, match:{params:{id}} }) => {
                     </Link>
                 </ReturnButtonContainer>
                 <StyledMainHeader>LacZ Data Collection</StyledMainHeader>
+                    <Link to={`/scitools/lazylacz/lacz/compare/${id}`}>
+                        <Button variant='primary'>
+                            <GraphIcon />
+                            Compare B-Gal Activities
+                        </Button>
+                    </Link>
             </HeaderContainer>
             <div>
                 {renderLacZCards()}
