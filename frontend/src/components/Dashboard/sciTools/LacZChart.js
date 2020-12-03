@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { linearRegression, linearRegressionLine, rSquared } from 'simple-statistics';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Label, ResponsiveContainer } from 'recharts';
-import Badge from 'react-bootstrap/Badge';
 import styled from 'styled-components';
 import { Button } from 'react-bootstrap';
+import Alert from 'react-bootstrap/Alert';
+
+import { bgalDataToStrain } from '../../../redux/userLacZ/LacZActions'; 
+import { connect } from 'react-redux';
+
 
 
 //Styles:
-import {StyledBadge} from './CollectionCharts';
+import { StyledBadge } from './CollectionCharts';
+import { Save } from '@styled-icons/entypo/Save';
 
 const MainChartContainer = styled.div`
     display: grid;
@@ -28,12 +33,29 @@ const LacZBadge = styled(StyledBadge)`
     color: white;
     filter: drop-shadow(0 0 1px black);
 `
+const SaveIcon = styled(Save)`
+    height: 23px;
+    width: 23px;
+    margin-right: 7px;
+    vertical-align: sub;
+`
+const SaveButtonContainer = styled.div`
+    margin-top: 20px;
+`
+
+const StyledAlert = styled(Alert)`
+    transition: all 1s ease-in-out;
+`
 
 
 //Render:
 const LacZChart = ({
     ownStrain,
+    ownProtocolId,
+    bgalDataToStrain,
 }) => {
+
+    const [ showAlert, setShowAlert ] = useState(false);
 
     let bgalParsedData;
     let bgalConfiguredData = [];
@@ -87,6 +109,27 @@ const LacZChart = ({
     bgalConfiguredData['rSquaredValueLacZ'] = rSquaredValue.toFixed(3);
 
 
+
+    const renderSaveButton = () => {
+        if (bgalConfiguredData.linearRegressionValueLacZ !== null || bgalConfiguredData.linearRegressionValueLacZ !== undefined) {
+            return (
+                <Button variant={showAlert ? 'success' : 'warning'} onClick={handleButtonSave} size='lg'>
+                    <SaveIcon />
+                    Save
+                </Button>
+            )
+        } else {
+            return null;
+        }
+    }
+
+    const handleButtonSave = () => {
+        setShowAlert(true);
+        console.log(bgalConfiguredData);
+        bgalDataToStrain(ownStrain.strainId, ownProtocolId, bgalConfiguredData);
+    }
+
+
     return (
         <>
             <MainChartContainer>
@@ -112,6 +155,9 @@ const LacZChart = ({
                         <LacZBadge variant='light'>
                             rSquaredValue: {bgalConfiguredData.rSquaredValueLacZ}
                         </LacZBadge>
+                        <SaveButtonContainer>
+                            {renderSaveButton()}
+                        </SaveButtonContainer>
                     </BadgeContainer>
                 </FlexContainer>
             </MainChartContainer>
@@ -119,4 +165,4 @@ const LacZChart = ({
     )
 }
 
-export default LacZChart;
+export default connect(null, { bgalDataToStrain })(LacZChart);
