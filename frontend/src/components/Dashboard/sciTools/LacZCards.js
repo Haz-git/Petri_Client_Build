@@ -12,6 +12,7 @@ import { addlacZDataToStrain } from '../../../redux/userLacZ/LacZActions';
 import LacZChart from './LacZChart';
 import Accordion from 'react-bootstrap/Accordion';
 import { Cogs } from '@styled-icons/fa-solid/Cogs';
+import Fade from 'react-reveal/Fade';
 
 //Styles:
 const MainCardContainer = styled.div`
@@ -258,10 +259,12 @@ const LacZCards = ({
         if (ownStrain.lacZData !== null && ownStrain.lacZData !== undefined) {
             return (
                 <>
-                    <LacZChart
-                        ownStrain={ownStrain}
-                        ownProtocolId={ownProtocolId}
-                    />
+                    <Fade>
+                        <LacZChart
+                            ownStrain={ownStrain}
+                            ownProtocolId={ownProtocolId}
+                        />
+                    </Fade>
                 </>
             )
         } else {

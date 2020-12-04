@@ -4,6 +4,7 @@ import DeleteModal from './DeleteModal';
 import { Link } from 'react-router-dom';
 
 //Styles:
+import Fade from 'react-reveal/Fade';
 import styled from 'styled-components';
 import { AddCircle } from '@styled-icons/ionicons-solid/AddCircle';
 import { MagnifyingGlass } from '@styled-icons/foundation/MagnifyingGlass'
@@ -269,9 +270,11 @@ const ProtocolCard = ({ protocolId, name, collection, lacZ, timeStamp }) => {
     }
 
     return (
-        <MainContainer>
-            {renderCard()}
-        </MainContainer>
+        <Fade bottom>
+            <MainContainer>
+                {renderCard()}
+            </MainContainer>
+        </Fade>
     )
 }
 

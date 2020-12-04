@@ -5,6 +5,7 @@ import { BarChart, Bar, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Label, Res
 import { Link } from 'react-router-dom';
 
 //Styles:
+import Fade from 'react-reveal/Fade';
 import { Button } from 'react-bootstrap';
 import { ArrowLeftSquare } from '@styled-icons/bootstrap/ArrowLeftSquare';
 
@@ -84,31 +85,33 @@ const LacZCompareCharts = ({ laczAssayProtocols, match:{params:{id}} }) => {
 
     return (
         <>
-            <MainContainer>
-                <MainHeader>Your Activities</MainHeader>
-                <ChartContainer>
-                    <ResponsiveContainer>
-                        <BarChart width={730} height={250} data={comparisonArray} margin={{ top: 0, right: 20, left: 30, bottom: 40 }}>
-                            <CartesianGrid strokeDasharray="5 5" />
-                            <XAxis dataKey="name">
-                                <Label value='Strains' position='bottom' style={{ textAnchor: 'middle' }} />
-                            </XAxis>
-                            <YAxis>
-                                <Label value='B-Galactosidase Activity' position='left' angle={-90} style={{ textAnchor: 'middle' }} />
-                            </YAxis>
-                            <Tooltip />
-                            <Legend verticalAlign="top" height={40}/>
-                            <Bar dataKey="bgalAverage" fill="#242746" barSize={50} />
-                        </BarChart>
-                    </ResponsiveContainer>
-                </ChartContainer>
-                    <Link to={`/scitools/lazylacz/lacz/${id}`}>
-                        <Button variant='dark'>
-                            <ArrowIcon />
-                            My LacZ Data
-                        </Button>
-                    </Link>
-            </MainContainer>
+            <Fade>
+                <MainContainer>
+                    <MainHeader>Your Activities</MainHeader>
+                    <ChartContainer>
+                        <ResponsiveContainer>
+                            <BarChart width={730} height={250} data={comparisonArray} margin={{ top: 0, right: 20, left: 30, bottom: 40 }}>
+                                <CartesianGrid strokeDasharray="5 5" />
+                                <XAxis dataKey="name">
+                                    <Label value='Strains' position='bottom' style={{ textAnchor: 'middle' }} />
+                                </XAxis>
+                                <YAxis>
+                                    <Label value='B-Galactosidase Activity' position='left' angle={-90} style={{ textAnchor: 'middle' }} />
+                                </YAxis>
+                                <Tooltip />
+                                <Legend verticalAlign="top" height={40}/>
+                                <Bar dataKey="bgalAverage" fill="#242746" barSize={50} />
+                            </BarChart>
+                        </ResponsiveContainer>
+                    </ChartContainer>
+                        <Link to={`/scitools/lazylacz/lacz/${id}`}>
+                            <Button variant='dark'>
+                                <ArrowIcon />
+                                My LacZ Data
+                            </Button>
+                        </Link>
+                </MainContainer>
+            </Fade>
         </>
     )
 }

@@ -5,6 +5,7 @@ import CollectionStrainCard from './CollectionStrainCard';
 
 //Styles:
 import { StyledMainHeader } from './Collection';
+import Fade from 'react-reveal/Fade';
 
 const StrainMainContainer = styled.div`
     margin-top: 30px;
@@ -34,14 +35,16 @@ const CollectionStrains = ({ ownProtocolStrains, protocolId }) => {
             return (
                 ownProtocolStrains.map(strain => (
                     <>
-                        <CollectionStrainCard 
-                            name={strain.strainName}
-                            pointNum={strain.collectionPoints}
-                            startTime={strain.startTime}
-                            strainId={strain.strainId}
-                            protocolId={protocolId}
-                            key={strain.strainId}
-                        /> 
+                        <Fade bottom>
+                            <CollectionStrainCard 
+                                name={strain.strainName}
+                                pointNum={strain.collectionPoints}
+                                startTime={strain.startTime}
+                                strainId={strain.strainId}
+                                protocolId={protocolId}
+                                key={strain.strainId}
+                            />
+                        </Fade>
                     </>
                 ))
             )
