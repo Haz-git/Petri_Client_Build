@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import { linearRegression, linearRegressionLine, rSquared } from 'simple-statistics';
 
 //Styles:
-
+import Fade from 'react-reveal/Fade';
 import styled from 'styled-components';
 import { Button } from 'react-bootstrap';
 import { ArrowRightSquareFill } from '@styled-icons/bootstrap/ArrowRightSquareFill';
@@ -204,35 +204,37 @@ const CollectionCharts = ({ ownProtocolId, laczAssayProtocols, addCollectionChar
             return (
                 parsedData.map(item => (
                     <>
-                        <ResContainer>
-                            <ChartHeader>{item.strainName}</ChartHeader>
-                            <div>
-                                <StyledBadge variant='dark'>
-                                    Calculated Doubling Time: {item.doublingTime} minutes
-                                </StyledBadge>
-                                <StyledBadge variant='dark'>
-                                    rSquaredValue: {item.rSquaredValueCollection}
-                                </StyledBadge>
-                                <StyledBadge variant='dark'>
-                                    Starting OD600: {item.startingOD} |||
-                                    Starting Time: {item.startTime}
-                                </StyledBadge>
-                            </div>
-                            <ResponsiveContainer aspect={2.1}>
-                                <LineChart width={550} height={400} data={item.collectionData} margin={{ top: 0, right: 20, left: 20, bottom: 40 }}>
-                                    <Line type="monotone" dataKey="odValue" stroke="#2d2d7d" strokeWidth={2.5} />
-                                    <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-                                    <XAxis dataKey="timeMinutes">
-                                        <Label value='Minutes' position='bottom' style={{ textAnchor: 'middle' }} />
-                                    </XAxis>
-                                    <YAxis dataKey='odValue'>
-                                        <Label value='OD600 Value' position='left' angle={-90} style={{ textAnchor: 'middle' }} />
-                                    </YAxis>
-                                    <Tooltip />
-                                    <Legend verticalAlign="top" height={50}/>
-                                </LineChart>
-                            </ResponsiveContainer>
-                        </ResContainer>
+                        <Fade>
+                            <ResContainer>
+                                <ChartHeader>{item.strainName}</ChartHeader>
+                                <div>
+                                    <StyledBadge variant='dark'>
+                                        Calculated Doubling Time: {item.doublingTime} minutes
+                                    </StyledBadge>
+                                    <StyledBadge variant='dark'>
+                                        rSquaredValue: {item.rSquaredValueCollection}
+                                    </StyledBadge>
+                                    <StyledBadge variant='dark'>
+                                        Starting OD600: {item.startingOD} |||
+                                        Starting Time: {item.startTime}
+                                    </StyledBadge>
+                                </div>
+                                <ResponsiveContainer aspect={2.1}>
+                                    <LineChart width={550} height={400} data={item.collectionData} margin={{ top: 0, right: 20, left: 20, bottom: 40 }}>
+                                        <Line type="monotone" dataKey="odValue" stroke="#2d2d7d" strokeWidth={2.5} />
+                                        <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
+                                        <XAxis dataKey="timeMinutes">
+                                            <Label value='Minutes' position='bottom' style={{ textAnchor: 'middle' }} />
+                                        </XAxis>
+                                        <YAxis dataKey='odValue'>
+                                            <Label value='OD600 Value' position='left' angle={-90} style={{ textAnchor: 'middle' }} />
+                                        </YAxis>
+                                        <Tooltip />
+                                        <Legend verticalAlign="top" height={50}/>
+                                    </LineChart>
+                                </ResponsiveContainer>
+                            </ResContainer>
+                        </Fade>
                     </>
                 ))
             )
