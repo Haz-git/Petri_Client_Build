@@ -7,8 +7,13 @@ import styled from 'styled-components';
 import { v4 as uuid } from 'uuid';
 import { connect } from 'react-redux';
 import { addNewEvent, getEvents, deleteEvent, updateEvent } from '../../../redux/userCalendar/calendarActions';
-import { MdCancel } from 'react-icons/md';
-import { IconContext } from 'react-icons';
+
+import Fade from 'react-reveal/Fade';
+
+import InputGroup from 'react-bootstrap/InputGroup';
+import Button from 'react-bootstrap/Button';
+import FormControl from 'react-bootstrap/FormControl';
+import { Cancel } from '@styled-icons/material-rounded/Cancel';
 
 //Styles:
 const MainCalendarContainer = styled.div`
@@ -20,50 +25,63 @@ const SideBarContainer = styled.div`
     text-align: center;
     margin: 0;
     padding: 0;
-    background-color: rgba(44,62,80, 0.8);
+    background-color: #242746;
     margin-right: 20px;
     border-radius: 8px;
     max-height: 800px;
+    box-shadow:
+        0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+        0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+        0 12.5px 10px rgba(0, 0, 0, 0.06),
+        0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+        0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+        0 60px 40px rgba(0, 0, 0, 0.12);
 `
 
 const SideBarHeader = styled.h2`
     color: white;
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 10px 10px;
 `
 
 const CalendarContainer = styled.div`
     flex-grow: 3;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    box-shadow:
+        0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+        0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+        0 12.5px 10px rgba(0, 0, 0, 0.06),
+        0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+        0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+        0 60px 40px rgba(0, 0, 0, 0.12);
 `
 
-const StyledInput = styled.input`
-    height: 25px;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    border: 1px solid white;
-    &:focus {
-        outline:none;
-    }
-
+const InputContainer = styled.div`
+    padding: 10px 10px;
 `
-const StyledButton = styled.button`
-    height: 29px;
-    background-color: rgb(30, 43, 55);
-    color: white;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border: 1px solid rgb(30, 43, 55);
-    cursor: pointer;
-    &:focus {
-        outline:none;
-    }
+
+const StyledCancelIcon = styled(Cancel)`
+    height: 20px;
+    width: 20px;
+    vertical-align: baseline;
+`
+
+const StyledDivider = styled.hr`
+    background-color: white;
+`
+
+
+const StyledButton = styled(Button)`
+    height: 30px;
 `
 
 const StyledEventCard = styled.div`
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
     cursor: pointer;
     background-color: rgb(55, 136, 216);
     border: 1px solid rgb(55, 136, 216);
@@ -72,6 +90,12 @@ const StyledEventCard = styled.div`
     border-radius: 5px;
     margin-top: 10px;
     margin-bottom: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    max-width: 250px;
+    overflow-x: scroll;
 `
 
 const SubmittedEventContainer = styled.div`
@@ -120,13 +144,11 @@ const Calendar = ({ addNewEvent, getEvents, calendarEvents, deleteEvent, updateE
     }
 
     const handleFormSubmit = e => {
-        e.preventDefault();
         setSubmittedEvents([...submittedEvents, {
             title: currentEvent,
             id: uuid(),
         }]);
         setCurrentEvent('')
-        console.log(submittedEvents);
     }
 
     const handleEventClick = clickInfo => {
@@ -153,27 +175,31 @@ const Calendar = ({ addNewEvent, getEvents, calendarEvents, deleteEvent, updateE
             })
     }
 
+    const handleKeyPress = e => {
+        if (e.charCode === 13) {
+            handleFormSubmit();
+        }
+    }
+
 
     const renderSideBar = () => {
         return (
             <SubmittedEventContainer id='external-events'>
                 {submittedEvents.map(event => {
                     return (
-                        <StyledEventCard
-                            className="fc-event"
-                            title={event.title}
-                            id={event.id}
-                            key={event.id}
-                        >
-                            {event.title}
-                            <button onClick={() => handleEventCardDelete(event.id)}>
-                            <IconContext.Provider value={{ color: "red", className: "global-class-name" }}>
-                                <div>
-                                    <MdCancel />
-                                </div>
-                            </IconContext.Provider>
-                            </button>
-                        </StyledEventCard>
+                        <Fade top>
+                            <StyledEventCard
+                                className="fc-event"
+                                title={event.title}
+                                id={event.id}
+                                key={event.id}
+                            >
+                                {event.title}
+                                <StyledButton variant='danger' size='sm' onClick={() => handleEventCardDelete(event.id)}>
+                                    <StyledCancelIcon />
+                                </StyledButton>
+                            </StyledEventCard>
+                        </Fade>
                     );
                 })}
             </SubmittedEventContainer>
@@ -185,12 +211,24 @@ const Calendar = ({ addNewEvent, getEvents, calendarEvents, deleteEvent, updateE
         <>
             <MainCalendarContainer>
                 <SideBarContainer>
-                    <form onSubmit={handleFormSubmit}>
                         <SideBarHeader>Add New Events</SideBarHeader>
-                        <StyledInput type='text' onChange={handleFormChange} value={currentEvent}></StyledInput>
-                        <StyledButton type='submit'>Submit</StyledButton>
-                    </form>
-                    <hr />
+                        <InputContainer>
+                            <InputGroup className="mb-3" size='sm'>
+                                <FormControl
+                                    placeholder="Add new event"
+                                    aria-label="Add new event"
+                                    aria-describedby="basic-addon2"
+                                    type='text'
+                                    onChange={handleFormChange}
+                                    value={currentEvent}
+                                    onKeyPress={handleKeyPress}
+                                />
+                                <InputGroup.Append>
+                                    <Button variant="primary" onClick={handleFormSubmit} size='sm'>Submit</Button>
+                                </InputGroup.Append>
+                            </InputGroup>
+                        </InputContainer>                    
+                    <StyledDivider />
                     {renderSideBar()}
                 </SideBarContainer>
                 <CalendarContainer>
@@ -222,27 +260,11 @@ const Calendar = ({ addNewEvent, getEvents, calendarEvents, deleteEvent, updateE
 }
 
 
-/*
-Documentation:
-https://fullcalendar.io/docs#toc
-
-
-It seems like the events object can easily be saved to mongoDB for persistence... --> Using this strategy we can implement personal calendar..https://fullcalendar.io/docs/event-object
-
-We have now made persistence when adding new events to the calendar, and grabbing from our DB. However, persistence of moving events or changing duration of events is not supported yet. We have to implement USER_UPDATE_EVENT for that to happen.
-
-**BUGS**
-1. Adding Events will duplicate events--> Refresh will remove.
-
-2. Deleting Events from Calendar will remove all events --> Refresh will update. 
-*/
-
 const mapStateToProps = state => {
     return {
         calendarEvents: state.calendarEvents
     }
 }
-
 
 
 export default connect(mapStateToProps, { addNewEvent, getEvents, deleteEvent, updateEvent })(Calendar);
