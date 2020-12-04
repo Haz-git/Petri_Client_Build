@@ -10,9 +10,74 @@ import '../../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.cs
 import { EditorState, convertToRaw } from 'draft-js';
 
 //Styles:
+import { Button } from 'react-bootstrap';
+import { CaretBack } from '@styled-icons/ionicons-outline/CaretBack';
+import { Save } from '@styled-icons/entypo/Save';
 
 const MainEditorContainer = styled.div`
-    padding: 50px 50px;
+    padding: 30px 30px;
+`
+
+const NameContainer = styled.div`
+    text-align: center;
+    background-color: #242746;
+    color: white;
+`
+
+const EditorContainer = styled.div`
+    padding: 10px 10px;
+    border: 1px solid #242746;
+    background-color: white;
+    height: 78vh;
+    overflow-y: auto;
+    box-shadow:
+        0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+        0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+        0 12.5px 5px rgba(0, 0, 0, 0.06),
+        0 22.3px 10px rgba(0, 0, 0, 0.072),
+        0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+        0 60px 80px rgba(0, 0, 0, 0.12);
+    ;
+`
+
+const StickyEditor = styled(Editor)`
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+`
+
+const StyledInput = styled.input`
+    height: 35px;
+    width: 400px;
+    border-radius: 5px;
+    padding: 5px 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+`
+
+const ButtonContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    padding: 20px 10px;
+`
+
+const StyledButton = styled(Button)`
+    margin-left: 7px;
+    margin-right: 7px;
+`
+
+const SaveIcon = styled(Save)`
+    height: 23px;
+    width: 23px;
+    margin-right: 7px;
+    vertical-align: sub;
+`
+const CaretIcon = styled(CaretBack)`
+    height: 23px;
+    width: 23px;
+    margin-right: 7px;
+    vertical-align: sub;
 `
 
 //Render:
@@ -45,18 +110,18 @@ const NewBioNote = ({ createNewBioNote }) => {
         <>
             <MainEditorContainer>
                 <form onSubmit={onEditorSubmit}>
-                    <div>
-                        <label htmlFor='bionoteName'>Name of BioNote:  </label>
-                        <input
+                    <NameContainer>
+                        <StyledInput
                             name='bionoteName'
                             type='text'
                             placeholder='Enter Name..'
                             value={bioName}
                             onChange={handleNameChange}
+                            autoComplete='off'
                         />
-                    </div>
-                    <div>
-                        <Editor
+                    </NameContainer>
+                    <EditorContainer>
+                        <StickyEditor
                             editorState={editorState}
                             toolbar={{
                                 inline: { inDropdown: true },
@@ -65,10 +130,20 @@ const NewBioNote = ({ createNewBioNote }) => {
                             }}
                             onEditorStateChange={handleEditorStateChange}
                         />
-                    </div>
-                    <button type='submit'>Submit BioNote</button>
+                    </EditorContainer>
+                    <ButtonContainer>
+                        <Link to='/createbionote'>
+                            <StyledButton variant='secondary' size='lg'>
+                                <CaretIcon />
+                                Your Existing Bionotes
+                            </StyledButton>
+                        </Link>
+                        <StyledButton variant='success' type='submit' size='lg'>
+                            <SaveIcon />
+                            Save
+                        </StyledButton>
+                    </ButtonContainer>
                 </form>
-                <Link to='/createbionote'>View Your Existing BioNotes</Link>
             </MainEditorContainer>
         </>
     )
