@@ -12,6 +12,7 @@ import 'normalize.css';
 //Styles:
 
 import { PaperPlane } from '@styled-icons/boxicons-solid/PaperPlane';
+import Fade from 'react-reveal/Fade';
 
 const MainMessengerContainer = styled.div`
     margin-left: 0;
@@ -169,7 +170,9 @@ class Messenger extends Component {
     renderCards = () => (
         //Changing key from chat._id to uuid to prevent occasional duplication:
         this.props.chat.map((chat) => (
-            <ChatCard key={uuid()} {...chat}/>
+            <Fade>
+                <ChatCard key={uuid()} {...chat}/>
+            </Fade>
         ))
     )
     
