@@ -6,6 +6,7 @@ import { v4 as uuid } from 'uuid';
 import styled from 'styled-components';
 
 //Styles:
+import Fade from 'react-reveal/Fade';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 import FormControl from 'react-bootstrap/FormControl';
@@ -74,7 +75,9 @@ const MDTodo = ({ addNewTask, getTasks, taskList }) => {
         if (taskList !== null && taskList !== undefined) {
             return (
                 taskList.map(task => (
-                    <TaskCard key={uuid()} item={task} />
+                    <Fade bottom>
+                        <TaskCard key={uuid()} item={task} />
+                    </Fade>
                 ))
             )
         } else {
