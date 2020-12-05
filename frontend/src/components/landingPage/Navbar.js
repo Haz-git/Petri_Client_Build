@@ -14,6 +14,7 @@ import { Calendar } from '@styled-icons/foundation/Calendar';
 import { Folder } from '@styled-icons/entypo/Folder';
 import { Tools } from '@styled-icons/entypo/Tools';
 import { LogOut } from '@styled-icons/ionicons-sharp/LogOut';
+import { SettingsApplications } from '@styled-icons/material/SettingsApplications';
 
 
 //Styling:
@@ -206,6 +207,17 @@ const StyledLinkLabel = styled.label`
     }
 `
 
+const StyledCogs = styled(SettingsApplications)`
+    margin-bottom: 3px;
+    height: 30px;
+    width: 32px;
+    color: #ffffff;
+    cursor: pointer;
+    ${DashboardLink}:hover & {
+        color: #ADD6FF;
+    }
+`
+
 
 
 //Component Structure:
@@ -249,6 +261,10 @@ const Navbar = ({ StateJwt }) => {
                     <DashboardLink to='/scitools'>
                         <StyledTools />
                         <StyledLinkLabel>SCI-TOOLS</StyledLinkLabel>
+                    </DashboardLink>
+                    <DashboardLink to='/settings'>
+                        <StyledCogs />
+                        <StyledLinkLabel>SETTINGS</StyledLinkLabel>
                     </DashboardLink>
                     <DashboardLink to='/logout'>
                         <StyledLogOut />
