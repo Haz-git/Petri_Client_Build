@@ -30,6 +30,8 @@ import LazyLacZ from './Dashboard/sciTools/LazyLacZ';
 import Collection from './Dashboard/sciTools/Collection';
 import LacZ from './Dashboard/sciTools/LacZ';
 import LacZCompareCharts from './Dashboard/sciTools/LacZCompareCharts';
+import UserSettings from './Dashboard/settings/UserSettings';
+import EditProfilePicture from './Dashboard/settings/EditProfilePicture';
 
 //Styling:
 
@@ -70,6 +72,8 @@ const App = () => {
                                 <Route exact path='/scitools/lazylacz/collection/:id' component={Collection} />
                                 <Route exact path='/scitools/lazylacz/lacz/:id' component={LacZ} />
                                 <Route exact path='/scitools/lazylacz/lacz/compare/:id' component={LacZCompareCharts} />
+                                <Route exact path='/settings' component={UserSettings} />
+                                <Route exact path='/settings/editProfilePicture/:id' component={EditProfilePicture} />
                             </DashboardContainer>
                         </AuthenticatedComponents>
                     </Switch>
