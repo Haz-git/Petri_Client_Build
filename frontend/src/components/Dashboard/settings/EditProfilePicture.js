@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import AvatarEditor from 'react-avatar-editor';
 import DropZone from 'react-dropzone';
 
 const EditProfilePicture = () => {
 
+    const editorRef = useRef(null);
     const [ image, setImage ] = useState('');
     const [ width, setWidth ] = useState(250);
     const [ height, setHeight ] = useState(250);
@@ -16,6 +17,9 @@ const EditProfilePicture = () => {
         x: 0.5,
         y: 0.5,
     })
+
+    const [ preview, setPreview ] = useState(null);
+    
     
     const handleDrop = dropped => {
         console.log(dropped);
@@ -47,6 +51,50 @@ const EditProfilePicture = () => {
         setPosition(position);
     }
 
+    const handleRotateLeft = e => {
+        e.preventDefault();
+        setRotate(rotate + 90);
+    }
+
+    const handleRotateRight = e => {
+        e.preventDefault();
+        setRotate(rotate - 90);
+    }
+
+    const handleSaveAndPreview = data => {
+        const img = editorRef.current.getImageScaledToCanvas().toDataURL();
+        const rect = editorRef.current.getCroppingRect();
+
+        setPreview({
+            img,
+            rect,
+            scale,
+            width,
+            height,
+            borderRadius
+        })
+    }
+
+
+    const handlePreviewRender = () => {
+        if (preview !== null && preview !== undefined) {
+            const previewStyle = {
+                borderRadius: `${preview.borderRadius}px`,
+                width: `${preview.width}px`,
+                height: `${preview.height}px`,
+            }
+            return (
+                <>
+                    <img
+                        src={preview.img}
+                        style={previewStyle}
+                    />
+                </>
+            )
+        }
+    }
+
+
     return (
         <div>
             <h1>This is experimental</h1>
@@ -60,6 +108,7 @@ const EditProfilePicture = () => {
                     {({ getRootProps, getInputProps }) => (
                         <div {...getRootProps()}>
                             <AvatarEditor
+                                ref={editorRef}
                                 width={width}
                                 height={height} 
                                 image={image}
@@ -119,6 +168,25 @@ const EditProfilePicture = () => {
                             value={borderRadius}
                             onChange={handleBorderRadiusChange}
                         />
+                    </div>
+                    <div>
+                        <div>
+                            Rotate Left:
+                            <button onClick={handleRotateLeft}>Left</button>
+                        </div>
+                        <div>
+                            Rotate Right:
+                            <button onClick={handleRotateRight}>Right</button>
+                        </div>
+                        <div>
+                            <button onClick={handleSaveAndPreview}>Preview</button>
+                        </div>
+                    </div>
+                    <div>
+                        Preview:
+                        <div>
+                            { handlePreviewRender() }
+                        </div>
                     </div>
                 </div>
             </div>
