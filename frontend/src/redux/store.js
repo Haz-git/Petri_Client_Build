@@ -6,6 +6,7 @@ import newsReducer from './sciNews/sciNewsReducer';
 import bionotesReducer from './userBioNote/bionoteReducer';
 import calendarReducer from './userCalendar/calendarReducer';
 import lacZReducer from './userLacZ/LacZReducer';
+import userReducer from './userSettings/UserSettingReducer';
 import { reducer as formReducer } from 'redux-form';
 import reduxThunk from 'redux-thunk';
 import { persistStore } from 'redux-persist';
@@ -17,7 +18,7 @@ const persistConfig = {
     //key = point of storage inside reducer--start storing at root.
     key: 'root',
     storage,
-    whitelist: ['auth', 'chat', 'task', 'news', 'bionotes', 'calendarEvents', 'laczAssayProtocols']
+    whitelist: ['auth', 'chat', 'task', 'news', 'bionotes', 'calendarEvents', 'laczAssayProtocols', 'userSettings' ]
 }
 
 //Creating Enhancers:
@@ -34,6 +35,7 @@ const rootReducer = combineReducers({
     bionotes: bionotesReducer,
     calendarEvents: calendarReducer,
     laczAssayProtocols: lacZReducer,
+    userSettings: userReducer,
 });
 
 //Persisting formReducer:
