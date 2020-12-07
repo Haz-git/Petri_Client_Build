@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getNews } from '../../../redux/sciNews/sciNewsActions';
 import { AiOutlineReload } from 'react-icons/ai';
@@ -38,6 +38,13 @@ const StyledButton = styled.button`
 //Render:
 
 const MDSciNews = ({ getNews, news }) => {
+
+    const [ loading, setLoading ] = useState(true);
+
+    useEffect(() => {
+        getNews();
+    },[])
+
 
     const handleGetRequest = e => {
         e.preventDefault();
