@@ -187,7 +187,7 @@ const StyledLogOut = styled(LogOut)`
 `
 
 const StyledDashboardLogo = styled.img`
-    margin-bottom: 3px;
+    margin-bottom: 25px;
     height: 65px;
     width: 65px;
     color: #ADD6FF;
@@ -209,13 +209,18 @@ const StyledLinkLabel = styled.label`
 
 const StyledCogs = styled(SettingsApplications)`
     margin-bottom: 3px;
-    height: 30px;
-    width: 32px;
+    height: 37px;
+    width: 37px;
     color: #ffffff;
     cursor: pointer;
     ${DashboardLink}:hover & {
         color: #ADD6FF;
     }
+`
+
+const StyledDivider = styled.hr`
+    background-color: white;
+    margin: 0;
 `
 
 
@@ -238,6 +243,7 @@ const Navbar = ({ StateJwt }) => {
             return (
                 <DashboardNavbar>
                     <StyledDashboardLogo src={petriLogoEdit2} />
+                    <StyledDivider />
                     <DashboardLink to='/dashboard'>
                         <StyledHomeHeart />
                         <StyledLinkLabel>DASHBOARD</StyledLinkLabel>
