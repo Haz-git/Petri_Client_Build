@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { getJWT } from '../../../utils/jwthelper';
+import { connect } from 'react-redux';
+import defaultAvatar from '../../../Img/default_avatar.png';
 
 
 import styled from 'styled-components';
@@ -7,6 +9,7 @@ import styled from 'styled-components';
 //Main Dashboard Components:
 import MDTodo from './MDTodo';
 import MDSciNews from './MDSciNews';
+import { isNull } from 'lodash';
 
 //Styles:
 const MainDashboardContainer = styled.div`
@@ -40,6 +43,12 @@ const UpperGridContainer = styled.div`
     padding: 10px 10px;
 `
 
+const StyledDefaultAvatar = styled.img`
+    height: 125px;
+    width: 125px;
+    background-color: white;
+`
+
 class MainDashboard extends Component {
     constructor(props) {
         super(props);
@@ -60,6 +69,26 @@ class MainDashboard extends Component {
         });
     }
 
+    renderDashBoardProfilePicture = () => {
+        if (this.props.myProfileImg.userSettings !== undefined && this.props.myProfileImg !== null) {
+
+            const { url, constraints } = this.props.myProfileImg.userSettings.profileImg;
+
+        
+            return (
+                <>
+                    <img src={url} />
+                </>
+            )
+        } else {
+            return (
+                <>
+                    <StyledDefaultAvatar src={defaultAvatar} />
+                </>
+            )
+        }
+    }
+
 
     render() {
 
@@ -70,6 +99,9 @@ class MainDashboard extends Component {
                 <MainDashboardHeaderContainer>
                     <MainDashboardHeader>Welcome back {firstName}! </MainDashboardHeader>
                     <MainDashboardHeader2>You are currently signed in under {email}</MainDashboardHeader2>
+                    <div>
+                        {this.renderDashBoardProfilePicture()}
+                    </div>
                 </MainDashboardHeaderContainer>
                 <MainDashboardUpperGrid>
                     <UpperGridContainer>
@@ -84,13 +116,10 @@ class MainDashboard extends Component {
     }
 }
 
-/*
-Notes:
+const mapStateToProps = state => {
+    return {
+        myProfileImg : state.userSettings,
+    }
+}
 
-I have finally gotten the backend and the frontend to render via heroku and netlify, respectively. However, there seems to be an issue that comes back to bite me. It appears that my reliance on redux-persist has failed now that I'm loading everything completing from scratch. The since in my useEffect() hook I am calling the API for information, the state does not exist when the component is rendered, leading to a blank page. This is very problematic.
-
-I'll have to look into this, but the first solution that comes to mind is having a loading page with a spinner that basically just calls ALL of the information stored in the DB for the particular user and sends it off to the reducer...
-
-*/
-
-export default MainDashboard;
+export default connect(mapStateToProps)(MainDashboard);
