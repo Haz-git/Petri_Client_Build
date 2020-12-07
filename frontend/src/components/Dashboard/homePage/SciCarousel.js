@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import SciCard from './SciCard';
 import { CaretLeft } from '@styled-icons/boxicons-regular/CaretLeft';
 import { CaretRight } from '@styled-icons/boxicons-regular/CaretRight';
+import Spinner from 'react-bootstrap/Spinner';
 
 const StyledLeft = styled(CaretLeft)`
     height: 50px;
