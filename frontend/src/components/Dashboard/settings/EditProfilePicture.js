@@ -6,10 +6,20 @@ const EditProfilePicture = () => {
 
     const [ image, setImage ] = useState('');
     const [ width, setWidth ] = useState(400);
+    const [ height, setHeight ] = useState(400);
+    const [ border, setBorder ] = useState(20);
+    const [ color, setColor ] = useState([0,0,0,1]);
+    const [ scale, setScale ] = useState(1.2);
+    const [ rotate, setRotate ] = useState(0);
     
     const handleDrop = dropped => {
         console.log(dropped);
         setImage(dropped[0]);
+    }
+
+    const handleZoomChange = e => {
+        e.preventDefault();
+        setScale(e.target.value);
     }
 
     return (
@@ -25,9 +35,13 @@ const EditProfilePicture = () => {
                     {({ getRootProps, getInputProps }) => (
                         <div {...getRootProps()}>
                             <AvatarEditor
-                                width={400}
-                                height={400} 
+                                width={width}
+                                height={height} 
                                 image={image}
+                                border={border}
+                                color={color}
+                                scale={scale}
+                                rotate={rotate}
                             />
                             <input {...getInputProps()} />
                         </div>
@@ -37,7 +51,15 @@ const EditProfilePicture = () => {
             <div>
                 <h2>This is the options container</h2>
                 <div>
-
+                    <div>
+                        Zoom:
+                        <input type='range'
+                            min='1'
+                            max='20'
+                            value={scale}
+                            onChange={handleZoomChange}
+                        />
+                    </div> 
                 </div>
             </div>
         </div>
