@@ -5,13 +5,17 @@ import DropZone from 'react-dropzone';
 const EditProfilePicture = () => {
 
     const [ image, setImage ] = useState('');
-    const [ width, setWidth ] = useState(400);
-    const [ height, setHeight ] = useState(400);
+    const [ width, setWidth ] = useState(250);
+    const [ height, setHeight ] = useState(250);
     const [ border, setBorder ] = useState(20);
     const [ color, setColor ] = useState([0,0,0,1]);
     const [ scale, setScale ] = useState(1.2);
     const [ rotate, setRotate ] = useState(0);
     const [ borderRadius, setBorderRadius ] = useState(0); 
+    const [ position, setPosition ] = useState({
+        x: 0.5,
+        y: 0.5,
+    })
     
     const handleDrop = dropped => {
         console.log(dropped);
@@ -26,6 +30,21 @@ const EditProfilePicture = () => {
     const handleBorderRadiusChange = e => {
         e.preventDefault();
         setBorderRadius(e.target.value);
+    }
+
+    const handleHeightChange = e => {
+        console.log(e.target.value);
+        e.preventDefault();
+        setHeight(parseInt(e.target.value));
+    }
+
+    const handleWidthChange = e => {
+        e.preventDefault();
+        setWidth(parseInt(e.target.value));
+    }
+
+    const handlePositionChange = position => {
+        setPosition(position);
     }
 
     return (
@@ -49,6 +68,8 @@ const EditProfilePicture = () => {
                                 scale={scale}
                                 rotate={rotate}
                                 borderRadius={borderRadius}
+                                position={position}
+                                onPositionChange={handlePositionChange}
                             />
                             <input {...getInputProps()} />
                         </div>
@@ -58,6 +79,28 @@ const EditProfilePicture = () => {
             <div>
                 <h2>This is the options container</h2>
                 <div>
+                    <div>
+                        <div>
+                            Height:
+                            <input
+                                type='number'
+                                min='250'
+                                max='700'
+                                value={height}
+                                onChange={handleHeightChange}
+                            />
+                        </div>
+                        <div>
+                            Width:
+                            <input
+                                type='number'
+                                min='250'
+                                max='700'
+                                value={width}
+                                onChange={handleWidthChange}
+                            />
+                        </div>
+                    </div>
                     <div>
                         Zoom:
                         <input type='range'
@@ -76,7 +119,7 @@ const EditProfilePicture = () => {
                             value={borderRadius}
                             onChange={handleBorderRadiusChange}
                         />
-                    </div> 
+                    </div>
                 </div>
             </div>
         </div>
