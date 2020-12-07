@@ -11,10 +11,27 @@ import BioNoteCard from './BioNoteCard';
 //Styles:
 import { Button } from 'react-bootstrap';
 import { PencilSquare } from '@styled-icons/bootstrap/PencilSquare';
+import Fade from 'react-reveal/Fade';
 
-
-const HeaderContainer = styled.div`
+const MainBioNotesHeaderContainer = styled.div`
+    padding-left: 40px;
+    display: flex;
     text-align: center;
+    background-color: #1c1e37;
+    height: 110px;
+    border-left: 1px solid #F6F9FC;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+`
+
+const StyledMainHeader = styled.h1`
+    font-family: 'Montserrat', sans-serif;
+    font-size: 50px;
+    font-weight: 100;
+    color: white;
 `
 
 const ButtonContainer = styled.div`
@@ -30,17 +47,6 @@ const PencilIcon = styled(PencilSquare)`
     margin-left: 7px;
 `
 
-const MainHeader = styled.h1`
-    margin: 0;
-    font-weight: 900;
-    font-size: 60px;
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-left: 10px;
-    margin-bottom: 30px;
-    color: #293241;
-    font-family: 'Catamaran', sans-serif;
-`
 
 const NoteCardContainer = styled.div`
     padding-top: 20px;
@@ -72,9 +78,11 @@ const CreateBioNote = ({ bionotes, getBioNotes }) => {
 
     return (
         <>
-            <HeaderContainer>
-                <MainHeader>Your Bio-Notes</MainHeader>
-            </HeaderContainer>
+            <MainBioNotesHeaderContainer>
+                <Fade>
+                    <StyledMainHeader>Your Bio-Notes</StyledMainHeader>
+                </Fade>
+            </MainBioNotesHeaderContainer>
             <ButtonContainer>
                     <Link to='newbionote'>
                         <Button variant='primary'>

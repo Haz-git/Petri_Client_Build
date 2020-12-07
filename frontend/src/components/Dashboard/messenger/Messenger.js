@@ -25,20 +25,27 @@ const MainMessengerContainer = styled.div`
 
 `
 
-const HeaderContainer = styled.div`
+const MainMessengerHeaderContainer = styled.div`
+    padding-left: 40px;
+    display: flex;
     text-align: center;
-`
-const MainHeaderText = styled.h1`
+    background-color: #1c1e37;
+    height: 110px;
+    border-left: 1px solid #F6F9FC;
+    justify-content: flex-start;
+    align-items: center;
     margin: 0;
-    font-weight: 900;
-    font-size: 60px;
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-left: 10px;
-    color: #293241;
-    font-family: 'Catamaran', sans-serif;
-
+    padding-top: 0;
+    padding-bottom: 0;
 `
+
+const StyledMainHeader = styled.h1`
+    font-family: 'Montserrat', sans-serif;
+    font-size: 50px;
+    font-weight: 100;
+    color: white;
+`
+
 const NestedMessengerContainer = styled.div`
     margin-top: 10px;
     margin-bottom: 10px;
@@ -206,10 +213,12 @@ class Messenger extends Component {
     render() {
         return(
             <>
+                <MainMessengerHeaderContainer>
+                    <Fade>
+                        <StyledMainHeader>The Petri Dish</StyledMainHeader>
+                    </Fade>
+                </MainMessengerHeaderContainer>
                 <MainMessengerContainer>
-                    <HeaderContainer>
-                        <MainHeaderText>The Petri Dish</MainHeaderText>
-                    </HeaderContainer>
                     <NestedMessengerContainer>
                         <div>
                             <ChatContainer>

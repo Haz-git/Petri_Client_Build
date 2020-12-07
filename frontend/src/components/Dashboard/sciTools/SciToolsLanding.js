@@ -6,7 +6,29 @@ import Card from 'react-bootstrap/Card';
 import galactPhoto from '../../../Img/bgalact.png';
 
 //Styles:
-import { MainHeader, SecondaryHeader } from '../../signupPage/SignUpForm';
+import { SecondaryHeader } from '../../signupPage/SignUpForm';
+import Fade from 'react-reveal/Fade';
+
+const MainSciToolsHeaderContainer = styled.div`
+    padding-left: 40px;
+    display: flex;
+    text-align: center;
+    background-color: #1c1e37;
+    height: 110px;
+    border-left: 1px solid #F6F9FC;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+`
+
+const StyledMainHeader = styled.h1`
+    font-family: 'Montserrat', sans-serif;
+    font-size: 50px;
+    font-weight: 100;
+    color: white;
+`
 
 const MainContainer = styled.div`
     text-align: center;
@@ -52,7 +74,11 @@ const SciToolsLanding = () => {
     return (
         <>
             <MainContainer>
-                <MainHeader>Your Sci-Tools</MainHeader>
+                <MainSciToolsHeaderContainer>
+                    <Fade>
+                        <StyledMainHeader>Your Sci-Tools</StyledMainHeader>
+                    </Fade>
+                </MainSciToolsHeaderContainer>
                 <SciToolsSecondaryHeader>Please choose a program below</SciToolsSecondaryHeader>
                 <MainProgramContainer>
                     <SubProgramContainer>

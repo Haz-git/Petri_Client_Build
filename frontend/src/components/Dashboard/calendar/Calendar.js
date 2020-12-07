@@ -16,6 +16,28 @@ import FormControl from 'react-bootstrap/FormControl';
 import { Cancel } from '@styled-icons/material-rounded/Cancel';
 
 //Styles:
+
+const MainCalendarHeaderContainer = styled.div`
+    padding-left: 40px;
+    display: flex;
+    text-align: center;
+    background-color: #1c1e37;
+    height: 110px;
+    border-left: 1px solid #F6F9FC;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+`
+
+const StyledMainHeader = styled.h1`
+    font-family: 'Montserrat', sans-serif;
+    font-size: 50px;
+    font-weight: 100;
+    color: white;
+`
+
 const MainCalendarContainer = styled.div`
     display: flex;
     padding: 20px 20px;
@@ -208,7 +230,12 @@ const Calendar = ({ addNewEvent, getEvents, calendarEvents, deleteEvent, updateE
 
 
     return (
-        <>
+        <>  
+            <MainCalendarHeaderContainer>
+                <Fade>
+                    <StyledMainHeader>Your Calendar</StyledMainHeader>
+                </Fade>
+            </MainCalendarHeaderContainer>
             <MainCalendarContainer>
                 <SideBarContainer>
                         <SideBarHeader>Add New Events</SideBarHeader>
