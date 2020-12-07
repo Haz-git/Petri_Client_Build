@@ -1,8 +1,10 @@
 import React, { useState, useRef } from 'react';
 import AvatarEditor from 'react-avatar-editor';
 import DropZone from 'react-dropzone';
+import { connect } from 'react-redux';
+import { userAddNewProfilePicture } from '../../../redux/userSettings/UserSettingActions';
 
-const EditProfilePicture = () => {
+const EditProfilePicture = ({ userAddNewProfilePicture }) => {
 
     const editorRef = useRef(null);
     const [ image, setImage ] = useState('');
@@ -73,6 +75,15 @@ const EditProfilePicture = () => {
             height,
             borderRadius
         })
+    }
+
+    const handleSave = data => {
+        console.log('handleSave')
+
+        const img = editorRef.current.getImageScaledToCanvas().toDataURL();
+        const rect = editorRef.current.getCroppingRect();
+
+        userAddNewProfilePicture(img, rect);
     }
 
 
@@ -181,6 +192,9 @@ const EditProfilePicture = () => {
                         <div>
                             <button onClick={handleSaveAndPreview}>Preview</button>
                         </div>
+                        <div>
+                            <button onClick={handleSave}>Save Profile Picture</button>
+                        </div>
                     </div>
                     <div>
                         Preview:
@@ -194,4 +208,4 @@ const EditProfilePicture = () => {
     )
 }
 
-export default EditProfilePicture;
+export default connect(null, { userAddNewProfilePicture })(EditProfilePicture);
