@@ -11,6 +11,7 @@ const EditProfilePicture = () => {
     const [ color, setColor ] = useState([0,0,0,1]);
     const [ scale, setScale ] = useState(1.2);
     const [ rotate, setRotate ] = useState(0);
+    const [ borderRadius, setBorderRadius ] = useState(0); 
     
     const handleDrop = dropped => {
         console.log(dropped);
@@ -20,6 +21,11 @@ const EditProfilePicture = () => {
     const handleZoomChange = e => {
         e.preventDefault();
         setScale(e.target.value);
+    }
+
+    const handleBorderRadiusChange = e => {
+        e.preventDefault();
+        setBorderRadius(e.target.value);
     }
 
     return (
@@ -42,6 +48,7 @@ const EditProfilePicture = () => {
                                 color={color}
                                 scale={scale}
                                 rotate={rotate}
+                                borderRadius={borderRadius}
                             />
                             <input {...getInputProps()} />
                         </div>
@@ -58,6 +65,16 @@ const EditProfilePicture = () => {
                             max='20'
                             value={scale}
                             onChange={handleZoomChange}
+                        />
+                    </div>
+                    <div>
+                        Border Radius:
+                        <input 
+                            type='range'
+                            min='0'
+                            max='200'
+                            value={borderRadius}
+                            onChange={handleBorderRadiusChange}
                         />
                     </div> 
                 </div>
