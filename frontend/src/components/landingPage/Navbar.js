@@ -80,7 +80,7 @@ const DashboardNavbar = styled.div`
     left: 0;
     background-color: #1c1e37; 
     overflow-x: hidden; 
-    padding-top: 20px;
+    padding-top: 10px;
     text-align: center;
 
 `
@@ -187,7 +187,7 @@ const StyledLogOut = styled(LogOut)`
 `
 
 const StyledDashboardLogo = styled.img`
-    margin-bottom: 25px;
+    margin-bottom: 10px;
     height: 65px;
     width: 65px;
     color: #ADD6FF;

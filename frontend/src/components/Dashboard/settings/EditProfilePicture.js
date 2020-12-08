@@ -78,7 +78,6 @@ const EditProfilePicture = ({ userAddNewProfilePicture }) => {
     }
 
     const handleSave = data => {
-        console.log('handleSave')
 
         const img = editorRef.current.getImageScaledToCanvas().toDataURL();
         const rect = editorRef.current.getCroppingRect();

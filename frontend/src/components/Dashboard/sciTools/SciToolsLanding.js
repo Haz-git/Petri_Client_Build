@@ -14,7 +14,7 @@ const MainSciToolsHeaderContainer = styled.div`
     display: flex;
     text-align: center;
     background-color: #1c1e37;
-    height: 110px;
+    height: 85px;
     border-left: 1px solid #F6F9FC;
     justify-content: flex-start;
     align-items: center;

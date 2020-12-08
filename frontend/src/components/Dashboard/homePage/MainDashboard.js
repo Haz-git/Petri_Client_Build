@@ -22,24 +22,23 @@ const MainDashboardHeaderContainer = styled.div`
     display: flex;
     text-align: center;
     background-color: #1c1e37;
-    height: 110px;
+    height: 85px;
     border-left: 1px solid #F6F9FC;
     justify-content: flex-start;
     align-items: center;
     margin: 0;
-    padding-top: 0;
-    padding-bottom: 0;
 `
 const MainDashboardUserNameHeader = styled.h1`
     font-family: 'Montserrat', sans-serif;
     margin: 0;
-    font-size: 28px;
+    font-size: 25px;
     font-weight: 500;
     color: #F6F9FC;
     display: flex;
     justify-content: flex-start;
     padding-left: 15px;
-    padding-bottom: 5px;
+    padding-bottom: 0px;
+    padding-top: 10px;
 `
 
 const MainDashboardHeader = styled.h2`
@@ -51,10 +50,11 @@ const MainDashboardHeader = styled.h2`
     display: flex;
     justify-content: flex-start;
     padding-left: 15px;
+    padding-bottom: 0px;
 `
 const MainDashboardHeader2 = styled.h2`
     font-family: 'Montserrat', sans-serif;
-    padding-top: 10px;
+    padding-top: 0px;
     margin: 0;
     font-size: 12px;
     font-weight: 100;
@@ -62,7 +62,7 @@ const MainDashboardHeader2 = styled.h2`
     display: flex;
     justify-content: flex-start;
     padding-left: 15px;
-    padding-bottom: 5px;
+    padding-bottom: 0px;
 `
 
 const MainDashboardUpperGrid = styled.div`
@@ -78,16 +78,16 @@ const UpperGridContainer = styled.div`
 `
 
 const StyledCustomAvatar = styled.img`
-    height: 90px;
-    width: 90px;
+    height: 65px;
+    width: 65px;
     border-radius: 50%;
     vertical-align: middle;
     border: 2px solid white;
 `
 
 const StyledDefaultAvatar = styled.img`
-    height: 80px;
-    width: 80px;
+    height: 65px;
+    width: 65px;
     background-color: white;
     border-radius: 50%;
     vertical-align: middle;

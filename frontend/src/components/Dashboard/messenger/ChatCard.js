@@ -154,7 +154,6 @@ const ChatCard = (props) => {
         }
     }
 
-    console.log(props);
     return (
         <MainChatCardContainer>
             <ChatCardHeader>
