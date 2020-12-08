@@ -3,6 +3,7 @@ import {
     USER_ADD_NEW_PROFILE_PICTURE,
     USER_GET_PROFILE_PICTURE,
 } from './UserSettingTypes';
+import historyObject from '../../historyObject';
 
 export function userGetProfilePicture() {
     return async (dispatch, getState) => {
@@ -27,5 +28,7 @@ export function userAddNewProfilePicture(imgURL, imgConstraints) {
             type: USER_ADD_NEW_PROFILE_PICTURE,
             payload: response.data.responseUpdatedProfilePic,
         })
+
+        historyObject.push('/settings');
     }
 }
