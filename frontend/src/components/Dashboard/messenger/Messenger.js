@@ -188,26 +188,28 @@ class Messenger extends Component {
         e.preventDefault();
 
         //We need to put chat message into server:
-        let chatMessage = this.state.chatMessage;
+        if (this.state.chatMessage.trim() !== '') {
+            let chatMessage = this.state.chatMessage;
 
-        let userId = this.props.user._id;
-        let userName = this.props.user.userName;
-        let currentTime = moment();
-        let type = 'Text';
+            let userId = this.props.user._id;
+            let userName = this.props.user.userName;
+            let currentTime = moment();
+            let type = 'Text';
 
-        this.socket.emit("Input Chat Message", {
-            chatMessage,
-            userId,
-            userName,
-            currentTime,
-            type,
-        });
+            this.socket.emit("Input Chat Message", {
+                chatMessage,
+                userId,
+                userName,
+                currentTime,
+                type,
+            });
 
-        //Reset State:
+            //Reset State:
 
-        this.setState({
-            chatMessage: ''
-        });
+            this.setState({
+                chatMessage: ''
+            });
+        } 
     }
 
     render() {
