@@ -52,6 +52,8 @@ const MessageContainer = styled.div`
     position: relative;
     border: 1px solid gray;
     width: fit-content;
+    max-width: 80vw;
+    overflow-wrap: break-word;
     color: white;
     background-color: #293241;
     padding: 5px 20px;
