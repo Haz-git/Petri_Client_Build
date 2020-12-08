@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -10,10 +10,12 @@ import Button from '@material-ui/core/Button';
 import { Save } from '@styled-icons/entypo/Save';
 import defaultAvatar from '../../../Img/default_avatar.png';
 import Badge from '@material-ui/core/Badge';
+import Fade from 'react-reveal/Fade';
 
 
 const MainContainer = styled.div`
     margin: 30px 30px;
+    height: fit-content;
     box-shadow:
         0 2.8px 2.2px rgba(0, 0, 0, 0.034),
         0 6.7px 5.3px rgba(0, 0, 0, 0.048),
@@ -106,8 +108,15 @@ const SaveIcon = styled(Save)`
 `
 
 const TextFieldContainer = styled.div`
+    display: flex;
+    align-items: flex-start;
+    position: relative;
     margin-top: 30px;
     margin-bottom: 30px;
+`
+const ButtonRevealContainer = styled.div`
+    position: absolute;
+    margin-left: 10px;
 `
 
 
@@ -118,6 +127,11 @@ const UserSettings = ({ userData, userSettings, userGetProfilePicture }) => {
     useEffect(() => {
         userGetProfilePicture()
     }, [])
+
+    const [ newFirstName, setNewFirstName ] = useState('');
+    const [ newUserName, setNewUserName ] = useState('');
+    const [ newLastName, setNewLastName ] = useState('');
+    const [ newEmailAddress, setNewEmailAddress ] = useState('');
 
 
     const renderUserImage = () => {
@@ -136,10 +150,63 @@ const UserSettings = ({ userData, userSettings, userGetProfilePicture }) => {
         }
     }
 
-    const handleNewUserDetailsSave = () => {
-        alert(`We're sorry, this feature has not yet been implemented. Please try again later.`)
+
+    // const handleNewUserDetailsSave = () => {
+    //     alert(`We're sorry, this feature has not yet been implemented. Please try again later.`)
+    // }
+
+    const handleFirstNameChange = e => {
+        e.preventDefault();
+        console.log(e.target.value);
+        setNewFirstName(e.target.value);
     }
 
+    const handleUserNameChange = e => {
+        e.preventDefault();
+        setNewUserName(e.target.value);
+    }
+
+    const handleLastNameChange = e => {
+        e.preventDefault();
+        setNewLastName(e.target.value);
+    }
+
+    const handleEmailChange = e => {
+        e.preventDefault();
+        setNewEmailAddress(e.target.value);
+    }
+
+    const submitFirstName = () => {
+        console.log('You have submitted the first name');
+    }
+
+    const submitUserName = () => {
+        console.log('You have submitted the User Name');
+    }
+
+    const submitLastName = () => {
+        console.log('You have submitted the Last Name');
+    }
+
+    const submitEmailAddress = () => {
+        console.log('You have submitted the Email');
+    }
+
+    const renderSubmitButton = (buttonValue, callback) => {
+        if (buttonValue.trim() !== '') {
+            return (
+                <Fade>
+                    <ButtonRevealContainer>
+                        <Button variant='contained' color='primary' onClick={callback}>
+                            Save
+                        </Button>
+                    </ButtonRevealContainer>
+                </Fade>
+            )
+        } else {
+            return null;
+        }
+    }
 
 
     return (
@@ -164,7 +231,9 @@ const UserSettings = ({ userData, userSettings, userGetProfilePicture }) => {
                                 InputLabelProps={{
                                     shrink: true,
                                 }}
+                                onChange={handleFirstNameChange}
                             />
+                            {renderSubmitButton(newFirstName, submitFirstName)}
                         </TextFieldContainer>
                         <TextFieldContainer>
                             <TextField 
@@ -175,7 +244,9 @@ const UserSettings = ({ userData, userSettings, userGetProfilePicture }) => {
                                 InputLabelProps={{
                                     shrink: true,
                                 }}
+                                onChange={handleUserNameChange}
                             />
+                            {renderSubmitButton(newUserName, submitUserName)}
                         </TextFieldContainer>
                         <TextFieldContainer>
                             <TextField
@@ -183,7 +254,7 @@ const UserSettings = ({ userData, userSettings, userGetProfilePicture }) => {
                                 id='outlined-required' 
                                 label='Role' 
                                 variant='outlined' 
-                                placeholder='User'
+                                placeholder='Basic-User'
                                 InputLabelProps={{
                                     shrink: true,
                                 }}
@@ -200,6 +271,20 @@ const UserSettings = ({ userData, userSettings, userGetProfilePicture }) => {
                                 InputLabelProps={{
                                     shrink: true,
                                 }}
+                                onChange={handleLastNameChange}
+                            />
+                            {renderSubmitButton(newLastName, submitLastName)}
+                        </TextFieldContainer>
+                        <TextFieldContainer>
+                            <TextField
+                                disabled
+                                id='outlined-required' 
+                                label='Title' 
+                                variant='outlined' 
+                                placeholder='Researcher'
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
                             />
                         </TextFieldContainer>
                         <TextFieldContainer>
@@ -211,19 +296,10 @@ const UserSettings = ({ userData, userSettings, userGetProfilePicture }) => {
                                 InputLabelProps={{
                                     shrink: true,
                                 }}
-                                helperText='Editing this will change your log in information.'
+                                helperText='Warning! Editing this will change your log in credentials.'
+                                onChange={handleEmailChange}
                             />
-                        </TextFieldContainer>
-                        <TextFieldContainer>
-                            <Button
-                                variant="contained"
-                                color='primary'
-                                size="large"
-                                startIcon={<SaveIcon />}
-                                onClick={handleNewUserDetailsSave}
-                            >
-                                Save
-                            </Button>
+                            {renderSubmitButton(newEmailAddress, submitEmailAddress)}
                         </TextFieldContainer>
                     </div>
                 </MainGridContainer>
