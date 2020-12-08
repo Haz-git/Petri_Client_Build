@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
+import { userGetProfilePicture } from '../../../redux/userSettings/UserSettingActions';
 
 //Styles:
 import Button from '@material-ui/core/Button';
@@ -112,7 +113,11 @@ const TextFieldContainer = styled.div`
 
 //Render:
 
-const UserSettings = ({ userData, userSettings }) => {
+const UserSettings = ({ userData, userSettings, userGetProfilePicture }) => {
+
+    useEffect(() => {
+        userGetProfilePicture()
+    }, [])
 
 
     const renderUserImage = () => {
@@ -129,6 +134,10 @@ const UserSettings = ({ userData, userSettings }) => {
                 </Badge>
             )
         }
+    }
+
+    const handleNewUserDetailsSave = () => {
+        alert(`We're sorry, this feature has not yet been implemented. Please try again later.`)
     }
 
 
@@ -211,6 +220,7 @@ const UserSettings = ({ userData, userSettings }) => {
                                 color='primary'
                                 size="large"
                                 startIcon={<SaveIcon />}
+                                onClick={handleNewUserDetailsSave}
                             >
                                 Save
                             </Button>
@@ -241,4 +251,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(UserSettings);
+export default connect(mapStateToProps, { userGetProfilePicture })(UserSettings);
