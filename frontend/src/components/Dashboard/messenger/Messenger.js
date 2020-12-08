@@ -68,6 +68,7 @@ const ChatContainer = styled.div`
     background-color: white;
     overflow-y: scroll;
     padding: 40px 40px;
+    overflow-x: hidden;
 
     @media (max-height: 1000px) {
         height: 750px;
