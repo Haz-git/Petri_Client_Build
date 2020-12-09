@@ -116,10 +116,10 @@ class MainDashboard extends Component {
 
     componentDidMount() {
 
-        const userDetails = getJWT();
+        // const userDetails = getJWT();
         this.props.userGetProfilePicture();
 
-        const { firstName, lastName, userName, email } = userDetails.data;
+        const { firstName, lastName, userName, email } = this.props.userDetails;
 
         this.setState({
             firstName,
@@ -130,9 +130,9 @@ class MainDashboard extends Component {
     }
 
     renderDashBoardProfilePicture = () => {
-        if (this.props.myProfileImg.userSettings !== undefined && this.props.myProfileImg !== null) {
+        if (this.props.userDetails.profileImg !== undefined && this.props.userDetails.profileImg !== null) {
 
-            const { url, constraints } = this.props.myProfileImg.userSettings;
+            const { url, constraints } = this.props.userDetails.profileImg;
             return (
                 <>
                     <HelperSpan /><StyledCustomAvatar src={url} />
@@ -181,7 +181,7 @@ class MainDashboard extends Component {
 
 const mapStateToProps = state => {
     return {
-        myProfileImg : state.userSettings,
+        userDetails : state.userSettings.userSettings,
     }
 }
 
