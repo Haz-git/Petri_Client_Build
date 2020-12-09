@@ -3,7 +3,13 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
-import { userGetProfilePicture } from '../../../redux/userSettings/UserSettingActions';
+import {
+    userGetProfilePicture,
+    userChangeEmailAddress,
+    userChangeFirstName,
+    userChangeLastName,
+    userChangeUserName,
+} from '../../../redux/userSettings/UserSettingActions';
 
 //Styles:
 import Button from '@material-ui/core/Button';
@@ -122,7 +128,15 @@ const ButtonRevealContainer = styled.div`
 
 //Render:
 
-const UserSettings = ({ userData, userSettings, userGetProfilePicture }) => {
+const UserSettings = ({
+    userData, 
+    userSettings, 
+    userGetProfilePicture,
+    userChangeEmailAddress,
+    userChangeFirstName,
+    userChangeLastName,
+    userChangeUserName,
+}) => {
 
     useEffect(() => {
         userGetProfilePicture()
@@ -185,7 +199,8 @@ const UserSettings = ({ userData, userSettings, userGetProfilePicture }) => {
     }
 
     const submitLastName = () => {
-        console.log('You have submitted the Last Name');
+        userChangeLastName(newLastName);
+        console.log(newLastName)
     }
 
     const submitEmailAddress = () => {
@@ -327,4 +342,10 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { userGetProfilePicture })(UserSettings);
+export default connect(mapStateToProps, {
+    userGetProfilePicture,
+    userChangeEmailAddress,
+    userChangeFirstName,
+    userChangeLastName,
+    userChangeUserName,
+})(UserSettings);
