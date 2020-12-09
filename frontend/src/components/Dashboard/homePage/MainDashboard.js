@@ -130,7 +130,7 @@ class MainDashboard extends Component {
     }
 
     renderDashBoardProfilePicture = () => {
-        if (this.props.userDetails.profileImg !== undefined && this.props.userDetails.profileImg !== null) {
+        if (this.props.userDetails !== undefined && this.props.userDetails !== null) {
 
             const { url, constraints } = this.props.userDetails.profileImg;
             return (
