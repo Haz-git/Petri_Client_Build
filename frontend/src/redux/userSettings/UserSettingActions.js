@@ -17,7 +17,7 @@ export function userGetProfilePicture() {
         
         dispatch({
             type: USER_GET_PROFILE_PICTURE,
-            payload: response.data.userExistingImg.profileImg
+            payload: response.data.existingUser
         })
     }
 }
@@ -43,12 +43,10 @@ export function userChangeLastName(newLastName) {
 
         const response = await api.post('/users/settings/changeLastName', { _id, newLastName });
 
-        console.log(response);
-
-        // dispatch({
-        //     type: USER_CHANGE_LASTNAME,
-        //     payload: response.data
-        // })
+        dispatch({
+            type: USER_CHANGE_LASTNAME,
+            payload: response.data.updatedLastNameUser
+        })
 
         /*Notes:
 
@@ -69,14 +67,12 @@ export function userChangeFirstName(newFirstName) {
     return async (dispatch, getState) => {
         const { auth: { userLogIn: { data: { _id } }} } = getState();
 
-        const response = await api.post('/users/settings/changeLastName', { _id, newFirstName });
+        const response = await api.post('/users/settings/changeFirstName', { _id, newFirstName });
 
-        console.log(response);
-
-        // dispatch({
-        //     type: USER_CHANGE_LASTNAME,
-        //     payload: response.data
-        // })
+        dispatch({
+            type: USER_CHANGE_FIRSTNAME,
+            payload: response.data.updatedFirstNameUser
+        })
     }
 }
 
@@ -84,14 +80,12 @@ export function userChangeUserName(newUserName) {
     return async (dispatch, getState) => {
         const { auth: { userLogIn: { data: { _id } }} } = getState();
 
-        const response = await api.post('/users/settings/changeLastName', { _id, newUserName });
+        const response = await api.post('/users/settings/changeUserName', { _id, newUserName });
 
-        console.log(response);
-
-        // dispatch({
-        //     type: USER_CHANGE_LASTNAME,
-        //     payload: response.data
-        // })
+        dispatch({
+            type: USER_CHANGE_USERNAME,
+            payload: response.data.updatedUserNameUser
+        })
     }
 }
 
@@ -99,13 +93,11 @@ export function userChangeEmailAddress(newEmailAddress) {
     return async (dispatch, getState) => {
         const { auth: { userLogIn: { data: { _id } }} } = getState();
 
-        const response = await api.post('/users/settings/changeLastName', { _id, newEmailAddress });
+        const response = await api.post('/users/settings/changeEmailAddress', { _id, newEmailAddress });
 
-        console.log(response);
-
-        // dispatch({
-        //     type: USER_CHANGE_LASTNAME,
-        //     payload: response.data
-        // })
+        dispatch({
+            type: USER_CHANGE_EMAIL_ADDRESS,
+            payload: response.data.updatedEmailAddressUser
+        })
     }
 }
