@@ -6,8 +6,10 @@ import defaultAvatar from '../../../Img/default_avatar.png';
 //Styles:
 
 const MainChatCardContainer = styled.div`
-    margin-top: 18px;
-    margin-bottom: 18px;
+    margin-top: 14px;
+    margin-bottom: 14px;
+    display: flex;
+    flex-direction: column;
 `
 
 const ChatCardHeader = styled.div`
@@ -16,21 +18,21 @@ const ChatCardHeader = styled.div`
     padding-bottom: 5px;
     background-color: white;
     width: fit-content;
-    padding: 5px 20px;
     border-radius: 5px;
-    -webkit-box-shadow: 1px 1px 6px -2px black;
+    position: relative;
+    /* -webkit-box-shadow: 1px 1px 6px -2px black;
     -moz-box-shadow: 1px 1px 6px -2px black;
     box-shadow: 1px 1px 6px -2px black;
-    border: 1px solid white;
+    border: 1px solid white; */
 `
 
 const NameTag = styled.h2`
     font-family: 'Montserrat', sans-serif;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 700;
     color: #293241;
     margin: 0;
-    padding-left: 4px;
+    padding-left: 0px;
 `
 
 const TimeTag = styled.h2`
@@ -38,28 +40,35 @@ const TimeTag = styled.h2`
     font-size: 12px;
     font-weight: 200;
     color: #949494;
-    padding-left: 3px;
+    padding-left: 8px;
     margin: 0;
 `
+const ChatContentContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+`
+
+
 const MessageContainer = styled.div`
-    margin-top: 20px;
-    margin-left: 50px;
-    position: relative;
-    border: 1px solid gray;
+    /* margin-top: 20px;
+    margin-left: 50px; */
+    /* position: relative;
+    border: 1px solid gray; */
+    margin-left: 8px;
     width: fit-content;
     max-width: 80vw;
     overflow-wrap: break-word;
-    color: white;
-    background-color: #293241;
-    padding: 5px 10px;
-    border-radius: 5px;
+    color: #293241;
+    /* background-color: #293241; */
+    /* padding: 5px 10px; */
+    /* border-radius: 3px; */
     font-family: 'Nunito', sans-serif;
-    -webkit-box-shadow: 0 10px 6px -6px #777;
-    -moz-box-shadow: 0 10px 6px -6px #777;
-    box-shadow: 0 10px 6px -6px #777;
+    -webkit-box-shadow: 0 1px 6px -6px #777;
+    -moz-box-shadow: 0 1px 6px -6px #777;
+    box-shadow: 0 1px 6px -6px #777;
 
 
-    &:before {
+    /* &:before {
         content: '';
         position: absolute;
         width: 0;
@@ -69,21 +78,22 @@ const MessageContainer = styled.div`
         border: .75rem solid transparent;
         border-top: none;
         border-bottom-color: #293241;
-    }
+    } */
 `
 
 const ChatCardDetails = styled.div`
     display: flex;
-    flex-direction: column;
     margin-left: 8px;
-
+    align-items: center;
 `
 
 const StyledCustomAvatar = styled.img`
+    position: absolute;
     height: 50px;
     width: 50px;
     border-radius: 50%;
-    vertical-align: middle;
+    top: 0px;
+    left: 0px;
     border: 2px solid white;
     -webkit-box-shadow: 1px 1px 6px -2px black;
     -moz-box-shadow: 1px 1px 6px -2px black;
@@ -91,11 +101,13 @@ const StyledCustomAvatar = styled.img`
 `
 
 const StyledDefaultAvatar = styled.img`
+    position: absolute;
     height: 50px;
     width: 50px;
     background-color: white;
+    top: 0px;
+    left: 0px;
     border-radius: 50%;
-    vertical-align: middle;
     border: 2px solid white;
     -webkit-box-shadow: 1px 1px 6px -2px black;
     -moz-box-shadow: 1px 1px 6px -2px black;
@@ -141,12 +153,14 @@ const ChatCard = (props) => {
         <MainChatCardContainer>
             <ChatCardHeader>
                 <ProfilePicture>{ renderProfilePicture() }</ProfilePicture>
-                <ChatCardDetails>
-                    <NameTag>{props.sender.userName}</NameTag>
-                    <TimeTag>@ {moment(props.createdAt).format('HH:mm a')}</TimeTag>
-                </ChatCardDetails>
+                <ChatContentContainer>
+                    <ChatCardDetails>
+                        <NameTag>{props.sender.userName}</NameTag>
+                        <TimeTag>{moment(props.createdAt).format('HH:mm a')}</TimeTag>
+                    </ChatCardDetails>
+                    <MessageContainer>{props.message}</MessageContainer>
+                </ChatContentContainer>
             </ChatCardHeader>
-            <MessageContainer>{props.message}</MessageContainer>
         </MainChatCardContainer>
     )
 }
