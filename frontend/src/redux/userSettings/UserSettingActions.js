@@ -19,6 +19,8 @@ export function userGetProfilePicture() {
             type: USER_GET_PROFILE_PICTURE,
             payload: response.data.existingUser
         })
+        //This should render loading == false in main dashboard.
+        return false;
     }
 }
 
