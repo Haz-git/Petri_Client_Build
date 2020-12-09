@@ -112,12 +112,12 @@ class MainDashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {};
+        this.props.userGetProfilePicture();
     }
 
     componentDidMount() {
 
         // const userDetails = getJWT();
-        this.props.userGetProfilePicture();
 
         const { firstName, lastName, userName, email } = this.props.userDetails;
 
