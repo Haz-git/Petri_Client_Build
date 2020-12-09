@@ -18,14 +18,9 @@ const ChatCardHeader = styled.div`
     width: fit-content;
     padding: 5px 20px;
     border-radius: 5px;
-    box-shadow:
-        0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-        0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-        0 12.5px 10px rgba(0, 0, 0, 0.06),
-        0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-        0 41.8px 80px rgba(0, 0, 0, 0.086),
-        0 60px 900px rgba(0, 0, 0, 0.12);
-    ;
+    -webkit-box-shadow: 1px 1px 6px -2px black;
+    -moz-box-shadow: 1px 1px 6px -2px black;
+    box-shadow: 1px 1px 6px -2px black;
     border: 1px solid white;
 `
 
@@ -48,7 +43,7 @@ const TimeTag = styled.h2`
 `
 const MessageContainer = styled.div`
     margin-top: 20px;
-    margin-left: 10px;
+    margin-left: 50px;
     position: relative;
     border: 1px solid gray;
     width: fit-content;
@@ -56,17 +51,13 @@ const MessageContainer = styled.div`
     overflow-wrap: break-word;
     color: white;
     background-color: #293241;
-    padding: 5px 20px;
+    padding: 5px 10px;
     border-radius: 5px;
     font-family: 'Nunito', sans-serif;
-    box-shadow:
-        0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-        0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-        0 12.5px 10px rgba(0, 0, 0, 0.06),
-        0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-        0 41.8px 80px rgba(0, 0, 0, 0.086),
-        0 60px 900px rgba(0, 0, 0, 0.12);
-    ;
+    -webkit-box-shadow: 0 10px 6px -6px #777;
+    -moz-box-shadow: 0 10px 6px -6px #777;
+    box-shadow: 0 10px 6px -6px #777;
+
 
     &:before {
         content: '';
@@ -74,17 +65,17 @@ const MessageContainer = styled.div`
         width: 0;
         height: 0;
         bottom: 100%;
-        left: 1.4em; // offset should move with padding of parent
+        left: 0; // offset should move with padding of parent
         border: .75rem solid transparent;
         border-top: none;
         border-bottom-color: #293241;
-	    filter: drop-shadow(0 -0.0625rem 0.0625rem rgba(0, 0, 0, .1));
     }
 `
 
 const ChatCardDetails = styled.div`
     display: flex;
     flex-direction: column;
+    margin-left: 8px;
 
 `
 
@@ -94,14 +85,9 @@ const StyledCustomAvatar = styled.img`
     border-radius: 50%;
     vertical-align: middle;
     border: 2px solid white;
-    box-shadow:
-        0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-        0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-        0 12.5px 10px rgba(0, 0, 0, 0.06),
-        0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-        0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-        0 60px 40px rgba(0, 0, 0, 0.12);
-    ;
+    -webkit-box-shadow: 1px 1px 6px -2px black;
+    -moz-box-shadow: 1px 1px 6px -2px black;
+    box-shadow: 1px 1px 6px -2px black;
 `
 
 const StyledDefaultAvatar = styled.img`
@@ -111,14 +97,9 @@ const StyledDefaultAvatar = styled.img`
     border-radius: 50%;
     vertical-align: middle;
     border: 2px solid white;
-    box-shadow:
-        0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-        0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-        0 12.5px 10px rgba(0, 0, 0, 0.06),
-        0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-        0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-        0 60px 40px rgba(0, 0, 0, 0.12);
-    ;
+    -webkit-box-shadow: 1px 1px 6px -2px black;
+    -moz-box-shadow: 1px 1px 6px -2px black;
+    box-shadow: 1px 1px 6px -2px black;
     
 `
 const HelperSpan = styled.span`
