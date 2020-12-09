@@ -64,7 +64,6 @@ const NestedMessengerContainer = styled.div`
 `
 
 const ChatContainer = styled.div`
-    height: 1000px;
     background-color: white;
     overflow-y: scroll;
     padding: 40px 40px;
@@ -147,6 +146,7 @@ class Messenger extends Component {
 
     componentDidMount() {
         let server = 'https://petri-webapp-heroku.herokuapp.com';
+        // let server = 'http://localhost:8080';
 
         //Gather all stored chat messages:
 
@@ -256,7 +256,7 @@ class Messenger extends Component {
 
 const mapStateToProps = state => {
     return {
-        user: state.auth.userLogIn.data,
+        user: state.userSettings.userSettings,
         chat: state.chat.chatLogs,
     }
 }
