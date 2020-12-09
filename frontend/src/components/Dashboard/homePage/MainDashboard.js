@@ -7,12 +7,22 @@ import Fade from 'react-reveal/Fade';
 
 
 import styled from 'styled-components';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 //Main Dashboard Components:
 import MDTodo from './MDTodo';
 import MDSciNews from './MDSciNews';
 
 //Styles:
+
+const SpinnerContainer = styled.div`
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+`
+
+
 const MainDashboardContainer = styled.div`
     height: 100vh;
     background-color: #F6F9FC;
@@ -111,22 +121,45 @@ const DetailsContainer = styled.div`
 class MainDashboard extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
-        this.props.userGetProfilePicture();
+        this.state = {
+            loading: null
+        };
     }
 
     componentDidMount() {
 
-        // const userDetails = getJWT();
+        if (this.props.userDetails === undefined || this.props.userDetails === null) {
 
-        const { firstName, lastName, userName, email } = this.props.userDetails;
+            this.setState({ loading: true }, () => {
+                this.props.userGetProfilePicture()
+                    .then(result => {
 
-        this.setState({
-            firstName,
-            lastName,
-            userName,
-            email,
-        });
+                        const { firstName, lastName, userName, email } = this.props.userDetails;
+
+                        this.setState({
+                            firstName,
+                            lastName,
+                            userName,
+                            email,
+                            loading: result,
+                        })
+
+
+                    })
+            })
+
+        } else {
+
+            const { firstName, lastName, userName, email } = this.props.userDetails;
+
+            this.setState({
+                firstName,
+                lastName,
+                userName,
+                email,
+                loading: false,
+            })
+        }
     }
 
     renderDashBoardProfilePicture = () => {
@@ -150,32 +183,43 @@ class MainDashboard extends Component {
 
     render() {
 
-        const { firstName, lastName, userName, email } = this.state;
+        if (this.state.loading === false) {
 
-        return (
-            <MainDashboardContainer>
-                <MainDashboardHeaderContainer>
-                    <Fade>
-                        <div>
-                            {this.renderDashBoardProfilePicture()}
-                        </div>
-                        <DetailsContainer>
-                            <MainDashboardUserNameHeader>{userName} </MainDashboardUserNameHeader>
-                            <MainDashboardHeader>{firstName}, {lastName} </MainDashboardHeader>
-                            <MainDashboardHeader2>{email}</MainDashboardHeader2>
-                        </DetailsContainer>
-                    </Fade>
-                </MainDashboardHeaderContainer>
-                <MainDashboardUpperGrid>
-                    <UpperGridContainer>
-                        <MDTodo />
-                    </UpperGridContainer>
-                    <UpperGridContainer>
-                        <MDSciNews />
-                    </UpperGridContainer>
-                </MainDashboardUpperGrid>
-            </MainDashboardContainer>
-        )
+            const { firstName, lastName, userName, email } = this.state;
+
+            return (
+                <MainDashboardContainer>
+                    <MainDashboardHeaderContainer>
+                        <Fade>
+                            <div>
+                                {this.renderDashBoardProfilePicture()}
+                            </div>
+                            <DetailsContainer>
+                                <MainDashboardUserNameHeader>{userName} </MainDashboardUserNameHeader>
+                                <MainDashboardHeader>{firstName}, {lastName} </MainDashboardHeader>
+                                <MainDashboardHeader2>{email}</MainDashboardHeader2>
+                            </DetailsContainer>
+                        </Fade>
+                    </MainDashboardHeaderContainer>
+                    <MainDashboardUpperGrid>
+                        <UpperGridContainer>
+                            <MDTodo />
+                        </UpperGridContainer>
+                        <UpperGridContainer>
+                            <MDSciNews />
+                        </UpperGridContainer>
+                    </MainDashboardUpperGrid>
+                </MainDashboardContainer>
+            )
+        } else {
+            return (
+                <>
+                    <SpinnerContainer>
+                        <CircularProgress />
+                    </SpinnerContainer>
+                </>
+            )
+        }
     }
 }
 
