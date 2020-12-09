@@ -152,7 +152,7 @@ const UserSettings = ({
         if (userSettings.userSettings !== undefined && userSettings.userSettings !== null) {
             return (
                 <Badge badgeContent={'Edit'} overlap='circle' color='secondary'>
-                    <StyledCustomAvatar src={userSettings.userSettings.url} />
+                    <StyledCustomAvatar src={userSettings.userSettings.profileImg.url} />
                 </Badge>
             )
         } else {
@@ -171,7 +171,6 @@ const UserSettings = ({
 
     const handleFirstNameChange = e => {
         e.preventDefault();
-        console.log(e.target.value);
         setNewFirstName(e.target.value);
     }
 
@@ -191,20 +190,19 @@ const UserSettings = ({
     }
 
     const submitFirstName = () => {
-        console.log('You have submitted the first name');
+        userChangeFirstName(newFirstName);
     }
 
     const submitUserName = () => {
-        console.log('You have submitted the User Name');
+        userChangeUserName(newUserName);
     }
 
     const submitLastName = () => {
         userChangeLastName(newLastName);
-        console.log(newLastName)
     }
 
     const submitEmailAddress = () => {
-        console.log('You have submitted the Email');
+        userChangeEmailAddress(newEmailAddress);
     }
 
     const renderSubmitButton = (buttonValue, callback) => {
@@ -337,7 +335,7 @@ https://react-dropzone.js.org/
 
 const mapStateToProps = state => {
     return {
-        userData: state.auth.userLogIn.data,
+        userData: state.userSettings.userSettings,
         userSettings: state.userSettings,
     }
 }
