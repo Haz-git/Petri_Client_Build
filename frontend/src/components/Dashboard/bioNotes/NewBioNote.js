@@ -4,8 +4,12 @@ import { connect } from 'react-redux';
 import { createNewBioNote } from '../../../redux/userBioNote/bionoteActions';
 import { Link } from 'react-router-dom';
 
+//CkEditor:
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import Editor from 'ckeditor5-custom-build/build/ckeditor';
+
 //Editor imports:
-import { Editor } from 'react-draft-wysiwyg';
+// import { Editor } from 'react-draft-wysiwyg';
 import '../../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { EditorState, convertToRaw } from 'draft-js';
 
@@ -40,11 +44,11 @@ const EditorContainer = styled.div`
     ;
 `
 
-const StickyEditor = styled(Editor)`
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-`
+// const StickyEditor = styled(Editor)`
+//     position: -webkit-sticky;
+//     position: sticky;
+//     top: 0;
+// `
 
 const StyledInput = styled.input`
     height: 35px;
@@ -105,6 +109,72 @@ const NewBioNote = ({ createNewBioNote }) => {
         createNewBioNote(bioName, convertToRaw(editorState.getCurrentContent()));
     }
 
+    const editorConfiguration = {
+        toolbar: {
+            items: [
+                'heading',
+                '|',
+                'fontFamily',
+                'fontColor',
+                'fontSize',
+                'fontBackgroundColor',
+                'highlight',
+                '|',
+                'bold',
+                'italic',
+                'underline',
+                'superscript',
+                'subscript',
+                'strikethrough',
+                'link',
+                'bulletedList',
+                'numberedList',
+                'blockQuote',
+                '|',
+                'alignment',
+                'indent',
+                'outdent',
+                '|',
+                'imageUpload',
+                'mediaEmbed',
+                'imageInsert',
+                'CKFinder',
+                '|',
+                'insertTable',
+                'horizontalLine',
+                'exportWord',
+                '|',
+                'codeBlock',
+                'code',
+                '|',
+                'undo',
+                'redo',
+                '|',
+                'MathType',
+                'ChemType',
+                'specialCharacters',
+                '|'
+            ]
+        },
+        language: 'en',
+        image: {
+            toolbar: [
+                'imageTextAlternative',
+                'imageStyle:full',
+                'imageStyle:side',
+                'linkImage'
+            ]
+        },
+        table: {
+            contentToolbar: [
+                'tableColumn',
+                'tableRow',
+                'mergeTableCells',
+                'tableCellProperties',
+                'tableProperties'
+            ]
+        },
+    };
 
     return (
         <>
@@ -120,7 +190,7 @@ const NewBioNote = ({ createNewBioNote }) => {
                             autoComplete='off'
                         />
                     </NameContainer>
-                    <EditorContainer>
+                    {/* <EditorContainer>
                         <StickyEditor
                             editorState={editorState}
                             toolbar={{
@@ -129,6 +199,12 @@ const NewBioNote = ({ createNewBioNote }) => {
                                 image: { previewImage: true },
                             }}
                             onEditorStateChange={handleEditorStateChange}
+                        />
+                    </EditorContainer> */}
+                    <EditorContainer>
+                        <CKEditor
+                            editor={ Editor }
+                            config={ editorConfiguration }
                         />
                     </EditorContainer>
                     <ButtonContainer>
