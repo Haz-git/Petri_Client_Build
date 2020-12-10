@@ -164,8 +164,9 @@ class MainDashboard extends Component {
 
     renderDashBoardProfilePicture = () => {
         if (this.props.userDetails !== undefined && this.props.userDetails !== null) {
-
+            
             const { url, constraints } = this.props.userDetails.profileImg;
+
             return (
                 <>
                     <HelperSpan /><StyledCustomAvatar src={url} />
@@ -224,8 +225,9 @@ class MainDashboard extends Component {
 }
 
 const mapStateToProps = state => {
+
     return {
-        userDetails : state.userSettings.userSettings,
+        userDetails: state.userSettings.userSettings,
     }
 }
 
