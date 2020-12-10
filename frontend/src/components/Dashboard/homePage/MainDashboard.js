@@ -164,13 +164,20 @@ class MainDashboard extends Component {
 
     renderDashBoardProfilePicture = () => {
         if (this.props.userDetails !== undefined && this.props.userDetails !== null) {
-
-            const { url, constraints } = this.props.userDetails.profileImg;
-            return (
-                <>
-                    <HelperSpan /><StyledCustomAvatar src={url} />
-                </>
-            )
+            if (this.props.userDetails.profileImg !== undefined && this.props.userDetails.profileImg !== null) {
+                const { url, constraints } = this.props.userDetails.profileImg;
+                return (
+                    <>
+                        <HelperSpan /><StyledCustomAvatar src={url} />
+                    </>
+                )
+            } else {
+                return (
+                    <>
+                        <HelperSpan /><StyledDefaultAvatar src={defaultAvatar} />
+                    </>
+                )
+            }
         } else {
             return (
                 <>
