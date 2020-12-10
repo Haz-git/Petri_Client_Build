@@ -2,31 +2,45 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Editor, EditorState, convertFromRaw } from 'draft-js';
 import { Link } from 'react-router-dom';
+import { parse } from 'flatted';
+import HTMLparse from 'html-react-parser';
+import {escape, unescape} from 'html-escaper';
 
 const ReadBioNote = ({ match:{params:{id}}, bionotes }) => {
     
-    const [ editorState, setEditorState ] = useState(EditorState.createEmpty());
+    const [ escapedHTMLState, setEscapedHTMLState ] = useState('');
+    const [ formattedHTML, setFormattedHTML ] = useState('');
 
     useEffect(() => {
         renderBioNote();
     },[]);
 
-    let contentState;
 
     const renderBioNote = () => {
         const currentNote = bionotes.bionotes.find(x => x.bioName === id);
-        const jsonCurrentNote = JSON.parse(currentNote.data);
-        contentState = convertFromRaw(jsonCurrentNote);
-        const editorState = EditorState.createWithContent(contentState);
-        setEditorState(editorState);
+        // const jsonCurrentNote = JSON.parse(currentNote.data);
+        // contentState = convertFromRaw(jsonCurrentNote);
+        // const editorState = EditorState.createWithContent(contentState);
+        // setEditorState(editorState);
+        const renderData = parse(currentNote.flattedEditorObject);
+        setEscapedHTMLState(renderData.dataHTML);
+
+        const fixedHTML = unescape(renderData.dataHTML);
+
+        setFormattedHTML(fixedHTML)
+
+
+        // setFormattedHTML(fixedHTML.documentElement.textContent);
+        // console.log(fixedHTML.documentElement.textContent);
     }
+
+    console.log(formattedHTML)
     
     return (
         <>
-            <Editor
-                editorState={editorState}
-                readOnly={true}
-            />
+            <div>
+                {HTMLparse(formattedHTML)}
+            </div>
             <div>
                 <Link to='/createbionote'>Go Back</Link>
             </div>

@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 //CkEditor:
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import Editor from 'ckeditor5-custom-build/build/ckeditor';
+import { editorConfiguration } from '../../../utils/ckeditortoolbar';
 
 //Editor imports:
 // import { Editor } from 'react-draft-wysiwyg';
@@ -90,7 +91,7 @@ const CaretIcon = styled(CaretBack)`
 const NewBioNote = ({ createNewBioNote }) => {
 
     //Creating editor state for draftJS editor:
-    const [ editorState, setEditorState ] = useState(EditorState.createEmpty());
+    const [ editorState, setEditorState ] = useState({});
 
     //Creating state for name input:
     const [ bioName, setBioName ] = useState('');
@@ -100,81 +101,31 @@ const NewBioNote = ({ createNewBioNote }) => {
     }
     
 
-    const handleEditorStateChange = editorState => {
-        setEditorState(editorState);
-    }
+    // const handleEditorStateChange = editorState => {
+    //     // setEditorState(editorState);
+    // }
 
     const onEditorSubmit = (e) => {
         e.preventDefault();
-        createNewBioNote(bioName, convertToRaw(editorState.getCurrentContent()));
+        createNewBioNote(bioName, editorState);
     }
 
-    const editorConfiguration = {
-        toolbar: {
-            items: [
-                'heading',
-                '|',
-                'fontFamily',
-                'fontColor',
-                'fontSize',
-                'fontBackgroundColor',
-                'highlight',
-                '|',
-                'bold',
-                'italic',
-                'underline',
-                'superscript',
-                'subscript',
-                'strikethrough',
-                'link',
-                'bulletedList',
-                'numberedList',
-                'blockQuote',
-                '|',
-                'alignment',
-                'indent',
-                'outdent',
-                '|',
-                'imageUpload',
-                'mediaEmbed',
-                'imageInsert',
-                'CKFinder',
-                '|',
-                'insertTable',
-                'horizontalLine',
-                'exportWord',
-                '|',
-                'codeBlock',
-                'code',
-                '|',
-                'undo',
-                'redo',
-                '|',
-                'MathType',
-                'ChemType',
-                'specialCharacters',
-                '|'
-            ]
-        },
-        language: 'en',
-        image: {
-            toolbar: [
-                'imageTextAlternative',
-                'imageStyle:full',
-                'imageStyle:side',
-                'linkImage'
-            ]
-        },
-        table: {
-            contentToolbar: [
-                'tableColumn',
-                'tableRow',
-                'mergeTableCells',
-                'tableCellProperties',
-                'tableProperties'
-            ]
-        },
-    };
+    const handleCKEditorChange = (event, editor) => {
+        // console.log(event); // This seems to store the event of what actually happens...
+        // console.log(editor); // This seems to store the current state of the editor (formatting and everything..)
+        // console.log(editor.getData()); //This seems to store the actual ESCAPED! HTML. 
+        const dataHTML = editor.getData();
+        const dataEditor = editor;
+
+        setEditorState({
+            dataEditor,
+            dataHTML,
+        })
+
+
+        //I'm not sure which of these to store in the DB. Maybe all of them in an object?
+        //Maybe i'll store the editor and editor.getData() contents in an object.
+    }
 
     return (
         <>
@@ -190,21 +141,11 @@ const NewBioNote = ({ createNewBioNote }) => {
                             autoComplete='off'
                         />
                     </NameContainer>
-                    {/* <EditorContainer>
-                        <StickyEditor
-                            editorState={editorState}
-                            toolbar={{
-                                inline: { inDropdown: true },
-                                textAlign: { inDropdown: true },
-                                image: { previewImage: true },
-                            }}
-                            onEditorStateChange={handleEditorStateChange}
-                        />
-                    </EditorContainer> */}
                     <EditorContainer>
                         <CKEditor
                             editor={ Editor }
                             config={ editorConfiguration }
+                            onChange={handleCKEditorChange}
                         />
                     </EditorContainer>
                     <ButtonContainer>

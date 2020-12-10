@@ -6,14 +6,20 @@ import {
     USER_GET_BIONOTES,
 } from './bionoteTypes';
 import history from '../../historyObject';
+import { stringify } from 'flatted';
 
-export function createNewBioNote(bioName, submission) {
+export function createNewBioNote(bioName, editorObject) {
     return async (dispatch, getState) => {
         const { auth: { userLogIn: { data: { _id } } } } = getState();
 
-        const data = JSON.stringify(submission);
+        // const data = JSON.stringify(submission);
+        console.log(editorObject);
 
-        const response = await api.post('/users/bionote/create', { _id, bioName, data });
+        let flattedEditorObject = stringify(editorObject);
+
+        //editorObject is of a circular structure --> using Flatted NPM package:
+
+        const response = await api.post('/users/bionote/create', { _id, bioName, flattedEditorObject });
 
         dispatch({
             type: USER_ADD_BIONOTE,

@@ -18,7 +18,7 @@ const MainMessengerContainer = styled.div`
     margin-left: 0;
     box-sizing: border-box;
     background-color: #f6f9fc;
-    height: 100vh;
+    max-height: 100vh;
     padding-left: 20px;
     padding-right: 20px;
     border-radius: 10px;
@@ -68,6 +68,7 @@ const ChatContainer = styled.div`
     overflow-y: scroll;
     padding: 40px 40px;
     overflow-x: hidden;
+    max-height: 70vh;
 
     @media (max-height: 1000px) {
         height: 750px;
@@ -145,8 +146,8 @@ class Messenger extends Component {
     }
 
     componentDidMount() {
-        let server = 'https://petri-webapp-heroku.herokuapp.com';
-        // let server = 'http://localhost:8080';
+        // let server = 'https://petri-webapp-heroku.herokuapp.com';
+        let server = 'http://localhost:8080';
 
         //Gather all stored chat messages:
 
