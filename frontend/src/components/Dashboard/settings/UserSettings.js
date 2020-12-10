@@ -149,7 +149,7 @@ const UserSettings = ({
 
 
     const renderUserImage = () => {
-        if (userSettings.userSettings !== undefined && userSettings.userSettings !== null) {
+        if (userSettings.userSettings.profileImg !== undefined && userSettings.userSettings.profileImg !== null) {
             return (
                 <Badge badgeContent={'Edit'} overlap='circle' color='secondary'>
                     <StyledCustomAvatar src={userSettings.userSettings.profileImg.url} />
