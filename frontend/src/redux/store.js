@@ -18,7 +18,7 @@ const persistConfig = {
     //key = point of storage inside reducer--start storing at root.
     key: 'root',
     storage,
-    whitelist: ['auth', 'news', 'calendarEvents', 'laczAssayProtocols', 'userSettings']
+    whitelist: ['auth', 'chat', 'task', 'news', 'bionotes', 'calendarEvents', 'laczAssayProtocols', 'userSettings' ]
 }
 
 //Creating Enhancers:
