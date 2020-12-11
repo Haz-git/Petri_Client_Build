@@ -18,7 +18,7 @@ const persistConfig = {
     //key = point of storage inside reducer--start storing at root.
     key: 'root',
     storage,
-    whitelist: ['auth', 'chat', 'task', 'news', 'bionotes', 'calendarEvents', 'laczAssayProtocols', 'userSettings' ]
+    whitelist: ['auth', 'userSettings']
 }
 
 //Creating Enhancers:
@@ -26,7 +26,7 @@ const persistConfig = {
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 //RootReducer:
-const rootReducer = combineReducers({
+const appReducer = combineReducers({
     auth: authReducer,
     form: formReducer,
     chat: chatReducer,
@@ -37,6 +37,16 @@ const rootReducer = combineReducers({
     laczAssayProtocols: lacZReducer,
     userSettings: userReducer,
 });
+
+const rootReducer = (state, action) => {
+    if (action.type === 'USER_LOGOUT') {
+        storage.removeItem('persist:root');
+
+        state = undefined;
+    }
+
+    return appReducer(state, action);
+}
 
 //Persisting formReducer:
 const persistRootReducer = persistReducer(persistConfig, rootReducer);
