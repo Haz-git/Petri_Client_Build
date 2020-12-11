@@ -157,7 +157,7 @@ const ChatCard = (props) => {
                 <ChatContentContainer>
                     <ChatCardDetails>
                         <NameTag>{props.sender.userName}</NameTag>
-                        <TimeTag>{moment(props.createdAt).format('HH:mm a')}</TimeTag>
+                        <TimeTag>{moment(props.createdAt).calendar()}</TimeTag>
                     </ChatCardDetails>
                     <MessageContainer>{props.message}</MessageContainer>
                 </ChatContentContainer>
