@@ -14,6 +14,8 @@ export function restoreChats() {
         } else {
             return null;
         }
+
+        return false;
     }
 }
 
