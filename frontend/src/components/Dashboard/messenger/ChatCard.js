@@ -131,6 +131,7 @@ const ProfilePicture = styled.div`
 const ChatCard = (props) => {
 
     const renderProfilePicture = () => {
+
         if (props.sender.profileImg !== undefined && props.sender.profileImg !== null) {
 
             const { url } = props.sender.profileImg;
