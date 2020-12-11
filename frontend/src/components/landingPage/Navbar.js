@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getJWT } from '../../utils/jwthelper';
 import petriLogoEdit2 from '../../Img/petriLogoEdit2.png';
+import { userLogOut } from '../../redux/logout_action';
 
 //Styled-icons:
 
@@ -15,6 +16,7 @@ import { Folder } from '@styled-icons/entypo/Folder';
 import { Tools } from '@styled-icons/entypo/Tools';
 import { LogOut } from '@styled-icons/ionicons-sharp/LogOut';
 import { SettingsApplications } from '@styled-icons/material/SettingsApplications';
+import Button from '@material-ui/core/Button';
 
 
 //Styling:
@@ -227,7 +229,7 @@ const StyledDivider = styled.hr`
 
 //Component Structure:
 
-const Navbar = ({ StateJwt }) => {
+const Navbar = ({ StateJwt, userLogOut }) => {
 
     const [JWT, setJWT] = useState(undefined);
 
@@ -235,6 +237,7 @@ const Navbar = ({ StateJwt }) => {
         const jwt2 = getJWT();
         setJWT(jwt2);
     }, [StateJwt]);
+
 
 
     const renderNavOnJWT = jwt => {
@@ -320,4 +323,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(Navbar);
+export default connect(mapStateToProps, { userLogOut })(Navbar);
