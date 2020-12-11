@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { getJWT } from '../../../utils/jwthelper';
 import { connect } from 'react-redux';
 import defaultAvatar from '../../../Img/default_avatar.png';
 import { userGetProfilePicture } from '../../../redux/userSettings/UserSettingActions';
