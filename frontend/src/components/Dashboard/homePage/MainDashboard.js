@@ -134,9 +134,10 @@ class MainDashboard extends Component {
                 this.props.userGetProfilePicture()
                     .then(result => {
 
-                        const { firstName, lastName, userName, email } = this.props.userDetails;
+                        const { _id, firstName, lastName, userName, email } = this.props.userDetails;
 
                         this.setState({
+                            _id,
                             firstName,
                             lastName,
                             userName,
@@ -150,9 +151,10 @@ class MainDashboard extends Component {
 
         } else {
 
-            const { firstName, lastName, userName, email } = this.props.userDetails;
+            const { _id, firstName, lastName, userName, email } = this.props.userDetails;
 
             this.setState({
+                _id,
                 firstName,
                 lastName,
                 userName,
