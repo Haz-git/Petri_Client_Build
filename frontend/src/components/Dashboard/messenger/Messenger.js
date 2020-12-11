@@ -13,6 +13,7 @@ import 'normalize.css';
 
 import { PaperPlane } from '@styled-icons/boxicons-solid/PaperPlane';
 import Fade from 'react-reveal/Fade';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const MainMessengerContainer = styled.div`
     margin-left: 0;
@@ -69,6 +70,7 @@ const ChatContainer = styled.div`
     padding: 40px 40px;
     overflow-x: hidden;
     max-height: 70vh;
+    position: relative;
 
     @media (max-height: 1000px) {
         height: 750px;
@@ -81,6 +83,12 @@ const ChatContainer = styled.div`
     @media (max-height: 800px) {
         height: 550px;
     }
+`
+
+const SpinnerContainer = styled.div`
+    padding: 40px 40px;
+    text-align: center;
+    
 `
 
 const InputContainer = styled.div`
@@ -138,10 +146,9 @@ class Messenger extends Component {
     constructor(props) {
         super(props)
 
-        this.props.restoreChats();
-
         this.state = {
             chatMessage: "",
+            loading: null,
         }
     }
 
@@ -159,10 +166,20 @@ class Messenger extends Component {
         })
 
         this.socket.open();
-    }
 
-    componentDidUpdate = () => {
-        this.messageEnd.scrollIntoView({behavior: 'smooth'});
+        //Conditional render for loading spinner: Set state to true for loading and initialize callback function.
+
+        this.setState({ loading: true }, () => {
+            this.props.restoreChats()
+                .then(result => {
+                    // const chatLogs = this.props.chat;
+
+                    this.setState({
+                        loading: result,
+                        // chatLogs: chatLogs,
+                    })
+                })
+        })
     }
 
     componentWillUnmount = () => {
@@ -184,6 +201,12 @@ class Messenger extends Component {
             </Fade>
         ))
     )
+
+    componentDidUpdate = () => {
+        if (this.state.loading === false) {
+            this.messageEnd.scrollIntoView({behavior: 'smooth'});
+        }
+    }
     
 
     handleChatSubmit = e => {
@@ -214,8 +237,32 @@ class Messenger extends Component {
         } 
     }
 
+
+    renderChatContainer = () => {
+        if (this.state.loading === false) {
+            return (
+                <>
+                    <ChatContainer>
+                        {this.props.chat && ( <div>{this.renderCards()}</div>)}
+                        <div ref={el => {this.messageEnd = el;}} />
+                    </ChatContainer>
+                </>
+            )
+        } else {
+            return (
+                <>
+                    <SpinnerContainer>
+                        <CircularProgress />
+                    </SpinnerContainer>
+                </>
+            )
+        }
+    }
+
+
     render() {
-        return(
+
+        return (
             <>
                 <MainMessengerHeaderContainer>
                     <Fade>
@@ -225,14 +272,7 @@ class Messenger extends Component {
                 <MainMessengerContainer>
                     <NestedMessengerContainer>
                         <div>
-                            <ChatContainer>
-                                {this.props.chat && (
-                                    <div>{this.renderCards()}</div>
-                                )}
-                                <div
-                                    ref={el => {this.messageEnd = el;}}
-                                />
-                            </ChatContainer>
+                            {this.renderChatContainer()}
                         </div>
                         <InputContainer>
                             <StyledForm onSubmit={this.handleChatSubmit} autoComplete='off'>
@@ -252,6 +292,7 @@ class Messenger extends Component {
                 </MainMessengerContainer>
             </>
         )
+        
     }
 }
 
