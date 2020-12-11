@@ -146,8 +146,8 @@ class Messenger extends Component {
     }
 
     componentDidMount() {
-        let server = 'https://petri-webapp-heroku.herokuapp.com';
-        // let server = 'http://localhost:8080';
+        // let server = 'https://petri-webapp-heroku.herokuapp.com';
+        let server = 'http://localhost:8080';
 
         //Gather all stored chat messages:
 
