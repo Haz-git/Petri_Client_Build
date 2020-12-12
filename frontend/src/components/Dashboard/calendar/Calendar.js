@@ -14,6 +14,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';
 import FormControl from 'react-bootstrap/FormControl';
 import { Cancel } from '@styled-icons/material-rounded/Cancel';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 //Styles:
 
@@ -134,17 +135,19 @@ const Calendar = ({ addNewEvent, getEvents, calendarEvents, deleteEvent, updateE
 
     const calendarComponentRef = React.useRef();
 
-    const [ apiEvents, setApiEvents ] = useState([])
+    const [ apiEvents, setApiEvents ] = useState(calendarEvents.calendarEvents)
     const [ currentEvent, setCurrentEvent ] = useState('');
     const [ submittedEvents, setSubmittedEvents ] = useState([]);
 
+    const [ loading, setLoading ] = useState(null);
+
     useEffect(() => {
 
+        //Set loading state to true on initial render to prime loading flag
+        setLoading(true);
+
         getEvents();
-
-        setApiEvents(calendarEvents.calendarEvents);
-
-
+        
         let draggableEl = document.getElementById("external-events");
 
         new Draggable(draggableEl, {
@@ -160,6 +163,18 @@ const Calendar = ({ addNewEvent, getEvents, calendarEvents, deleteEvent, updateE
         });
 
     },[])
+
+    useEffect(() => {
+        //This useEffect tracks changes to calendarEvents.calendarEvents (when the data comes back from API).
+
+        //On initial render, calendarEvents.calendarEvents is undefined, because it needs to grab data from API.
+        setApiEvents(calendarEvents.calendarEvents);
+
+        //This conditional checks for the undefined. If it is, it will render loading spinner. It not, the calendar will render.
+        if (calendarEvents.calendarEvents !== undefined) {
+            setLoading(false);
+        }
+    },[calendarEvents.calendarEvents])
 
     const handleFormChange = e => {
         setCurrentEvent(e.target.value);
@@ -228,6 +243,65 @@ const Calendar = ({ addNewEvent, getEvents, calendarEvents, deleteEvent, updateE
         )
     }
 
+    const renderCalendarAfterStateLoad = () => {
+        if (loading === true) {
+            return (
+                <>
+                    <CircularProgress />
+                </>
+            )
+        } else {
+            return (
+                <MainCalendarContainer>
+                    <SideBarContainer>
+                            <SideBarHeader>Add New Events</SideBarHeader>
+                            <InputContainer>
+                                <InputGroup className="mb-3" size='sm'>
+                                    <FormControl
+                                        placeholder="Add new event"
+                                        aria-label="Add new event"
+                                        aria-describedby="basic-addon2"
+                                        type='text'
+                                        onChange={handleFormChange}
+                                        value={currentEvent}
+                                        onKeyPress={handleKeyPress}
+                                    />
+                                    <InputGroup.Append>
+                                        <Button variant="primary" onClick={handleFormSubmit} size='sm'>Submit</Button>
+                                    </InputGroup.Append>
+                                </InputGroup>
+                            </InputContainer>                    
+                        <StyledDivider />
+                        {renderSideBar()}
+                    </SideBarContainer>
+                    <CalendarContainer>
+                        <FullCalendar
+                            plugins={[ timeGridPlugin, dayGridPlugin, interactionPlugin ]}
+                            ref={calendarComponentRef}
+                            editable={true}
+                            droppable={true}
+                            selectable={true}
+                            selectMirror={true}
+                            height='800px'
+                            locale='us'
+                            initialView='dayGridMonth'
+                            eventClick={handleEventClick}
+                            headerToolbar={{
+                                left:'prev,next,today',
+                                center:'title',
+                                right:'dayGridMonth,timeGridWeek,timeGridDay'
+                            }}
+                            eventReceive={handleEventReceive}
+                            schedulerLicenseKey='GPL-My-Project-Is-Open-Source'
+                            events={apiEvents}
+                            eventChange={handleEventChange}
+                        />
+                    </CalendarContainer>
+                </MainCalendarContainer>                
+            )
+        }
+    }
+
 
     return (
         <>  
@@ -236,52 +310,7 @@ const Calendar = ({ addNewEvent, getEvents, calendarEvents, deleteEvent, updateE
                     <StyledMainHeader>Your Calendar</StyledMainHeader>
                 </Fade>
             </MainCalendarHeaderContainer>
-            <MainCalendarContainer>
-                <SideBarContainer>
-                        <SideBarHeader>Add New Events</SideBarHeader>
-                        <InputContainer>
-                            <InputGroup className="mb-3" size='sm'>
-                                <FormControl
-                                    placeholder="Add new event"
-                                    aria-label="Add new event"
-                                    aria-describedby="basic-addon2"
-                                    type='text'
-                                    onChange={handleFormChange}
-                                    value={currentEvent}
-                                    onKeyPress={handleKeyPress}
-                                />
-                                <InputGroup.Append>
-                                    <Button variant="primary" onClick={handleFormSubmit} size='sm'>Submit</Button>
-                                </InputGroup.Append>
-                            </InputGroup>
-                        </InputContainer>                    
-                    <StyledDivider />
-                    {renderSideBar()}
-                </SideBarContainer>
-                <CalendarContainer>
-                    <FullCalendar
-                        plugins={[ timeGridPlugin, dayGridPlugin, interactionPlugin ]}
-                        ref={calendarComponentRef}
-                        editable={true}
-                        droppable={true}
-                        selectable={true}
-                        selectMirror={true}
-                        height='800px'
-                        locale='us'
-                        initialView='dayGridMonth'
-                        eventClick={handleEventClick}
-                        headerToolbar={{
-                            left:'prev,next,today',
-                            center:'title',
-                            right:'dayGridMonth,timeGridWeek,timeGridDay'
-                        }}
-                        eventReceive={handleEventReceive}
-                        schedulerLicenseKey='GPL-My-Project-Is-Open-Source'
-                        events={apiEvents}
-                        eventChange={handleEventChange}
-                    />
-                </CalendarContainer>
-            </MainCalendarContainer>
+            {renderCalendarAfterStateLoad()}
         </>
     )
 }
