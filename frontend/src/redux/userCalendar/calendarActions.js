@@ -29,6 +29,7 @@ export function getEvents() {
             type: USER_GET_EVENTS,
             payload: response.data.existingUserCalendarEvents
         });
+
     }
 }
 
