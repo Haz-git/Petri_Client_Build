@@ -3,10 +3,12 @@ import history from '../../historyObject';
 import api from '../../api';
 
 const userLogin = formValues => async dispatch => {
-    //Send a POST request to api:
-    const response = await api.post('/users/login', {...formValues});
 
-    console.log(response);
+    //Push the user to a loading page for confirmation of Login...:
+    history.push('/loading');
+
+    // Send a POST request to api:
+    const response = await api.post('/users/login', {...formValues});
 
     //Store JWT in response into localstorage:
 
