@@ -11,6 +11,7 @@ import SignUpForm from './signupPage/SignUpForm';
 import history from '../historyObject';
 import LoginForm from '../components/loginPage/LoginForm';
 import Logout from '../components/Logout';
+import LoadingPage from './LoadingPage';
 
 //Authentication Component:
 import AuthenticatedComponents from '../components/authComponents/AuthenticatedComponents';
@@ -55,6 +56,7 @@ const App = () => {
                         <Route exact path='/' component={MainLandingPage} />
                         <Route exact path='/signup' component={SignUpForm} />
                         <Route exact path='/login' component={LoginForm} />
+                        <Route exact path='/loading' component={LoadingPage} />
                         <AuthenticatedComponents>
                             <DashboardContainer>
                                 <Route exact path='/dashboard' component={MainDashboard} />
