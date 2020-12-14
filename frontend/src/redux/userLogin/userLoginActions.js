@@ -8,6 +8,7 @@ const userLogin = formValues => async dispatch => {
 
     // Send a POST request to api:
 
+
     let response; 
 
     try {
@@ -18,7 +19,7 @@ const userLogin = formValues => async dispatch => {
             return errorFlag;
         }
     }
-
+    
     history.push('/loading');
 
     // Store JWT in response into localstorage:
