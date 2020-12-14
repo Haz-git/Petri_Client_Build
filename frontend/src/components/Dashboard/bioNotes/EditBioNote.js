@@ -4,9 +4,16 @@ import { Link } from 'react-router-dom';
 import { updateBioNote } from '../../../redux/userBioNote/bionoteActions';
 
 //Editor Imports:
-import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
-import '../../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+// import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
+// import { Editor } from 'react-draft-wysiwyg';
+// import '../../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+
+import { parse } from 'flatted';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import Editor from 'ckeditor5-custom-build/build/ckeditor';
+import { editorConfiguration } from '../../../utils/ckeditortoolbar';
+import {escape, unescape} from 'html-escaper';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 //Styles:
 import styled from 'styled-components';
@@ -75,29 +82,45 @@ const CaretIcon = styled(CaretBack)`
 
 const EditBioNote = ({ match:{params:{id}}, bionotes, updateBioNote }) => {
 
-    const [ editorState, setEditorState ] = useState(EditorState.createEmpty());
+    const [ editorState, setEditorState ] = useState(null);
     const [ bioNoteName, setBioNoteName ] = useState('');
 
     useEffect(() => {
         setBioNoteName(id);
-        renderBioNote();
+        findEditorState();
     },[]);
 
-    const renderBioNote = () => {
+
+    const findEditorState = () => {
         const currentNote = bionotes.bionotes.find(x => x.bioName === id);
-        const jsonCurrentNote = JSON.parse(currentNote.data);
-        const contentState = convertFromRaw(jsonCurrentNote);
-        const editorState = EditorState.createWithContent(contentState);
-        setEditorState(editorState);
+        const unflattedEditorObject = parse(currentNote.flattedEditorObject);
+        const fixedHTML = unescape(unflattedEditorObject.dataHTML);
+        setEditorState(fixedHTML);
     }
 
+    const renderCKEditor = () => {
+        if (editorState === null ) {
+            return null;
+        } else {
+            return (
+                <CKEditor
+                    editor={ Editor }
+                    config={ editorConfiguration }
+                    onChange={ onEditorSubmit }
+                    data={ editorState }
+                />
+            )
+        }
+    }
+
+
     const handleEditorStateChange = editorState => {
-        setEditorState(editorState);
+        // setEditorState(editorState);
     }
 
     const onEditorSubmit = (e) => {
-        e.preventDefault();
-        updateBioNote(bioNoteName, convertToRaw(editorState.getCurrentContent()));
+        // e.preventDefault();
+        // updateBioNote(bioNoteName, convertToRaw(editorState.getCurrentContent()));
     }
 
     const renderName = () => {
@@ -115,15 +138,7 @@ const EditBioNote = ({ match:{params:{id}}, bionotes, updateBioNote }) => {
                     {renderName()}
                     <form onSubmit={onEditorSubmit}>
                         <EditorContainer>
-                            <Editor
-                                editorState={editorState}
-                                toolbar={{
-                                    inline: { inDropdown: true },
-                                    textAlign: { inDropdown: true },
-                                    image: { previewImage: true },
-                                }}
-                                onEditorStateChange={handleEditorStateChange}
-                            />
+                            {renderCKEditor()}
                         </EditorContainer>
                         <ButtonContainer>
                             <Link to='/createbionote'>
@@ -145,6 +160,7 @@ const EditBioNote = ({ match:{params:{id}}, bionotes, updateBioNote }) => {
 }
 
 const mapStateToProps = state => {
+
     return {
         bionotes: state.bionotes,
     }
