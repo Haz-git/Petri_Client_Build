@@ -14,7 +14,6 @@ import {
     StyledButton,
     InputFieldContainer,
 } from '../signupPage/SignUpForm';
-import { keyframes } from 'styled-components';
 
 const MainContainer = styled.div`
     text-align: center;
