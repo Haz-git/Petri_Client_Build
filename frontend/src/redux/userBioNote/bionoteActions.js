@@ -39,7 +39,7 @@ export function getBioNotes() {
         dispatch({
             type: USER_GET_BIONOTES,
             payload: response.data.userExistingBioNotesCollection.bionotes,
-        })
+        });
     } 
 }
 

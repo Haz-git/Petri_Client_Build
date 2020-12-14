@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { v4 as uuid } from 'uuid';
@@ -12,6 +12,7 @@ import BioNoteCard from './BioNoteCard';
 import { Button } from 'react-bootstrap';
 import { PencilSquare } from '@styled-icons/bootstrap/PencilSquare';
 import Fade from 'react-reveal/Fade';
+
 
 const MainBioNotesHeaderContainer = styled.div`
     padding-left: 40px;
@@ -60,17 +61,19 @@ const NoteCardContainer = styled.div`
 const CreateBioNote = ({ bionotes, getBioNotes }) => {
 
     useEffect(() => {
-        getBioNotes();
+        getBioNotes()
+
     },[]);
 
     const renderNotes = () => {
         if (bionotes !== undefined && bionotes !== null) {
             return (
                 bionotes.map(note => (
-                    <BioNoteCard key={uuid()} name={note.bioName} />
+                    <Fade>
+                        <BioNoteCard key={uuid()} name={note.bioName} />
+                    </Fade>
                 ))
             )
-
         } else {
             return null;
         }
