@@ -14,6 +14,7 @@ import {
     StyledButton,
     InputFieldContainer,
 } from '../signupPage/SignUpForm';
+import { keyframes } from 'styled-components';
 
 const MainContainer = styled.div`
     text-align: center;
@@ -25,7 +26,16 @@ const MainContainer = styled.div`
     top: 50%;
     transform: translate(-50%, -50%);
 `
-const ErrorText = styled.h2`
+
+const ErrorTextInvisible = styled.h2`
+    font-family: 'Nunito', sans-serif;
+    color: red;
+    font-size: 15px;
+    font-weight: 100;
+    opacity: 0;
+`
+
+const ErrorTextVisible = styled.h2`
     font-family: 'Nunito', sans-serif;
     color: red;
     font-size: 15px;
@@ -50,8 +60,13 @@ const LoginForm = ({ handleSubmit, userLogin, notifier }) => {
         if(hasErrors === true) {
             return (
                 <Fade>
-                    <ErrorText>Your verification details were incorrect.</ErrorText>
+                    <ErrorTextVisible>Your verification details were incorrect.</ErrorTextVisible>
                 </Fade>
+
+            )
+        } else {
+            return (
+                <ErrorTextInvisible>Your verification details were incorrect.</ErrorTextInvisible>
             )
         }
     }
