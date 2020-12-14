@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm, Field, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import userLogin from '../../redux/userLogin/userLoginActions';
+import Fade from 'react-reveal/Fade';
 
 //Styles:
 import {
@@ -24,13 +25,35 @@ const MainContainer = styled.div`
     top: 50%;
     transform: translate(-50%, -50%);
 `
+const ErrorText = styled.h2`
+    font-family: 'Nunito', sans-serif;
+    color: red;
+    font-size: 15px;
+    font-weight: 100;
+`
 
 
 //Render:
 const LoginForm = ({ handleSubmit, userLogin, notifier }) => {
 
+    const [ hasErrors, setHasErrors ] = useState(null);
+
     const dispatchFormValues = formValues => {
-        userLogin(formValues, notifier);
+        userLogin(formValues, notifier)
+            .then(errorFlag => {
+                console.log(errorFlag)
+                setHasErrors(errorFlag);
+            });
+    }
+
+    const renderErrorText = () => {
+        if(hasErrors === true) {
+            return (
+                <Fade>
+                    <ErrorText>Your verification details were incorrect.</ErrorText>
+                </Fade>
+            )
+        }
     }
 
 
@@ -41,6 +64,7 @@ const LoginForm = ({ handleSubmit, userLogin, notifier }) => {
                 <SecondaryHeader>Please log in to continue...</SecondaryHeader>
                 <div>
                     <form onSubmit={handleSubmit(dispatchFormValues)}>
+                        {renderErrorText()}
                         <InputFieldContainer>
                             <StyledLabel>Email Address</StyledLabel>
                             <StyledField name='email' component='input'></StyledField>
