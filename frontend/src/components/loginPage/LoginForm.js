@@ -48,6 +48,7 @@ const LoginForm = ({ handleSubmit, userLogin, notifier }) => {
     const [ hasErrors, setHasErrors ] = useState(null);
 
     const dispatchFormValues = formValues => {
+
         userLogin(formValues, notifier)
             .then(errorFlag => {
                 console.log(errorFlag)
