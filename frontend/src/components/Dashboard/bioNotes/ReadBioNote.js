@@ -6,6 +6,10 @@ import { parse } from 'flatted';
 import HTMLparse from 'html-react-parser';
 import {escape, unescape} from 'html-escaper';
 
+//CSS Styling:
+
+
+
 const ReadBioNote = ({ match:{params:{id}}, bionotes }) => {
     
     const [ escapedHTMLState, setEscapedHTMLState ] = useState('');
@@ -18,10 +22,7 @@ const ReadBioNote = ({ match:{params:{id}}, bionotes }) => {
 
     const renderBioNote = () => {
         const currentNote = bionotes.bionotes.find(x => x.bioName === id);
-        // const jsonCurrentNote = JSON.parse(currentNote.data);
-        // contentState = convertFromRaw(jsonCurrentNote);
-        // const editorState = EditorState.createWithContent(contentState);
-        // setEditorState(editorState);
+
         const renderData = parse(currentNote.flattedEditorObject);
         setEscapedHTMLState(renderData.dataHTML);
 
@@ -29,16 +30,13 @@ const ReadBioNote = ({ match:{params:{id}}, bionotes }) => {
 
         setFormattedHTML(fixedHTML)
 
-
-        // setFormattedHTML(fixedHTML.documentElement.textContent);
-        // console.log(fixedHTML.documentElement.textContent);
     }
 
-    console.log(formattedHTML)
+    //Loaded CK's css style import from CDN and inputted className 'ck-content' in order for images to load properly in the correct format.
     
     return (
         <>
-            <div>
+            <div className="ck-content">
                 {HTMLparse(formattedHTML)}
             </div>
             <div>
