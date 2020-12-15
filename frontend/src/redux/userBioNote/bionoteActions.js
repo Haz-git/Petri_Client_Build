@@ -43,20 +43,24 @@ export function getBioNotes() {
     } 
 }
 
-export function updateBioNote(bioName, updatedContent) {
+export function updateBioNote(bioName, updatedEditorObject) {
     return async (dispatch, getState) => {
         const { auth: { userLogIn: { data: { _id } } } } = getState();
 
-        const data = JSON.stringify(updatedContent);
+        //This data object is too large to store on mongoDB ~ >16 mb. We'll need to figure out a way to store this. Check out GridFS for mongodb. 
 
-        const response = await api.patch('/users/bionote/update', { _id, bioName, data })
+        const data = stringify(updatedEditorObject);
 
-        dispatch({
-            type: USER_UPDATE_BIONOTE,
-            payload: response.data.updatedUserBioNoteCollection.bionotes,
-        });
+        console.log(data);
 
-        history.push('/createbionote');
+        // const response = await api.patch('/users/bionote/update', { _id, bioName, data })
+
+        // dispatch({
+        //     type: USER_UPDATE_BIONOTE,
+        //     payload: response.data.updatedUserBioNoteCollection.bionotes,
+        // });
+
+        // history.push('/createbionote');
     }
 }
 
