@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import userLogin from '../../redux/userLogin/userLoginActions';
 import Fade from 'react-reveal/Fade';
 
+import LoadingPage from '../LoadingPage';
+
 //Styles:
 import {
     MainHeader,
@@ -46,14 +48,24 @@ const ErrorTextVisible = styled.h2`
 const LoginForm = ({ handleSubmit, userLogin, notifier }) => {
 
     const [ hasErrors, setHasErrors ] = useState(null);
+    const [ renderLoading, setRenderLoading ] = useState(null);
 
     const dispatchFormValues = formValues => {
+        if (!formValues.email || !formValues.password) {
+            return setHasErrors(true);
+        } else {
+            setRenderLoading(true);
+            
+            setTimeout(() => {
 
-        userLogin(formValues, notifier)
-            .then(errorFlag => {
-                console.log(errorFlag)
-                setHasErrors(errorFlag);
-            });
+                userLogin(formValues, notifier)
+                .then(errorFlag => {
+                    console.log(errorFlag)
+                    setHasErrors(errorFlag);
+                    setRenderLoading(false);
+                });
+            }, 5000)
+        }
     }
 
     const renderErrorText = () => {
@@ -74,6 +86,9 @@ const LoginForm = ({ handleSubmit, userLogin, notifier }) => {
 
     return (
         <>
+            <LoadingPage
+                renderLoading={ renderLoading }
+            />
             <MainContainer>
                 <MainHeader>Hey, there!</MainHeader>
                 <SecondaryHeader>Please log in to continue...</SecondaryHeader>
