@@ -91,7 +91,7 @@ const CaretIcon = styled(CaretBack)`
 const NewBioNote = ({ createNewBioNote }) => {
 
     //Creating editor state for draftJS editor:
-    const [ editorState, setEditorState ] = useState({});
+    const [ editorState, setEditorState ] = useState('');
 
     //Creating state for name input:
     const [ bioName, setBioName ] = useState('');
@@ -111,17 +111,10 @@ const NewBioNote = ({ createNewBioNote }) => {
     }
 
     const handleCKEditorChange = (event, editor) => {
+        //dataHTML is a string.
         const dataHTML = editor.getData();
-        const dataEditor = editor;
+        setEditorState(dataHTML)
 
-        setEditorState({
-            dataEditor,
-            dataHTML,
-        })
-
-
-        //I'm not sure which of these to store in the DB. Maybe all of them in an object?
-        //Maybe i'll store the editor and editor.getData() contents in an object.
     }
 
     return (
