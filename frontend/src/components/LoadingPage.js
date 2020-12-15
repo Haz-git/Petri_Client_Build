@@ -15,6 +15,7 @@ const fadeIn = keyframes`
 `
 
 const MainContainer = styled.div`
+    position: fixed;
     display: block;
     height: 100vh;
     width: 100vw;
@@ -25,6 +26,7 @@ const MainContainer = styled.div`
     -ms-animation: fadeIn .8s; /* Internet Explorer */
     -o-animation: fadeIn .8s; /* Opera < 12.1 */
     animation: fadeIn .8s;
+    z-index: 9999;
 `
 
 
@@ -54,21 +56,26 @@ const LoadingCharacters = styled.h1`
 
 //Render:
 
-const LoadingPage = () => {
-    return (
-        <>
-            <MainContainer>
-                <SpinnerContainer>
-                    <CircularProgress size={100} color='inherit' thickness={1} />
-                </SpinnerContainer>
-                <LoadingCharacterContainer>
-                    <LoadingCharacters>
-                        Verifying your identity...
-                    </LoadingCharacters>
-                </LoadingCharacterContainer>
-            </MainContainer>
-        </>
-    )
+const LoadingPage = ({ renderLoading }) => {
+
+    if (renderLoading === true) {
+        return (
+            <>
+                <MainContainer>
+                    <SpinnerContainer>
+                        <CircularProgress size={100} color='inherit' thickness={1} />
+                    </SpinnerContainer>
+                    <LoadingCharacterContainer>
+                        <LoadingCharacters>
+                            Verifying your identity...
+                        </LoadingCharacters>
+                    </LoadingCharacterContainer>
+                </MainContainer>
+            </>
+        )
+    } else {
+        return null;
+    }
 }
 
 export default LoadingPage;
