@@ -84,6 +84,7 @@ const EditBioNote = ({ match:{params:{id}}, bionotes, updateBioNote }) => {
 
     const [ editorState, setEditorState ] = useState(null);
     const [ bioNoteName, setBioNoteName ] = useState('');
+    const [ editorChange, setEditorChange ] = useState(null);
 
     useEffect(() => {
         setBioNoteName(id);
@@ -106,7 +107,7 @@ const EditBioNote = ({ match:{params:{id}}, bionotes, updateBioNote }) => {
                 <CKEditor
                     editor={ Editor }
                     config={ editorConfiguration }
-                    onChange={ onEditorSubmit }
+                    onChange={ handleCKEditorChange }
                     data={ editorState }
                 />
             )
@@ -114,13 +115,20 @@ const EditBioNote = ({ match:{params:{id}}, bionotes, updateBioNote }) => {
     }
 
 
-    const handleEditorStateChange = editorState => {
-        // setEditorState(editorState);
+    const handleCKEditorChange = (event, editor) => {
+        const dataHTML = editor.getData();
+        const dataEditor = editor;
+
+        setEditorChange({
+            dataEditor, 
+            dataHTML,
+        })
+
     }
 
     const onEditorSubmit = (e) => {
-        // e.preventDefault();
-        // updateBioNote(bioNoteName, convertToRaw(editorState.getCurrentContent()));
+        e.preventDefault();
+        updateBioNote(bioNoteName, editorChange);
     }
 
     const renderName = () => {
