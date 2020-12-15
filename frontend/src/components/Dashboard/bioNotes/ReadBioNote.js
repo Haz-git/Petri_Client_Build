@@ -21,12 +21,7 @@ const ReadBioNote = ({ match:{params:{id}}, bionotes }) => {
 
     const renderBioNote = () => {
         const currentNote = bionotes.bionotes.find(x => x.bioName === id);
-
-        const renderData = parse(currentNote.flattedEditorObject);
-        setEscapedHTMLState(renderData.dataHTML);
-
-        const fixedHTML = unescape(renderData.dataHTML);
-
+        const fixedHTML = unescape(currentNote.htmlState);
         setFormattedHTML(fixedHTML)
 
     }
