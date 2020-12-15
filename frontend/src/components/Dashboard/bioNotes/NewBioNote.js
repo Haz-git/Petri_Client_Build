@@ -111,9 +111,6 @@ const NewBioNote = ({ createNewBioNote }) => {
     }
 
     const handleCKEditorChange = (event, editor) => {
-        // console.log(event); // This seems to store the event of what actually happens...
-        // console.log(editor); // This seems to store the current state of the editor (formatting and everything..)
-        // console.log(editor.getData()); //This seems to store the actual ESCAPED! HTML. 
         const dataHTML = editor.getData();
         const dataEditor = editor;
 
