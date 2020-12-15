@@ -6,20 +6,12 @@ import {
     USER_GET_BIONOTES,
 } from './bionoteTypes';
 import history from '../../historyObject';
-import { stringify } from 'flatted';
 
-export function createNewBioNote(bioName, editorObject) {
+export function createNewBioNote(bioName, htmlState) {
     return async (dispatch, getState) => {
         const { auth: { userLogIn: { data: { _id } } } } = getState();
 
-        // const data = JSON.stringify(submission);
-        console.log(editorObject);
-
-        let flattedEditorObject = stringify(editorObject);
-
-        //editorObject is of a circular structure --> using Flatted NPM package:
-
-        const response = await api.post('/users/bionote/create', { _id, bioName, flattedEditorObject });
+        const response = await api.post('/users/bionote/create', { _id, bioName, htmlState });
 
         dispatch({
             type: USER_ADD_BIONOTE,
@@ -43,24 +35,20 @@ export function getBioNotes() {
     } 
 }
 
-export function updateBioNote(bioName, updatedEditorObject) {
+export function updateBioNote(bioName, updatedHTMLState) {
     return async (dispatch, getState) => {
         const { auth: { userLogIn: { data: { _id } } } } = getState();
 
-        //This data object is too large to store on mongoDB ~ >16 mb. We'll need to figure out a way to store this. Check out GridFS for mongodb. 
+        //This data object is too large to store on mongoDB ~ >16 mb. We'll need to figure out a way to store this. Check out GridFS for mongodb. The alternative is to prevent the user from storing images as base 64 to prevent huge documents.
 
-        const data = stringify(updatedEditorObject);
+        const response = await api.patch('/users/bionote/update', { _id, bioName, updatedHTMLState })
 
-        console.log(data);
+        dispatch({
+            type: USER_UPDATE_BIONOTE,
+            payload: response.data.updatedUserBioNoteCollection.bionotes,
+        });
 
-        // const response = await api.patch('/users/bionote/update', { _id, bioName, data })
-
-        // dispatch({
-        //     type: USER_UPDATE_BIONOTE,
-        //     payload: response.data.updatedUserBioNoteCollection.bionotes,
-        // });
-
-        // history.push('/createbionote');
+        history.push('/createbionote');
     }
 }
 
