@@ -60,9 +60,11 @@ const LoginForm = ({ handleSubmit, userLogin, notifier }) => {
 
                 userLogin(formValues, notifier)
                 .then(errorFlag => {
-                    console.log(errorFlag)
                     setHasErrors(errorFlag);
-                    setRenderLoading(false);
+
+                    if (errorFlag === true) {
+                        setRenderLoading(false);
+                    }
                 });
             }, 5000)
         }
