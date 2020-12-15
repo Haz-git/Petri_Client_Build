@@ -6,8 +6,7 @@ const userLogin = formValues => async dispatch => {
 
     //Push the user to a loading page for confirmation of Login...:
 
-    // Send a POST request to api:
-
+    // Send a POST request to api;
 
     let response; 
 
@@ -19,12 +18,9 @@ const userLogin = formValues => async dispatch => {
             return errorFlag;
         }
     }
-    
-    history.push('/loading');
 
     // Store JWT in response into localstorage:
     setTimeout(() => {
-        
         try {
             localStorage.setItem('jwt', JSON.stringify(response.data));
         } catch (e) {
@@ -44,7 +40,7 @@ const userLogin = formValues => async dispatch => {
 
         history.push('/dashboard');
 
-    }, 5000);
+    }, 5000)
 
 }
 
