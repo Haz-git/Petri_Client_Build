@@ -1,5 +1,5 @@
 //Dependencies
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Switch, Router, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import { v4 as uuid } from 'uuid';
@@ -34,6 +34,13 @@ import LacZCompareCharts from './Dashboard/sciTools/LacZCompareCharts';
 import UserSettings from './Dashboard/settings/UserSettings';
 import EditProfilePicture from './Dashboard/settings/EditProfilePicture';
 
+//Themes and global styles:
+import { ThemeProvider } from "styled-components";
+import { GlobalStyles } from "../components/Styling/GlobalStyles";
+import { lightTheme, darkTheme } from "../components/Styling/Theme";
+import { useDarkMode } from '../components/Styling/useDarkMode';
+import Toggle from '../components/Styling/Toggler';
+
 //Styling:
 
 const AppContainer = styled.div`
@@ -47,6 +54,12 @@ const DashboardContainer = styled.div`
 
 const App = () => {
 
+    //Update: This theme controller seems to control the entire app with a switch, which is good. However, how should I implement a theme controlling button...on let's say... the settings page?
+
+    // const [ theme, themeToggler ] = useDarkMode();
+
+    // const themeMode = theme === 'light' ? lightTheme : darkTheme;
+
     return (
         <>
             <AppContainer>
@@ -58,25 +71,28 @@ const App = () => {
                         <Route exact path='/login' component={LoginForm} />
                         <Route exact path='/loading' component={LoadingPage} />
                         <AuthenticatedComponents>
-                            <DashboardContainer>
-                                <Route exact path='/dashboard' component={MainDashboard} />
-                                <Route exact path='/calendar' component={Calendar} />
-                                <Route exact path='/meetings' component={Meetings} />
-                                <Route exact path='/messenger' component={Messenger} />
-                                <Route exact path='/createbionote' component={CreateBioNote} />
-                                <Route exact path='/logout' component={Logout} />
-                                <Route exact path='/newbionote' component={NewBioNote} />
-                                <Route exact path='/readbionote/:id' component={ReadBioNote} />
-                                <Route exact path='/editbionote/:id' component={EditBioNote} />
-                                <Route exact path='/deletebionote/:id' component={DeleteBioNote} />
-                                <Route exact path='/scitools' component={SciToolsLanding} />
-                                <Route exact path='/scitools/lazylacz' component={LazyLacZ} />
-                                <Route exact path='/scitools/lazylacz/collection/:id' component={Collection} />
-                                <Route exact path='/scitools/lazylacz/lacz/:id' component={LacZ} />
-                                <Route exact path='/scitools/lazylacz/lacz/compare/:id' component={LacZCompareCharts} />
-                                <Route exact path='/settings' component={UserSettings} />
-                                <Route exact path='/settings/editProfilePicture/:id' component={EditProfilePicture} />
-                            </DashboardContainer>
+                            {/* <ThemeProvider theme={themeMode}>
+                                <GlobalStyles /> */}
+                                <DashboardContainer>
+                                    <Route exact path='/dashboard' component={MainDashboard} />
+                                    <Route exact path='/calendar' component={Calendar} />
+                                    <Route exact path='/meetings' component={Meetings} />
+                                    <Route exact path='/messenger' component={Messenger} />
+                                    <Route exact path='/createbionote' component={CreateBioNote} />
+                                    <Route exact path='/logout' component={Logout} />
+                                    <Route exact path='/newbionote' component={NewBioNote} />
+                                    <Route exact path='/readbionote/:id' component={ReadBioNote} />
+                                    <Route exact path='/editbionote/:id' component={EditBioNote} />
+                                    <Route exact path='/deletebionote/:id' component={DeleteBioNote} />
+                                    <Route exact path='/scitools' component={SciToolsLanding} />
+                                    <Route exact path='/scitools/lazylacz' component={LazyLacZ} />
+                                    <Route exact path='/scitools/lazylacz/collection/:id' component={Collection} />
+                                    <Route exact path='/scitools/lazylacz/lacz/:id' component={LacZ} />
+                                    <Route exact path='/scitools/lazylacz/lacz/compare/:id' component={LacZCompareCharts} />
+                                    <Route exact path='/settings' component={UserSettings} />
+                                    <Route exact path='/settings/editProfilePicture/:id' component={EditProfilePicture} />
+                                </DashboardContainer>
+                            {/* </ThemeProvider> */}
                         </AuthenticatedComponents>
                     </Switch>
                 </Router>
