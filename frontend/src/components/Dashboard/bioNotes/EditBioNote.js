@@ -84,7 +84,7 @@ const EditBioNote = ({ match:{params:{id}}, bionotes, updateBioNote }) => {
 
     const [ editorState, setEditorState ] = useState(null);
     const [ bioNoteName, setBioNoteName ] = useState('');
-    const [ editorChange, setEditorChange ] = useState(null);
+    const [ editorChange, setEditorChange ] = useState('');
 
     useEffect(() => {
         setBioNoteName(id);
@@ -94,8 +94,7 @@ const EditBioNote = ({ match:{params:{id}}, bionotes, updateBioNote }) => {
 
     const findEditorState = () => {
         const currentNote = bionotes.bionotes.find(x => x.bioName === id);
-        const unflattedEditorObject = parse(currentNote.flattedEditorObject);
-        const fixedHTML = unescape(unflattedEditorObject.dataHTML);
+        const fixedHTML = unescape(currentNote.htmlState);
         setEditorState(fixedHTML);
     }
 
@@ -117,12 +116,8 @@ const EditBioNote = ({ match:{params:{id}}, bionotes, updateBioNote }) => {
 
     const handleCKEditorChange = (event, editor) => {
         const dataHTML = editor.getData();
-        const dataEditor = editor;
 
-        setEditorChange({
-            dataEditor, 
-            dataHTML,
-        })
+        setEditorChange(dataHTML)
 
     }
 
