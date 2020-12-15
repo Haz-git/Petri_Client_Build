@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { Editor, EditorState, convertFromRaw } from 'draft-js';
 import { Link } from 'react-router-dom';
 import { parse } from 'flatted';
 import HTMLparse from 'html-react-parser';
