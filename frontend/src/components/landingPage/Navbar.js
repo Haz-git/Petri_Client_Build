@@ -80,10 +80,12 @@ const DashboardNavbar = styled.div`
     z-index: 1; 
     top: 0; 
     left: 0;
-    background-color: #1c1e37; 
+    background-color:${(props) => props.theme.navBgColor}; 
     overflow-x: hidden; 
     padding-top: 10px;
     text-align: center;
+    transition: all 0.5s linear;
+    border-right: ${(props) => props.theme.navBorderColor};
 
 `
 
@@ -116,10 +118,10 @@ const StyledHomeHeart = styled(HomeHeart)`
     margin-bottom: 3px;
     height: 31px;
     width: 31px;
-    color: #ffffff;
+    color: ${(props) => props.theme.navIconColor};
     cursor: pointer;
     ${DashboardLink}:hover & {
-        color: #ADD6FF;
+        color: ${(props) => props.theme.navIconHoverColor};
     }
 `
 
@@ -127,10 +129,10 @@ const StyledVideoCamera = styled(VideoCamera)`
     margin-bottom: 3px;
     height: 30px;
     width: 27px;
-    color: #ffffff;
+    color: ${(props) => props.theme.navIconColor};
     cursor: pointer;
     ${DashboardLink}:hover & {
-        color: #ADD6FF;
+        color: ${(props) => props.theme.navIconHoverColor};
     }
 `
 
@@ -138,10 +140,10 @@ const StyledChatIcon = styled(ChatLeftDotsFill)`
     margin-bottom: 3px;
     height: 30px;
     width: 27px;
-    color: #ffffff;
+    color: ${(props) => props.theme.navIconColor};
     cursor: pointer;
     ${DashboardLink}:hover & {
-        color: #ADD6FF;
+        color: ${(props) => props.theme.navIconHoverColor};
     }
 `
 
@@ -149,10 +151,10 @@ const StyledCalendar = styled(Calendar)`
     margin-bottom: 3px;
     height: 35px;
     width: 35px;
-    color: #ffffff;
+    color: ${(props) => props.theme.navIconColor};
     cursor: pointer;
     ${DashboardLink}:hover & {
-        color: #ADD6FF;
+        color: ${(props) => props.theme.navIconHoverColor};
     }
 `
 
@@ -160,10 +162,10 @@ const StyledFolder = styled(Folder)`
     margin-bottom: 3px;
     height: 30px;
     width: 30px;
-    color: #ffffff;
+    color: ${(props) => props.theme.navIconColor};
     cursor: pointer;
     ${DashboardLink}:hover & {
-        color: #ADD6FF;
+        color: ${(props) => props.theme.navIconHoverColor};
     }
 `
 
@@ -171,20 +173,20 @@ const StyledTools = styled(Tools)`
     margin-bottom: 3px;
     height: 30px;
     width: 30px;
-    color: #ffffff;
+    color: ${(props) => props.theme.navIconColor};
     cursor: pointer;
     ${DashboardLink}:hover & {
-        color: #ADD6FF;
+        color: ${(props) => props.theme.navIconHoverColor};
     }
 `
 const StyledLogOut = styled(LogOut)`
     margin-bottom: 3px;
     height: 30px;
     width: 32px;
-    color: #ffffff;
+    color: ${(props) => props.theme.navIconColor};
     cursor: pointer;
     ${DashboardLink}:hover & {
-        color: #ADD6FF;
+        color: ${(props) => props.theme.navIconHoverColor};
     }
 `
 
@@ -192,7 +194,7 @@ const StyledDashboardLogo = styled.img`
     margin-bottom: 10px;
     height: 65px;
     width: 65px;
-    color: #ADD6FF;
+    color: ${(props) => props.theme.navIconHoverColor};
     object-fit: cover;
 `
 
@@ -201,11 +203,11 @@ const StyledLinkLabel = styled.label`
     font-family: 'Nunito', sans-serif;
     font-size: 10px;
     margin-top: 0px;
-    color: #ffffff;
+    color: ${(props) => props.theme.navIconColor};
     cursor: pointer;
 
     ${DashboardLink}:hover & {
-        color: #ADD6FF;
+        color: ${(props) => props.theme.navIconHoverColor};
     }
 `
 
@@ -213,15 +215,15 @@ const StyledCogs = styled(SettingsApplications)`
     margin-bottom: 3px;
     height: 37px;
     width: 37px;
-    color: #ffffff;
+    color: ${(props) => props.theme.navIconColor};
     cursor: pointer;
     ${DashboardLink}:hover & {
-        color: #ADD6FF;
+        color: ${(props) => props.theme.navIconHoverColor};
     }
 `
 
 const StyledDivider = styled.hr`
-    background-color: white;
+    background-color: ${(props) => props.theme.LogoDividerColor};
     margin: 0;
 `
 
