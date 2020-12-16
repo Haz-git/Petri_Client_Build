@@ -24,15 +24,15 @@ const SpinnerContainer = styled.div`
 
 const MainDashboardContainer = styled.div`
     height: 100vh;
-    background-color: #F6F9FC;
+    background-color: ${props => props.theme.background};
 `
 const MainDashboardHeaderContainer = styled.div`
     padding-left: 40px;
     display: flex;
     text-align: center;
-    background-color: #1c1e37;
-    height: 85px;
-    border-left: 1px solid #F6F9FC;
+    background-color: ${props => props.theme.navBgColor};
+    height: 86px;
+    border-bottom: ${props => props.theme.navBorderColor};
     justify-content: flex-start;
     align-items: center;
     margin: 0;
@@ -75,7 +75,7 @@ const MainDashboardHeader2 = styled.h2`
 `
 
 const MainDashboardUpperGrid = styled.div`
-    background-color: #F6F9FC;
+    background-color: ${props => props.theme.background};
     padding: 20px 20px;
     display: grid;
     grid-template-columns: 35% 65%;
@@ -111,10 +111,11 @@ const HelperSpan = styled.span`
 
 const DetailsContainer = styled.div`
     margin: 0;
-    border-right: 1px solid white;
     padding-right: 40px;
-    height: 110px;
+    height: 84px;
+    margin-bottom: 24px;
     padding-top: 10px;
+    overflow-y: hidden;
 `
 
 class MainDashboard extends Component {
