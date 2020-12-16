@@ -37,14 +37,12 @@ import EditProfilePicture from './Dashboard/settings/EditProfilePicture';
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "../components/Styling/GlobalStyles";
 import { lightTheme, darkTheme } from "../components/Styling/Theme";
+import { getMode } from '../components/Styling/useDarkMode';
 import { useDarkMode } from '../components/Styling/useDarkMode';
-import Toggle from '../components/Styling/Toggler';
+
 
 //Styling:
 
-const AppContainer = styled.div`
-    background-color: #F6F9FC;
-`
 const DashboardContainer = styled.div`
     margin-left: 83.9375px;
     padding: 0px;
@@ -53,48 +51,83 @@ const DashboardContainer = styled.div`
 
 const App = () => {
 
-    //Update: This theme controller seems to control the entire app with a switch, which is good. However, how should I implement a theme controlling button...on let's say... the settings page?
+    //We need a way for React to know when localStorage theme value changes for re-render.
 
-    // const [ theme, themeToggler ] = useDarkMode();
+    const [ appTheme, setAppTheme ] = useState('');
 
-    // const themeMode = theme === 'light' ? lightTheme : darkTheme;
+    useEffect(() => {
+        //Initial render, we reach into localstorage to obtain the recently stored user theme preference.
+
+        async function initialState() {
+            const initialModeValue = await getMode();
+            setAppTheme(initialModeValue);
+            console.log(appTheme);
+        }
+
+        initialState();
+    },[])
+
+
+    const changeModeStatus = modeValue => {
+        //This callback function is passed down to UserSettings, where the toggle button is.
+        setAppTheme(modeValue);
+    }
+
+    const grabbedTheme = appTheme === 'light' ? lightTheme : darkTheme;
+
+    const renderApp = () => {
+        if (appTheme === '') {
+            return (
+                null
+            )
+        } else {
+            return (
+                <>
+                    <ThemeProvider theme={grabbedTheme}>
+                        <GlobalStyles />
+                        <Router history={history}>
+                            <Navbar />
+                            <Switch>
+                                <Route exact path='/' component={MainLandingPage} />
+                                <Route exact path='/signup' component={SignUpForm} />
+                                <Route exact path='/login' component={LoginForm} />
+                                <AuthenticatedComponents>
+                                    <DashboardContainer>
+                                        <Route exact path='/dashboard' component={MainDashboard} />
+                                        <Route exact path='/calendar' component={Calendar} />
+                                        <Route exact path='/meetings' component={Meetings} />
+                                        <Route exact path='/messenger' component={Messenger} />
+                                        <Route exact path='/createbionote' component={CreateBioNote} />
+                                        <Route exact path='/logout' component={Logout} />
+                                        <Route exact path='/newbionote' component={NewBioNote} />
+                                        <Route exact path='/readbionote/:id' component={ReadBioNote} />
+                                        <Route exact path='/editbionote/:id' component={EditBioNote} />
+                                        <Route exact path='/deletebionote/:id' component={DeleteBioNote} />
+                                        <Route exact path='/scitools' component={SciToolsLanding} />
+                                        <Route exact path='/scitools/lazylacz' component={LazyLacZ} />
+                                        <Route exact path='/scitools/lazylacz/collection/:id' component={Collection} />
+                                        <Route exact path='/scitools/lazylacz/lacz/:id' component={LacZ} />
+                                        <Route exact path='/scitools/lazylacz/lacz/compare/:id' component={LacZCompareCharts} />
+                                        <Route 
+                                            exact path='/settings' 
+                                            render={(props) => (
+                                                <UserSettings {...props} modeStatus={changeModeStatus}/>
+                                            )}
+                                        />
+                                        <Route exact path='/settings/editProfilePicture/:id' component={EditProfilePicture} />
+                                    </DashboardContainer>
+                                </AuthenticatedComponents>
+                            </Switch>
+                        </Router>
+                    </ThemeProvider>
+                </>
+            )
+        }
+    }
 
     return (
         <>
-            <AppContainer>
-                <Router history={history}>
-                    <Navbar />
-                    <Switch>
-                        <Route exact path='/' component={MainLandingPage} />
-                        <Route exact path='/signup' component={SignUpForm} />
-                        <Route exact path='/login' component={LoginForm} />
-                        <AuthenticatedComponents>
-                            {/* <ThemeProvider theme={themeMode}>
-                                <GlobalStyles /> */}
-                                <DashboardContainer>
-                                    <Route exact path='/dashboard' component={MainDashboard} />
-                                    <Route exact path='/calendar' component={Calendar} />
-                                    <Route exact path='/meetings' component={Meetings} />
-                                    <Route exact path='/messenger' component={Messenger} />
-                                    <Route exact path='/createbionote' component={CreateBioNote} />
-                                    <Route exact path='/logout' component={Logout} />
-                                    <Route exact path='/newbionote' component={NewBioNote} />
-                                    <Route exact path='/readbionote/:id' component={ReadBioNote} />
-                                    <Route exact path='/editbionote/:id' component={EditBioNote} />
-                                    <Route exact path='/deletebionote/:id' component={DeleteBioNote} />
-                                    <Route exact path='/scitools' component={SciToolsLanding} />
-                                    <Route exact path='/scitools/lazylacz' component={LazyLacZ} />
-                                    <Route exact path='/scitools/lazylacz/collection/:id' component={Collection} />
-                                    <Route exact path='/scitools/lazylacz/lacz/:id' component={LacZ} />
-                                    <Route exact path='/scitools/lazylacz/lacz/compare/:id' component={LacZCompareCharts} />
-                                    <Route exact path='/settings' component={UserSettings} />
-                                    <Route exact path='/settings/editProfilePicture/:id' component={EditProfilePicture} />
-                                </DashboardContainer>
-                            {/* </ThemeProvider> */}
-                        </AuthenticatedComponents>
-                    </Switch>
-                </Router>
-            </AppContainer>
+            {renderApp()}
         </>
     )
 }
