@@ -4,9 +4,9 @@ import { createGlobalStyle} from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
   body {
-    background: ${({ theme }) => theme.body};
+    background: ${({ theme }) => theme.background};
     color: ${({ theme }) => theme.text};
-    font-family: 'Nunito, sans-serif, Helvetica';
+    font-family: 'Nunito', sans-serif, helvetica;
     transition: all 0.50s linear;
   }
 `
