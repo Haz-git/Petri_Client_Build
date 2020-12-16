@@ -16,13 +16,10 @@ import Fade from 'react-reveal/Fade';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 const MainMessengerContainer = styled.div`
+    height: 100vh;
     margin-left: 0;
-    box-sizing: border-box;
-    background-color: #f6f9fc;
-    max-height: 100vh;
-    padding-left: 20px;
-    padding-right: 20px;
-    border-radius: 10px;
+    background-color: ${props => props.theme.background};
+    overflow-y: hidden;
 
 `
 
@@ -50,7 +47,7 @@ const StyledMainHeader = styled.h1`
 const NestedMessengerContainer = styled.div`
     margin-top: 10px;
     margin-bottom: 10px;
-    background-color: white;
+    background-color: ${props => props.theme.background};
     padding: 10px 10px;
     border: none;
     border-radius: 9px;
@@ -61,15 +58,15 @@ const NestedMessengerContainer = styled.div`
         0 22.3px 17.9px rgba(0, 0, 0, 0.072),
         0 41.8px 33.4px rgba(0, 0, 0, 0.086),
         0 60px 40px rgba(0, 0, 0, 0.12);
-    
+    overflow-y: hidden;
 `
 
 const ChatContainer = styled.div`
-    background-color: white;
+    background-color: ${props => props.theme.chatContainerBGColor};
     overflow-y: scroll;
     padding: 40px 40px;
     overflow-x: hidden;
-    max-height: 70vh;
+    max-height: 50vh;
     position: relative;
 
     @media (max-height: 1000px) {
@@ -93,7 +90,7 @@ const SpinnerContainer = styled.div`
 
 const InputContainer = styled.div`
     padding: 40px 40px;
-    background-color: white;
+    background-color: ${props => props.theme.chatInputContainer};
     text-align: center;
     display: flex;
     align-items: center;
@@ -107,8 +104,8 @@ const StyledInput = styled.input`
     border-radius: 5px;
     border: 1px solid white;
     box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
-    background-color: #293241;
-    color: white;
+    background-color: ${props => props.theme.chatInputColor};
+    color: ${props => props.theme.chatInputText};
     &:focus {
         outline: none;
     }
