@@ -11,6 +11,10 @@ import {
     userChangeUserName,
 } from '../../../redux/userSettings/UserSettingActions';
 
+//Dark Mode Option:
+import { useDarkMode } from '../../../components/Styling/useDarkMode';
+import Toggler from '../../../components/Styling/Toggler';
+
 //Styles:
 import Button from '@material-ui/core/Button';
 import { Save } from '@styled-icons/entypo/Save';
@@ -22,6 +26,7 @@ import Fade from 'react-reveal/Fade';
 const MainContainer = styled.div`
     margin: 30px 30px;
     height: fit-content;
+    background-color: ${(props) => props.theme.background};
     box-shadow:
         0 2.8px 2.2px rgba(0, 0, 0, 0.034),
         0 6.7px 5.3px rgba(0, 0, 0, 0.048),
@@ -30,6 +35,7 @@ const MainContainer = styled.div`
         0 41.8px 33.4px rgba(0, 0, 0, 0.086),
         0 60px 40px rgba(0, 0, 0, 0.12);
     ;
+    transition: all 0.5 linear;
 `
 
 const MainGridContainer = styled.div`
@@ -136,11 +142,15 @@ const UserSettings = ({
     userChangeFirstName,
     userChangeLastName,
     userChangeUserName,
+    modeStatus,
 }) => {
 
     useEffect(() => {
         userGetProfilePicture()
     }, [])
+
+    //Dark Mode Toggler:
+    const [ theme, toggleTheme ] = useDarkMode();
 
     const [ newFirstName, setNewFirstName ] = useState('');
     const [ newUserName, setNewUserName ] = useState('');
@@ -164,10 +174,6 @@ const UserSettings = ({
         }
     }
 
-
-    // const handleNewUserDetailsSave = () => {
-    //     alert(`We're sorry, this feature has not yet been implemented. Please try again later.`)
-    // }
 
     const handleFirstNameChange = e => {
         e.preventDefault();
@@ -272,6 +278,9 @@ const UserSettings = ({
                                     shrink: true,
                                 }}
                             />
+                        </TextFieldContainer>
+                        <TextFieldContainer>
+                            <Toggler theme={theme} toggleTheme={toggleTheme} callBack={modeStatus} />
                         </TextFieldContainer>
                     </div>
                     <div>
