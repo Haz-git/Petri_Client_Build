@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 
 const Button = styled.button`
-    background: ${({ theme }) => theme.background};
+    background-color: ${({ theme }) => theme.background};
     border: 2px solid ${({ theme }) => theme.toggleBorder};
     color: ${({ theme }) => theme.text};
     border-radius: 30px;
@@ -15,9 +15,11 @@ const Button = styled.button`
 `
 
 
-const Toggle = ({ theme,  toggleTheme }) => {
+const Toggle = ({ theme,  toggleTheme, callBack }) => {
+
+    //Inputting callback function supplied by App parent component in order to change theme from settings.
     return (
-        <Button onClick={toggleTheme} >
+        <Button onClick={() => toggleTheme(callBack) } >
             Switch Theme
         </Button>
     );
