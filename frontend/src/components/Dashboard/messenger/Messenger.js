@@ -15,8 +15,13 @@ import { PaperPlane } from '@styled-icons/boxicons-solid/PaperPlane';
 import Fade from 'react-reveal/Fade';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-const MainMessengerContainer = styled.div`
+const MainContainer = styled.div`
+    background-color: brown;
     height: 100vh;
+`
+
+const MainMessengerContainer = styled.div`
+    height: 100%;
     margin-left: 0;
     background-color: ${props => props.theme.background};
     overflow-y: hidden;
@@ -59,6 +64,7 @@ const NestedMessengerContainer = styled.div`
         0 41.8px 33.4px rgba(0, 0, 0, 0.086),
         0 60px 40px rgba(0, 0, 0, 0.12);
     overflow-y: hidden;
+    height: 100%;
 `
 
 const ChatContainer = styled.div`
@@ -66,7 +72,7 @@ const ChatContainer = styled.div`
     overflow-y: scroll;
     padding: 40px 40px;
     overflow-x: hidden;
-    max-height: 50vh;
+    height: 50vh;
     position: relative;
 
     @media (max-height: 1000px) {
@@ -261,32 +267,34 @@ class Messenger extends Component {
 
         return (
             <>
-                <MainMessengerHeaderContainer>
-                    <Fade>
-                    <StyledMainHeader>The Petri Dish</StyledMainHeader>
-                    </Fade>
-                </MainMessengerHeaderContainer>
-                <MainMessengerContainer>
-                    <NestedMessengerContainer>
-                        <div>
-                            {this.renderChatContainer()}
-                        </div>
-                        <InputContainer>
-                            <StyledForm onSubmit={this.handleChatSubmit} autoComplete='off'>
-                                <StyledInput
-                                    id='message'
-                                    placeholder='Start Chatting!'
-                                    type='text'
-                                    value={this.state.chatMessage}
-                                    onChange={this.handleSearchChange}
-                                />
-                                <StyledButton type='submit'>
-                                    <StyledPaperPlane />
-                                </StyledButton>
-                            </StyledForm>
-                        </InputContainer>
-                    </NestedMessengerContainer>
-                </MainMessengerContainer>
+                <MainContainer>
+                    <MainMessengerHeaderContainer>
+                        <Fade>
+                        <StyledMainHeader>The Petri Dish</StyledMainHeader>
+                        </Fade>
+                    </MainMessengerHeaderContainer>
+                    <MainMessengerContainer>
+                        <NestedMessengerContainer>
+                            <div>
+                                {this.renderChatContainer()}
+                            </div>
+                            <InputContainer>
+                                <StyledForm onSubmit={this.handleChatSubmit} autoComplete='off'>
+                                    <StyledInput
+                                        id='message'
+                                        placeholder='Start Chatting!'
+                                        type='text'
+                                        value={this.state.chatMessage}
+                                        onChange={this.handleSearchChange}
+                                    />
+                                    <StyledButton type='submit'>
+                                        <StyledPaperPlane />
+                                    </StyledButton>
+                                </StyledForm>
+                            </InputContainer>
+                        </NestedMessengerContainer>
+                    </MainMessengerContainer>
+                </MainContainer>
             </>
         )
         

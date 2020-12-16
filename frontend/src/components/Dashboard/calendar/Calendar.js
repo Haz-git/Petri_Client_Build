@@ -18,11 +18,16 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 //Styles:
 
+const MainContainer = styled.div`
+    height: 100vh;
+    background-color: ${props => props.theme.calendarContainerBGColor};
+`
+
 const MainCalendarHeaderContainer = styled.div`
     padding-left: 40px;
     display: flex;
     text-align: center;
-    background-color: #1c1e37;
+    background-color: ${props => props.theme.navBgColor};
     height: 85px;
     border-left: 1px solid #F6F9FC;
     justify-content: flex-start;
@@ -42,6 +47,8 @@ const StyledMainHeader = styled.h1`
 const MainCalendarContainer = styled.div`
     display: flex;
     padding: 20px 20px;
+    background-color: ${props => props.theme.calendarContainerBGColor};
+    height: 100%;
 `
 const SideBarContainer = styled.div`
     flex-grow: .2;
@@ -305,12 +312,14 @@ const Calendar = ({ addNewEvent, getEvents, calendarEvents, deleteEvent, updateE
 
     return (
         <>  
-            <MainCalendarHeaderContainer>
-                <Fade>
-                    <StyledMainHeader>Your Calendar</StyledMainHeader>
-                </Fade>
-            </MainCalendarHeaderContainer>
-            {renderCalendarAfterStateLoad()}
+            <MainContainer>
+                <MainCalendarHeaderContainer>
+                    <Fade>
+                        <StyledMainHeader>Your Calendar</StyledMainHeader>
+                    </Fade>
+                </MainCalendarHeaderContainer>
+                {renderCalendarAfterStateLoad()}
+            </MainContainer>
         </>
     )
 }

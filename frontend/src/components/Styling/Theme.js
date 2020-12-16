@@ -16,6 +16,16 @@ export const lightTheme = {
     chatInputContainer: 'white',
     chatInputColor: '#293241',
     chatInputText: 'white',
+    //ChatCard
+    chatCardBGColor: 'white',
+    chatCardTextColor: '#293241',
+    //Calendar 
+    calendarContainerBGColor: '#f6f9fc',
+    //Bionotes
+    bionotesContainerBGColor: '#f6f9fc',
+    bionoteCardColor: 'white',
+    bionoteTextColor: 'black',
+    bionoteBorderColor: '1px solid white'
 }
 
 export const darkTheme = {
@@ -34,4 +44,15 @@ export const darkTheme = {
     chatInputContainer: '#2d2f57',
     chatInputColor: 'white',
     chatInputText: '#293241',
+    //ChatCard
+    chatCardBGColor: '#2d2f57',
+    chatCardTextColor: 'white',
+    //Calendar
+    calendarContainerBGColor: '#2d2f57',
+    //Bionotes
+    bionotesContainerBGColor: '#141628',
+    bionoteCardColor: '#2d2f57',
+    bionoteTextColor: 'white',
+    bionoteBorderColor: '1px solid #293241'
+
 }

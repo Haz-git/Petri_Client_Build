@@ -13,6 +13,11 @@ import { Button } from 'react-bootstrap';
 import { PencilSquare } from '@styled-icons/bootstrap/PencilSquare';
 import Fade from 'react-reveal/Fade';
 
+const MainContainer = styled.div`
+    background-color: ${props => props.theme.bionotesContainerBGColor};
+    height: 100vh;
+`
+
 
 const MainBioNotesHeaderContainer = styled.div`
     padding-left: 40px;
@@ -81,22 +86,24 @@ const CreateBioNote = ({ bionotes, getBioNotes }) => {
 
     return (
         <>
-            <MainBioNotesHeaderContainer>
-                <Fade>
-                    <StyledMainHeader>Your Bio-Notes</StyledMainHeader>
-                </Fade>
-            </MainBioNotesHeaderContainer>
-            <ButtonContainer>
-                    <Link to='newbionote'>
-                        <Button variant='primary'>
-                            Create a New BioNote
-                            <PencilIcon />
-                        </Button>
-                    </Link>
-            </ButtonContainer>
-            <NoteCardContainer>
-                {renderNotes()}
-            </NoteCardContainer>
+            <MainContainer>
+                <MainBioNotesHeaderContainer>
+                    <Fade>
+                        <StyledMainHeader>Your Bio-Notes</StyledMainHeader>
+                    </Fade>
+                </MainBioNotesHeaderContainer>
+                <ButtonContainer>
+                        <Link to='newbionote'>
+                            <Button variant='primary'>
+                                Create a New BioNote
+                                <PencilIcon />
+                            </Button>
+                        </Link>
+                </ButtonContainer>
+                <NoteCardContainer>
+                    {renderNotes()}
+                </NoteCardContainer>
+            </MainContainer>
         </>
     )
 }
