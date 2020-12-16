@@ -9,9 +9,9 @@ import Button from 'react-bootstrap/Button';
 const MainCardContainer = styled.div`
     margin-top: 10px;
     margin-bottom: 10px;
-    background-color: white;
+    background-color: ${props => props.theme.bionoteCardColor};
     padding: 10px 10px;
-    border: 1px solid #f9f9f9;
+    border: ${props => props.theme.bionoteBorderColor};
     border-radius: 5px;
     box-shadow:
         0 2.8px 2.2px rgba(0, 0, 0, 0.034),
@@ -44,6 +44,7 @@ const StyledTitle = styled.p`
     font-size: 20px;
     font-family: 'Nunito', sans-serif;
     font-weight: 600;
+    color: ${props => props.theme.bionoteTextColor};
 
 `
 
