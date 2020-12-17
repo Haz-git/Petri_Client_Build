@@ -25,6 +25,8 @@ const LacZMainContainer = styled.div`
     padding: 20px 20px;
     text-align: center;
     background-color: ${props => props.theme.lacZMainContainerBG};
+    height: 100vh;
+    overflow-y: scroll;
 `
 
 const HeaderContainer = styled.div`

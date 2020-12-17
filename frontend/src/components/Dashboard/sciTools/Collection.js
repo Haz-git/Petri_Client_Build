@@ -24,6 +24,8 @@ const MainGridContainer = styled.div`
     padding: 20px 20px;
     column-gap: 10px;
     background-color: ${props => props.theme.ColMainContainerBG};
+    height: 100vh;
+    overflow-y: scroll;
 
     @media (min-width: 1800px) {
         grid-template-columns: 30% 70%;

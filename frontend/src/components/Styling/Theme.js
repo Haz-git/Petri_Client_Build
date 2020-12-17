@@ -5,11 +5,11 @@ export const lightTheme = {
     text: '#1c1e37',
     background: '#f6f9fc',
     //Main Dashboard
-    navBgColor: '#f6f9fc',
-    navBorderColor: '1px solid white',
-    LogoDividerColor: '#ccc',
+    navBgColor: 'white',
+    navBorderColor: '3px solid #293241',
+    LogoDividerColor: '#293241',
     navIconColor: '#2e3054',
-    navIconHoverColor: 'red',
+    navIconHoverColor: '#01348e',
     mdTodoBgColor: 'white',
     //Messenger
     chatContainerBGColor: 'white',
@@ -58,12 +58,21 @@ export const lightTheme = {
     lacZMainContainerBG: '#f6f9fc',
     lacZMainHeaderC: '#293241',
     lacZCardContainerBG: 'white',
+    lacZCardInputHeaderBG: 'black',
     lacZChartFlexContainerBG: 'white',
     lacZChartCompareBG: '#f6f9fc',
-
+    lacZCardRenderingContainerBG: 'white',
+    //UserSettings
+    settingsHeaderBG: 'white',
+    settingsHeaderBorderBottomC: '#293241',
+    settingsBackgroundContainer: '#f6f9fc',
+    settingsMainHeaderTextC: '#293241',
+    settingsMainContainerBG: 'white',
+    settingsAvatarBorderC: 'white',
 
 
 }
+
 
 export const darkTheme = {
     mainBody: '#202345',
@@ -74,7 +83,7 @@ export const darkTheme = {
     navBorderColor: '1px solid black',
     LogoDividerColor: 'black',
     navIconColor: '#ffffff',
-    navIconHoverColor: '#ADD6FF',
+    navIconHoverColor: '#2f71e4',
     mdTodoBgColor: '#2d2f57',
     //Messenger
     chatContainerBGColor: '#2d2f57',
@@ -121,10 +130,19 @@ export const darkTheme = {
     ColStrainCardExistingCDataC: 'black',
     //LacZ
     lacZMainContainerBG: '#141628',
+    lacZCardInputHeaderBG: 'white',
     lacZMainHeaderC: 'white',
     lacZCardContainerBG: '#2d2f57',
     lacZChartFlexContainerBG: '#2d2f57',
     lacZChartCompareBG: '#141628',
+    lacZCardRenderingContainerBG: '#2d2f57',
+    //UserSettings
+    settingsHeaderBG: '#222444',
+    settingsHeaderBorderBottomC: '#222444',
+    settingsBackgroundContainer: '#141628',
+    settingsMainHeaderTextC: 'white',
+    settingsMainContainerBG: 'white',
+    settingsAvatarBorderC: '#242746',
 
 
     

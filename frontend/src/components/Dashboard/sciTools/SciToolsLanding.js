@@ -19,7 +19,7 @@ const MainSciToolsHeaderContainer = styled.div`
     padding-left: 40px;
     display: flex;
     text-align: center;
-    background-color: #1c1e37;
+    background-color: ${props => props.theme.settingsHeaderBG};
     height: 85px;
     border-left: 1px solid #F6F9FC;
     justify-content: flex-start;
@@ -27,13 +27,21 @@ const MainSciToolsHeaderContainer = styled.div`
     margin: 0;
     padding-top: 0;
     padding-bottom: 0;
+    box-shadow:
+        0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+        0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+        0 12.5px 10px rgba(0, 0, 0, 0.06),
+        0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+        0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+        0 60px 40px rgba(0, 0, 0, 0.12);
+    ;
 `
 
 const StyledMainHeader = styled.h1`
     font-family: 'Montserrat', sans-serif;
     font-size: 50px;
     font-weight: 100;
-    color: white;
+    color: ${props => props.theme.settingsMainHeaderTextC};
 `
 
 const SciToolsSecondaryHeader = styled(SecondaryHeader)`

@@ -17,6 +17,7 @@ import Badge from 'react-bootstrap/Badge';
 const CardMainContainer = styled.div`
     margin-top: 10px;
     margin-bottom: 10px;
+    border-radius: 10px;
 `
 
 
