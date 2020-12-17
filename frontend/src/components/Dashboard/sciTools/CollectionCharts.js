@@ -84,6 +84,7 @@ const ResContainer = styled.div`
     background-color: white;
     border-radius: 5px;
     filter: drop-shadow(0 0 1px white);
+    z-index: -9999 !important;
 `
 
 export const StyledBadge = styled(Badge)`
