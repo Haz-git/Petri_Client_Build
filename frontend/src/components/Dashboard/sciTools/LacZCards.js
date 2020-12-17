@@ -19,8 +19,8 @@ const MainCardContainer = styled.div`
     display: grid;
     grid-template-columns: 30% 70%;
     margin-top: 30px;
-    background-color: white;
-    border: 1px solid white;
+    background-color: ${props => props.theme.lacZCardContainerBG};
+    border: 1px solid ${props => props.theme.lacZCardContainerBG};
     border-radius: 5px;
     padding: 10px 10px;
     text-align: center;
@@ -36,7 +36,7 @@ const MainCardContainer = styled.div`
 
 const MainInputContainer = styled.div`
     padding: 10px 10px;
-    background-color: #242746;
+    background-color: ${props => props.theme.lacZCardContainerBG};
     border: none;
     border-radius: 5px;
 `

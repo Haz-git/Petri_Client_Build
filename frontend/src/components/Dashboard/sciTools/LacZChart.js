@@ -20,6 +20,7 @@ const MainChartContainer = styled.div`
 `
 const FlexContainer = styled.div`
     position: relative;
+    background-color: ${props => props.theme.lacZChartFlexContainerBG};
 `
 
 const BadgeContainer = styled.div`

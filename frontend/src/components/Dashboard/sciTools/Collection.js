@@ -103,7 +103,6 @@ const DetailInputContainer = styled.div`
 const StrainsContainer = styled.div`
     display: block;
     text-align: center;
-
 `
 
 const StyledReturnIcon = styled(BackspaceFill)`
@@ -141,6 +140,9 @@ const StrainInput = styled(StyledInput)`
     margin-top: 5px;
     height: 35px;
     padding-left: 10px;
+    background-color: ${props => props.theme.ColStrainInputBG};
+    color: ${props => props.theme.ColStrainInputC};
+    border: 1px solid #ccc;
 `
 //Render:
 

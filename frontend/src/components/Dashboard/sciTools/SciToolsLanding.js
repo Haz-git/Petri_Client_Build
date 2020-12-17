@@ -48,7 +48,7 @@ const MainProgramContainer = styled.div`
     justify-content: center;
 `
 const SubProgramContainer = styled.div`
-    background-color: salmon;
+    
 `
 const ProgramLink = styled(Link)`
     text-decoration: none;

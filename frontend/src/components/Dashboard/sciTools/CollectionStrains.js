@@ -9,8 +9,8 @@ import Fade from 'react-reveal/Fade';
 
 const StrainMainContainer = styled.div`
     margin-top: 30px;
-    background-color: white;
-    border: 1px solid white;
+    background-color: ${props => props.theme.ColStrainsContainerBG};
+    border: ${props => props.theme.ColStrainsContainerBorder};
     border-radius: 10px;
     padding-left: 40px;
     padding-right: 40px;

@@ -48,6 +48,18 @@ export const lightTheme = {
     ColInputContainerBorderC: '1px solid white',
     ColInputMainHeader: '#293241',
     ColInputTimeLabel: '#293241',
+    ColStrainInputBG: 'white',
+    ColStrainInputC: 'black',
+    ColStrainsContainerBG: 'white',
+    ColStrainsContainerBorder: '1px solid white',
+    ColStrainCardBG: 'white',
+    ColStrainCardExistingCDataC: 'black',
+    //lacZ
+    lacZMainContainerBG: '#f6f9fc',
+    lacZMainHeaderC: '#293241',
+    lacZCardContainerBG: 'white',
+    lacZChartFlexContainerBG: 'white',
+    lacZChartCompareBG: '#f6f9fc',
 
 
 
@@ -97,10 +109,23 @@ export const darkTheme = {
     PCTimeC: 'white',
     //Collection:
     ColMainContainerBG: '#141628',
-    ColInputContainerBG: '#2d2f57',
-    ColInputContainerBorderC: '1px solid black',
+    ColInputContainerBG: '#242746',
+    ColInputContainerBorderC: '1px solid #2d2f57',
     ColInputMainHeader: 'white',
     ColInputTimeLabel: 'white',
+    ColStrainInputBG: '#293241',
+    ColStrainInputC: 'white',
+    ColStrainsContainerBG: '#242746',
+    ColStrainsContainerBorder: '1px solid#2d2f57',
+    ColStrainCardBG: '#242746',
+    ColStrainCardExistingCDataC: 'black',
+    //LacZ
+    lacZMainContainerBG: '#141628',
+    lacZMainHeaderC: 'white',
+    lacZCardContainerBG: '#2d2f57',
+    lacZChartFlexContainerBG: '#2d2f57',
+    lacZChartCompareBG: '#141628',
+
 
     
 
