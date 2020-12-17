@@ -45,6 +45,7 @@ const MainInputContainer = styled.div`
     display: block;
     max-width: 450px;
     justify-self: center;
+    z-index: 9999 !important;
 
     @media (min-width: 1600px) {
         max-width: 600px;
