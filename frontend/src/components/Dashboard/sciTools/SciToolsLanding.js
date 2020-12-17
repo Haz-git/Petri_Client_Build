@@ -9,6 +9,12 @@ import galactPhoto from '../../../Img/bgalact.png';
 import { SecondaryHeader } from '../../signupPage/SignUpForm';
 import Fade from 'react-reveal/Fade';
 
+const MainContainer = styled.div`
+    height: 100vh;
+    text-align: center;
+    background-color: ${props => props.theme.landingPageBGColor};
+`
+
 const MainSciToolsHeaderContainer = styled.div`
     padding-left: 40px;
     display: flex;
@@ -30,13 +36,11 @@ const StyledMainHeader = styled.h1`
     color: white;
 `
 
-const MainContainer = styled.div`
-    text-align: center;
-`
 const SciToolsSecondaryHeader = styled(SecondaryHeader)`
     margin: 0;
     font-size: 30px;
     font-weight: 300;
+    color: ${props => props.theme.landingPageSecondaryHeader};
 `
 const MainProgramContainer = styled.div`
     margin: 20px 20px;
