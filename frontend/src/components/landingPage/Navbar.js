@@ -114,7 +114,7 @@ const StyledLogoMiniContainer = styled.div`
 `
 const StyledMiniLogo = styled.p`
     margin: 0;
-    font-size: 17px;
+    font-size: 16px;
     font-family: 'Pattaya', serif;
 `
 const StyledHomeHeart = styled(HomeHeart)`
