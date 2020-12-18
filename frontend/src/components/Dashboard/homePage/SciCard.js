@@ -7,7 +7,7 @@ import {Button} from 'react-bootstrap';
 
 const SciCardMainContainer = styled.div`
     display: grid;
-    background-color: white;
+    background-color: ${props => props.theme.sciCardMainContainerBG};
     padding: 4px 4px;
     grid-template-columns: 40% 60%;
 `
@@ -33,6 +33,7 @@ const HeadlineHeader = styled.h2`
     font-size: 20px;
     text-align: center;
     font-weight: 600;
+    color: ${props => props.theme.headLineC};
 `
 
 const AuthorLine = styled.h4`
@@ -40,6 +41,7 @@ const AuthorLine = styled.h4`
     font-size: 15px;
     text-align: center;
     font-weight: 200;
+    color: ${props => props.theme.authorLineC};
 `
 
 const TimeLine = styled.p`
@@ -47,12 +49,14 @@ const TimeLine = styled.p`
     font-size: 12px;
     text-align: center;
     font-weight: 200;
+    color: ${props => props.theme.timeLineC};
 `
 const DescLine = styled.p`
     font-family: 'Nunito', sans-serif;
     font-size: 13px;
     text-align: justify;
     font-weight: 500;
+    color: ${props => props.theme.descLineC};
 `
 
 
