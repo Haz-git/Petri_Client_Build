@@ -24,18 +24,6 @@ const BackgroundWrapper = styled.div`
     width: 100vw;
     background-color: #F6F9FC;
 `
-
-// const MainContainer = styled.div`
-//     text-align: center;
-//     padding: 10px 10px;
-//     background-color:#F6F9FC;
-//     position: absolute;
-//     float: left;
-//     left: 50%;
-//     top: 50%;
-//     transform: translate(-50%, -50%);
-// `
-
 const MainContainer = styled.div`
     text-align: center;
     padding: 10px 10px;
