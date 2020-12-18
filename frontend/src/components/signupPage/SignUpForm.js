@@ -7,6 +7,14 @@ import signupImg from '../../Img/signupImg.jpg';
 
 //Styles:
 
+const BackgroundWrapper = styled.div`
+    position: fixed;
+    display: block;
+    height: 100vh;
+    width: 100vw;
+    background-color: #F6F9FC;
+`
+
 const MainContainer = styled.div`
     margin: 0 auto;
     text-align: center;
@@ -28,7 +36,6 @@ const ContentContainer = styled.div`
  
 `
 const HeaderContainer = styled.div`
-    /* background-color: salmon; */
     padding-left: 12px;
     padding-right: 12px;
     padding-top: 20px;
@@ -149,51 +156,53 @@ const SignUpForm = ({ handleSubmit, userSignUp }) => {
 
     return (
         <>
-            <MainContainer>
-                <ContentContainer>
-                    <ImageContainer>
-                        <StyledImg src={signupImg}></StyledImg>
-                    </ImageContainer>
-                    <form onSubmit={handleSubmit(dispatchFormValues)}>
-                        <FormContainer>
-                            <HeaderContainer>
-                                <MainHeader>Join The Colony</MainHeader>
-                                <SecondaryHeader>Create an account to increase your research workflow by writing bio-note snippets, setting task reminders, and organizing work schedule.</SecondaryHeader>
-                                <ThirdHeader>Already signed up? Login above!</ThirdHeader>
-                            </HeaderContainer>
-                                <InputContainer>
-                                    <InputFieldContainer>
-                                        <StyledLabel>First Name</StyledLabel>
-                                        <StyledField name='firstName' component='input'></StyledField>
-                                    </InputFieldContainer>
-                                    <InputFieldContainer>
-                                        <StyledLabel>Last Name</StyledLabel>
-                                        <StyledField name='lastName' component='input'></StyledField>
-                                    </InputFieldContainer>
-                                    <InputFieldContainer>
-                                        <StyledLabel>Username</StyledLabel>
-                                        <StyledField name='userName' component='input'></StyledField>
-                                    </InputFieldContainer>
-                                    <InputFieldContainer>
-                                        <StyledLabel>Email Address</StyledLabel>
-                                        <StyledField name='email' component='input'></StyledField>
-                                    </InputFieldContainer>
-                                    <InputFieldContainer>
-                                        <StyledLabel>Password</StyledLabel>
-                                        <StyledField name='password' component='input' type='password'></StyledField>
-                                    </InputFieldContainer>
-                                    <InputFieldContainer>
-                                        <StyledLabel>Confirm Password</StyledLabel>
-                                        <StyledField name='passwordConfirm' component='input' type='password'></StyledField>
-                                    </InputFieldContainer>
-                                </InputContainer>
-                            <ButtonContainer>
-                                <StyledButton type='submit'>Sign Up</StyledButton>
-                            </ButtonContainer>
-                        </FormContainer>
-                    </form>
-                </ContentContainer>
-            </MainContainer>
+            <BackgroundWrapper>
+                <MainContainer>
+                    <ContentContainer>
+                        <ImageContainer>
+                            <StyledImg src={signupImg}></StyledImg>
+                        </ImageContainer>
+                        <form onSubmit={handleSubmit(dispatchFormValues)}>
+                            <FormContainer>
+                                <HeaderContainer>
+                                    <MainHeader>Join The Colony</MainHeader>
+                                    <SecondaryHeader>Create an account to increase your research workflow by writing bio-note snippets, setting task reminders, and organizing work schedule.</SecondaryHeader>
+                                    <ThirdHeader>Already signed up? Login above!</ThirdHeader>
+                                </HeaderContainer>
+                                    <InputContainer>
+                                        <InputFieldContainer>
+                                            <StyledLabel>First Name</StyledLabel>
+                                            <StyledField name='firstName' component='input'></StyledField>
+                                        </InputFieldContainer>
+                                        <InputFieldContainer>
+                                            <StyledLabel>Last Name</StyledLabel>
+                                            <StyledField name='lastName' component='input'></StyledField>
+                                        </InputFieldContainer>
+                                        <InputFieldContainer>
+                                            <StyledLabel>Username</StyledLabel>
+                                            <StyledField name='userName' component='input'></StyledField>
+                                        </InputFieldContainer>
+                                        <InputFieldContainer>
+                                            <StyledLabel>Email Address</StyledLabel>
+                                            <StyledField name='email' component='input'></StyledField>
+                                        </InputFieldContainer>
+                                        <InputFieldContainer>
+                                            <StyledLabel>Password</StyledLabel>
+                                            <StyledField name='password' component='input' type='password'></StyledField>
+                                        </InputFieldContainer>
+                                        <InputFieldContainer>
+                                            <StyledLabel>Confirm Password</StyledLabel>
+                                            <StyledField name='passwordConfirm' component='input' type='password'></StyledField>
+                                        </InputFieldContainer>
+                                    </InputContainer>
+                                <ButtonContainer>
+                                    <StyledButton type='submit'>Sign Up</StyledButton>
+                                </ButtonContainer>
+                            </FormContainer>
+                        </form>
+                    </ContentContainer>
+                </MainContainer>
+            </BackgroundWrapper>
         </>
     )
 }

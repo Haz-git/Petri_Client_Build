@@ -14,6 +14,11 @@ import MDSciNews from './MDSciNews';
 
 //Styles:
 
+const WrapperContainer = styled.div`
+    overflow-y: hidden;
+    height: 100%;
+`
+
 const SpinnerContainer = styled.div`
     position: fixed;
     top: 50%;
@@ -23,9 +28,11 @@ const SpinnerContainer = styled.div`
 
 
 const MainDashboardContainer = styled.div`
-    height: 100vh;
+    height: 100%;
     background-color: ${props => props.theme.background};
     z-index: 0;
+    overflow-y: hidden;
+    overflow: hidden;
 `
 const MainDashboardHeaderContainer = styled.div`
     padding-left: 40px;
@@ -40,6 +47,7 @@ const MainDashboardHeaderContainer = styled.div`
     padding-top: 0;
     padding-bottom: 0;
     border-bottom: 1px solid #141628;
+    overflow-y: hidden;
 `
 const MainDashboardUserNameHeader = styled.h1`
     font-family: 'Montserrat', sans-serif;
@@ -196,28 +204,30 @@ class MainDashboard extends Component {
 
             return (
                 <>
-                    <MainDashboardHeaderContainer>
-                    <Fade>
-                        <div>
-                            {this.renderDashBoardProfilePicture()}
-                        </div>
-                        <DetailsContainer>
-                            <MainDashboardUserNameHeader>{userName} </MainDashboardUserNameHeader>
-                            <MainDashboardHeader>{firstName}, {lastName} </MainDashboardHeader>
-                            <MainDashboardHeader2>{email}</MainDashboardHeader2>
-                        </DetailsContainer>
-                    </Fade>
-                    </MainDashboardHeaderContainer>
-                    <MainDashboardContainer>
-                        <MainDashboardUpperGrid>
-                            <UpperGridContainer>
-                                <MDTodo />
-                            </UpperGridContainer>
-                            <UpperGridContainer>
-                                <MDSciNews />
-                            </UpperGridContainer>
-                        </MainDashboardUpperGrid>
-                    </MainDashboardContainer>
+                    <WrapperContainer>
+                        <MainDashboardHeaderContainer>
+                        <Fade>
+                            <div>
+                                {this.renderDashBoardProfilePicture()}
+                            </div>
+                            <DetailsContainer>
+                                <MainDashboardUserNameHeader>{userName} </MainDashboardUserNameHeader>
+                                <MainDashboardHeader>{firstName}, {lastName} </MainDashboardHeader>
+                                <MainDashboardHeader2>{email}</MainDashboardHeader2>
+                            </DetailsContainer>
+                        </Fade>
+                        </MainDashboardHeaderContainer>
+                        <MainDashboardContainer>
+                            <MainDashboardUpperGrid>
+                                <UpperGridContainer>
+                                    <MDTodo />
+                                </UpperGridContainer>
+                                <UpperGridContainer>
+                                    <MDSciNews />
+                                </UpperGridContainer>
+                            </MainDashboardUpperGrid>
+                        </MainDashboardContainer>
+                    </WrapperContainer>
                 </>
             )
         } else {

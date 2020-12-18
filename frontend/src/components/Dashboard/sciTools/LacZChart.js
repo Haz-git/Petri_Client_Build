@@ -18,6 +18,13 @@ const MainChartContainer = styled.div`
     display: grid;
     grid-template-columns: 77% 23%;
 `
+
+const ChartBG = styled.div`
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px 20px;
+`
+
 const FlexContainer = styled.div`
     position: relative;
     background-color: ${props => props.theme.lacZChartFlexContainerBG};
@@ -138,20 +145,22 @@ const LacZChart = ({
     return (
         <>
             <MainChartContainer>
-                <ResponsiveContainer aspect={2.1}>
-                    <LineChart width={400} height={350} data={bgalConfiguredData} margin={{ top: 0, right: 20, left: 30, bottom: 40 }}>
-                        <Line type="monotone" dataKey="bgalUnit" stroke="#2d2d7d" strokeWidth={2.5} />
-                        <CartesianGrid stroke="#9f9d9d" strokeDasharray="5 5" />
-                        <XAxis dataKey="od600value">
-                            <Label value='OD-600 Value' position='bottom' style={{ textAnchor: 'middle' }} />
-                        </XAxis>
-                        <YAxis dataKey='bgalUnit'>
-                            <Label value='B-Galactosidase Units' position='left' angle={-90} style={{ textAnchor: 'middle' }} />
-                        </YAxis>
-                        <Tooltip />
-                        <Legend verticalAlign="top" height={40}/>
-                    </LineChart>
-                </ResponsiveContainer>
+                <ChartBG>
+                    <ResponsiveContainer aspect={2.1}>
+                        <LineChart width={400} height={350} data={bgalConfiguredData} margin={{ top: 0, right: 20, left: 30, bottom: 40 }}>
+                            <Line type="monotone" dataKey="bgalUnit" stroke="#2d2d7d" strokeWidth={2.5} />
+                            <CartesianGrid stroke="#9f9d9d" strokeDasharray="5 5" />
+                            <XAxis dataKey="od600value">
+                                <Label value='OD-600 Value' position='bottom' style={{ textAnchor: 'middle' }} />
+                            </XAxis>
+                            <YAxis dataKey='bgalUnit'>
+                                <Label value='B-Galactosidase Units' position='left' angle={-90} style={{ textAnchor: 'middle' }} />
+                            </YAxis>
+                            <Tooltip />
+                            <Legend verticalAlign="top" height={40}/>
+                        </LineChart>
+                    </ResponsiveContainer>
+                </ChartBG>
                 <FlexContainer>
                     <BadgeContainer>
                         <LacZBadge variant='light'>
