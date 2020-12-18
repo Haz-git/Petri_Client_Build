@@ -15,6 +15,12 @@ export const lightTheme = {
     navIconColor: '#2e3054',
     navIconHoverColor: '#01348e',
     mdTodoBgColor: 'white',
+    //MDsciCard
+    sciCardMainContainerBG: 'white',
+    headLineC: 'black',
+    authorLineC: 'black',
+    timeLineC: 'black',
+    descLineC: 'black',
     //Messenger
     messengerContainerBGColor: '#f6f9fc',
     chatContainerBGColor: 'white',
@@ -97,6 +103,12 @@ export const darkTheme = {
     navIconColor: '#ffffff',
     navIconHoverColor: '#2f71e4',
     mdTodoBgColor: '#2d2f57',
+    //MDsciCard
+    sciCardMainContainerBG: '#2d2f57',
+    headLineC: 'white',
+    authorLineC: 'white',
+    timeLineC: 'white',
+    descLineC: 'white',
     //Messenger
     messengerContainerBGColor: '#141628',
     chatContainerBGColor: '#242746',
