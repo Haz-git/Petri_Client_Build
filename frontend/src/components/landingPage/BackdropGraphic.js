@@ -1,22 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import Fade from 'react-reveal/Fade';
 
 //Styles:
 
-const MainContainer = styled(motion.div)`
+const MainContainer = styled.div`
     margin-top: 20vh;
     position: relative;
     width: 600px;
-    height: 500px;
-    margin-left: 40px;
+    height: 525px;
+    margin-left: 10px;
     border-radius: 15px;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 1);
+    transform: perspective(500px) rotateY(-15deg);
+
 `
 
 const SideBarGraphic = styled.div`
     position: absolute;
-    height: 500px;
+    height: 525px;
     width: 600px;
     background-color: #293241;
     z-index: 1;
@@ -51,7 +53,7 @@ const BodyGraphic = styled.div`
     position: absolute;
     border-top-left-radius: 15px;
     border-bottom-right-radius: 15px;
-    height: 450px;
+    height: 475px;
     width: 550px;
     top: 50px;
     left: 50px;
@@ -236,47 +238,49 @@ const BodyDetailContents3MedBox3 = styled.div`
 const BackdropGraphic = () => {
     return (
         <>
-            <MainContainer>
-                <SideBarGraphic>
-                    <LogoGraphic />
-                    <IconGraphics />
-                    <IconGraphics />
-                    <IconGraphics />
-                    <IconGraphics />
-                    <IconGraphics />
-                    <IconGraphics />
-                    <IconGraphics />
-                    <IconGraphics />
-                </SideBarGraphic>
-                <BodyGraphic>
-                    <BodyDetailBox>
-                        <BodyDetailHeader />
-                        <BodyDetailContents />
-                        <BodyDetailContents />
-                        <BodyDetailContents />
-                        <BodyDetailContents />
-                    </BodyDetailBox>
-                    <BodyDetailBox2>
-                        <BodyDetailHeader2 />
-                        <BodyDetailContents2 />
-                        <BodyDetailContents2MedBox />
-                        <BodyDetailContents2LargeBox />
-                    </BodyDetailBox2>
-                    <BodyDetailBox3>
-                        <BodyDetailHeader3 />
-                        <BodyDetailContents3 />
-                        <BodyDetailContents3 />
-                        <BodyDetailContents3 />
-                        <BodyDetailContents3 />
-                        <BodyDetailContents3 />
-                        <BodyDetailContents3 />
-                        <BodyDetailContents3 />
-                        <BodyDetailContents3MedBox />
-                        <BodyDetailContents3MedBox2 />
-                        <BodyDetailContents3MedBox3 />
-                    </BodyDetailBox3>
-                </BodyGraphic>
-            </MainContainer>
+            <Fade right>
+                <MainContainer>
+                    <SideBarGraphic>
+                        <LogoGraphic />
+                        <IconGraphics />
+                        <IconGraphics />
+                        <IconGraphics />
+                        <IconGraphics />
+                        <IconGraphics />
+                        <IconGraphics />
+                        <IconGraphics />
+                        <IconGraphics />
+                    </SideBarGraphic>
+                    <BodyGraphic>
+                        <BodyDetailBox>
+                            <BodyDetailHeader />
+                            <BodyDetailContents />
+                            <BodyDetailContents />
+                            <BodyDetailContents />
+                            <BodyDetailContents />
+                        </BodyDetailBox>
+                        <BodyDetailBox2>
+                            <BodyDetailHeader2 />
+                            <BodyDetailContents2 />
+                            <BodyDetailContents2MedBox />
+                            <BodyDetailContents2LargeBox />
+                        </BodyDetailBox2>
+                        <BodyDetailBox3>
+                            <BodyDetailHeader3 />
+                            <BodyDetailContents3 />
+                            <BodyDetailContents3 />
+                            <BodyDetailContents3 />
+                            <BodyDetailContents3 />
+                            <BodyDetailContents3 />
+                            <BodyDetailContents3 />
+                            <BodyDetailContents3 />
+                            <BodyDetailContents3MedBox />
+                            <BodyDetailContents3MedBox2 />
+                            <BodyDetailContents3MedBox3 />
+                        </BodyDetailBox3>
+                    </BodyGraphic>
+                </MainContainer>
+            </Fade>
         </>
     )
 }

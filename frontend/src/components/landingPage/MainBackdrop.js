@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import BackdropGraphic from './BackdropGraphic';
+import Fade from 'react-reveal/Fade';
 
 
 
@@ -92,23 +93,29 @@ const Mainbackdrop = () => {
     return (
         <StyledBackdrop>
             <HeaderContainer>
-                <MainBackDropHeader>Petri</MainBackDropHeader>
-                <SecondaryHeader>The ultimate utility tool for optimizing your research workflow.</SecondaryHeader>
-                <SecondaryHeader>Focus on your research. We'll do the organization.</SecondaryHeader>
-                <StyledLink to='/signup'>
-                    <ColorButton
-                        style={{
-                            width: '250px',
-                            height: '60px',
-                            marginTop: '30px',
-                        }}
-                        variant='contained'
-                        size='large'
-                        startIcon={<StyledCreateIcon />}
-                    >
-                        Register for free
-                    </ColorButton>
-                </StyledLink>
+                <Fade top>
+                    <MainBackDropHeader>Petri</MainBackDropHeader>
+                </Fade>
+                <Fade bottom>
+                    <SecondaryHeader>The ultimate utility tool for optimizing your research workflow.</SecondaryHeader>
+                    <SecondaryHeader>Focus on your research. We'll do the organization.</SecondaryHeader>
+                </Fade>
+                <Fade>
+                    <StyledLink to='/signup'>
+                        <ColorButton
+                            style={{
+                                width: '250px',
+                                height: '60px',
+                                marginTop: '30px',
+                            }}
+                            variant='contained'
+                            size='large'
+                            startIcon={<StyledCreateIcon />}
+                        >
+                            Register for free
+                        </ColorButton>
+                    </StyledLink>
+                </Fade>
             </HeaderContainer>
             <div>
                 <BackdropGraphic />
