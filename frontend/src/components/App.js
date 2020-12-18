@@ -73,7 +73,7 @@ const App = () => {
         setAppTheme(modeValue);
     }
 
-    const grabbedTheme = appTheme === 'light' ? lightTheme : darkTheme;
+    const grabbedTheme = appTheme === 'light' || appTheme === '' ? lightTheme : darkTheme;
 
     const renderApp = () => {
         if (appTheme === '') {
