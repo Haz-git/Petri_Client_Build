@@ -40,7 +40,7 @@ const StyledBackdrop = styled.div`
 `
 
 const HeaderContainer = styled.div`
-    margin-top: 25vh;
+    margin-top: 22vh;
     padding: 0 40px;
 `
 
@@ -78,6 +78,7 @@ const ColorButton = withStyles((theme) => ({
 
 const StyledLink = styled(Link)`
     text-decoration: none;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 1);
 
     &:hover {
         text-decoration: none;
