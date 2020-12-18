@@ -14,6 +14,8 @@ const MainContainer = styled.div`
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 1);
     transform: perspective(500px) rotateY(-15deg);
 
+
+
 `
 
 const SideBarGraphic = styled.div`

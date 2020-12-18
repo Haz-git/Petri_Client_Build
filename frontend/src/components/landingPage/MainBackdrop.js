@@ -14,6 +14,7 @@ import { purple } from '@material-ui/core/colors';
 
 const StyledBackdrop = styled.div`
     display: flex;
+    justify-content: center;
     padding: 30px 30px;
     background: linear-gradient(180deg, rgba(20,22,40,1) 40%, rgba(23,24,45,1) 75%, rgba(34,35,65,1) 94%);
     min-height: 550px;
@@ -37,6 +38,8 @@ const StyledBackdrop = styled.div`
     @media (max-height: 800px) {
         height: 800px;
     }
+
+    overflow-x: hidden;
 
 `
 
