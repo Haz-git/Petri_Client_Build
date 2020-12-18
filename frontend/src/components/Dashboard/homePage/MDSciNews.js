@@ -42,7 +42,7 @@ const MDSciNews = ({ getNews, news }) => {
     const [ loading, setLoading ] = useState(true);
 
     useEffect(() => {
-        //getNews();
+        getNews();
     },[])
 
 
