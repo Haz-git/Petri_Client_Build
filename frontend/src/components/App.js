@@ -81,6 +81,7 @@ const App = () => {
                 null
             )
         } else {
+            //Meetings route set to main dashboard because currently in construction.
             return (
                 <>
                     <ThemeProvider theme={grabbedTheme}>
@@ -95,7 +96,7 @@ const App = () => {
                                     <DashboardContainer>
                                         <Route exact path='/dashboard' component={MainDashboard} />
                                         <Route exact path='/calendar' component={Calendar} />
-                                        <Route exact path='/meetings' component={Meetings} />
+                                        <Route exact path='/meetings' component={MainDashboard} />
                                         <Route exact path='/messenger' component={Messenger} />
                                         <Route exact path='/createbionote' component={CreateBioNote} />
                                         <Route exact path='/logout' component={Logout} />

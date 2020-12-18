@@ -5,13 +5,18 @@ export const lightTheme = {
     text: '#1c1e37',
     background: '#f6f9fc',
     //Main Dashboard
+    navAvatarBorder: '#293241',
     navBgColor: 'white',
     navBorderColor: '3px solid #293241',
+    navDetailUserName: '#141628',
+    navDetailName: '#141628',
+    navDetailEmail: '#141628',
     LogoDividerColor: '#293241',
     navIconColor: '#2e3054',
     navIconHoverColor: '#01348e',
     mdTodoBgColor: 'white',
     //Messenger
+    messengerContainerBGColor: '#f6f9fc',
     chatContainerBGColor: 'white',
     chatInputContainer: 'white',
     chatInputColor: '#293241',
@@ -21,6 +26,9 @@ export const lightTheme = {
     chatCardTextColor: '#293241',
     //Calendar 
     calendarContainerBGColor: '#f6f9fc',
+    calendarSideBarContainerBG: '#293241',
+    calendarChartBG: 'white',
+    calendarTextC: 'black',
     //Bionotes
     bionotesContainerBGColor: '#f6f9fc',
     bionoteCardColor: 'white',
@@ -80,21 +88,29 @@ export const darkTheme = {
     background: '#141628',
     //Main DashBoard
     navBgColor: '#222444',
+    navAvatarBorder: 'white',
     navBorderColor: '1px solid black',
+    navDetailUserName: 'white',
+    navDetailName: 'white',
+    navDetailEmail: 'white',
     LogoDividerColor: 'black',
     navIconColor: '#ffffff',
     navIconHoverColor: '#2f71e4',
     mdTodoBgColor: '#2d2f57',
     //Messenger
-    chatContainerBGColor: '#2d2f57',
-    chatInputContainer: '#2d2f57',
+    messengerContainerBGColor: '#141628',
+    chatContainerBGColor: '#242746',
+    chatInputContainer: '#242746',
     chatInputColor: 'white',
-    chatInputText: '#293241',
+    chatInputText: '#242746',
     //ChatCard
-    chatCardBGColor: '#2d2f57',
+    chatCardBGColor: '#242746',
     chatCardTextColor: 'white',
     //Calendar
     calendarContainerBGColor: '#141628',
+    calendarSideBarContainerBG: '#242746',
+    calendarChartBG: '#242746',
+    calendarTextC: 'white',
     //Bionotes
     bionotesContainerBGColor: '#141628',
     bionoteCardColor: '#2d2f57',

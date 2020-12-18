@@ -77,7 +77,7 @@ const DashboardNavbar = styled.div`
     height: 100%; 
     width: fit-content; 
     position: fixed; 
-    z-index: 1; 
+    z-index: 99999; 
     top: 0; 
     left: 0;
     background-color:${(props) => props.theme.navBgColor}; 
