@@ -17,6 +17,25 @@ import {
     InputFieldContainer,
 } from '../signupPage/SignUpForm';
 
+const BackgroundWrapper = styled.div`
+    position: fixed;
+    display: block;
+    height: 100vh;
+    width: 100vw;
+    background-color: #F6F9FC;
+`
+
+// const MainContainer = styled.div`
+//     text-align: center;
+//     padding: 10px 10px;
+//     background-color:#F6F9FC;
+//     position: absolute;
+//     float: left;
+//     left: 50%;
+//     top: 50%;
+//     transform: translate(-50%, -50%);
+// `
+
 const MainContainer = styled.div`
     text-align: center;
     padding: 10px 10px;
@@ -27,6 +46,8 @@ const MainContainer = styled.div`
     top: 50%;
     transform: translate(-50%, -50%);
 `
+
+
 
 const ErrorTextInvisible = styled.h2`
     font-family: 'Nunito', sans-serif;
@@ -91,26 +112,28 @@ const LoginForm = ({ handleSubmit, userLogin, notifier }) => {
             <LoadingPage
                 renderLoading={ renderLoading }
             />
-            <MainContainer>
-                <MainHeader>Hey, there!</MainHeader>
-                <SecondaryHeader>Please log in to continue...</SecondaryHeader>
-                <div>
-                    <form onSubmit={handleSubmit(dispatchFormValues)}>
-                        {renderErrorText()}
-                        <InputFieldContainer>
-                            <StyledLabel>Email Address</StyledLabel>
-                            <StyledField name='email' component='input'></StyledField>
-                        </InputFieldContainer>
-                        <InputFieldContainer>
-                            <StyledLabel>Password</StyledLabel>
-                            <StyledField name='password' component='input' type='password'></StyledField>
-                        </InputFieldContainer>
-                        <InputFieldContainer>
-                            <StyledButton type='submit'>Login</StyledButton>
-                        </InputFieldContainer>
-                    </form>
-                </div>
-            </MainContainer>
+            <BackgroundWrapper>
+                <MainContainer>
+                    <MainHeader>Hey, there!</MainHeader>
+                    <SecondaryHeader>Please log in to continue...</SecondaryHeader>
+                    <div>
+                        <form onSubmit={handleSubmit(dispatchFormValues)}>
+                            {renderErrorText()}
+                            <InputFieldContainer>
+                                <StyledLabel>Email Address</StyledLabel>
+                                <StyledField name='email' component='input'></StyledField>
+                            </InputFieldContainer>
+                            <InputFieldContainer>
+                                <StyledLabel>Password</StyledLabel>
+                                <StyledField name='password' component='input' type='password'></StyledField>
+                            </InputFieldContainer>
+                            <InputFieldContainer>
+                                <StyledButton type='submit'>Login</StyledButton>
+                            </InputFieldContainer>
+                        </form>
+                    </div>
+                </MainContainer>
+            </BackgroundWrapper>
         </>
     )
 }

@@ -1,8 +1,10 @@
 //Creating Global Style:
 import { createGlobalStyle} from "styled-components";
 
+//Trying to create two global styles.. one for the landing page and one for the dashboard.
+//It seems as though whoever is nested higher takes precedent and overrules the lower level.
 
-export const GlobalStyles = createGlobalStyle`
+export const DashboardGlobalStyles = createGlobalStyle`
 
   html {
     height: 100%;
@@ -16,3 +18,4 @@ export const GlobalStyles = createGlobalStyle`
     min-height: 100%;
   }
 `
+

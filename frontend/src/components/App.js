@@ -35,7 +35,7 @@ import EditProfilePicture from './Dashboard/settings/EditProfilePicture';
 
 //Themes and global styles:
 import { ThemeProvider } from "styled-components";
-import { GlobalStyles } from "../components/Styling/GlobalStyles";
+import { DashboardGlobalStyles, LandingStyle } from "../components/Styling/GlobalStyles";
 import { lightTheme, darkTheme } from "../components/Styling/Theme";
 import { getMode } from '../components/Styling/useDarkMode';
 import { useDarkMode } from '../components/Styling/useDarkMode';
@@ -85,7 +85,6 @@ const App = () => {
             return (
                 <>
                     <ThemeProvider theme={grabbedTheme}>
-                        <GlobalStyles />
                         <Router history={history}>
                             <Navbar />
                             <Switch>
@@ -93,6 +92,7 @@ const App = () => {
                                 <Route exact path='/signup' component={SignUpForm} />
                                 <Route exact path='/login' component={LoginForm} />
                                 <AuthenticatedComponents>
+                                <DashboardGlobalStyles />
                                     <DashboardContainer>
                                         <Route exact path='/dashboard' component={MainDashboard} />
                                         <Route exact path='/calendar' component={Calendar} />
