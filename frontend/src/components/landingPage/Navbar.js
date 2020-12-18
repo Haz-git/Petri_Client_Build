@@ -24,9 +24,12 @@ import Button from '@material-ui/core/Button';
 const DefaultNavbar = styled.div`
     display: flex;
     justify-content: space-between;
-    background-color: #293241;
+    background-color: #141628;
     align-items: center;
     margin: 0;
+    position: sticky;
+    top: 0;
+    z-index: 99999 !important;
 
 `
 const NavLinks = styled.div`
@@ -102,9 +105,9 @@ const StyledImg = styled.img`
 `
 const StyledLogoHeader = styled.h1`
     margin: 0;
-    font-weight: 300;
+    font-weight: 100;
     font-size: 50px;
-    font-family: 'IM Fell English SC', serif;
+    font-family: 'Pattaya', serif;
 `
 const StyledLogoMiniContainer = styled.div`
     margin: -10px;
@@ -112,7 +115,7 @@ const StyledLogoMiniContainer = styled.div`
 const StyledMiniLogo = styled.p`
     margin: 0;
     font-size: 17px;
-    font-family: 'IM Fell English SC', serif;
+    font-family: 'Pattaya', serif;
 `
 const StyledHomeHeart = styled(HomeHeart)`
     margin-bottom: 3px;
@@ -292,7 +295,7 @@ const Navbar = ({ StateJwt, userLogOut }) => {
                             <StyledLogoHeader>
                                 Petri
                                 <StyledLogoMiniContainer>
-                                    <StyledMiniLogo>research workflow upgraded</StyledMiniLogo>
+                                    <StyledMiniLogo>Research workflow upgraded</StyledMiniLogo>
                                 </StyledLogoMiniContainer>
                             </StyledLogoHeader>
                     </LogoLink>
