@@ -24,25 +24,29 @@ const SpinnerContainer = styled.div`
 
 const MainDashboardContainer = styled.div`
     height: 100vh;
-    background-color: #F6F9FC;
+    background-color: ${props => props.theme.background};
+    z-index: 0;
 `
 const MainDashboardHeaderContainer = styled.div`
     padding-left: 40px;
     display: flex;
     text-align: center;
-    background-color: #1c1e37;
-    height: 85px;
+    background-color: ${props => props.theme.settingsHeaderBG};
+    height: 86px;
     border-left: 1px solid #F6F9FC;
     justify-content: flex-start;
     align-items: center;
     margin: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-bottom: 1px solid #141628;
 `
 const MainDashboardUserNameHeader = styled.h1`
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     font-size: 25px;
     font-weight: 500;
-    color: #F6F9FC;
+    color: ${props => props.theme.navDetailUserName};
     display: flex;
     justify-content: flex-start;
     padding-left: 15px;
@@ -55,7 +59,7 @@ const MainDashboardHeader = styled.h2`
     margin: 0;
     font-size: 16px;
     font-weight: 100;
-    color: #F6F9FC;
+    color: ${props => props.theme.navDetailName};
     display: flex;
     justify-content: flex-start;
     padding-left: 15px;
@@ -67,7 +71,7 @@ const MainDashboardHeader2 = styled.h2`
     margin: 0;
     font-size: 12px;
     font-weight: 100;
-    color: #F6F9FC;
+    color: ${props => props.theme.navDetailEmail};
     display: flex;
     justify-content: flex-start;
     padding-left: 15px;
@@ -75,10 +79,11 @@ const MainDashboardHeader2 = styled.h2`
 `
 
 const MainDashboardUpperGrid = styled.div`
-    background-color: #F6F9FC;
+    background-color: ${props => props.theme.background};
     padding: 20px 20px;
     display: grid;
     grid-template-columns: 35% 65%;
+    z-index: 0;
 `
 
 const UpperGridContainer = styled.div`
@@ -91,7 +96,7 @@ const StyledCustomAvatar = styled.img`
     width: 65px;
     border-radius: 50%;
     vertical-align: middle;
-    border: 2px solid white;
+    border: 2px solid ${props => props.theme.navAvatarBorder};
 `
 
 const StyledDefaultAvatar = styled.img`
@@ -100,7 +105,7 @@ const StyledDefaultAvatar = styled.img`
     background-color: white;
     border-radius: 50%;
     vertical-align: middle;
-    border: 2px solid white;
+    border: 2px solid ${props => props.theme.navAvatarBorder};
     
 `
 const HelperSpan = styled.span`
@@ -111,10 +116,11 @@ const HelperSpan = styled.span`
 
 const DetailsContainer = styled.div`
     margin: 0;
-    border-right: 1px solid white;
     padding-right: 40px;
-    height: 110px;
+    height: 84px;
+    margin-bottom: 24px;
     padding-top: 10px;
+    overflow-y: hidden;
 `
 
 class MainDashboard extends Component {
@@ -189,28 +195,30 @@ class MainDashboard extends Component {
             const { firstName, lastName, userName, email } = this.state;
 
             return (
-                <MainDashboardContainer>
+                <>
                     <MainDashboardHeaderContainer>
-                        <Fade>
-                            <div>
-                                {this.renderDashBoardProfilePicture()}
-                            </div>
-                            <DetailsContainer>
-                                <MainDashboardUserNameHeader>{userName} </MainDashboardUserNameHeader>
-                                <MainDashboardHeader>{firstName}, {lastName} </MainDashboardHeader>
-                                <MainDashboardHeader2>{email}</MainDashboardHeader2>
-                            </DetailsContainer>
-                        </Fade>
+                    <Fade>
+                        <div>
+                            {this.renderDashBoardProfilePicture()}
+                        </div>
+                        <DetailsContainer>
+                            <MainDashboardUserNameHeader>{userName} </MainDashboardUserNameHeader>
+                            <MainDashboardHeader>{firstName}, {lastName} </MainDashboardHeader>
+                            <MainDashboardHeader2>{email}</MainDashboardHeader2>
+                        </DetailsContainer>
+                    </Fade>
                     </MainDashboardHeaderContainer>
-                    <MainDashboardUpperGrid>
-                        <UpperGridContainer>
-                            <MDTodo />
-                        </UpperGridContainer>
-                        <UpperGridContainer>
-                            <MDSciNews />
-                        </UpperGridContainer>
-                    </MainDashboardUpperGrid>
-                </MainDashboardContainer>
+                    <MainDashboardContainer>
+                        <MainDashboardUpperGrid>
+                            <UpperGridContainer>
+                                <MDTodo />
+                            </UpperGridContainer>
+                            <UpperGridContainer>
+                                <MDSciNews />
+                            </UpperGridContainer>
+                        </MainDashboardUpperGrid>
+                    </MainDashboardContainer>
+                </>
             )
         } else {
             return (

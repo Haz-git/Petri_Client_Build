@@ -20,7 +20,7 @@ const MainContainer = styled.div`
 `
 
 const MainCardContainer = styled.div`
-    background-color: white;
+    background-color: ${props => props.theme.PCMainCardContainerBG};
     border: none;
     border-radius: 5px;
     width: 100%;
@@ -70,7 +70,7 @@ const StyledButton = styled.button`
 `
 
 const StyledEditButton = styled(StyledButton)`
-    background-color: rgb(0, 102, 0);
+    background-color: ${props => props.theme.PCEditBtnC};
     margin-bottom: 1px;
     &:hover {
         background-color: rgba(0, 118, 0);
@@ -80,7 +80,7 @@ const StyledEditButton = styled(StyledButton)`
 
 `
 const StyledDeleteButton = styled(StyledButton)`
-    background-color: rgb(127, 3, 0);
+    background-color: ${props => props.theme.PCDelBtnC};
     margin-bottom: 1px;
     &:hover {
         background-color: rgba(148, 0, 0);
@@ -115,6 +115,7 @@ const TimeStampDesc = styled.h3`
     font-family: 'Nunito', sans-serif;
     font-size: 10px;
     text-align: left;
+    color: ${props => props.theme.PCTimeC};
 `
 
 
@@ -123,7 +124,7 @@ const StyledCardHeader = styled.h2`
     font-family: 'Nunito', sans-serif;
     font-weight: 600;
     font-size: 20px;
-    color: #293241;
+    color: ${props => props.theme.PCCardHeaderC};
     text-align: left;
     margin-bottom: 2px;
 `

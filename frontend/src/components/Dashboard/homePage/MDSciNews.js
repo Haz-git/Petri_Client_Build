@@ -12,7 +12,7 @@ import { RefreshCircle } from '@styled-icons/ionicons-sharp/RefreshCircle';
 
 const MainSciNewsContainer = styled(MainTodoContainer)`
     padding-top: 30px;
-    background-color: white;
+    background-color: ${(props) => props.theme.mdTodoBgColor};
     height: 400px;
 `
 

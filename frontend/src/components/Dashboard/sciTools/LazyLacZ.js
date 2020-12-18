@@ -10,7 +10,19 @@ import { MainHeader, SecondaryHeader } from '../../signupPage/SignUpForm';
 const MainContainer = styled.div`
     text-align: center;
     padding: 20px 20px;
+    background-color: ${props => props.theme.lacZMainContainerBG};
+    height: 100vh;
 
+`
+
+const StyledMainHeader = styled(MainHeader)`
+    font-family: 'Nunito', Arial, Helvetica, sans-serif;
+    color: ${props => props.theme.lacZMainHeaderBG};
+    font-weight: 400;
+`
+
+const StyledSecondaryHeader = styled(SecondaryHeader)`
+    color: ${props => props.theme.lacZSecondaryHeaderBG};
 `
 
 const InputContainer = styled.div`
@@ -25,7 +37,9 @@ export const StyledInput = styled.input`
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
-    border: 1px solid #ccc;
+    border: ${props => props.theme.lacZStyledInputBorder};
+    color: ${props => props.theme.lacZStyledInputC};
+    background-color: ${props => props.theme.lacZStyledInputBG};
     border-radius: 6px;
     box-sizing: border-box;
     font-family: 'Nunito', sans-serif;
@@ -130,9 +144,9 @@ const LazyLacZ = ({ addNewProtocols, getProtocols, laczAssayProtocols }) => {
     return (
         <>
             <MainContainer>
-                <MainHeader>LacZ Assay</MainHeader>
+                <StyledMainHeader>LacZ Assay</StyledMainHeader>
                 <div>
-                    <SecondaryHeader>Protocol List</SecondaryHeader>
+                    <StyledSecondaryHeader>Protocol List</StyledSecondaryHeader>
                     <form onSubmit={handleProtocolSubmit}>
                         <InputContainer>
                             <div>

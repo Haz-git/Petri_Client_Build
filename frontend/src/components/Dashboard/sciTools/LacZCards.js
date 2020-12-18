@@ -19,8 +19,8 @@ const MainCardContainer = styled.div`
     display: grid;
     grid-template-columns: 30% 70%;
     margin-top: 30px;
-    background-color: white;
-    border: 1px solid white;
+    background-color: ${props => props.theme.lacZCardContainerBG};
+    border: 1px solid ${props => props.theme.lacZCardContainerBG};
     border-radius: 5px;
     padding: 10px 10px;
     text-align: center;
@@ -36,7 +36,7 @@ const MainCardContainer = styled.div`
 
 const MainInputContainer = styled.div`
     padding: 10px 10px;
-    background-color: #242746;
+    background-color: ${props => props.theme.lacZCardContainerBG};
     border: none;
     border-radius: 5px;
 `
@@ -45,7 +45,7 @@ const InputHeader = styled.h2`
     font-family: 'Montserrat', sans-serif, Arial, Helvetica;
     font-weight: 400;
     font-size: 30px;
-    color: white;
+    color: ${props => props.theme.lacZCardInputHeaderBG};
     margin-bottom: 10px;
 `
 
@@ -95,7 +95,7 @@ const StyledExistingCData = styled.div`
 `
 
 const MainChartRenderingContainer = styled.div`
-    background-color: white;
+    background-color: ${props => props.lacZCardRenderingContainerBG};
 `
 
 const AccordionContainer = styled.div`
@@ -232,7 +232,7 @@ const LacZCards = ({
         if (ownStrain.lacZData !== null && ownStrain.lacZData !== undefined) {
             return (
                 <>
-                    <Card.Subtitle className='mb-2 text-white'>Existing Lac-Z Values for {(ownStrain.lacZData.length)}/{collectionData.length} Collection Points</Card.Subtitle>
+                    <Card.Subtitle className='mb-2 text-muted'>Existing Lac-Z Values for {(ownStrain.lacZData.length)}/{collectionData.length} Collection Points</Card.Subtitle>
                         {ownStrain.lacZData.map(item =>(
                             <BadgeDivider>
                                 <Badge variant='light'>

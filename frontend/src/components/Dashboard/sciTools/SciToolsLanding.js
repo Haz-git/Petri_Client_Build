@@ -9,11 +9,17 @@ import galactPhoto from '../../../Img/bgalact.png';
 import { SecondaryHeader } from '../../signupPage/SignUpForm';
 import Fade from 'react-reveal/Fade';
 
+const MainContainer = styled.div`
+    height: 100vh;
+    text-align: center;
+    background-color: ${props => props.theme.landingPageBGColor};
+`
+
 const MainSciToolsHeaderContainer = styled.div`
     padding-left: 40px;
     display: flex;
     text-align: center;
-    background-color: #1c1e37;
+    background-color: ${props => props.theme.settingsHeaderBG};
     height: 85px;
     border-left: 1px solid #F6F9FC;
     justify-content: flex-start;
@@ -21,22 +27,28 @@ const MainSciToolsHeaderContainer = styled.div`
     margin: 0;
     padding-top: 0;
     padding-bottom: 0;
+    box-shadow:
+        0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+        0 1px 1px rgba(0, 0, 0, 0.048),
+        0 2px 2px rgba(0, 0, 0, 0.06),
+        0 3px 3px rgba(0, 0, 0, 0.072),
+        0 3px 4px rgba(0, 0, 0, 0.086),
+        0 2px 1px rgba(0, 0, 0, 0.12);
+    ;
 `
 
 const StyledMainHeader = styled.h1`
     font-family: 'Montserrat', sans-serif;
     font-size: 50px;
     font-weight: 100;
-    color: white;
+    color: ${props => props.theme.settingsMainHeaderTextC};
 `
 
-const MainContainer = styled.div`
-    text-align: center;
-`
 const SciToolsSecondaryHeader = styled(SecondaryHeader)`
     margin: 0;
     font-size: 30px;
     font-weight: 300;
+    color: ${props => props.theme.landingPageSecondaryHeader};
 `
 const MainProgramContainer = styled.div`
     margin: 20px 20px;
@@ -44,7 +56,7 @@ const MainProgramContainer = styled.div`
     justify-content: center;
 `
 const SubProgramContainer = styled.div`
-    background-color: salmon;
+    
 `
 const ProgramLink = styled(Link)`
     text-decoration: none;

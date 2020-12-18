@@ -15,8 +15,9 @@ import Badge from 'react-bootstrap/Badge';
 //Styles:
 
 const CardMainContainer = styled.div`
-margin-top: 10px;
-margin-bottom: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 10px;
 `
 
 
@@ -51,6 +52,7 @@ const StyledExistingCData = styled(StyledLabel)`
     margin-top: 10px;
     margin-bottom: 0px;
     padding: 5px 5px;
+    color: ${props => props.theme.ColStrainCardExistingCDataC};
 
     @media (max-width: 1350px) {
         font-size: 12px;

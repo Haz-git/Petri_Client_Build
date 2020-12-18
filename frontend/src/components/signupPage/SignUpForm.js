@@ -97,6 +97,7 @@ export const StyledLabel = styled.label`
     font-family: 'Nunito', sans-serif, Helvetica;
     font-weight: 300;
     font-size: 17px;
+    color: #293241;
 `
 
 const InputContainer = styled.div`

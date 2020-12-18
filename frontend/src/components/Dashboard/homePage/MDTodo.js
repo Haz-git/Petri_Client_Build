@@ -28,7 +28,7 @@ export const StyledHeader = styled.h2`
 
 export const MainTodoContainer = styled.div`
     padding: 20px 20px;
-    background-color: white;
+    background-color: ${(props) => props.theme.mdTodoBgColor};
     border: none;
     height: 400px;
     width: 100%;

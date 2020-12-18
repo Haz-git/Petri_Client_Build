@@ -15,14 +15,17 @@ import { PaperPlane } from '@styled-icons/boxicons-solid/PaperPlane';
 import Fade from 'react-reveal/Fade';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
+const BackgroundContainer = styled.div`
+    height: 100vh;
+    background-color: ${props => props.theme.messengerContainerBGColor};
+`
+
+const MainContainer = styled.div`
+`
+
 const MainMessengerContainer = styled.div`
     margin-left: 0;
-    box-sizing: border-box;
-    background-color: #f6f9fc;
-    max-height: 100vh;
-    padding-left: 20px;
-    padding-right: 20px;
-    border-radius: 10px;
+    background-color: ${props => props.theme.background};
 
 `
 
@@ -30,7 +33,7 @@ const MainMessengerHeaderContainer = styled.div`
     padding-left: 40px;
     display: flex;
     text-align: center;
-    background-color: #1c1e37;
+    background-color: ${props => props.theme.settingsHeaderBG};
     height: 85px;
     border-left: 1px solid #F6F9FC;
     justify-content: flex-start;
@@ -38,19 +41,28 @@ const MainMessengerHeaderContainer = styled.div`
     margin: 0;
     padding-top: 0;
     padding-bottom: 0;
+    box-shadow:
+        0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+        0 1px 1px rgba(0, 0, 0, 0.048),
+        0 2px 2px rgba(0, 0, 0, 0.06),
+        0 3px 3px rgba(0, 0, 0, 0.072),
+        0 3px 4px rgba(0, 0, 0, 0.086),
+        0 2px 1px rgba(0, 0, 0, 0.12);
+    ;
+    z-index: 2;
 `
 
 const StyledMainHeader = styled.h1`
     font-family: 'Montserrat', sans-serif;
     font-size: 50px;
     font-weight: 100;
-    color: white;
+    color: ${props => props.theme.settingsMainHeaderTextC};
 `
 
 const NestedMessengerContainer = styled.div`
     margin-top: 10px;
     margin-bottom: 10px;
-    background-color: white;
+    background-color: ${props => props.theme.background};
     padding: 10px 10px;
     border: none;
     border-radius: 9px;
@@ -61,23 +73,22 @@ const NestedMessengerContainer = styled.div`
         0 22.3px 17.9px rgba(0, 0, 0, 0.072),
         0 41.8px 33.4px rgba(0, 0, 0, 0.086),
         0 60px 40px rgba(0, 0, 0, 0.12);
-    
 `
 
 const ChatContainer = styled.div`
-    background-color: white;
+    background-color: ${props => props.theme.chatContainerBGColor};
     overflow-y: scroll;
     padding: 40px 40px;
     overflow-x: hidden;
-    max-height: 70vh;
-    position: relative;
+    height: 82vh;
+    /* position: absolute; */
 
     @media (max-height: 1000px) {
-        height: 750px;
+        height: 700px;
     }
 
     @media (max-height: 900px) {
-        height: 650px;
+        height: 600px;
     }
 
     @media (max-height: 800px) {
@@ -93,7 +104,7 @@ const SpinnerContainer = styled.div`
 
 const InputContainer = styled.div`
     padding: 40px 40px;
-    background-color: white;
+    background-color: ${props => props.theme.chatInputContainer};
     text-align: center;
     display: flex;
     align-items: center;
@@ -107,8 +118,8 @@ const StyledInput = styled.input`
     border-radius: 5px;
     border: 1px solid white;
     box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
-    background-color: #293241;
-    color: white;
+    background-color: ${props => props.theme.chatInputColor};
+    color: ${props => props.theme.chatInputText};
     &:focus {
         outline: none;
     }
@@ -137,6 +148,10 @@ const StyledForm = styled.form`
 const StyledPaperPlane = styled(PaperPlane)`
     width: 30px;
     height: 30px;
+`
+
+const AbsoluteContainer = styled.div`
+    /* position: absolute; */
 `
 
 
@@ -264,32 +279,36 @@ class Messenger extends Component {
 
         return (
             <>
-                <MainMessengerHeaderContainer>
-                    <Fade>
-                    <StyledMainHeader>The Petri Dish</StyledMainHeader>
-                    </Fade>
-                </MainMessengerHeaderContainer>
-                <MainMessengerContainer>
-                    <NestedMessengerContainer>
-                        <div>
-                            {this.renderChatContainer()}
-                        </div>
-                        <InputContainer>
-                            <StyledForm onSubmit={this.handleChatSubmit} autoComplete='off'>
-                                <StyledInput
-                                    id='message'
-                                    placeholder='Start Chatting!'
-                                    type='text'
-                                    value={this.state.chatMessage}
-                                    onChange={this.handleSearchChange}
-                                />
-                                <StyledButton type='submit'>
-                                    <StyledPaperPlane />
-                                </StyledButton>
-                            </StyledForm>
-                        </InputContainer>
-                    </NestedMessengerContainer>
-                </MainMessengerContainer>
+                <BackgroundContainer>
+                    <MainMessengerHeaderContainer>
+                        <Fade>
+                            <StyledMainHeader>The Petri Dish</StyledMainHeader>
+                        </Fade>
+                    </MainMessengerHeaderContainer>
+                    <MainContainer>
+                        <MainMessengerContainer>
+                            <NestedMessengerContainer>
+                                <AbsoluteContainer>
+                                    {this.renderChatContainer()}
+                                </AbsoluteContainer>
+                                <InputContainer>
+                                    <StyledForm onSubmit={this.handleChatSubmit} autoComplete='off'>
+                                        <StyledInput
+                                            id='message'
+                                            placeholder='Start Chatting!'
+                                            type='text'
+                                            value={this.state.chatMessage}
+                                            onChange={this.handleSearchChange}
+                                        />
+                                        <StyledButton type='submit'>
+                                            <StyledPaperPlane />
+                                        </StyledButton>
+                                    </StyledForm>
+                                </InputContainer>
+                            </NestedMessengerContainer>
+                        </MainMessengerContainer>
+                    </MainContainer>
+                </BackgroundContainer>
             </>
         )
         

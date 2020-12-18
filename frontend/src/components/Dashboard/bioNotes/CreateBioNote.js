@@ -13,12 +13,17 @@ import { Button } from 'react-bootstrap';
 import { PencilSquare } from '@styled-icons/bootstrap/PencilSquare';
 import Fade from 'react-reveal/Fade';
 
+const MainContainer = styled.div`
+    background-color: ${props => props.theme.bionotesContainerBGColor};
+    height: 100vh;
+`
+
 
 const MainBioNotesHeaderContainer = styled.div`
     padding-left: 40px;
     display: flex;
     text-align: center;
-    background-color: #1c1e37;
+    background-color: ${props => props.theme.settingsHeaderBG};
     height: 85px;
     border-left: 1px solid #F6F9FC;
     justify-content: flex-start;
@@ -26,13 +31,21 @@ const MainBioNotesHeaderContainer = styled.div`
     margin: 0;
     padding-top: 0;
     padding-bottom: 0;
+    box-shadow:
+        0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+        0 1px 1px rgba(0, 0, 0, 0.048),
+        0 2px 2px rgba(0, 0, 0, 0.06),
+        0 3px 3px rgba(0, 0, 0, 0.072),
+        0 3px 4px rgba(0, 0, 0, 0.086),
+        0 2px 1px rgba(0, 0, 0, 0.12);
+    ;
 `
 
 const StyledMainHeader = styled.h1`
     font-family: 'Montserrat', sans-serif;
     font-size: 50px;
     font-weight: 100;
-    color: white;
+    color: ${props => props.theme.settingsMainHeaderTextC};
 `
 
 const ButtonContainer = styled.div`
@@ -81,22 +94,24 @@ const CreateBioNote = ({ bionotes, getBioNotes }) => {
 
     return (
         <>
-            <MainBioNotesHeaderContainer>
-                <Fade>
-                    <StyledMainHeader>Your Bio-Notes</StyledMainHeader>
-                </Fade>
-            </MainBioNotesHeaderContainer>
-            <ButtonContainer>
-                    <Link to='newbionote'>
-                        <Button variant='primary'>
-                            Create a New BioNote
-                            <PencilIcon />
-                        </Button>
-                    </Link>
-            </ButtonContainer>
-            <NoteCardContainer>
-                {renderNotes()}
-            </NoteCardContainer>
+            <MainContainer>
+                <MainBioNotesHeaderContainer>
+                    <Fade>
+                        <StyledMainHeader>Your Bio-Notes</StyledMainHeader>
+                    </Fade>
+                </MainBioNotesHeaderContainer>
+                <ButtonContainer>
+                        <Link to='newbionote'>
+                            <Button variant='primary'>
+                                Create a New BioNote
+                                <PencilIcon />
+                            </Button>
+                        </Link>
+                </ButtonContainer>
+                <NoteCardContainer>
+                    {renderNotes()}
+                </NoteCardContainer>
+            </MainContainer>
         </>
     )
 }

@@ -16,10 +16,10 @@ const ChatCardHeader = styled.div`
     display: flex;
     align-items: center;
     padding-bottom: 5px;
-    background-color: white;
     width: fit-content;
     border-radius: 5px;
     position: relative;
+    background-color: ${props => props.theme.chatCardBGColor};
     /* -webkit-box-shadow: 1px 1px 6px -2px black;
     -moz-box-shadow: 1px 1px 6px -2px black;
     box-shadow: 1px 1px 6px -2px black;
@@ -30,7 +30,7 @@ const NameTag = styled.h2`
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;
     font-weight: 700;
-    color: #293241;
+    color: ${props => props.theme.chatCardTextColor};
     margin: 0;
     padding-left: 0px;
 `
@@ -50,35 +50,16 @@ const ChatContentContainer = styled.div`
 
 
 const MessageContainer = styled.div`
-    /* margin-top: 20px;
-    margin-left: 50px; */
-    /* position: relative;
-    border: 1px solid gray; */
     margin-left: 8px;
     width: fit-content;
     max-width: 80vw;
     overflow-wrap: break-word;
-    color: #293241;
-    /* background-color: #293241; */
-    /* padding: 5px 10px; */
-    /* border-radius: 3px; */
+    color: ${props => props.theme.chatCardTextColor};
     font-family: 'Nunito', sans-serif;
     -webkit-box-shadow: 0 1px 6px -6px #777;
     -moz-box-shadow: 0 1px 6px -6px #777;
     box-shadow: 0 1px 6px -6px #777;
 
-
-    /* &:before {
-        content: '';
-        position: absolute;
-        width: 0;
-        height: 0;
-        bottom: 100%;
-        left: 0; // offset should move with padding of parent
-        border: .75rem solid transparent;
-        border-top: none;
-        border-bottom-color: #293241;
-    } */
 `
 
 const ChatCardDetails = styled.div`

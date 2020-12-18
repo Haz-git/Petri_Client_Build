@@ -23,6 +23,9 @@ const MainGridContainer = styled.div`
     grid-template-columns: 37% 63%;
     padding: 20px 20px;
     column-gap: 10px;
+    background-color: ${props => props.theme.ColMainContainerBG};
+    height: 100vh;
+    overflow-y: scroll;
 
     @media (min-width: 1800px) {
         grid-template-columns: 30% 70%;
@@ -58,8 +61,8 @@ const MainInputContainer = styled.div`
 `
 
 export const CollectionContainer = styled.div`
-    background-color: white;
-    border: 1px solid white;
+    background-color: ${props => props.theme.ColInputContainerBG};
+    border: ${props => props.theme.ColInputContainerBorderC};
     border-radius: 10px;
     padding-left: 40px;
     padding-right: 40px;
@@ -102,7 +105,6 @@ const DetailInputContainer = styled.div`
 const StrainsContainer = styled.div`
     display: block;
     text-align: center;
-
 `
 
 const StyledReturnIcon = styled(BackspaceFill)`
@@ -116,13 +118,18 @@ export const StyledMainHeader = styled(MainHeader)`
     margin: 0px;
     font-weight: 600;
     padding: 0;
+    color: ${props => props.theme.ColInputMainHeader};
+
 `
 
 const TimePickerDivider = styled.div`
-    margin: 10px 10px;
+    width: fit-content;
+    margin: 10px auto;
+    background-color: white;
 `
 const StyledLabelEdit = styled(StyledLabel)`
     margin: 0;
+    color: ${props => props.theme.ColInputMainHeader};
 `
 
 const StyledButton = styled(Button)`
@@ -135,6 +142,9 @@ const StrainInput = styled(StyledInput)`
     margin-top: 5px;
     height: 35px;
     padding-left: 10px;
+    background-color: ${props => props.theme.ColStrainInputBG};
+    color: ${props => props.theme.ColStrainInputC};
+    border: 1px solid #ccc;
 `
 //Render:
 
@@ -195,7 +205,7 @@ const Collection = ({ ownProtocol, addStrainToCollection }) => {
             <MainGridContainer>
                 <MainInputContainer>
                     <CollectionContainer>
-                    <StyledMainHeader>Collection: {protocolName}</StyledMainHeader>
+                    <StyledMainHeader>{protocolName}</StyledMainHeader>
                         <DetailInputContainer>
                             <form onSubmit={handleCollectionSubmit}>
                                 <div>
