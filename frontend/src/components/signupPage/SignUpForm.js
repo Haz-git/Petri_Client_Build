@@ -8,10 +8,9 @@ import signupImg from '../../Img/signupImg.jpg';
 //Styles:
 
 const BackgroundWrapper = styled.div`
-    position: fixed;
-    display: block;
-    height: 100vh;
-    width: 100vw;
+    /* position: fixed; */
+    height: 100%;
+    /* width: 100vw; */
     background-color: #F6F9FC;
 `
 
@@ -19,9 +18,9 @@ const MainContainer = styled.div`
     margin: 0 auto;
     text-align: center;
     background-color:#F6F9FC;
-    margin-left: 20px;
+    /* margin-left: 20px;
     margin-right: 20px;
-    margin-top: 20px;
+    margin-top: 20px; */
 `
 
 const ContentContainer = styled.div`
