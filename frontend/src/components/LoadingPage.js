@@ -19,7 +19,7 @@ const MainContainer = styled.div`
     display: block;
     height: 100vh;
     width: 100vw;
-    background-color: #293241;
+    background-color: #141628;
     animation-name: ${fadeIn};
     -webkit-animation: fadeIn .8s; /* Safari, Chrome and Opera > 12.1 */
     -moz-animation: fadeIn .8s; /* Firefox < 16 */
