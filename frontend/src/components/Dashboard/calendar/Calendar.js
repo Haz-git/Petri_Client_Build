@@ -43,7 +43,8 @@ const MainCalendarHeaderContainer = styled.div`
 `
 
 const MainContainer = styled.div`
-    height: 100vh;
+    /* height: 100vh; */
+    height: 100%;
     background-color: ${props => props.theme.calendarContainerBGColor};
     overflow-y: hidden;
     z-index: 0;
@@ -156,21 +157,23 @@ const Calendar = ({ addNewEvent, getEvents, calendarEvents, deleteEvent, updateE
 
     const calendarComponentRef = React.useRef();
 
-    const [ apiEvents, setApiEvents ] = useState(calendarEvents.calendarEvents)
+    const [ apiEvents, setApiEvents ] = useState(null);
+
     const [ currentEvent, setCurrentEvent ] = useState('');
     const [ submittedEvents, setSubmittedEvents ] = useState([]);
 
-    const [ loading, setLoading ] = useState(null);
+
+    const [ loading, setLoading ] = useState(false);
 
     useEffect(() => {
-
-        //Set loading state to true on initial render to prime loading flag
-        setLoading(true);
-
+        console.log('Initial useEffect');
+        // setLoading(true);
         getEvents();
-        
-        let draggableEl = document.getElementById("external-events");
 
+        
+        // //Creating draggable element.
+        let draggableEl = document.getElementById("external-events");
+        console.log('draggable created');
         new Draggable(draggableEl, {
             itemSelector: ".fc-event",
             eventData: function(eventEl) {
@@ -185,17 +188,8 @@ const Calendar = ({ addNewEvent, getEvents, calendarEvents, deleteEvent, updateE
 
     },[])
 
-    useEffect(() => {
-        //This useEffect tracks changes to calendarEvents.calendarEvents (when the data comes back from API).
 
-        //On initial render, calendarEvents.calendarEvents is undefined, because it needs to grab data from API.
-        setApiEvents(calendarEvents.calendarEvents);
-
-        //This conditional checks for the undefined. If it is, it will render loading spinner. It not, the calendar will render.
-        if (calendarEvents.calendarEvents !== undefined) {
-            setLoading(false);
-        }
-    },[calendarEvents.calendarEvents])
+    
 
     const handleFormChange = e => {
         setCurrentEvent(e.target.value);
@@ -222,6 +216,7 @@ const Calendar = ({ addNewEvent, getEvents, calendarEvents, deleteEvent, updateE
 
     const handleEventReceive = info => {
         //Only submit the event object to action creator:
+        console.log(info);
         addNewEvent(info.event.toPlainObject());
     }
 
@@ -239,6 +234,10 @@ const Calendar = ({ addNewEvent, getEvents, calendarEvents, deleteEvent, updateE
         }
     }
 
+    const handleDropEvent = info => {
+        console.log(info);
+    }
+ 
 
     const renderSideBar = () => {
         return (
@@ -314,8 +313,9 @@ const Calendar = ({ addNewEvent, getEvents, calendarEvents, deleteEvent, updateE
                             }}
                             eventReceive={handleEventReceive}
                             schedulerLicenseKey='GPL-My-Project-Is-Open-Source'
-                            events={apiEvents}
+                            events={calendarEvents}
                             eventChange={handleEventChange}
+                            drop={handleDropEvent}
                         />
                     </CalendarContainer>
                 </MainCalendarContainer>                
@@ -341,7 +341,7 @@ const Calendar = ({ addNewEvent, getEvents, calendarEvents, deleteEvent, updateE
 
 const mapStateToProps = state => {
     return {
-        calendarEvents: state.calendarEvents
+        calendarEvents: state.calendarEvents.calendarEvents
     }
 }
 
