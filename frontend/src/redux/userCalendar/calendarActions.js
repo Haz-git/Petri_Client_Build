@@ -12,10 +12,12 @@ export function addNewEvent(event) {
 
         const response = await api.post('/users/calendar/new', { _id, event });
 
-        dispatch({
-            type: USER_ADD_EVENT,
-            payload: response.data.userNewCalendarEvents,
-        });
+        //The following state dispatches are commented out due to fullcalendar's state conflicting with the redux state.
+
+        // dispatch({
+        //     type: USER_ADD_EVENT,
+        //     payload: response.data.userNewCalendarEvents,
+        // });
     }
 }
 
@@ -29,6 +31,9 @@ export function getEvents() {
             type: USER_GET_EVENTS,
             payload: response.data.existingUserCalendarEvents
         });
+
+        //Returning flag for loading finish: 
+        return false;
 
     }
 }
@@ -54,9 +59,9 @@ export function updateEvent(event) {
 
         const response = await api.patch('/users/calendar/update', { event, _id });
 
-        dispatch({
-            type: USER_UPDATE_EVENT,
-            payload: response.data.updatedCalendarEvents
-        });
+        // dispatch({
+        //     type: USER_UPDATE_EVENT,
+        //     payload: response.data.updatedCalendarEvents
+        // });
     }
 }
