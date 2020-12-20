@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import BackdropGraphic from './BackdropGraphic';
 import Fade from 'react-reveal/Fade';
+import LearnMoreArrow from './LearnMoreArrow';
 
 
 
@@ -44,7 +45,7 @@ const StyledBackdrop = styled.div`
 `
 
 const HeaderContainer = styled.div`
-    margin-top: 22vh;
+    margin-top: 20vh;
     padding: 0 40px;
 `
 
@@ -82,11 +83,15 @@ const ColorButton = withStyles((theme) => ({
 
 const StyledLink = styled(Link)`
     text-decoration: none;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 1);
 
     &:hover {
         text-decoration: none;
     }
+`
+
+const LearnMoreDivider = styled.div`
+    position: absolute;
+    bottom: 20px;
 `
 
 
@@ -94,36 +99,41 @@ const StyledLink = styled(Link)`
 
 const Mainbackdrop = () => {
     return (
-        <StyledBackdrop>
-            <HeaderContainer>
-                <Fade top>
-                    <MainBackDropHeader>Petri</MainBackDropHeader>
-                </Fade>
-                <Fade bottom>
-                    <SecondaryHeader>The ultimate utility tool for optimizing your research workflow.</SecondaryHeader>
-                    <SecondaryHeader>Focus on your research. We'll do the organization.</SecondaryHeader>
-                </Fade>
-                <Fade>
-                    <StyledLink to='/signup'>
-                        <ColorButton
-                            style={{
-                                width: '250px',
-                                height: '60px',
-                                marginTop: '30px',
-                            }}
-                            variant='contained'
-                            size='large'
-                            startIcon={<StyledCreateIcon />}
-                        >
-                            Register for free
-                        </ColorButton>
-                    </StyledLink>
-                </Fade>
-            </HeaderContainer>
-            <div>
-                <BackdropGraphic />
-            </div>
-        </StyledBackdrop>
+        <>
+            <StyledBackdrop>
+                <HeaderContainer>
+                    <Fade top>
+                        <MainBackDropHeader>Petri</MainBackDropHeader>
+                    </Fade>
+                    <Fade bottom>
+                        <SecondaryHeader>The ultimate utility tool for optimizing your research workflow.</SecondaryHeader>
+                        <SecondaryHeader>Focus on your research. We'll do the organization.</SecondaryHeader>
+                    </Fade>
+                    <Fade>
+                        <StyledLink to='/signup'>
+                            <ColorButton
+                                style={{
+                                    width: '250px',
+                                    height: '60px',
+                                    marginTop: '30px',
+                                }}
+                                variant='contained'
+                                size='large'
+                                startIcon={<StyledCreateIcon />}
+                            >
+                                Register for free
+                            </ColorButton>
+                        </StyledLink>
+                    </Fade>
+                </HeaderContainer>
+                <div>
+                    <BackdropGraphic />
+                </div>
+                <LearnMoreDivider>
+                    <LearnMoreArrow />
+                </LearnMoreDivider>
+            </StyledBackdrop>
+        </>
     )
 }
 
