@@ -91,7 +91,7 @@ const MDTodo = ({ addNewTask, getTasks, taskList }) => {
 
     return (
         <>
-            <StyledHeader>Daily Task Log</StyledHeader>
+            <StyledHeader>Priority Tasks</StyledHeader>
             <MainTodoContainer>
                 <div>
                     <form onSubmit={handleSubmit}>
