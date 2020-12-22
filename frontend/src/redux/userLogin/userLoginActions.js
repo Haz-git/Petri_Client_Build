@@ -1,6 +1,6 @@
 import { USER_LOG_IN } from '../userLogin/userLoginTypes';
 import history from '../../historyObject';
-import api from '../../api';
+import authRequestAPI from '../../api/authRequest';
 
 const userLogin = formValues => async dispatch => {
 
@@ -11,7 +11,7 @@ const userLogin = formValues => async dispatch => {
     let response; 
 
     try {
-        response = await api.post('/users/login', {...formValues});
+        response = await authRequestAPI.post('/users/login', {...formValues});
     } catch (error) {
         if (error) {
             const errorFlag = true;

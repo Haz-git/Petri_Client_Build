@@ -1,10 +1,10 @@
-import api from '../../api';
+import authRequestAPI from '../../api/authRequest';
 import history from '../../historyObject';
 import { USER_SIGN_UP } from './userSignUpTypes';
 
 const userSignUp = (formValues) => async dispatch => {
     //Send redux form values to DB:
-    const response = await api.post('/users/signup', {...formValues});
+    const response = await authRequestAPI.post('/users/signup', {...formValues});
 
     //dispatch information recieved from DB to reducers:
 
