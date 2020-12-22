@@ -4,6 +4,7 @@ import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import userSignUp from '../../redux/userSignUp/userSignUpActions';
 import signupImg from '../../Img/signupImg.jpg';
+import Fade from 'react-reveal/Fade';
 
 //Styles:
 
@@ -31,7 +32,6 @@ const ContentContainer = styled.div`
     text-align: center;
     width: 100%;
     max-height: 100px;
-
  
 `
 const HeaderContainer = styled.div`

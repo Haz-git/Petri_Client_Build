@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import DeleteModalBioNote from './DeleteModalBioNote';
 
 //Styles:
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
@@ -38,6 +39,10 @@ const StyledLink = styled(Link)`
     margin-left: 6px;
     margin-right: 6px;
 `
+const StyledButtonSpacer = styled.div`
+    margin-left: 6px;
+    margin-right: 6px;
+`
 
 const StyledTitle = styled.p`
     margin: 0;
@@ -48,32 +53,54 @@ const StyledTitle = styled.p`
 
 `
 
-const BioNoteCard = ({ name }) => {
+const BioNoteCard = ({ name, bionote_ID }) => {
+
+    const [ renderDeleteModal, setRenderDeleteModal ] = useState(false);
+
+    const renderDeleteCallBack = boolean => {
+        setRenderDeleteModal(boolean);
+    }
+
+    const handleDeleteRequest = (e) => {
+        e.preventDefault();
+
+        setRenderDeleteModal(true);
+    }
+
+
     return (
-        <MainCardContainer>
-            <CardInfoContainer>
-                <StyledTitle>{name}</StyledTitle>
-                <LinkContainer>
-                    <ButtonGroup size='lg' className='mb-2'>
-                        <StyledLink to={`/readbionote/${name}`}>
-                            <Button variant='success'>
-                                Read
-                            </Button>
-                        </StyledLink>
-                        <StyledLink to={`/editbionote/${name}`}>
-                            <Button variant='warning'>
-                                Edit
-                            </Button>
-                        </StyledLink>
-                        <StyledLink to={`/deletebionote/${name}`}>
-                            <Button variant='danger'>
-                                Delete
-                            </Button>
-                        </StyledLink>
-                    </ButtonGroup>
-                </LinkContainer>
-            </CardInfoContainer>
-        </MainCardContainer>
+        <>
+            <MainCardContainer>
+                <CardInfoContainer>
+                    <StyledTitle>{name}</StyledTitle>
+                    <LinkContainer>
+                        <ButtonGroup size='lg' className='mb-2'>
+                            <StyledLink to={`/readbionote/${bionote_ID}`}>
+                                <Button variant='success'>
+                                    Read
+                                </Button>
+                            </StyledLink>
+                            <StyledLink to={`/editbionote/${bionote_ID}`}>
+                                <Button variant='warning'>
+                                    Edit
+                                </Button>
+                            </StyledLink>
+                            <StyledButtonSpacer>
+                                <Button variant='danger' onClick={handleDeleteRequest}>
+                                    Delete
+                                </Button>
+                            </StyledButtonSpacer>
+                        </ButtonGroup>
+                    </LinkContainer>
+                </CardInfoContainer>
+            </MainCardContainer>
+            <DeleteModalBioNote
+                renderProp={renderDeleteModal}
+                bionoteName={name}
+                renderCallBack={renderDeleteCallBack}
+                bionote_ID={bionote_ID}
+            />
+        </>
     )
 }
 

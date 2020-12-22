@@ -83,7 +83,7 @@ const CreateBioNote = ({ bionotes, getBioNotes }) => {
             return (
                 bionotes.map(note => (
                     <Fade>
-                        <BioNoteCard key={uuid()} name={note.bioName} />
+                        <BioNoteCard key={uuid()} name={note.bioName} bionote_ID={note.bionote_ID} />
                     </Fade>
                 ))
             )
