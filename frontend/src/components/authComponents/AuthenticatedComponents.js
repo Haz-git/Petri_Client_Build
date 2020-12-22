@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { getJWT } from '../../utils/jwthelper';
 import history from '../../historyObject';
-// import api from '../../api';
 
 class AuthenticatedComponents extends Component {
-
+    
     constructor(props) {
         super(props);
 
