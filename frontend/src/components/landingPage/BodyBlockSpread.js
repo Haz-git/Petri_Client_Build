@@ -6,6 +6,7 @@ import Fade from 'react-reveal/Fade';
 const MainContainer = styled.div`
     margin-top: 100px;
     text-align: center;
+    margin-bottom: 100px;
 `
 
 const MainDescContainer = styled.div`
@@ -36,24 +37,34 @@ const MainDesc = styled.p`
     margin-bottom: 30px;
 `
 const ImageContainer = styled.div`
-    position: relative;
+    display: flex;
     height: 760px;
     width: 100%;
+    justify-content: center;
 `
 const StyledImgFirst = styled.img`
-    top: 0;
+    /* top: 0;
     left: 180px;
-    position: absolute;
+    position: absolute; */
+    margin: 15px 15px;
     max-width: 100%;
     max-height: 100%;
     border-radius: 10px;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 1);
 `
 
+const ImageSeparator = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* margin: 0 auto; */
+`
+
 const StyledImgSecond = styled.img`
-    top: 0;
+    /* top: 0;
     right: 180px;
-    position: absolute;
+    position: absolute; */
+    margin: 15px 15px;
     max-width: 100%;
     max-height: 100%;
     border-radius: 10px;
@@ -61,9 +72,10 @@ const StyledImgSecond = styled.img`
 `
 
 const StyledImgThird = styled.img`
-    bottom: 10px;
+    /* bottom: 10px;
     right: 180px;
-    position: absolute;
+    position: absolute; */
+    margin: 15px 15px;
     max-width: 100%;
     max-height: 100%;
     border-radius: 10px;
@@ -83,8 +95,10 @@ const BodyBlockSpread = ({ Title, Description, firstImg, secondImg, thirdImg }) 
                 </MainDescContainer>
                 <ImageContainer>
                     <StyledImgFirst src={firstImg} />
-                    <StyledImgSecond src={secondImg} />
-                    <StyledImgThird src={thirdImg} />
+                    <ImageSeparator>
+                        <StyledImgSecond src={secondImg} />
+                        <StyledImgThird src={thirdImg} />
+                    </ImageSeparator>
                 </ImageContainer>
             </MainContainer>
         </Fade>
