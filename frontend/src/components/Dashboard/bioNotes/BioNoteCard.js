@@ -25,13 +25,12 @@ const MainCardContainer = styled.div`
 `
 
 const CardInfoContainer = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+    display: block;
+    text-align: center;
 `
 const LinkContainer = styled.div`
     display: flex;
+    justify-content: center;
 `
 
 const StyledLink = styled(Link)`
@@ -44,12 +43,13 @@ const StyledButtonSpacer = styled.div`
     margin-right: 6px;
 `
 
-const StyledTitle = styled.p`
-    margin: 0;
-    font-size: 20px;
+const StyledTitle = styled.h2`
+    font-size: 30px;
     font-family: 'Nunito', sans-serif;
-    font-weight: 600;
+    font-weight: 300;
     color: ${props => props.theme.bionoteTextColor};
+    margin-bottom: 20px;
+    overflow-wrap: break-word;
 
 `
 
@@ -73,6 +73,7 @@ const BioNoteCard = ({ name, bionote_ID }) => {
             <MainCardContainer>
                 <CardInfoContainer>
                     <StyledTitle>{name}</StyledTitle>
+                    <hr />
                     <LinkContainer>
                         <ButtonGroup size='lg' className='mb-2'>
                             <StyledLink to={`/readbionote/${bionote_ID}`}>
