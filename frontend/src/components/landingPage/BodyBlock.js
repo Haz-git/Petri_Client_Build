@@ -4,7 +4,7 @@ import Fade from 'react-reveal/Fade';
 
 //Styles:
 const BlockDetailMain = styled.div`
-    margin-top: 40px;
+    margin-top: 175px;
     display: grid;
     grid-template-columns: 50% 50%;
     align-items: center;
