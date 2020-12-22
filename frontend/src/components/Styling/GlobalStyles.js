@@ -17,5 +17,6 @@ export const DashboardGlobalStyles = createGlobalStyle`
     transition: all 0.50s linear; */
     min-height: 100%;
   }
+
 `
 
