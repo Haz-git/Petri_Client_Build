@@ -20,7 +20,10 @@ const ReadBioNote = ({ match:{params:{id}}, bionotes }) => {
 
 
     const renderBioNote = () => {
-        const currentNote = bionotes.bionotes.find(x => x.bioName === id);
+        const currentNote = bionotes.bionotes.find(x => x.bionote_ID === id);
+        console.log(currentNote);
+
+
         const fixedHTML = unescape(currentNote.htmlState);
         setFormattedHTML(fixedHTML)
 
