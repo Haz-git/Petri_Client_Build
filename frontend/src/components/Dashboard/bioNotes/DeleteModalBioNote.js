@@ -35,6 +35,9 @@ const DeleteModal = ({ renderProp, renderCallBack, bionoteName, bionote_ID, dele
                 show={show}
                 onHide={handleClose}
                 backdrop='static'
+                style={{
+                    marginLeft: '75px'
+                }}
             >
                 <Modal.Header closeButton>
                     <Modal.Title>Are you sure you want to delete '{bionoteName}'?</Modal.Title>
