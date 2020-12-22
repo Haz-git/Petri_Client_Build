@@ -87,13 +87,16 @@ const EditBioNote = ({ match:{params:{id}}, bionotes, updateBioNote }) => {
     const [ editorChange, setEditorChange ] = useState('');
 
     useEffect(() => {
-        setBioNoteName(id);
+
+        //Grab the bionote name from state.
+        const currentName = bionotes.bionotes.find(x => x.bionote_ID === id);
+        setBioNoteName(currentName.bioName);
         findEditorState();
     },[]);
 
 
     const findEditorState = () => {
-        const currentNote = bionotes.bionotes.find(x => x.bioName === id);
+        const currentNote = bionotes.bionotes.find(x => x.bionote_ID === id);
         const fixedHTML = unescape(currentNote.htmlState);
         setEditorState(fixedHTML);
     }
@@ -123,13 +126,13 @@ const EditBioNote = ({ match:{params:{id}}, bionotes, updateBioNote }) => {
 
     const onEditorSubmit = (e) => {
         e.preventDefault();
-        updateBioNote(bioNoteName, editorChange);
+        updateBioNote(id, editorChange);
     }
 
     const renderName = () => {
         return (
             <Fade>
-                <NameContainer>{id}</NameContainer>
+                <NameContainer>{bioNoteName}</NameContainer>
             </Fade>
         )
     }
