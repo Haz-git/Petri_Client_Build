@@ -3,17 +3,12 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { updateBioNote } from '../../../redux/userBioNote/bionoteActions';
 
-//Editor Imports:
-// import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
-// import { Editor } from 'react-draft-wysiwyg';
-// import '../../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
-import { parse } from 'flatted';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import Editor from 'ckeditor5-custom-build/build/ckeditor';
 import { editorConfiguration } from '../../../utils/ckeditortoolbar';
-import {escape, unescape} from 'html-escaper';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import { unescape} from 'html-escaper';
+
 
 //Styles:
 import styled from 'styled-components';
@@ -39,7 +34,6 @@ const EditorContainer = styled.div`
     padding: 10px 10px;
     border: 1px solid #242746;
     background-color: white;
-    height: 78vh;
     overflow-y: auto;
     box-shadow:
         0 2.8px 2.2px rgba(0, 0, 0, 0.034),

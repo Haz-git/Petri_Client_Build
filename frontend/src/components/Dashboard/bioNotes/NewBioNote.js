@@ -9,11 +9,6 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import Editor from 'ckeditor5-custom-build/build/ckeditor';
 import { editorConfiguration } from '../../../utils/ckeditortoolbar';
 
-//Editor imports:
-// import { Editor } from 'react-draft-wysiwyg';
-import '../../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import { EditorState, convertToRaw } from 'draft-js';
-
 //Styles:
 import { Button } from 'react-bootstrap';
 import { CaretBack } from '@styled-icons/ionicons-outline/CaretBack';
@@ -33,7 +28,6 @@ const EditorContainer = styled.div`
     padding: 10px 10px;
     border: 1px solid #242746;
     background-color: white;
-    height: 78vh;
     overflow-y: auto;
     box-shadow:
         0 2.8px 2.2px rgba(0, 0, 0, 0.034),
@@ -45,11 +39,6 @@ const EditorContainer = styled.div`
     ;
 `
 
-// const StickyEditor = styled(Editor)`
-//     position: -webkit-sticky;
-//     position: sticky;
-//     top: 0;
-// `
 
 const StyledInput = styled.input`
     height: 35px;
@@ -136,6 +125,15 @@ const NewBioNote = ({ createNewBioNote }) => {
                             editor={ Editor }
                             config={ editorConfiguration }
                             onChange={handleCKEditorChange}
+                            onInit={editor => {
+                                editor.editing.view.change(writer => {
+                                    writer.setStyle(
+                                        'height',
+                                        '200px',
+                                        editor.editing.view.document.getRoot()
+                                    )
+                                });
+                            }}
                         />
                     </EditorContainer>
                     <ButtonContainer>

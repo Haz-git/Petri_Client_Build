@@ -63,10 +63,12 @@ const PencilIcon = styled(PencilSquare)`
 
 
 const NoteCardContainer = styled.div`
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-left: 50px;
-    padding-right: 50px;
+    display: grid;
+    grid-gap: 1rem;
+    margin: 0 auto;
+    max-width: 400px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
 `
 
 //Render:
