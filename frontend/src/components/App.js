@@ -24,7 +24,6 @@ import CreateBioNote from '../components/Dashboard/bioNotes/CreateBioNote';
 import NewBioNote from '../components/Dashboard/bioNotes/NewBioNote';
 import ReadBioNote from '../components/Dashboard/bioNotes/ReadBioNote';
 import EditBioNote from '../components/Dashboard/bioNotes/EditBioNote';
-import DeleteBioNote from '../components/Dashboard/bioNotes/DeleteBioNote';
 import SciToolsLanding from './Dashboard/sciTools/SciToolsLanding';
 import LazyLacZ from './Dashboard/sciTools/LazyLacZ';
 import Collection from './Dashboard/sciTools/Collection';
@@ -103,7 +102,6 @@ const App = () => {
                                         <Route exact path='/newbionote' component={NewBioNote} />
                                         <Route exact path='/readbionote/:id' component={ReadBioNote} />
                                         <Route exact path='/editbionote/:id' component={EditBioNote} />
-                                        <Route exact path='/deletebionote/:id' component={DeleteBioNote} />
                                         <Route exact path='/scitools' component={SciToolsLanding} />
                                         <Route exact path='/scitools/lazylacz' component={LazyLacZ} />
                                         <Route exact path='/scitools/lazylacz/collection/:id' component={Collection} />
