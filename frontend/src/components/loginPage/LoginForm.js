@@ -4,6 +4,7 @@ import { reduxForm, Field, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux';
 import userLogin from '../../redux/userLogin/userLoginActions';
 import Fade from 'react-reveal/Fade';
+import history from '../../historyObject';
 
 import LoadingPage from '../LoadingPage';
 

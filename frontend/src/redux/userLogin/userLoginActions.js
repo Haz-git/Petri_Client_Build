@@ -21,7 +21,7 @@ const userLogin = formValues => async dispatch => {
 
     // Store JWT in response into localstorage:
     try {
-        localStorage.setItem('jwt', JSON.stringify(response.data));
+        await localStorage.setItem('jwt', JSON.stringify(response.data));
     } catch (e) {
         if (e.name === 'QuotaExceededError') {
             localStorage.clear();
