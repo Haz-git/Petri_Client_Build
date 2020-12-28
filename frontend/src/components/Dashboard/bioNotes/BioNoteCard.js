@@ -55,6 +55,8 @@ const StyledTitle = styled.h2`
 
 const BioNoteCard = ({ name, bionote_ID }) => {
 
+    //renderDeleteModal controls modal provided by React-bootstrap.
+
     const [ renderDeleteModal, setRenderDeleteModal ] = useState(false);
 
     const renderDeleteCallBack = boolean => {
@@ -104,12 +106,5 @@ const BioNoteCard = ({ name, bionote_ID }) => {
         </>
     )
 }
-
-/*Todo Implementations:
-1. Add View button --> Renders out bionote with formatting
-2. Add Delete button 
-3. Add Edit button --> Opens editor with button with text + formatting + button for saving.
-
-*/
 
 export default BioNoteCard;

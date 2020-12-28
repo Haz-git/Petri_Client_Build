@@ -152,8 +152,6 @@ export function addlacZDataToStrain(strainId, protocolId, lacZArray, minutes, vo
             lacZVolumeUsed: volume,
         });
 
-        console.log(response);
-
         dispatch({
             type: USER_ADD_LACZ_DATA_TO_STRAIN,
             payload: response.data.laczAssayProtocols,

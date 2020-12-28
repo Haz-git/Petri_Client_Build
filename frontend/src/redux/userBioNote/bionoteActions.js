@@ -47,6 +47,8 @@ export function updateBioNote(bionote_ID, updatedHTMLState) {
 
         //This data object is too large to store on mongoDB ~ >16 mb. We'll need to figure out a way to store this. Check out GridFS for mongodb. The alternative is to prevent the user from storing images as base 64 to prevent huge documents.
 
+        //Ultimately, I went for the latter. Storing images and uploading personal files are not an option at the moment. This decision was made with the use-case of this feature in the app in mind. In a survey of the lab group, it turns out many members will not use this feature anyways.
+
         const response = await api.patch('/users/bionote/update', { _id, bionote_ID, updatedHTMLState })
 
         dispatch({

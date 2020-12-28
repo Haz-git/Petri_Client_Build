@@ -12,7 +12,7 @@ export function addNewEvent(event) {
 
         const response = await api.post('/users/calendar/new', { _id, event });
 
-        //The following state dispatches are commented out due to fullcalendar's state conflicting with the redux state.
+        //The following state dispatches are commented out due to fullcalendar's state conflicting with the redux state. Not dispatching a new state to re-render the fullCalendar component prevents an additional render, therefore preventing showing a user's dragged events twice.
 
         // dispatch({
         //     type: USER_ADD_EVENT,
@@ -58,6 +58,8 @@ export function updateEvent(event) {
         const { auth: { userLogIn: { data: { _id } } } } = getState();
 
         const response = await api.patch('/users/calendar/update', { event, _id });
+
+        //This dispatch is commented out for the same reason above.
 
         // dispatch({
         //     type: USER_UPDATE_EVENT,

@@ -166,14 +166,10 @@ const Calendar = ({ addNewEvent, getEvents, calendarEvents, deleteEvent, updateE
     const [ loading, setLoading ] = useState(false);
 
     useEffect(() => {
-        console.log('Initial useEffect');
-        // setLoading(true);
         getEvents();
-
         
         // //Creating draggable element.
         let draggableEl = document.getElementById("external-events");
-        console.log('draggable created');
         new Draggable(draggableEl, {
             itemSelector: ".fc-event",
             eventData: function(eventEl) {
@@ -216,7 +212,6 @@ const Calendar = ({ addNewEvent, getEvents, calendarEvents, deleteEvent, updateE
 
     const handleEventReceive = info => {
         //Only submit the event object to action creator:
-        console.log(info);
         addNewEvent(info.event.toPlainObject());
     }
 
@@ -233,11 +228,6 @@ const Calendar = ({ addNewEvent, getEvents, calendarEvents, deleteEvent, updateE
             handleFormSubmit();
         }
     }
-
-    const handleDropEvent = info => {
-        console.log(info);
-    }
- 
 
     const renderSideBar = () => {
         return (
@@ -315,7 +305,6 @@ const Calendar = ({ addNewEvent, getEvents, calendarEvents, deleteEvent, updateE
                             schedulerLicenseKey='GPL-My-Project-Is-Open-Source'
                             events={calendarEvents}
                             eventChange={handleEventChange}
-                            drop={handleDropEvent}
                         />
                     </CalendarContainer>
                 </MainCalendarContainer>                

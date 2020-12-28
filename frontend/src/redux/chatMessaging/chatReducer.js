@@ -7,7 +7,7 @@ export default (state = initialState, action) => {
         case USER_CHAT_REQUEST:
             return {...state, chatLogs: action.payload }
         case USER_CHAT_RECEIVED:
-            return {...state, chatLogs: action.payload } //This is working fine...
+            return {...state, chatLogs: action.payload }
         default:
             return state;
     }

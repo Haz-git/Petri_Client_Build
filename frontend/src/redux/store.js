@@ -16,6 +16,7 @@ import storage from 'redux-persist/lib/storage';
 
 const persistConfig = {
     //key = point of storage inside reducer--start storing at root.
+    //Only auth and userSettings are whitelisted. userSettings will be referenced and used in the main dashboard, while auth is used for initial login.
     key: 'root',
     storage,
     whitelist: ['auth', 'userSettings']

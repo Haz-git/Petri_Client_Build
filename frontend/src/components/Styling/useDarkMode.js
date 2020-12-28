@@ -1,3 +1,5 @@
+//Custom Darkmode hook for toggler.
+
 import { useEffect, useState } from 'react';
 
 export const getMode = () => {

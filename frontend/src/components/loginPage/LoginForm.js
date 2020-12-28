@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { reduxForm, Field, formValueSelector } from 'redux-form';
+import { reduxForm} from 'redux-form';
 import { connect } from 'react-redux';
 import userLogin from '../../redux/userLogin/userLoginActions';
 import Fade from 'react-reveal/Fade';
-import history from '../../historyObject';
 
 import LoadingPage from '../LoadingPage';
 
@@ -36,8 +35,6 @@ const MainContainer = styled.div`
     transform: translate(-50%, -50%);
 `
 
-
-
 const ErrorTextInvisible = styled.h2`
     font-family: 'Nunito', sans-serif;
     color: red;
@@ -57,17 +54,27 @@ const ErrorTextVisible = styled.h2`
 //Render:
 const LoginForm = ({ handleSubmit, userLogin, notifier }) => {
 
+    /*
+        the setHasErrors state is responsible for rendering the verification error when the user does not input user/pass or if the verification details are incorrect.
+
+        The renderLoading state is responsible for rendering the loading screen after login details are submitted.
+
+    */
+
     const [ hasErrors, setHasErrors ] = useState(null);
     const [ renderLoading, setRenderLoading ] = useState(null);
 
     const dispatchFormValues = formValues => {
         if (!formValues.email || !formValues.password) {
+
+            // If the user doesn't provide an email or password, immediately render verification error.
             return setHasErrors(true);
         } else {
             setRenderLoading(true);
-            
-            setTimeout(() => {
 
+            //Show the loading page for 5 seconds on purpose.
+            setTimeout(() => {
+                //Dispatch the user's details to the userLogin action creator. When a response is returned, then an 'errorFlag' value should be returned from the action creator. If the errorFlag is true, then verification error should show and loadingPage is unmounted.
                 userLogin(formValues, notifier)
                 .then(errorFlag => {
                     setHasErrors(errorFlag);
@@ -76,11 +83,12 @@ const LoginForm = ({ handleSubmit, userLogin, notifier }) => {
                         setRenderLoading(false);
                     }
                 });
-            }, 5000)
+            }, 3500)
         }
     }
 
     const renderErrorText = () => {
+        //This function renders the same verification error text, but with different opacities according to the hasErrors state.
         if(hasErrors === true) {
             return (
                 <Fade>

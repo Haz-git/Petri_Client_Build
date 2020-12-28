@@ -4,6 +4,8 @@ import { USER_LOG_IN } from '../userLogin/userLoginTypes';
 
 const initialState = {};
 
+//This reducer handles user login and user sign up authentication.
+
 export default (state = initialState, action) => {
     switch(action.type) {
         case USER_SIGN_UP:

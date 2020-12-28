@@ -15,6 +15,7 @@ export function restoreChats() {
             return null;
         }
 
+        //Flag for messenger loading:
         return false;
     }
 }
