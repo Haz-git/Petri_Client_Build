@@ -13,9 +13,6 @@ const MainContainer = styled.div`
     border-radius: 15px;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 1);
     transform: perspective(500px) rotateY(-15deg);
-
-
-
 `
 
 const SideBarGraphic = styled.div`
@@ -228,14 +225,11 @@ const BodyDetailContents3MedBox3 = styled.div`
     z-index: 5;
 `
 
-
-
-
-
-
-
-
 //Render:
+
+/*
+    This component is a custom fully CSS-based graphic created as an emulation of the app for the landingPage. I'm sure there were better and simpler ways of going about this, but this graphic was extremely fun to make.
+*/
 
 const BackdropGraphic = () => {
     return (

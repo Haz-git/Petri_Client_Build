@@ -13,6 +13,8 @@ if (localStorageItem !== null && localStorageItem !== undefined) {
     }
 }
 
+//Bearer + JWT has been attached to the header of the axios instance--this is used for the authenticateJWT protection middleware in the server.
+
 export default axios.create({
     baseURL: 'http://localhost:8080/api',
     // baseURL: 'https://petri-webapp-heroku.herokuapp.com/api',

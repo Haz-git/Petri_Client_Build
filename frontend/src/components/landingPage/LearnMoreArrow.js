@@ -30,6 +30,10 @@ const StyledArrowDown = styled(ArrowDown)`
 
 const LearnMoreArrow = () => {
 
+    /*
+        This learn more arrow should be at opacity: 1 on initial render of the component, when the user has initially entered the landing page. When the 'currentScrollPos', or pageYOffset becomes greater than 0--or when the user starts to scroll down, then the opacity is '0' (starts to fade away).
+    */
+
     const [ opacity, setOpacity ] = useState('1');
 
     useEffect(() => {

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getJWT } from '../../utils/jwthelper';
-import petriLogoEdit2 from '../../Img/petriLogoEdit2.png';
-import { userLogOut } from '../../redux/logout_action';
 
 //Styled-icons:
+
+import styled from 'styled-components';
+
+import petriLogoEdit2 from '../../Img/petriLogoEdit2.png';
 
 import { HomeHeart } from '@styled-icons/boxicons-solid/HomeHeart';
 import { VideoCamera } from '@styled-icons/entypo/VideoCamera';
@@ -16,7 +17,6 @@ import { Folder } from '@styled-icons/entypo/Folder';
 import { Tools } from '@styled-icons/entypo/Tools';
 import { LogOut } from '@styled-icons/ionicons-sharp/LogOut';
 import { SettingsApplications } from '@styled-icons/material/SettingsApplications';
-import Button from '@material-ui/core/Button';
 
 
 //Styling:
@@ -234,7 +234,11 @@ const StyledDivider = styled.hr`
 
 //Component Structure:
 
-const Navbar = ({ StateJwt, userLogOut }) => {
+const Navbar = ({ StateJwt }) => {
+
+    /*
+        The navbar will render either the landing page sticky top navbar, or the dashboard side navbar based on if the user has a JWT. This is a very simple authentication method dependent on the JWT sent over from the server-side if the user has entered their login credentials correctly.
+    */
 
     const [JWT, setJWT] = useState(undefined);
 
@@ -248,6 +252,7 @@ const Navbar = ({ StateJwt, userLogOut }) => {
     const renderNavOnJWT = jwt => {
 
         if (typeof jwt === 'object' && jwt !== null) {
+            //If the user has a JWT, render the dashboard navbar.
             return (
                 <DashboardNavbar>
                     <StyledDashboardLogo src={petriLogoEdit2} />
@@ -287,6 +292,7 @@ const Navbar = ({ StateJwt, userLogOut }) => {
                 </DashboardNavbar>
             )
         } else {
+            //Original landing page navbar:
             return (
                 <DefaultNavbar>
                     <LogoLink to='/'>
@@ -328,4 +334,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps, { userLogOut })(Navbar);
+export default connect(mapStateToProps)(Navbar);

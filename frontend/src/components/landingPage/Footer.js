@@ -44,6 +44,10 @@ const GithubIcon = styled(GithubSquare)`
 
 //Render:
 
+/*
+    So far, a very simple footer component consisting of an email and a github link. Will add more social media connections when created.
+*/
+
 const Footer = () => {
     return (
         <FooterDiv>

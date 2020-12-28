@@ -1,9 +1,11 @@
-import React from 'react'
+import React from 'react';
 import styled from 'styled-components';
 
 //Components:
 import BodyBlock from './BodyBlock';
 import BodyBlockSpread from './BodyBlockSpread';
+
+//Imgs:
 import feature_task_news from '../../Img/feature_task_news.png';
 import feature_messenger from '../../Img/feature_messenger.png';
 import feature_calendar from '../../Img/feature_calendar.png';
@@ -15,11 +17,9 @@ import feature_compare from '../../Img/feature_compare.png';
 //Styles:
 
 const StyledBodyBlock = styled.div` 
-    /* border-top: 5px solid #600060; */
     text-align: center;
     padding: 20px 20px;
     background-color: #00353D;
-    /* background: linear-gradient(180deg, rgba(34,35,65,1) 0%, rgba(132,133,149,1) 2%, rgba(255,255,255,1) 8%, rgba(255,255,255,1) 65%, rgba(255,255,255,1) 94%); */
     background: linear-gradient(180deg, rgba(34,35,65,1) 0%, rgba(0,53,61,1) 19%);
     
 `
@@ -42,6 +42,7 @@ const StyledLogoHeader = styled.span`
 
 //Render:
 const MainBodyblock = () => {
+    //This MainBodyBlock consists of the reusable component 'BodyBlock' and single component 'BodyBlockSpread'. BodyBlock makes up the bulk of the description on the landing page.
     return (
         <StyledBodyBlock>
             <StyledFeatureHeader>

@@ -85,6 +85,10 @@ const StyledImgThird = styled.img`
 
 //Render:
 
+/*
+    Unfortunately, not a very reusable component because of the use-case. Three separately sized images were needed to fit together in a specific format. To achieve this, CSS was used specifically. However, the working parts: Title, Description, etc. are all props editable in the mainBackdrop.
+*/
+
 const BodyBlockSpread = ({ Title, Description, firstImg, secondImg, thirdImg }) => {
     return (
         <Fade>

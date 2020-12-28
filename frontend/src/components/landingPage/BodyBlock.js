@@ -80,6 +80,10 @@ const reverseComponent = (title, description, img) => {
 //Render:
 const BodyBlock = ({Title, Description, Img, Reverse}) => {
 
+    /*
+        This is a very reusable component designed for displaying/advertising the app's features. The props are editable in the MainBackdrop. The 'Reverse' prop simple returns a version where the image and text are reversed. This is for aesthetic purposes.
+    */
+
     if (Reverse === 'true') {
         return (
             <Fade>

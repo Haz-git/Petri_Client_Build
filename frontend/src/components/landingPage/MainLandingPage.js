@@ -11,6 +11,10 @@ import Footer from './Footer';
 
 const MainLandingPage = () => {
 
+    /*
+        When the user enters the landing page, this component is the master component that is rendered first. Using the util function getJWT(), grab any JWT stored in the localstorage. If the user has a JWT, then push the user to the dashboard.
+    */
+
     useEffect(() => {
         const jwtCheck = getJWT();
 

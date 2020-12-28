@@ -13,12 +13,15 @@ class AuthenticatedComponents extends Component {
     }
 
     componentDidMount() {
+        // Use helper function to grab JWT from localstorage.
         const jwt = getJWT();
 
+        //If there's no JWT present in the localstorage, no JWT must be sent over from server, meaning that login is wrong. Push the user back to the login page.
         if(!jwt) {
             history.push('/login');
         }
-        //Implement route in server for using JWT to get user, store something temporarily for now:
+
+        //If the user's JWT is present: set the React state to 'temp' instead of undefined.
         this.setState({
             user: 'temp'
         });
@@ -27,6 +30,8 @@ class AuthenticatedComponents extends Component {
 
 
     render() {
+
+        //If the react state is undefined, return a small statement. Else, return the app dashboard.
 
         if (this.state.user === undefined) {
             return (

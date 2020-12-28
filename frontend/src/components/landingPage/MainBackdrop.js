@@ -99,6 +99,7 @@ const LearnMoreDivider = styled.div`
 
 const Mainbackdrop = () => {
     return (
+        //This component is the backdrop image, text, and color the user should see on visit to the landing page.
         <>
             <StyledBackdrop>
                 <HeaderContainer>
