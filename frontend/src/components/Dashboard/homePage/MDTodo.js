@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { addNewTask, getTasks } from '../../../redux/userTaskLog/userTaskLogActions';
 import TaskCard from './TaskCard';
 import { v4 as uuid } from 'uuid';
-import styled from 'styled-components';
 
 //Styles:
+import styled from 'styled-components';
 import Fade from 'react-reveal/Fade';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from 'react-bootstrap/Button';

@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import defaultAvatar from '../../../Img/default_avatar.png';
 import { userGetProfilePicture } from '../../../redux/userSettings/UserSettingActions';
-import Fade from 'react-reveal/Fade';
-
-
-import styled from 'styled-components';
-import CircularProgress from '@material-ui/core/CircularProgress';
 
 //Main Dashboard Components:
 import MDTodo from './MDTodo';
 import MDSciNews from './MDSciNews';
 
 //Styles:
+import styled from 'styled-components';
+import Fade from 'react-reveal/Fade';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import defaultAvatar from '../../../Img/default_avatar.png';
 
 const WrapperContainer = styled.div`
     overflow-y: hidden;
