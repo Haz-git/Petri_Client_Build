@@ -37,11 +37,20 @@ As a self-taught developer, working through this project massively improved my k
 
 ### Feature Highlights
 ---
-In the case that you don't have time to play the demo, please take a look at the provided GIFs:
+**Here are just a few features in *Petri***.
 
-1. Main dashboard:
+In the **main dashboard**, you can access a priority task list to organize your most valuable procedures for the day. Additionally, stay updated with the top science headlines in the U.S.
 
-![](https://gph.is/g/Z2pYePL)
+![](https://media.giphy.com/media/UO7AIpOYuOYActYYME/giphy.gif)
+
+In the *Petri's* **Calendar**, drag and drop many events that may overlap across multiple days to streamline your most time-sensitive experiments.
+
+![](https://media.giphy.com/media/H7z9hca7pKiHaaVq0E/giphy.gif)
+
+*Petri's* **Lazy Lac-Z** is a *custom-made* science tool for the Beta-Galactosidase assay we perform frequently in our lab. The graphs are generated dynamically based on user inputs, and all data is saved server-sided.
+
+![](https://media.giphy.com/media/INCuZNmEmsGDfKIscA/giphy.gif)
+
     
 ### Why were these features implemented?
 ---
