@@ -25,13 +25,13 @@ My obsession with coding, creation, and research led to the development of *Petr
 
 ### Usage
 ---
-#####Demo
+##### Demo
 1. Head over to [Petri's Website](https://petriweb.netlify.app/).
 2. Navigate to 'Sign up'--create a free account.
 3. Navigate to 'Log In' and enter the app using your credentials.
 4. Start exploring!
 
-#####Localhost
+##### Localhost
 1. Clone repository.
 2. Open 'frontend' with your favorite IDE.
 3. Run 'npm start'.
