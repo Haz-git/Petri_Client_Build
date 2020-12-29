@@ -49,8 +49,8 @@ const StyledBodyBlock = styled.div`
     }
 
     @media only screen and (min-width: 900px) {
-        zoom: 0.55;
-        -moz-transform: scale(0.55);
+        zoom: 0.6;
+        -moz-transform: scale(0.6);
     }
 
     @media only screen and (min-width: 1100px) {

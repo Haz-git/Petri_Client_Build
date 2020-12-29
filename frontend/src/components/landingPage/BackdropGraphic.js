@@ -21,28 +21,28 @@ const MainContainer = styled.div`
     }
 
     @media only screen and (min-width: 350px) {
-        zoom: 0.3;
-        -moz-transform: scale(0.3);
-    }
-
-    @media only screen and (min-width: 480px) {
         zoom: 0.35;
         -moz-transform: scale(0.35);
     }
 
-    @media only screen and (min-width: 600px) {
+    @media only screen and (min-width: 480px) {
         zoom: 0.45;
         -moz-transform: scale(0.45);
     }
 
-    @media only screen and (min-width: 750px) {
+    @media only screen and (min-width: 600px) {
+        zoom: 0.5;
+        -moz-transform: scale(0.5);
+    }
+
+    @media only screen and (min-width: 770px) {
         zoom: 0.55;
         -moz-transform: scale(0.55);
     }
 
     @media only screen and (min-width: 900px) {
-        zoom: 0.55;
-        -moz-transform: scale(0.55);
+        zoom: 0.6;
+        -moz-transform: scale(0.6);
     }
 
     @media only screen and (min-width: 1100px) {
