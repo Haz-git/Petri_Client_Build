@@ -6,7 +6,6 @@ export const logouthelper = () => {
     localStorage.removeItem('jwt');
     localStorage.removeItem('persist:root');
     userLogOut();
-    console.log('User has logged out successfully');
-    window.location.reload(true);
+    window.location.reload();
 
 }
