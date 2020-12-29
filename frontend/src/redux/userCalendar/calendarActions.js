@@ -46,10 +46,10 @@ export function deleteEvent(event) {
 
         console.log(response);
 
-        dispatch({
-            type: USER_DELETE_EVENT,
-            payload: response.data.updatedDeletedCalendarEvents
-        });
+        // dispatch({
+        //     type: USER_DELETE_EVENT,
+        //     payload: response.data.updatedDeletedCalendarEvents
+        // });
     }
 }
 
