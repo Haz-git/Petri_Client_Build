@@ -251,7 +251,7 @@ const Navbar = ({ StateJwt }) => {
 
     const renderNavOnJWT = jwt => {
 
-        if (typeof jwt === 'object' && jwt !== null) {
+        if (jwt) {
             //If the user has a JWT, render the dashboard navbar.
             return (
                 <DashboardNavbar>
