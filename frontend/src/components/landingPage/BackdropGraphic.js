@@ -13,6 +13,49 @@ const MainContainer = styled.div`
     border-radius: 15px;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 1);
     transform: perspective(500px) rotateY(-15deg);
+
+
+    @media only screen and (min-width: 300px) {
+        zoom: 0.3;
+        -moz-transform: scale(0.3);
+    }
+
+    @media only screen and (min-width: 350px) {
+        zoom: 0.3;
+        -moz-transform: scale(0.3);
+    }
+
+    @media only screen and (min-width: 480px) {
+        zoom: 0.35;
+        -moz-transform: scale(0.35);
+    }
+
+    @media only screen and (min-width: 600px) {
+        zoom: 0.45;
+        -moz-transform: scale(0.45);
+    }
+
+    @media only screen and (min-width: 750px) {
+        zoom: 0.55;
+        -moz-transform: scale(0.55);
+    }
+
+    @media only screen and (min-width: 900px) {
+        zoom: 0.55;
+        -moz-transform: scale(0.55);
+    }
+
+    @media only screen and (min-width: 1100px) {
+        zoom: 0.65;
+        -moz-transform: scale(0.65);
+    }
+
+    @media only screen and (min-width: 1350px) {
+        zoom: 1;
+        -moz-transform: scale(1);
+    }
+
+
 `
 
 const SideBarGraphic = styled.div`

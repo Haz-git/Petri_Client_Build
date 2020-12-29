@@ -18,7 +18,7 @@ const StyledBackdrop = styled.div`
     justify-content: center;
     padding: 30px 30px;
     background: linear-gradient(180deg, rgba(20,22,40,1) 40%, rgba(23,24,45,1) 75%, rgba(34,35,65,1) 94%);
-    min-height: 550px;
+    min-height: 500px;
 
     @media (min-height: 1350px) {
         height: 100vh;
@@ -40,6 +40,18 @@ const StyledBackdrop = styled.div`
         height: 800px;
     }
 
+    @media (max-height: 700px) {
+        height: 700px;
+    }
+
+    @media (max-height: 600px) {
+        height: 600px;
+    }
+
+    @media (max-height: 500px) {
+        height: 500px;
+    }
+
     overflow-x: hidden;
 
 `
@@ -47,6 +59,47 @@ const StyledBackdrop = styled.div`
 const HeaderContainer = styled.div`
     margin-top: 20vh;
     padding: 0 40px;
+
+
+    @media only screen and (min-width: 300px) {
+        zoom: 0.3;
+        -moz-transform: scale(0.3);
+    }
+
+    @media only screen and (min-width: 350px) {
+        zoom: 0.35;
+        -moz-transform: scale(0.35);
+    }
+
+    @media only screen and (min-width: 480px) {
+        zoom: 0.45;
+        -moz-transform: scale(0.45);
+    }
+
+    @media only screen and (min-width: 600px) {
+        zoom: 0.5;
+        -moz-transform: scale(0.5);
+    }
+
+    @media only screen and (min-width: 770px) {
+        zoom: 0.55;
+        -moz-transform: scale(0.55);
+    }
+
+    @media only screen and (min-width: 900px) {
+        zoom: 0.55;
+        -moz-transform: scale(0.55);
+    }
+
+    @media only screen and (min-width: 1100px) {
+        zoom: 0.65;
+        -moz-transform: scale(0.65);
+    }
+
+    @media only screen and (min-width: 1350px) {
+        zoom: 1;
+        -moz-transform: scale(1);
+    }
 `
 
 const MainBackDropHeader = styled.h1`
@@ -55,6 +108,10 @@ const MainBackDropHeader = styled.h1`
     font-weight: 400;
     color: white;
     font-size: 65px;
+
+    /* @media only screen and (min-width: 600px) {
+        font-size: 10px;
+    } */
 `
 
 const SecondaryHeader = styled.h2`
@@ -65,6 +122,10 @@ const SecondaryHeader = styled.h2`
     font-size: 22px;
     padding-top: 5px;
     padding-bottom: 5px;
+
+    /* @media only screen and (min-width: 600px) {
+        font-size: 10px;
+    } */
 `
 
 const StyledCreateIcon = styled(Create)`
@@ -74,6 +135,12 @@ const StyledCreateIcon = styled(Create)`
 const ColorButton = withStyles((theme) => ({
     root: {
       color: theme.palette.getContrastText(purple[500]),
+      [theme.breakpoints.down('md')]: {
+        height: '40px',
+        width: '185px',
+        fontSize: '10px'
+
+      },
       backgroundColor: purple[500],
       '&:hover': {
         backgroundColor: purple[700],
@@ -114,8 +181,8 @@ const Mainbackdrop = () => {
                         <StyledLink to='/signup'>
                             <ColorButton
                                 style={{
-                                    width: '250px',
-                                    height: '60px',
+                                    // width: '250px',
+                                    // height: '60px',
                                     marginTop: '30px',
                                 }}
                                 variant='contained'

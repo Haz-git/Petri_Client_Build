@@ -24,6 +24,12 @@ const MainHeader = styled.h1`
     margin: 0 auto;
     border-radius: 10px;
     box-shadow: 0 1px 3px rgba(0, 0, 0,0.12), 0 1px 2px rgba(0,0,0.24);
+
+    @media only screen and (max-width: 600px) {
+        font-size: 44px;
+    }
+
+
 `
 const MainDesc = styled.p`
     margin-top: 20px;
@@ -35,6 +41,11 @@ const MainDesc = styled.p`
     padding-left: 45px;
     padding-right: 45px;
     margin-bottom: 30px;
+
+    @media only screen and (max-width: 600px) {
+        font-size: 30px;
+    }
+
 `
 const ImageContainer = styled.div`
     display: flex;
