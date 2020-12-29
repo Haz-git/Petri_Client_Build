@@ -1,11 +1,10 @@
 import api from '../../api';
-import authRequest from '../../api/authRequest';
 import { USER_NEW_TASK, USER_GET_TASKS, USER_DELETED_TASK } from './userTaskLogTypes';
 
 export function getTasks() {
     return async (dispatch, getState) => {
         const { auth: { userLogIn: { data: { _id } }} } = getState();
-        const response = await authRequest.post('/users/getTasks', { _id });
+        const response = await api.post('/users/getTasks', { _id });
 
         dispatch({
             type: USER_GET_TASKS,
