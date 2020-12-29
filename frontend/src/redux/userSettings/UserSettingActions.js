@@ -1,5 +1,4 @@
 import api from '../../api/index';
-import authRequest from '../../api/authRequest';
 import { 
     USER_ADD_NEW_PROFILE_PICTURE,
     USER_GET_PROFILE_PICTURE,
@@ -14,7 +13,7 @@ export function userGetProfilePicture() {
     return async (dispatch, getState) => {
         const { auth: { userLogIn: { data: { _id } }} } = getState();
 
-        const response = await authRequest.post('/users/settings/getProPic', { _id });
+        const response = await api.post('/users/settings/getProPic', { _id });
         
         dispatch({
             type: USER_GET_PROFILE_PICTURE,
