@@ -261,10 +261,6 @@ const Navbar = ({ StateJwt }) => {
                         <StyledHomeHeart />
                         <StyledLinkLabel>DASHBOARD</StyledLinkLabel>
                     </DashboardLink>
-                    <DashboardLink to='/meetings'>
-                        <StyledVideoCamera />
-                        <StyledLinkLabel>MEETINGS</StyledLinkLabel>
-                    </DashboardLink>
                     <DashboardLink to='/messenger'>
                         <StyledChatIcon />
                         <StyledLinkLabel>MESSENGER</StyledLinkLabel>
