@@ -18,7 +18,6 @@ import AuthenticatedComponents from '../components/authComponents/AuthenticatedC
 //Authenticated Components:
 import MainDashboard from '../components/Dashboard/homePage/MainDashboard';
 import Calendar from './Dashboard/calendar/Calendar';
-import Meetings from '../components/Dashboard/Meetings';
 import Messenger from '../components/Dashboard/messenger/Messenger';
 import CreateBioNote from '../components/Dashboard/bioNotes/CreateBioNote';
 import NewBioNote from '../components/Dashboard/bioNotes/NewBioNote';
@@ -34,10 +33,9 @@ import EditProfilePicture from './Dashboard/settings/EditProfilePicture';
 
 //Themes and global styles:
 import { ThemeProvider } from "styled-components";
-import { DashboardGlobalStyles, LandingStyle } from "../components/Styling/GlobalStyles";
+import { DashboardGlobalStyles } from "../components/Styling/GlobalStyles";
 import { lightTheme, darkTheme } from "../components/Styling/Theme";
 import { getMode } from '../components/Styling/useDarkMode';
-import { useDarkMode } from '../components/Styling/useDarkMode';
 
 
 //Styling:
@@ -95,7 +93,6 @@ const App = () => {
                                     <DashboardContainer>
                                         <Route exact path='/dashboard' component={MainDashboard} />
                                         <Route exact path='/calendar' component={Calendar} />
-                                        <Route exact path='/meetings' component={MainDashboard} />
                                         <Route exact path='/messenger' component={Messenger} />
                                         <Route exact path='/createbionote' component={CreateBioNote} />
                                         <Route exact path='/logout' component={Logout} />
