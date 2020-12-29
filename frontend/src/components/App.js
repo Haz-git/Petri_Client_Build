@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { Switch, Router, Route } from 'react-router-dom';
 import styled from 'styled-components';
-import { v4 as uuid } from 'uuid';
  
 //Components
 import Navbar from './landingPage/Navbar';
