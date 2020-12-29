@@ -33,6 +33,7 @@ const userLogin = formValues => async dispatch => {
 
         if (jwtCheck !== null && jwtCheck !== undefined) {
             history.push('/dashboard');
+            //This is an incredibly inefficient and not react-minded compromise for the Bearer - Token issue. Hopefully in the future i'll think of something else.
             window.location.reload();
         }
 
