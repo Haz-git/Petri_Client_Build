@@ -21,23 +21,32 @@ const userLogin = formValues => async dispatch => {
 
     // Store JWT in response into localstorage:
     try {
-        await localStorage.setItem('jwt', JSON.stringify(response.data));
+        //Outsourcing localstorage methods to promise to emulate asynchronous operation. When JWT is successfully set into localstorage, then we'll dispatch data to the state.
+        localStorage.setItem('jwt', JSON.stringify(response.data.token));
+
+        dispatch({
+            type: USER_LOG_IN,
+            payload: response.data,
+        });
+
+        const jwtCheck = localStorage.getItem('jwt');
+
+        if (jwtCheck !== null && jwtCheck !== undefined) {
+            history.push('/dashboard');
+            window.location.reload();
+        }
+
+        // history.push('/dashboard');
+
     } catch (e) {
         if (e.name === 'QuotaExceededError') {
             localStorage.clear();
-            localStorage.setItem('jwt', JSON.stringify(response.data));
+            localStorage.setItem('jwt', response.data.token);
         } else {
             alert('Your local storage seems to be full...');
+            console.log(e);
         }
     }
-
-    //Dispatch response object to reducers:
-    dispatch({
-        type: USER_LOG_IN,
-        payload: response.data,
-    })
-
-    history.push('/dashboard');
 
 }
 
