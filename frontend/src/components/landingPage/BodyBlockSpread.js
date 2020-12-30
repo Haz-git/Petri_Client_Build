@@ -7,6 +7,18 @@ const MainContainer = styled.div`
     margin-top: 100px;
     text-align: center;
     margin-bottom: 100px;
+
+    @media only screen and (max-width: 650px) {
+        margin-bottom: 200px;
+    }
+
+    @media only screen and (max-width: 380px) {
+        margin-bottom: 100px;
+    }
+
+    @media only screen and (max-width: 325px) {
+        margin-bottom: 0;
+    }
 `
 
 const MainDescContainer = styled.div`
