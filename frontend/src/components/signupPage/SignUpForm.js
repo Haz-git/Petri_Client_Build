@@ -26,6 +26,10 @@ const ContentContainer = styled.div`
     text-align: center;
     width: 100%;
     max-height: 100px;
+
+    @media only screen and (max-width: 650px) and (orientation: portrait) {
+        display: block;
+    }
  
 `
 const HeaderContainer = styled.div`
@@ -34,6 +38,10 @@ const HeaderContainer = styled.div`
     padding-top: 20px;
     padding-bottom: 10px;
     background-color: #F6F9FC;
+
+    @media only screen and (max-width: 650px) and (orientation: portrait) {
+        padding: 5px 5px;
+    }
 `
 
 export const MainHeader = styled.h1`
@@ -46,6 +54,14 @@ export const MainHeader = styled.h1`
     margin-bottom: 30px;
     color: #293241;
     font-family: 'Catamaran', sans-serif;
+
+    @media only screen and (max-width: 650px) and (orientation: portrait) {
+        font-size: 30px;
+        padding: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        margin-bottom: 15px;
+    }
 `
 export const SecondaryHeader = styled.h2`
     margin: 0;
@@ -54,6 +70,11 @@ export const SecondaryHeader = styled.h2`
     font-weight: 500;
     color: #293241;
     font-family: 'Catamaran', sans-serif;
+
+    @media only screen and (max-width: 650px) and (orientation: portrait) {
+        font-size: 13px;
+        padding: 0;
+    }
 `
 
 const ThirdHeader = styled.h3`
@@ -63,6 +84,12 @@ const ThirdHeader = styled.h3`
     font-family: 'Catamaran', sans-serif;
     font-weight: 300;
     color: #293241;
+
+    @media only screen and (max-width: 650px) and (orientation: portrait) {
+        font-size: 15px;
+        font-weight: 500;
+        padding-top: 15px;
+    }
 `
 
 const FormContainer = styled.div`
@@ -72,6 +99,11 @@ const FormContainer = styled.div`
     padding-left: 80px;
     padding-right: 80px;
     background-color: #F6F9FC;
+
+    @media only screen and (max-width: 650px) {
+        padding: 0 25px;
+    }
+
 `
 
 const ImageContainer = styled.div`
@@ -81,6 +113,10 @@ const ImageContainer = styled.div`
     max-height: 100%;
     object-fit: cover;
     background-color: #F6F9FC;
+
+    @media only screen and (max-width: 650px) and (orientation: portrait) {
+
+    }
 `
 
 export const StyledField = styled(Field)`
@@ -91,6 +127,11 @@ export const StyledField = styled(Field)`
     border: 1px solid #ccc;
     border-radius: 6px;
     box-sizing: border-box;
+
+    @media only screen and (max-width: 650px) {
+        height: 35px;
+        margin: 4px 0;
+    }
 `
 
 export const StyledLabel = styled.label`
@@ -98,16 +139,29 @@ export const StyledLabel = styled.label`
     font-weight: 300;
     font-size: 17px;
     color: #293241;
+
+    @media only screen and (max-width: 650px) {
+        font-size: 13px;
+    }
 `
 
 const InputContainer = styled.div`
     padding-top: 50px;
+
+    @media only screen and (max-width: 650px) and (orientation: portrait) {
+        padding-top: 10px;
+    }
 `
 
 export const InputFieldContainer = styled.div`
     padding-top: 10px;
     padding-bottom: 10px;
     text-align: left;
+
+    @media only screen and (max-width: 650px) and (orientation: portrait) {
+        padding-top: 4px;
+        padding-bottom: 4px;
+    }
 `
 
 const ButtonContainer = styled.div`
@@ -135,6 +189,12 @@ const StyledImg = styled.img`
 
     @media (min-width: 1700px) {
         max-height: 1100px;
+    }
+
+    @media only screen and (max-width: 650px) and (orientation: portrait) {
+        max-height: 0;
+        max-width: 0;
+        border-radius: none;
     }
 `
 

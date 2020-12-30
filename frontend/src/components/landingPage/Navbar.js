@@ -195,6 +195,11 @@ const StyledLogoHeader = styled.h1`
 `
 const StyledLogoMiniContainer = styled.div`
     margin: -10px;
+
+    @media only screen and (max-width: 325px) and (orientation: portrait) {
+        padding-bottom: 12px;
+    }
+
 `
 const StyledMiniLogo = styled.p`
     margin: 0;
