@@ -173,7 +173,7 @@ const Mainbackdrop = () => {
                                     <MainBackDropHeader>Petri</MainBackDropHeader>
                                 </Fade>
                                 <Fade bottom>
-                                    <SecondaryHeader>The ultimate utility tool for optimizing your research workflow.</SecondaryHeader>
+                                    <SecondaryHeader>A utility web application for optimizing your research workflow.</SecondaryHeader>
                                     <SecondaryHeader>Focus on your research. We'll make it easy to stay on track.</SecondaryHeader>
                                 </Fade>
                                 <Fade>
