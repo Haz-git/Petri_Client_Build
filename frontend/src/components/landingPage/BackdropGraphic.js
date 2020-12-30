@@ -5,7 +5,6 @@ import Fade from 'react-reveal/Fade';
 //Styles:
 
 const MainContainer = styled.div`
-    margin-top: 20vh;
     position: relative;
     width: 600px;
     height: 525px;
@@ -13,49 +12,50 @@ const MainContainer = styled.div`
     border-radius: 15px;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 1);
     transform: perspective(500px) rotateY(-15deg);
+    overflow: hidden;
 
+    @media only screen and (max-width: 650px) and (min-width: 400px) and (orientation: portrait) {
 
-    @media only screen and (min-width: 300px) {
-        zoom: 0.3;
-        -moz-transform: scale(0.3);
+        transform: scale(0.45) perspective(1200px) rotateY(-15deg);
+        transform-origin: 0 0;
+        width: 189%;
+        margin-left: 5px;
+        overflow: hidden;
     }
 
-    @media only screen and (min-width: 350px) {
-        zoom: 0.35;
-        -moz-transform: scale(0.35);
+    @media only screen and (max-width: 400px) and (min-width: 325px) and (orientation: portrait) {
+
+        transform: scale(0.40) perspective(1200px) rotateY(-15deg);
+        transform-origin: 0 0;
+        width: 189%;
+        margin-left: 5px;
+        overflow: hidden;
     }
 
-    @media only screen and (min-width: 480px) {
-        zoom: 0.45;
-        -moz-transform: scale(0.45);
+    @media only screen and (max-width: 365px) and (min-width: 355px) and (orientation: portrait) {
+        transform: scale(0.4) perspective(1200px) rotateY(-15deg);
+        transform-origin: 0 0;
+        width: 213%;
+        margin-left: 5px;
+        overflow: hidden;
     }
 
-    @media only screen and (min-width: 600px) {
-        zoom: 0.5;
-        -moz-transform: scale(0.5);
+    @media only screen and (max-width: 380px) and (min-width: 365px) and (orientation: portrait) {
+
+        transform: scale(0.4) perspective(1200px) rotateY(-15deg);
+        transform-origin: 0 0;
+        width: 204%;
+        margin-left: 5px;
+        overflow: hidden;
     }
 
-    @media only screen and (min-width: 770px) {
-        zoom: 0.55;
-        -moz-transform: scale(0.55);
+    @media only screen and (max-width: 325px) and (orientation: portrait) {
+        transform: scale(0.35) perspective(1200px) rotateY(-15deg);
+        transform-origin: 0 0;
+        width: 250%;
+        margin-left: 5px;
+        overflow: hidden;
     }
-
-    @media only screen and (min-width: 900px) {
-        zoom: 0.6;
-        -moz-transform: scale(0.6);
-    }
-
-    @media only screen and (min-width: 1100px) {
-        zoom: 0.65;
-        -moz-transform: scale(0.65);
-    }
-
-    @media only screen and (min-width: 1350px) {
-        zoom: 1;
-        -moz-transform: scale(1);
-    }
-
-
 `
 
 const SideBarGraphic = styled.div`
@@ -89,6 +89,7 @@ const LogoGraphic = styled.div`
     margin-top: 12px;
     margin-bottom: 30px;
     z-index: 2;
+
 `
 
 const BodyGraphic = styled.div`
@@ -101,6 +102,7 @@ const BodyGraphic = styled.div`
     left: 50px;
     background-color: #001B3A;
     z-index: 2;
+
 `
 
 const BodyDetailBox = styled.div`
@@ -281,7 +283,6 @@ const BackdropGraphic = () => {
                 <MainContainer>
                     <SideBarGraphic>
                         <LogoGraphic />
-                        <IconGraphics />
                         <IconGraphics />
                         <IconGraphics />
                         <IconGraphics />

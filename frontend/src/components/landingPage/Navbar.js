@@ -22,6 +22,7 @@ import { SettingsApplications } from '@styled-icons/material/SettingsApplication
 //Styling:
 
 const DefaultNavbar = styled.div`
+    /* box-sizing: border-box; */
     display: flex;
     justify-content: space-between;
     background-color: #141628;
@@ -30,47 +31,8 @@ const DefaultNavbar = styled.div`
     position: sticky;
     top: 0;
     z-index: 99999 !important;
+    
 
-
-    @media only screen and (min-width: 300px) {
-        zoom: 0.3;
-        -moz-transform: scale(0.3);
-    }
-
-    @media only screen and (min-width: 350px) {
-        zoom: 0.35;
-        -moz-transform: scale(0.35);
-    }
-
-    @media only screen and (min-width: 480px) {
-        zoom: 0.45;
-        -moz-transform: scale(0.45);
-    }
-
-    @media only screen and (min-width: 600px) {
-        zoom: 0.5;
-        -moz-transform: scale(0.5);
-    }
-
-    @media only screen and (min-width: 770px) {
-        zoom: 0.55;
-        -moz-transform: scale(0.55);
-    }
-
-    @media only screen and (min-width: 900px) {
-        zoom: 0.6;
-        -moz-transform: scale(0.6);
-    }
-
-    @media only screen and (min-width: 1100px) {
-        zoom: 0.65;
-        -moz-transform: scale(0.65);
-    }
-
-    @media only screen and (min-width: 1350px) {
-        zoom: 1;
-        -moz-transform: scale(1);
-    }
 `
 const NavLinks = styled.div`
     display: flex;
@@ -100,6 +62,52 @@ const DefaultLink = styled(Link)`
     &:hover {
         color: white !important;
     }
+
+    @media only screen and (min-width: 300px) and (orientation: portrait) {
+        font-size: 10px;
+        margin-left: 15px;
+        margin-right: 15px;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    @media only screen and (min-width: 350px) and (orientation: portrait) {
+        font-size: 10px;
+        margin-left: 15px;
+        margin-right: 15px;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    @media only screen and (min-width: 480px) and (orientation: portrait) {
+        font-size: 15px;
+        margin-left: 25px;
+        margin-right: 25px;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    @media only screen and (min-width: 600px) {
+
+    }
+
+    @media only screen and (min-width: 770px) {
+
+    }
+
+    @media only screen and (min-width: 900px) {
+
+    }
+
+    @media only screen and (min-width: 1100px) {
+
+    }
+
+    @media only screen and (min-width: 1350px) {
+
+    }
+
+    
 `
 
 const LogoLink = styled(Link)`
@@ -114,6 +122,7 @@ const LogoLink = styled(Link)`
     &:hover {
         color: white !important;
     }
+
 `
 
 const DashboardNavbar = styled.div`
@@ -139,15 +148,50 @@ const DashboardLink = styled(Link)`
     display: block;
 `
 const StyledImg = styled.img`
-    max-width: 500px;
-    max-height: 85px;
+    /* max-width: 500px; */
+    max-width: 30%;
+    /* max-height: 85px; */
+    max-height: 30%;
     object-fit: cover;
+
+    @media only screen and (min-width: 300px) {
+        max-width: 22%;
+        max-height: 22%;
+        object-fit: cover;
+    }
+
+    @media only screen and (min-width: 360px) {
+        max-width: 22%;
+        max-height: 22%;
+        object-fit: cover;
+    }
+
+    @media only screen and (min-width: 480px) {
+        max-width: 26%;
+        max-height: 26%;
+        object-fit: cover;
+    }
+
+
 `
 const StyledLogoHeader = styled.h1`
     margin: 0;
     font-weight: 100;
     font-size: 50px;
     font-family: 'Pattaya', serif;
+
+    @media only screen and (min-width: 300px) and (orientation: portrait) {
+        font-size: 32px;
+    }
+
+    @media only screen and (min-width: 360px) and (orientation: portrait) {
+        font-size: 32px;
+    }
+
+    @media only screen and (min-width: 480px) and (orientation: portrait) {
+        font-size: 45px;
+    }
+
 `
 const StyledLogoMiniContainer = styled.div`
     margin: -10px;
@@ -156,6 +200,21 @@ const StyledMiniLogo = styled.p`
     margin: 0;
     font-size: 16px;
     font-family: 'Pattaya', serif;
+
+    @media only screen and (min-width: 300px) and (orientation: portrait) {
+        font-size: 10px;
+        margin-left: 5px;
+    }
+
+    @media only screen and (min-width: 360px) and (orientation: portrait) {
+        font-size: 10px;
+        margin-left: 5px;
+    }
+
+    @media only screen and (min-width: 480px) and (orientation: portrait) {
+        font-size: 12px;
+    }
+
 `
 const StyledHomeHeart = styled(HomeHeart)`
     margin-bottom: 3px;
