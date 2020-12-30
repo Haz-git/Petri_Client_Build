@@ -33,6 +33,10 @@ const MainContainer = styled.div`
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+
+    @media only screen and (max-width: 650px) and (orientation: portrait) {
+        padding: 0;
+    }
 `
 
 const ErrorTextInvisible = styled.h2`
@@ -41,6 +45,10 @@ const ErrorTextInvisible = styled.h2`
     font-size: 15px;
     font-weight: 100;
     opacity: 0;
+
+    @media only screen and (max-width: 650px) and (orientation: portrait) {
+        font-size: 9px;
+    }
 `
 
 const ErrorTextVisible = styled.h2`
@@ -48,6 +56,10 @@ const ErrorTextVisible = styled.h2`
     color: red;
     font-size: 15px;
     font-weight: 100;
+
+    @media only screen and (max-width: 650px) and (orientation: portrait) {
+        font-size: 9px;
+    }
 `
 
 
