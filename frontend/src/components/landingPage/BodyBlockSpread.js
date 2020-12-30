@@ -25,8 +25,9 @@ const MainHeader = styled.h1`
     border-radius: 10px;
     box-shadow: 0 1px 3px rgba(0, 0, 0,0.12), 0 1px 2px rgba(0,0,0.24);
 
-    @media only screen and (max-width: 600px) {
-        font-size: 44px;
+    @media only screen and (max-width: 650px) {
+        font-size: 20px;
+        padding: 8px 8px;
     }
 
 
@@ -42,8 +43,11 @@ const MainDesc = styled.p`
     padding-right: 45px;
     margin-bottom: 30px;
 
-    @media only screen and (max-width: 600px) {
-        font-size: 30px;
+    @media only screen and (max-width: 650px) {
+        font-size: 13px;
+        padding-left: 35px;
+        padding-right: 35px;
+        text-align: center;
     }
 
 `
@@ -52,6 +56,12 @@ const ImageContainer = styled.div`
     height: 760px;
     width: 100%;
     justify-content: center;
+
+    @media only screen and (max-width: 650px) {
+        display: block;
+        text-align: center;
+    }
+
 `
 const StyledImgFirst = styled.img`
     /* top: 0;
@@ -60,8 +70,12 @@ const StyledImgFirst = styled.img`
     margin: 15px 15px;
     max-width: 100%;
     max-height: 100%;
-    border-radius: 10px;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 1);
+    border-radius: 7px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, .60);
+
+    @media only screen and (max-width: 650px) {
+        margin: 0;
+    }
 `
 
 const ImageSeparator = styled.div`
@@ -78,8 +92,15 @@ const StyledImgSecond = styled.img`
     margin: 15px 15px;
     max-width: 100%;
     max-height: 100%;
-    border-radius: 10px;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 1);
+    border-radius: 7px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, .60);
+
+    @media only screen and (max-width: 650px) {
+        margin-top: 13px;
+        margin-bottom: 0;
+        margin-left: 0;
+        margin-right: 0;
+    }
 `
 
 const StyledImgThird = styled.img`
@@ -89,8 +110,12 @@ const StyledImgThird = styled.img`
     margin: 15px 15px;
     max-width: 100%;
     max-height: 100%;
-    border-radius: 10px;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 1);
+    border-radius: 7px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, .60);
+
+    @media only screen and (max-width: 650px) {
+        margin: 13px 0;
+    }
 `
 
 

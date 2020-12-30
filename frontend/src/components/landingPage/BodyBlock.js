@@ -9,8 +9,9 @@ const BlockDetailMain = styled.div`
     grid-template-columns: 50% 50%;
     align-items: center;
 
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-width: 650px) {
         display: block;
+        margin-top: 100px;
     }
 `
 const BlockDetailImg = styled.div`
@@ -38,8 +39,9 @@ const BlockDetailHeader = styled.h2`
     border-radius: 10px;
     box-shadow: 0 1px 3px rgba(0, 0, 0,0.12), 0 1px 2px rgba(0,0,0.24);
 
-    @media only screen and (max-width: 600px) {
-        font-size: 44px;
+    @media only screen and (max-width: 650px) {
+        font-size: 20px;
+        padding: 8px 8px;
     }
 
 `
@@ -54,8 +56,10 @@ const BlockDetailDesc = styled.p`
     padding-left: 45px;
     padding-right: 45px;
 
-    @media only screen and (max-width: 600px) {
-        font-size: 30px;
+    @media only screen and (max-width: 650px) {
+        font-size: 13px;
+        padding-left: 35px;
+        padding-right: 35px;
     }
 `
 

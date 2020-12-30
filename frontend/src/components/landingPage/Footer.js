@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+
 
 //Styles:
 
@@ -17,6 +17,10 @@ const FooterDiv = styled.div`
     align-items: center;
     overflow: hidden;
 
+    @media only screen and (max-width: 650px) {
+        padding: 10px 10px;
+    }
+
 `
 const FooterHeader = styled.h2`
     margin: 0;
@@ -24,6 +28,10 @@ const FooterHeader = styled.h2`
     color: white;
     font-size: 17px;
     font-weight: 100;
+
+    @media only screen and (max-width: 650px) {
+        font-size: 8px;
+    }
 `
 const StyledAnchor = styled.a`
     text-decoration: none;
@@ -40,6 +48,11 @@ const StyledAnchor = styled.a`
 const GithubIcon = styled(GithubSquare)`
     height: 50px;
     width: 50px;
+
+    @media only screen and (max-width: 650px) {
+        height: 20px;
+        width: 20px;
+    }
 `
 
 

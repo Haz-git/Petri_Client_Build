@@ -31,6 +31,11 @@ const StyledFeatureHeader = styled.h2`
     color: white;
     font-weight: 400;
     margin-bottom: 50px;
+
+    @media only screen and (max-width: 650px)  {
+        margin-top: 10px;
+        font-size: 28px;
+    }
 `
 
 const StyledLogoHeader = styled.span`
@@ -38,6 +43,10 @@ const StyledLogoHeader = styled.span`
     font-size: 55px;
     color: white;
     font-weight: 400;
+
+    @media only screen and (max-width: 650px)  {
+        font-size: 28px;
+    }
 `
 
 
@@ -52,7 +61,7 @@ const MainBodyblock = () => {
                 ?
             </StyledFeatureHeader>
             <BodyBlock
-                Title='Know Your Priorities and Stay Updated' 
+                Title='Stay Updated With Your Priorities' 
                 Description='Petri offers a priority task log that makes sure you stay focused on the primary objectives you want to accomplish today. Additionally, receive an updated, curated list of the top science news in the U.S.'
                 Img={feature_task_news}
             />
