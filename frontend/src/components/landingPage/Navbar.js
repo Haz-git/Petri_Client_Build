@@ -87,7 +87,7 @@ const DefaultLink = styled(Link)`
         overflow: hidden;
     }
 
-    @media only screen and (max-width: 820px) and (orientation: landscape) {
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
         font-size: 12px;
         margin-left: 25px;
         margin-right: 25px;
@@ -160,7 +160,7 @@ const StyledImg = styled.img`
         object-fit: cover;
     }
 
-    @media only screen and (max-width: 820px) and (orientation: landscape) {
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
         max-width: 15%;
         max-height: 15%;
         object-fit: cover;
@@ -186,7 +186,7 @@ const StyledLogoHeader = styled.h1`
         font-size: 28px;
     }
 
-    @media only screen and (max-width: 820px) and (orientation: landscape) {
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
         font-size: 30px;
     }
 
@@ -219,7 +219,7 @@ const StyledMiniLogo = styled.p`
         font-size: 12px;
     }
 
-    @media only screen and (max-width: 820px) and (orientation: landscape) {
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
         font-size: 10px;
         margin-left: 5px;
     }
