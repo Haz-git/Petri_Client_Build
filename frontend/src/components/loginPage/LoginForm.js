@@ -48,7 +48,6 @@ const MainContainer = styled.div`
         padding: 0;
         transform: translate(-50%, -50%) scale(.77);
         top: 45%;
-        overflow-y: scroll;
     }
 `
 
