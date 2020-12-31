@@ -63,7 +63,7 @@ const DefaultLink = styled(Link)`
         color: white !important;
     }
 
-    @media only screen and (min-width: 300px) and (orientation: portrait) {
+    @media only screen and (min-width: 300px) {
         font-size: 10px;
         margin-left: 15px;
         margin-right: 15px;
@@ -71,7 +71,7 @@ const DefaultLink = styled(Link)`
         overflow: hidden;
     }
 
-    @media only screen and (min-width: 350px) and (orientation: portrait) {
+    @media only screen and (min-width: 350px) {
         font-size: 10px;
         margin-left: 15px;
         margin-right: 15px;
@@ -79,7 +79,7 @@ const DefaultLink = styled(Link)`
         overflow: hidden;
     }
 
-    @media only screen and (min-width: 480px) and (orientation: portrait) {
+    @media only screen and (min-width: 480px) {
         font-size: 15px;
         margin-left: 25px;
         margin-right: 25px;
@@ -87,24 +87,12 @@ const DefaultLink = styled(Link)`
         overflow: hidden;
     }
 
-    @media only screen and (min-width: 600px) {
-
-    }
-
-    @media only screen and (min-width: 770px) {
-
-    }
-
-    @media only screen and (min-width: 900px) {
-
-    }
-
-    @media only screen and (min-width: 1100px) {
-
-    }
-
-    @media only screen and (min-width: 1350px) {
-
+    @media only screen and (max-width: 820px) and (orientation: landscape) {
+        font-size: 12px;
+        margin-left: 25px;
+        margin-right: 25px;
+        white-space: nowrap;
+        overflow: hidden;
     }
 
     
@@ -155,20 +143,26 @@ const StyledImg = styled.img`
     object-fit: cover;
 
     @media only screen and (min-width: 300px) {
-        max-width: 22%;
-        max-height: 22%;
+        max-width: 20%;
+        max-height: 20%;
         object-fit: cover;
     }
 
     @media only screen and (min-width: 360px) {
-        max-width: 22%;
-        max-height: 22%;
+        max-width: 20%;
+        max-height: 20%;
         object-fit: cover;
     }
 
     @media only screen and (min-width: 480px) {
-        max-width: 26%;
-        max-height: 26%;
+        max-width: 23%;
+        max-height: 23%;
+        object-fit: cover;
+    }
+
+    @media only screen and (max-width: 820px) and (orientation: landscape) {
+        max-width: 15%;
+        max-height: 15%;
         object-fit: cover;
     }
 
@@ -181,15 +175,19 @@ const StyledLogoHeader = styled.h1`
     font-family: 'Pattaya', serif;
 
     @media only screen and (min-width: 300px) and (orientation: portrait) {
-        font-size: 32px;
+        font-size: 23px;
     }
 
     @media only screen and (min-width: 360px) and (orientation: portrait) {
-        font-size: 32px;
+        font-size: 28px;
     }
 
     @media only screen and (min-width: 480px) and (orientation: portrait) {
-        font-size: 45px;
+        font-size: 28px;
+    }
+
+    @media only screen and (max-width: 820px) and (orientation: landscape) {
+        font-size: 30px;
     }
 
 `
@@ -207,8 +205,9 @@ const StyledMiniLogo = styled.p`
     font-family: 'Pattaya', serif;
 
     @media only screen and (min-width: 300px) and (orientation: portrait) {
-        font-size: 10px;
-        margin-left: 5px;
+        font-size: 9px;
+        margin-left: 10px;
+        padding: 4px 0;
     }
 
     @media only screen and (min-width: 360px) and (orientation: portrait) {
@@ -218,6 +217,11 @@ const StyledMiniLogo = styled.p`
 
     @media only screen and (min-width: 480px) and (orientation: portrait) {
         font-size: 12px;
+    }
+
+    @media only screen and (max-width: 820px) and (orientation: landscape) {
+        font-size: 10px;
+        margin-left: 5px;
     }
 
 `

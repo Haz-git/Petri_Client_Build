@@ -20,6 +20,12 @@ const FadeOutText = styled.h2`
     @media only screen and (max-width: 650px)  {
         font-size: 12px;
     }
+
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
+        font-size: 14px;
+    }
+
+    
 `
 const StyledArrowDown = styled(ArrowDown)`
     height: 25px;
@@ -28,6 +34,12 @@ const StyledArrowDown = styled(ArrowDown)`
     margin-right: 15px;
 
     @media only screen and (max-width: 650px)  {
+        height: 15px;
+        width: 15px;
+        margin-right: 5px;
+    }
+
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
         height: 15px;
         width: 15px;
         margin-right: 5px;

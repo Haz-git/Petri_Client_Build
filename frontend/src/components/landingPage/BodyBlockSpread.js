@@ -19,6 +19,10 @@ const MainContainer = styled.div`
     @media only screen and (max-width: 325px) {
         margin-bottom: 0;
     }
+
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
+        margin-bottom: 770px;
+    }
 `
 
 const MainDescContainer = styled.div`
@@ -38,6 +42,11 @@ const MainHeader = styled.h1`
     box-shadow: 0 1px 3px rgba(0, 0, 0,0.12), 0 1px 2px rgba(0,0,0.24);
 
     @media only screen and (max-width: 650px) {
+        font-size: 20px;
+        padding: 8px 8px;
+    }
+
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
         font-size: 20px;
         padding: 8px 8px;
     }
@@ -62,6 +71,13 @@ const MainDesc = styled.p`
         text-align: center;
     }
 
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
+        font-size: 13px;
+        padding-left: 20px;
+        padding-right: 20px;
+        text-align: center;
+    }
+
 `
 const ImageContainer = styled.div`
     display: flex;
@@ -70,6 +86,11 @@ const ImageContainer = styled.div`
     justify-content: center;
 
     @media only screen and (max-width: 650px) {
+        display: block;
+        text-align: center;
+    }
+
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
         display: block;
         text-align: center;
     }
@@ -86,6 +107,11 @@ const StyledImgFirst = styled.img`
     box-shadow: 0 -2px 10px rgba(0, 0, 0, .60);
 
     @media only screen and (max-width: 650px) {
+        margin: 0;
+    }
+
+
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
         margin: 0;
     }
 `
@@ -113,6 +139,13 @@ const StyledImgSecond = styled.img`
         margin-left: 0;
         margin-right: 0;
     }
+
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
+        margin-top: 13px;
+        margin-bottom: 0;
+        margin-left: 0;
+        margin-right: 0;
+    }
 `
 
 const StyledImgThird = styled.img`
@@ -126,6 +159,10 @@ const StyledImgThird = styled.img`
     box-shadow: 0 -2px 10px rgba(0, 0, 0, .60);
 
     @media only screen and (max-width: 650px) {
+        margin: 13px 0;
+    }
+
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
         margin: 13px 0;
     }
 `

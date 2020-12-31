@@ -66,6 +66,11 @@ const WrapperContainer = styled.div`
         display: block;
         overflow: hidden;
     }
+
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
+        display: block;
+        overflow: hidden;
+    }
 `
 
 const HeaderContainer = styled.div`
@@ -75,6 +80,11 @@ const HeaderContainer = styled.div`
     @media only screen and (max-width: 650px) and (orientation: portrait) {
         padding: 0 10px;
         margin-top: 8vh;
+    }
+
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
+        padding: 0 5px;
+        margin-top: 3vh;
     }
 `
 
@@ -94,9 +104,10 @@ const MainBackDropHeader = styled.h1`
         margin: 0;
     }
 
-    /* @media only screen and (min-width: 600px) {
-        font-size: 10px;
-    } */
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
+        font-size: 35px;
+        margin: 0;
+    }
 `
 
 const SecondaryHeader = styled.h2`
@@ -109,6 +120,10 @@ const SecondaryHeader = styled.h2`
     padding-bottom: 5px;
 
     @media only screen and (max-width: 650px) {
+        font-size: 11px;
+    }
+
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
         font-size: 11px;
     }
 

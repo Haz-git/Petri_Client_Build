@@ -13,6 +13,11 @@ const BlockDetailMain = styled.div`
         display: block;
         margin-top: 100px;
     }
+
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
+        display: block;
+        margin-top: 100px;
+    }
 `
 const BlockDetailImg = styled.div`
     display: inline-block;
@@ -44,6 +49,11 @@ const BlockDetailHeader = styled.h2`
         padding: 8px 8px;
     }
 
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
+        font-size: 20px;
+        padding: 8px 8px;
+    }
+
 `
 
 const BlockDetailDesc = styled.p`
@@ -57,6 +67,12 @@ const BlockDetailDesc = styled.p`
     padding-right: 45px;
 
     @media only screen and (max-width: 650px) {
+        font-size: 13px;
+        padding-left: 35px;
+        padding-right: 35px;
+    }
+
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
         font-size: 13px;
         padding-left: 35px;
         padding-right: 35px;
@@ -75,6 +91,10 @@ const StyledImg = styled.img`
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 1);
 
     @media only screen and (max-width: 600px) {
+        margin-top: 20px;
+    }
+
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
         margin-top: 20px;
     }
 `
@@ -121,7 +141,7 @@ const BodyBlock = ({Title, Description, Img, Reverse}) => {
     }
 
     if (Reverse === 'true') {
-        if (viewWidth <= 600 && viewWidth !== 0 || window.innerWidth <= 600) {
+        if (viewWidth <= 860 && viewWidth !== 0 || window.innerWidth <= 860) {
             return (
                 <Fade>
                     <BlockDetailMain>

@@ -21,6 +21,11 @@ const FooterDiv = styled.div`
         padding: 10px 10px;
     }
 
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
+        padding: 10px 10px;
+    }
+    
+
 `
 const FooterHeader = styled.h2`
     margin: 0;
@@ -30,6 +35,10 @@ const FooterHeader = styled.h2`
     font-weight: 100;
 
     @media only screen and (max-width: 650px) {
+        font-size: 8px;
+    }
+
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
         font-size: 8px;
     }
 `
@@ -50,6 +59,11 @@ const GithubIcon = styled(GithubSquare)`
     width: 50px;
 
     @media only screen and (max-width: 650px) {
+        height: 20px;
+        width: 20px;
+    }
+
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
         height: 20px;
         width: 20px;
     }

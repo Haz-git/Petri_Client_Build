@@ -14,16 +14,16 @@ const MainContainer = styled.div`
     transform: perspective(500px) rotateY(-15deg);
     overflow: hidden;
 
-    @media only screen and (max-width: 650px) and (min-width: 400px) and (orientation: portrait) {
+    @media only screen and (max-width: 650px) and (min-width: 400px) {
 
         transform: scale(0.45) perspective(1200px) rotateY(-15deg);
         transform-origin: 0 0;
-        width: 189%;
+        width: 188%;
         margin-left: 5px;
         overflow: hidden;
     }
 
-    @media only screen and (max-width: 400px) and (min-width: 325px) and (orientation: portrait) {
+    @media only screen and (max-width: 400px) and (min-width: 325px) {
 
         transform: scale(0.40) perspective(1200px) rotateY(-15deg);
         transform-origin: 0 0;
@@ -32,7 +32,7 @@ const MainContainer = styled.div`
         overflow: hidden;
     }
 
-    @media only screen and (max-width: 365px) and (min-width: 355px) and (orientation: portrait) {
+    @media only screen and (max-width: 365px) and (min-width: 355px) {
         transform: scale(0.4) perspective(1200px) rotateY(-15deg);
         transform-origin: 0 0;
         width: 213%;
@@ -40,7 +40,7 @@ const MainContainer = styled.div`
         overflow: hidden;
     }
 
-    @media only screen and (max-width: 380px) and (min-width: 365px) and (orientation: portrait) {
+    @media only screen and (max-width: 380px) and (min-width: 365px) {
 
         transform: scale(0.4) perspective(1200px) rotateY(-15deg);
         transform-origin: 0 0;
@@ -49,13 +49,22 @@ const MainContainer = styled.div`
         overflow: hidden;
     }
 
-    @media only screen and (max-width: 325px) and (orientation: portrait) {
+    @media only screen and (max-width: 325px) {
         transform: scale(0.35) perspective(1200px) rotateY(-15deg);
         transform-origin: 0 0;
         width: 250%;
         margin-left: 5px;
         overflow: hidden;
     }
+
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
+        transform: scale(0.45) perspective(1200px) rotateY(-15deg);
+        transform-origin: 0 0;
+        width: 187%;
+        margin-left: 5px;
+        overflow: hidden;
+    }
+
 `
 
 const SideBarGraphic = styled.div`

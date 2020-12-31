@@ -36,6 +36,11 @@ const StyledFeatureHeader = styled.h2`
         margin-top: 10px;
         font-size: 28px;
     }
+
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
+        margin-top: 10px;
+        font-size: 28px;
+    }
 `
 
 const StyledLogoHeader = styled.span`
@@ -45,6 +50,10 @@ const StyledLogoHeader = styled.span`
     font-weight: 400;
 
     @media only screen and (max-width: 650px)  {
+        font-size: 28px;
+    }
+
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
         font-size: 28px;
     }
 `
