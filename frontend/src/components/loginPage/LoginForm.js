@@ -149,7 +149,7 @@ const LoginForm = ({ handleSubmit, userLogin, notifier }) => {
                         <SecondaryHeader>Please verify your credentials to continue...</SecondaryHeader>
                     </BrowserView>
                     <MobileView>
-                        <SecondaryHeader>It looks like you're on a mobile device. We're Sorry! Unfortunately, Petri currently not compatible for use on mobile devices. Please use Petri on your desktop or tablet.</SecondaryHeader>
+                        <SecondaryHeader>It looks like you're on a mobile device. Unfortunately, Petri is currently not compatible with mobile devices. Please use Petri on your desktop or tablet.</SecondaryHeader>
                     </MobileView>
                     <div>
                         <form onSubmit={handleSubmit(dispatchFormValues)}>
