@@ -7,7 +7,7 @@ The baseURL referring to localhost:8080 is for the development environment. Will
 */
 
 export default axios.create({
-    baseURL: 'http://localhost:8080/api',
-    // baseURL: 'https://petri-webapp-heroku.herokuapp.com/api',
+    // baseURL: 'http://localhost:8080/api',
+    baseURL: 'https://petri-webapp-heroku.herokuapp.com/api',
     withCredentials: true,
 });
