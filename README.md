@@ -21,7 +21,7 @@ My obsession with coding, creation, and research led to the development of *Petr
 - Material UI
 - React-Bootstrap
 
-*For more, see **acknowledgements***
+*For more, see **acknowledgements***.
 
 ### Usage
 ---
@@ -52,6 +52,8 @@ My obsession with coding, creation, and research led to the development of *Petr
     - Midnight Ocean / Himalayan Snow Themes
     - Change username, first/last names, email, and profile picture.
 
+***Petri*'s landing page (not the web-app) is fully mobile responsive for both portrait and landscape mode! In the future, integrating the web-app to mobile will be considered!**
+
 ### Feature Highlights
 ---
 **Here are just a few features in *Petri***.
@@ -67,6 +69,8 @@ In the *Petri's* **Calendar**, drag and drop many events that may overlap across
 *Petri's* **Lazy Lac-Z** is a *custom-made* science tool for the Beta-Galactosidase assay we perform frequently in our lab. The graphs are generated dynamically based on user inputs, and all data is saved server-sided.
 
 ![](https://media.giphy.com/media/INCuZNmEmsGDfKIscA/giphy.gif)
+
+
 
     
 ### Contributing
