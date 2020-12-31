@@ -30,6 +30,10 @@ const ContentContainer = styled.div`
     @media only screen and (max-width: 650px) and (orientation: portrait) {
         display: block;
     }
+
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
+        display: block;
+    }
  
 `
 const HeaderContainer = styled.div`
@@ -42,6 +46,11 @@ const HeaderContainer = styled.div`
     @media only screen and (max-width: 650px) and (orientation: portrait) {
         padding: 5px 5px;
     }
+
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
+        padding: 5px 5px;
+    }
+    
 `
 
 export const MainHeader = styled.h1`
@@ -62,6 +71,14 @@ export const MainHeader = styled.h1`
         overflow: hidden;
         margin-bottom: 15px;
     }
+
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
+        font-size: 30px;
+        padding: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        margin-bottom: 15px;
+    }
 `
 export const SecondaryHeader = styled.h2`
     margin: 0;
@@ -75,6 +92,13 @@ export const SecondaryHeader = styled.h2`
         font-size: 13px;
         padding: 0;
     }
+
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
+        font-size: 13px;
+        padding: 0;
+    }
+
+
 `
 
 const ThirdHeader = styled.h3`
@@ -86,6 +110,12 @@ const ThirdHeader = styled.h3`
     color: #293241;
 
     @media only screen and (max-width: 650px) and (orientation: portrait) {
+        font-size: 15px;
+        font-weight: 500;
+        padding-top: 15px;
+    }
+
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
         font-size: 15px;
         font-weight: 500;
         padding-top: 15px;
@@ -102,6 +132,10 @@ const FormContainer = styled.div`
 
     @media only screen and (max-width: 650px) {
         padding: 0 25px;
+    }
+
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
+        padding: 0 80px;
     }
 
 `
@@ -132,6 +166,11 @@ export const StyledField = styled(Field)`
         height: 35px;
         margin: 4px 0;
     }
+
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
+        height: 35px;
+        margin: 4px 0;
+    }
 `
 
 export const StyledLabel = styled.label`
@@ -143,12 +182,20 @@ export const StyledLabel = styled.label`
     @media only screen and (max-width: 650px) {
         font-size: 13px;
     }
+
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
+        font-size: 13px;
+    }
 `
 
 const InputContainer = styled.div`
     padding-top: 50px;
 
     @media only screen and (max-width: 650px) and (orientation: portrait) {
+        padding-top: 10px;
+    }
+
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
         padding-top: 10px;
     }
 `
@@ -159,6 +206,11 @@ export const InputFieldContainer = styled.div`
     text-align: left;
 
     @media only screen and (max-width: 650px) and (orientation: portrait) {
+        padding-top: 4px;
+        padding-bottom: 4px;
+    }
+
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
         padding-top: 4px;
         padding-bottom: 4px;
     }
@@ -192,6 +244,12 @@ const StyledImg = styled.img`
     }
 
     @media only screen and (max-width: 650px) and (orientation: portrait) {
+        max-height: 0;
+        max-width: 0;
+        border-radius: none;
+    }
+
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
         max-height: 0;
         max-width: 0;
         border-radius: none;
