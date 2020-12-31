@@ -7,6 +7,12 @@ import Fade from 'react-reveal/Fade';
 
 import LoadingPage from '../LoadingPage';
 
+//We will show a different button and a label on mobile view.
+
+import Button from '@material-ui/core/Button';
+
+import { MobileView, BrowserView } from 'react-device-detect';
+
 //Styles:
 import {
     MainHeader,
@@ -138,8 +144,13 @@ const LoginForm = ({ handleSubmit, userLogin, notifier }) => {
             />
             <BackgroundWrapper>
                 <MainContainer>
-                    <MainHeader>Hey, there!</MainHeader>
-                    <SecondaryHeader>Please log in to continue...</SecondaryHeader>
+                    <MainHeader>Login</MainHeader>
+                    <BrowserView>
+                        <SecondaryHeader>Please verify your credentials to continue...</SecondaryHeader>
+                    </BrowserView>
+                    <MobileView>
+                        <SecondaryHeader>It looks like you're on a mobile device. We're Sorry! Unfortunately, Petri currently not compatible for use on mobile devices. Please use Petri on your desktop or tablet.</SecondaryHeader>
+                    </MobileView>
                     <div>
                         <form onSubmit={handleSubmit(dispatchFormValues)}>
                             {renderErrorText()}
@@ -152,7 +163,14 @@ const LoginForm = ({ handleSubmit, userLogin, notifier }) => {
                                 <StyledField name='password' component='input' type='password'></StyledField>
                             </InputFieldContainer>
                             <InputFieldContainer>
-                                <StyledButton type='submit'>Login</StyledButton>
+                                <BrowserView>
+                                    <StyledButton type='submit'>Login</StyledButton>
+                                </BrowserView>
+                                <MobileView>
+                                    <Button variant='contained' disabled style={{ width: '100%'}}>
+                                         Please Login using other device
+                                    </Button>
+                                </MobileView>
                             </InputFieldContainer>
                         </form>
                     </div>
