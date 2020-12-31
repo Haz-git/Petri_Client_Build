@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import userSignUp from '../../redux/userSignUp/userSignUpActions';
 import signupImg from '../../Img/signupImg.jpg';
+import VerifyError from './VerifyError';
+import Fade from 'react-reveal/Fade';
 
 //Styles:
 
@@ -261,8 +263,71 @@ const StyledImg = styled.img`
 //Render:
 const SignUpForm = ({ handleSubmit, userSignUp }) => {
 
+    //Verification handlers:
+
+    const [ areFieldsEmpty, setAreFieldsEmpty ] = useState(undefined);
+    const [ hasInvalidUsernameLength, setHasInvalidUsernameLength ] = useState(undefined);
+    //We will use the browser to handle email verification:
+    // const [ hasInvalidEmail, setHasInvalidEmail ] = useState(undefined);
+    const [ hasInvalidPasswordLength, setHasInvalidPasswordLength ] = useState(undefined);
+    const [ invalidPasswordMatch, setInvalidPasswordMatch ] = useState(undefined);
+
+    //Verification Checker Functions:
+
+    const fieldEmptyChecker = (obj) => {
+        if (Object.keys(obj).length === 0 && obj.constructor === Object) {
+            return true;
+        } else { 
+            return false;
+        }
+    }
+
+    const usernameLengthChecker = (string) => {
+        if (string.trim().length > 4 && string.trim().length < 15) {
+            //meets requirements
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    const passwordLengthChecker = (string) => {
+        if (string.trim().length > 6 && string.trim().length < 20) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    const passwordMatchChecker = (password, passwordConfirm) => {
+        if (password.trim().normalize() === passwordConfirm.trim().normalize()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    //Dispatch Function:
+
     const dispatchFormValues = formValues => {
-        userSignUp(formValues);
+
+        setAreFieldsEmpty(fieldEmptyChecker(formValues));
+
+        if (formValues.userName !== undefined) {
+            setHasInvalidUsernameLength(usernameLengthChecker(formValues.userName));
+        }
+
+        if (formValues.password !== undefined) {
+            setHasInvalidPasswordLength(passwordLengthChecker(formValues.password));
+        }
+
+        if (formValues.password !== undefined && formValues.passwordConfirm !== undefined) {
+            setInvalidPasswordMatch(passwordMatchChecker(formValues.password, formValues.passwordConfirm))
+        }
+
+        if ( areFieldsEmpty === false && hasInvalidUsernameLength === false && hasInvalidPasswordLength === false && invalidPasswordMatch === false) {
+            userSignUp(formValues);
+        }
     }
 
     return (
@@ -279,6 +344,7 @@ const SignUpForm = ({ handleSubmit, userSignUp }) => {
                                     <MainHeader>Join The Colony</MainHeader>
                                     <SecondaryHeader>Create an account to increase your research workflow by writing bio-note snippets, setting task reminders, and organizing work schedule.</SecondaryHeader>
                                     <ThirdHeader>Already signed up? Login above!</ThirdHeader>
+                                    <VerifyError title='Please fill in all information.' render={areFieldsEmpty} center='true' />
                                 </HeaderContainer>
                                     <InputContainer>
                                         <InputFieldContainer>
@@ -292,18 +358,21 @@ const SignUpForm = ({ handleSubmit, userSignUp }) => {
                                         <InputFieldContainer>
                                             <StyledLabel>Username</StyledLabel>
                                             <StyledField name='userName' component='input'></StyledField>
+                                            <VerifyError title='Your username must be 4 - 15 characters.' render={hasInvalidUsernameLength} />
                                         </InputFieldContainer>
                                         <InputFieldContainer>
                                             <StyledLabel>Email Address</StyledLabel>
-                                            <StyledField name='email' component='input'></StyledField>
+                                            <StyledField name='email' component='input' type='email'></StyledField>
                                         </InputFieldContainer>
                                         <InputFieldContainer>
                                             <StyledLabel>Password</StyledLabel>
                                             <StyledField name='password' component='input' type='password'></StyledField>
+                                            <VerifyError title='Your password must be 6 - 20 characters.' render={hasInvalidPasswordLength} />
                                         </InputFieldContainer>
                                         <InputFieldContainer>
                                             <StyledLabel>Confirm Password</StyledLabel>
                                             <StyledField name='passwordConfirm' component='input' type='password'></StyledField>
+                                            <VerifyError title='Your two passwords do not match!' render={invalidPasswordMatch} />
                                         </InputFieldContainer>
                                     </InputContainer>
                                 <ButtonContainer>
