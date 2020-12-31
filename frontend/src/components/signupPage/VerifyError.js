@@ -39,6 +39,14 @@ const StyledTextVisible = styled.label`
     font-weight: 100;
     margin: 0;
     z-index: 10;
+
+    @media only screen and (max-width: 650px) and (orientation: portrait) {
+        font-size: 9px;
+    }
+
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
+        font-size: 9px;
+    }
 `
 
 const StyledTextInvisible = styled.label`
@@ -49,6 +57,14 @@ const StyledTextInvisible = styled.label`
     opacity: 0;
     margin: 0;
     z-index: 10;
+
+    @media only screen and (max-width: 650px) and (orientation: portrait) {
+        font-size: 9px;
+    }
+
+    @media only screen and (max-width: 850px) and (orientation: landscape) {
+        font-size: 9px;
+    }
 `
 
 
