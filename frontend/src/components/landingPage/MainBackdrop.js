@@ -18,7 +18,12 @@ const StyledBackdrop = styled.div`
     justify-content: center;
     padding: 30px 30px;
     width: 100%;
-    background: linear-gradient(180deg, rgba(20,22,40,1) 40%, rgba(23,24,45,1) 75%, rgba(34,35,65,1) 94%);
+    background: linear-gradient(
+        180deg,
+        rgba(20, 22, 40, 1) 40%,
+        rgba(23, 24, 45, 1) 75%,
+        rgba(34, 35, 65, 1) 94%
+    );
     min-height: 500px;
     align-items: flex-start;
 
@@ -56,8 +61,7 @@ const StyledBackdrop = styled.div`
 
     overflow-x: hidden;
     overflow-y: hidden;
-
-`
+`;
 const WrapperContainer = styled.div`
     display: flex;
     align-items: center;
@@ -71,7 +75,7 @@ const WrapperContainer = styled.div`
         display: block;
         overflow: hidden;
     }
-`
+`;
 
 const HeaderContainer = styled.div`
     margin-top: 15vh;
@@ -86,11 +90,9 @@ const HeaderContainer = styled.div`
         padding: 0 5px;
         margin-top: 3vh;
     }
-`
+`;
 
-const GraphicContainer = styled.div`
-
-`
+const GraphicContainer = styled.div``;
 
 const MainBackDropHeader = styled.h1`
     margin: 20px 0;
@@ -108,7 +110,7 @@ const MainBackDropHeader = styled.h1`
         font-size: 35px;
         margin: 0;
     }
-`
+`;
 
 const SecondaryHeader = styled.h2`
     margin: 0;
@@ -130,7 +132,7 @@ const SecondaryHeader = styled.h2`
     /* @media only screen and (min-width: 600px) {
         font-size: 10px;
     } */
-`
+`;
 
 const StyledCreateIcon = styled(Create)`
     height: 32px;
@@ -140,23 +142,22 @@ const StyledCreateIcon = styled(Create)`
         height: 22px;
         width: 22px;
     }
-`
+`;
 const ColorButton = withStyles((theme) => ({
     root: {
-      color: theme.palette.getContrastText(purple[500]),
-      marginTop: '30px',
-      [theme.breakpoints.down('md')]: {
-        height: '40px',
-        width: '185px',
-        fontSize: '10px',
-        marginTop: '10px',
-        marginBottom: '30px',
-
-      },
-      backgroundColor: purple[500],
-      '&:hover': {
-        backgroundColor: purple[700],
-      },
+        color: theme.palette.getContrastText(purple[500]),
+        marginTop: '30px',
+        [theme.breakpoints.down('md')]: {
+            height: '40px',
+            width: '185px',
+            fontSize: '10px',
+            marginTop: '10px',
+            marginBottom: '30px',
+        },
+        backgroundColor: purple[500],
+        '&:hover': {
+            backgroundColor: purple[700],
+        },
     },
 }))(Button);
 
@@ -166,13 +167,12 @@ const StyledLink = styled(Link)`
     &:hover {
         text-decoration: none;
     }
-`
+`;
 
 const LearnMoreDivider = styled.div`
     position: absolute;
     bottom: 20px;
-`
-
+`;
 
 //Render:
 
@@ -181,44 +181,52 @@ const Mainbackdrop = () => {
         //This component is the backdrop image, text, and color the user should see on visit to the landing page.
         <>
             <StyledBackdrop>
-                    <HeaderContainer>
-                        <WrapperContainer>
-                            <div>
-                                <Fade top>
-                                    <MainBackDropHeader>Petri</MainBackDropHeader>
-                                </Fade>
-                                <Fade bottom>
-                                    <SecondaryHeader>A utility web application for optimizing your research workflow.</SecondaryHeader>
-                                    <SecondaryHeader>Focus on your research. We'll make it easy to stay on track.</SecondaryHeader>
-                                </Fade>
-                                <Fade>
-                                    <StyledLink to='/signup'>
-                                        <ColorButton
-                                            style={{
+                <HeaderContainer>
+                    <WrapperContainer>
+                        <div>
+                            <Fade top>
+                                <MainBackDropHeader>Petri</MainBackDropHeader>
+                            </Fade>
+                            <Fade bottom>
+                                <SecondaryHeader>
+                                    A utility web application for optimizing
+                                    your research workflow.
+                                </SecondaryHeader>
+                                <SecondaryHeader>
+                                    Focus on your research. We'll make it easy
+                                    to stay on track.
+                                </SecondaryHeader>
+                            </Fade>
+                            <Fade>
+                                <StyledLink to="/signup">
+                                    <ColorButton
+                                        style={
+                                            {
                                                 // width: '250px',
                                                 // height: '60px',
                                                 // marginTop: '30px',
-                                            }}
-                                            variant='contained'
-                                            size='large'
-                                            startIcon={<StyledCreateIcon />}
-                                        >
-                                            Register for free
-                                        </ColorButton>
-                                    </StyledLink>
-                                </Fade>
-                            </div>
-                            <GraphicContainer>
-                                <BackdropGraphic />
-                            </GraphicContainer>
-                        </WrapperContainer>
-                    </HeaderContainer>
+                                            }
+                                        }
+                                        variant="contained"
+                                        size="large"
+                                        startIcon={<StyledCreateIcon />}
+                                    >
+                                        Register for free
+                                    </ColorButton>
+                                </StyledLink>
+                            </Fade>
+                        </div>
+                        <GraphicContainer>
+                            <BackdropGraphic />
+                        </GraphicContainer>
+                    </WrapperContainer>
+                </HeaderContainer>
                 <LearnMoreDivider>
                     <LearnMoreArrow />
                 </LearnMoreDivider>
             </StyledBackdrop>
         </>
-    )
-}
+    );
+};
 
 export default Mainbackdrop;
