@@ -1,4 +1,3 @@
-import history from '../historyObject';
 import { userLogOut } from '../redux/logout_action';
 
 export const logouthelper = () => {
@@ -7,5 +6,4 @@ export const logouthelper = () => {
     localStorage.removeItem('persist:root');
     userLogOut();
     window.location.reload();
-
-}
+};
