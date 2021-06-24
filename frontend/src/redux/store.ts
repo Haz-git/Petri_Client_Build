@@ -25,8 +25,7 @@ const persistConfig = {
 //Creating Enhancers:
 
 const composeEnhancers =
-    (window['__REDUX_DEVTOOLS_EXTENSION_COMPOSE__'] as typeof compose) ||
-    compose;
+    (window && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
 //RootReducer:
 const appReducer = combineReducers({
