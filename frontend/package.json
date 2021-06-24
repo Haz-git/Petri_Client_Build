@@ -6,7 +6,7 @@
   "dependencies": {
     "@brainhubeu/react-carousel": "^1.19.26",
     "@ckeditor/ckeditor5-build-classic": "^23.1.0",
-    "@ckeditor/ckeditor5-react": "^3.0.0",
+    "@ckeditor/ckeditor5-react": "^3.0.2",
     "@fullcalendar/daygrid": "^5.4.0",
     "@fullcalendar/interaction": "^5.4.0",
     "@fullcalendar/react": "^5.4.0",
@@ -25,11 +25,11 @@
     "lodash": "^4.17.20",
     "moment": "^2.29.1",
     "normalize.css": "^8.0.1",
-    "react": "^16.13.1",
+    "react": "^16.14.0",
     "react-avatar-editor": "^11.0.13",
     "react-bootstrap": "^1.4.0",
     "react-device-detect": "^1.15.0",
-    "react-dom": "^16.13.1",
+    "react-dom": "^16.14.0",
     "react-dropzone": "^11.2.4",
     "react-icons": "^3.11.0",
     "react-redux": "^7.2.1",
@@ -56,7 +56,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "pushGit": "git checkout master && git merge migrate && git push && git checkout migrate"
   },
   "eslintConfig": {
     "extends": "react-app"
