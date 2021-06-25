@@ -1,10 +1,5 @@
 import { Action } from './userTaskLogInterfaces';
 import { ActionType } from './action-types';
-// import {
-//     USER_NEW_TASK,
-//     USER_GET_TASKS,
-//     USER_DELETED_TASK,
-// } from './userTaskLogTypes';
 
 const initialState = {};
 
