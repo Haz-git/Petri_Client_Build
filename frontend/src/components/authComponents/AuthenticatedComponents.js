@@ -16,7 +16,10 @@ class AuthenticatedComponents extends Component {
         const jwt = getJWT();
 
         //If there's no JWT present in the localstorage, no JWT must be sent over from server, meaning that login is wrong. Push the user back to the login page.
-        if (!jwt) {
+        if (
+            !jwt ||
+            (Object.keys(jwt).length === 0 && jwt.constructor === Object)
+        ) {
             history.push('/login');
         }
 

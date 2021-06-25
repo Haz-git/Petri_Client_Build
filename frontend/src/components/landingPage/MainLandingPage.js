@@ -11,7 +11,6 @@ import MainBodyblock from './MainBodyblock';
 import Footer from './Footer';
 
 const MainLandingPage = () => {
-
     /*
         When the user enters the landing page, this component is the master component that is rendered first. Using the util function getJWT(), grab any JWT stored in the localstorage. If the user has a JWT, then push the user to the dashboard.
     */
@@ -19,19 +18,22 @@ const MainLandingPage = () => {
     useEffect(() => {
         const jwtCheck = getJWT();
 
-        if (jwtCheck !== undefined && jwtCheck !== null) {
+        if (
+            jwtCheck &&
+            Object.keys(jwtCheck).length !== 0 &&
+            jwtCheck.constructor !== Object
+        ) {
             history.push('/dashboard');
         }
-    }, [])
-
+    }, []);
 
     return (
         <>
             <MainBackdrop />
             <MainBodyblock />
-            <Footer /> 
+            <Footer />
         </>
-    )
-}
+    );
+};
 
 export default MainLandingPage;

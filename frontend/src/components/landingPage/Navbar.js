@@ -18,7 +18,6 @@ import { Tools } from '@styled-icons/entypo/Tools';
 import { LogOut } from '@styled-icons/ionicons-sharp/LogOut';
 import { SettingsApplications } from '@styled-icons/material/SettingsApplications';
 
-
 //Styling:
 
 const DefaultNavbar = styled.div`
@@ -31,12 +30,10 @@ const DefaultNavbar = styled.div`
     position: sticky;
     top: 0;
     z-index: 99999 !important;
-    
-
-`
+`;
 const NavLinks = styled.div`
     display: flex;
-`
+`;
 
 const DefaultLink = styled(Link)`
     text-decoration: none !important;
@@ -51,7 +48,7 @@ const DefaultLink = styled(Link)`
         height: 3px;
         width: 0;
         background: transparent;
-        transition: width .5s ease, background-color .5s ease;
+        transition: width 0.5s ease, background-color 0.5s ease;
     }
 
     &:hover::after {
@@ -94,9 +91,7 @@ const DefaultLink = styled(Link)`
         white-space: nowrap;
         overflow: hidden;
     }
-
-    
-`
+`;
 
 const LogoLink = styled(Link)`
     display: flex;
@@ -110,31 +105,29 @@ const LogoLink = styled(Link)`
     &:hover {
         color: white !important;
     }
-
-`
+`;
 
 const DashboardNavbar = styled.div`
-    height: 100%; 
-    width: fit-content; 
-    position: fixed; 
-    z-index: 99999; 
-    top: 0; 
+    height: 100%;
+    width: fit-content;
+    position: fixed;
+    z-index: 99999;
+    top: 0;
     left: 0;
-    background-color:${(props) => props.theme.navBgColor}; 
-    overflow-x: hidden; 
+    background-color: ${(props) => props.theme.navBgColor};
+    overflow-x: hidden;
     padding-top: 10px;
     text-align: center;
     transition: all 0.5s linear;
     border-right: ${(props) => props.theme.navBorderColor};
-
-`
+`;
 
 const DashboardLink = styled(Link)`
     padding: 10px 10px;
     text-decoration: none !important;
     font-size: 25px;
     display: block;
-`
+`;
 const StyledImg = styled.img`
     /* max-width: 500px; */
     max-width: 30%;
@@ -165,9 +158,7 @@ const StyledImg = styled.img`
         max-height: 15%;
         object-fit: cover;
     }
-
-
-`
+`;
 const StyledLogoHeader = styled.h1`
     margin: 0;
     font-weight: 100;
@@ -189,16 +180,14 @@ const StyledLogoHeader = styled.h1`
     @media only screen and (max-width: 850px) and (orientation: landscape) {
         font-size: 30px;
     }
-
-`
+`;
 const StyledLogoMiniContainer = styled.div`
     margin: -10px;
 
     @media only screen and (max-width: 325px) and (orientation: portrait) {
         padding-bottom: 12px;
     }
-
-`
+`;
 const StyledMiniLogo = styled.p`
     margin: 0;
     font-size: 16px;
@@ -223,8 +212,7 @@ const StyledMiniLogo = styled.p`
         font-size: 10px;
         margin-left: 5px;
     }
-
-`
+`;
 const StyledHomeHeart = styled(HomeHeart)`
     margin-bottom: 3px;
     height: 31px;
@@ -234,7 +222,7 @@ const StyledHomeHeart = styled(HomeHeart)`
     ${DashboardLink}:hover & {
         color: ${(props) => props.theme.navIconHoverColor};
     }
-`
+`;
 
 const StyledVideoCamera = styled(VideoCamera)`
     margin-bottom: 3px;
@@ -245,7 +233,7 @@ const StyledVideoCamera = styled(VideoCamera)`
     ${DashboardLink}:hover & {
         color: ${(props) => props.theme.navIconHoverColor};
     }
-`
+`;
 
 const StyledChatIcon = styled(ChatLeftDotsFill)`
     margin-bottom: 3px;
@@ -256,7 +244,7 @@ const StyledChatIcon = styled(ChatLeftDotsFill)`
     ${DashboardLink}:hover & {
         color: ${(props) => props.theme.navIconHoverColor};
     }
-`
+`;
 
 const StyledCalendar = styled(Calendar)`
     margin-bottom: 3px;
@@ -267,7 +255,7 @@ const StyledCalendar = styled(Calendar)`
     ${DashboardLink}:hover & {
         color: ${(props) => props.theme.navIconHoverColor};
     }
-`
+`;
 
 const StyledFolder = styled(Folder)`
     margin-bottom: 3px;
@@ -278,7 +266,7 @@ const StyledFolder = styled(Folder)`
     ${DashboardLink}:hover & {
         color: ${(props) => props.theme.navIconHoverColor};
     }
-`
+`;
 
 const StyledTools = styled(Tools)`
     margin-bottom: 3px;
@@ -289,7 +277,7 @@ const StyledTools = styled(Tools)`
     ${DashboardLink}:hover & {
         color: ${(props) => props.theme.navIconHoverColor};
     }
-`
+`;
 const StyledLogOut = styled(LogOut)`
     margin-bottom: 3px;
     height: 30px;
@@ -299,7 +287,7 @@ const StyledLogOut = styled(LogOut)`
     ${DashboardLink}:hover & {
         color: ${(props) => props.theme.navIconHoverColor};
     }
-`
+`;
 
 const StyledDashboardLogo = styled.img`
     margin-bottom: 10px;
@@ -307,7 +295,7 @@ const StyledDashboardLogo = styled.img`
     width: 65px;
     color: ${(props) => props.theme.navIconHoverColor};
     object-fit: cover;
-`
+`;
 
 const StyledLinkLabel = styled.label`
     display: block;
@@ -320,7 +308,7 @@ const StyledLinkLabel = styled.label`
     ${DashboardLink}:hover & {
         color: ${(props) => props.theme.navIconHoverColor};
     }
-`
+`;
 
 const StyledCogs = styled(SettingsApplications)`
     margin-bottom: 3px;
@@ -331,19 +319,16 @@ const StyledCogs = styled(SettingsApplications)`
     ${DashboardLink}:hover & {
         color: ${(props) => props.theme.navIconHoverColor};
     }
-`
+`;
 
 const StyledDivider = styled.hr`
     background-color: ${(props) => props.theme.LogoDividerColor};
     margin: 0;
-`
-
-
+`;
 
 //Component Structure:
 
 const Navbar = ({ StateJwt }) => {
-
     /*
         The navbar will render either the landing page sticky top navbar, or the dashboard side navbar based on if the user has a JWT. This is a very simple authentication method dependent on the JWT sent over from the server-side if the user has entered their login credentials correctly.
     */
@@ -355,87 +340,84 @@ const Navbar = ({ StateJwt }) => {
         setJWT(jwt2);
     }, [StateJwt]);
 
-
-
-    const renderNavOnJWT = jwt => {
-
-        if (jwt) {
+    const renderNavOnJWT = (jwt) => {
+        if (
+            jwt &&
+            Object.keys(jwt).length !== 0 &&
+            jwt.constructor !== Object
+        ) {
             //If the user has a JWT, render the dashboard navbar.
             return (
                 <DashboardNavbar>
                     <StyledDashboardLogo src={petriLogoEdit2} />
                     <StyledDivider />
-                    <DashboardLink to='/dashboard'>
+                    <DashboardLink to="/dashboard">
                         <StyledHomeHeart />
                         <StyledLinkLabel>DASHBOARD</StyledLinkLabel>
                     </DashboardLink>
-                    <DashboardLink to='/messenger'>
+                    <DashboardLink to="/messenger">
                         <StyledChatIcon />
                         <StyledLinkLabel>MESSENGER</StyledLinkLabel>
                     </DashboardLink>
-                    <DashboardLink to='/calendar'>
+                    <DashboardLink to="/calendar">
                         <StyledCalendar />
                         <StyledLinkLabel>CALENDAR</StyledLinkLabel>
                     </DashboardLink>
-                    <DashboardLink to='/createbionote'>
+                    <DashboardLink to="/createbionote">
                         <StyledFolder />
                         <StyledLinkLabel>BIONOTES</StyledLinkLabel>
                     </DashboardLink>
-                    <DashboardLink to='/scitools'>
+                    <DashboardLink to="/scitools">
                         <StyledTools />
                         <StyledLinkLabel>SCI-TOOLS</StyledLinkLabel>
                     </DashboardLink>
-                    <DashboardLink to='/settings'>
+                    <DashboardLink to="/settings">
                         <StyledCogs />
                         <StyledLinkLabel>SETTINGS</StyledLinkLabel>
                     </DashboardLink>
-                    <DashboardLink to='/logout'>
+                    <DashboardLink to="/logout">
                         <StyledLogOut />
                         <StyledLinkLabel>LOGOUT</StyledLinkLabel>
                     </DashboardLink>
                 </DashboardNavbar>
-            )
+            );
         } else {
             //Original landing page navbar:
             return (
                 <DefaultNavbar>
-                    <LogoLink to='/'>
-                        <StyledImg src={petriLogoEdit2}>
-                        </StyledImg>
-                            <StyledLogoHeader>
-                                Petri
-                                <StyledLogoMiniContainer>
-                                    <StyledMiniLogo>Research workflow upgraded</StyledMiniLogo>
-                                </StyledLogoMiniContainer>
-                            </StyledLogoHeader>
+                    <LogoLink to="/">
+                        <StyledImg src={petriLogoEdit2}></StyledImg>
+                        <StyledLogoHeader>
+                            Petri
+                            <StyledLogoMiniContainer>
+                                <StyledMiniLogo>
+                                    Research workflow upgraded
+                                </StyledMiniLogo>
+                            </StyledLogoMiniContainer>
+                        </StyledLogoHeader>
                     </LogoLink>
                     <NavLinks>
-                        <DefaultLink to='/signup'>Sign up</DefaultLink>
-                        <DefaultLink to='/login' >Log In</DefaultLink>
+                        <DefaultLink to="/signup">Sign up</DefaultLink>
+                        <DefaultLink to="/login">Log In</DefaultLink>
                     </NavLinks>
                 </DefaultNavbar>
-            )
+            );
         }
-    }
+    };
 
+    return <>{renderNavOnJWT(JWT)}</>;
+};
 
-    return (
-        <>
-            {renderNavOnJWT(JWT)}
-        </>
-    )
-}
-
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     if (!state.auth.userLogIn) {
         return {
             StateJwt: state.auth.userLogIn,
-        }
+        };
     } else {
         return {
             StateJwt: state.auth.userLogIn.token,
-        }
+        };
     }
-}
+};
 
 export default connect(mapStateToProps)(Navbar);
