@@ -1,12 +1,21 @@
 import api from '../../api';
-import {
-    USER_NEW_TASK,
-    USER_GET_TASKS,
-    USER_DELETED_TASK,
-} from './userTaskLogTypes';
+import { Dispatch } from 'redux';
+import { ActionType } from './action-types';
+import { Action } from './userTaskLogInterfaces';
+
+interface State {
+    //Indexable Type:
+    auth: {
+        userLogIn: {
+            data: {
+                _id: String;
+            };
+        };
+    };
+}
 
 export function getTasks() {
-    return async (dispatch: Function, getState: Function) => {
+    return async (dispatch: Dispatch<Action>, getState: () => State) => {
         const {
             auth: {
                 userLogIn: {
@@ -14,17 +23,18 @@ export function getTasks() {
                 },
             },
         } = getState();
+
         const response = await api.post('/users/getTasks', { _id });
 
         dispatch({
-            type: USER_GET_TASKS,
+            type: ActionType.USER_GET_TASKS,
             payload: response.data.existingUserTaskList,
         });
     };
 }
 
 export function addNewTask(data: string) {
-    return async (dispatch, getState) => {
+    return async (dispatch: Dispatch<Action>, getState: () => State) => {
         const {
             auth: {
                 userLogIn: {
@@ -36,14 +46,14 @@ export function addNewTask(data: string) {
         const response = await api.post(`/users/task`, { data, _id });
 
         dispatch({
-            type: USER_NEW_TASK,
+            type: ActionType.USER_NEW_TASK,
             payload: response.data.userNewTaskList,
         });
     };
 }
 
 export function deleteTask(task) {
-    return async (dispatch, getState) => {
+    return async (dispatch: Dispatch<Action>, getState: () => State) => {
         const {
             auth: {
                 userLogIn: {
@@ -55,7 +65,7 @@ export function deleteTask(task) {
         const response = await api.post(`/users/task/delete`, { task, _id });
 
         dispatch({
-            type: USER_DELETED_TASK,
+            type: ActionType.USER_DELETED_TASK,
             payload: response.data.afterDeletionTaskList,
         });
     };
