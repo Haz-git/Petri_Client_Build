@@ -1,4 +1,3 @@
-import { DispatchProp } from 'react-redux';
 import api from '../../api';
 import {
     USER_NEW_TASK,
@@ -7,7 +6,7 @@ import {
 } from './userTaskLogTypes';
 
 export function getTasks() {
-    return async (dispatch, getState) => {
+    return async (dispatch: Function, getState: Function) => {
         const {
             auth: {
                 userLogIn: {

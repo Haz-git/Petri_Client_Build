@@ -1,0 +1,5 @@
+export enum ActionType {
+    USER_NEW_TASK = 'USER_NEW_TASK',
+    USER_GET_TASKS = 'USER_GET_TASKS',
+    USER_DELETED_TASK = 'USER_DELETED_TASK',
+}
