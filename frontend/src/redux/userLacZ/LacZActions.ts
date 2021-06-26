@@ -2,23 +2,20 @@ import api from '../../api';
 import { Dispatch } from 'redux';
 import { LacZActionType } from './action-types';
 import { ILacZ } from './lacZInterfaces';
-import {
-    USER_ADD_PROTOCOL,
-    USER_DELETE_PROTOCOL,
-    USER_EDIT_NAME_PROTOCOL,
-    USER_GET_PROTOCOL,
-    USER_ADD_STRAIN_TO_COLLECTION,
-    USER_EDIT_STRAIN_IN_COLLECTION,
-    USER_REMOVE_STRAIN_FROM_COLLECTION,
-    USER_GET_STRAINS_FROM_COLLECTION,
-    USER_ADD_COLLECTION_DATA_TO_STRAIN,
-    USER_ADD_COLLECTION_PARSED_DATA_TO_STRAIN,
-    USER_ADD_LACZ_DATA_TO_STRAIN,
-    USER_ADD_BGAL_DATA_TO_STRAIN,
-} from './LacZTypes';
+
+interface State {
+    //Indexable Type:
+    auth: {
+        userLogIn: {
+            data: {
+                _id: String;
+            };
+        };
+    };
+}
 
 export function getProtocols() {
-    return async (dispatch, getState) => {
+    return async (dispatch: Dispatch<ILacZ>, getState: () => State) => {
         const {
             auth: {
                 userLogIn: {
@@ -30,14 +27,14 @@ export function getProtocols() {
         const response = await api.post('/users/scitools/lacz/get', { _id });
 
         dispatch({
-            type: USER_GET_PROTOCOL,
+            type: LacZActionType.USER_GET_PROTOCOL,
             payload: response.data.laczAssayProtocols,
         });
     };
 }
 
-export function addNewProtocols(protocolName) {
-    return async (dispatch, getState) => {
+export function addNewProtocols(protocolName: String) {
+    return async (dispatch: Dispatch<ILacZ>, getState: () => State) => {
         const {
             auth: {
                 userLogIn: {
@@ -52,14 +49,17 @@ export function addNewProtocols(protocolName) {
         });
 
         dispatch({
-            type: USER_ADD_PROTOCOL,
+            type: LacZActionType.USER_ADD_PROTOCOL,
             payload: response.data.laczAssayProtocols,
         });
     };
 }
 
-export function editProtocolName(newProtocolName, currentProtocolId) {
-    return async (dispatch, getState) => {
+export function editProtocolName(
+    newProtocolName: String,
+    currentProtocolId: String
+) {
+    return async (dispatch: Dispatch<ILacZ>, getState: () => State) => {
         const {
             auth: {
                 userLogIn: {
@@ -75,14 +75,14 @@ export function editProtocolName(newProtocolName, currentProtocolId) {
         });
 
         dispatch({
-            type: USER_EDIT_NAME_PROTOCOL,
+            type: LacZActionType.USER_EDIT_NAME_PROTOCOL,
             payload: response.data.laczAssayProtocols,
         });
     };
 }
 
-export function deleteProtocol(currentProtocolId) {
-    return async (dispatch, getState) => {
+export function deleteProtocol(currentProtocolId: String) {
+    return async (dispatch: Dispatch<ILacZ>, getState: () => State) => {
         const {
             auth: {
                 userLogIn: {
@@ -97,14 +97,17 @@ export function deleteProtocol(currentProtocolId) {
         });
 
         dispatch({
-            type: USER_EDIT_NAME_PROTOCOL,
+            type: LacZActionType.USER_EDIT_NAME_PROTOCOL,
             payload: response.data.laczAssayProtocols,
         });
     };
 }
 
-export function addStrainToCollection(collectionsObject, currentProtocolId) {
-    return async (dispatch, getState) => {
+export function addStrainToCollection(
+    collectionsObject: Object,
+    currentProtocolId: String
+) {
+    return async (dispatch: Dispatch<ILacZ>, getState: () => State) => {
         const {
             auth: {
                 userLogIn: {
@@ -125,14 +128,17 @@ export function addStrainToCollection(collectionsObject, currentProtocolId) {
         //Successfully appending modified strains to collectionStrains array. Just need to render the state of that on the screen using collectionStrains...do we even need a getallStrains()?? I don't think so.
 
         dispatch({
-            type: USER_ADD_STRAIN_TO_COLLECTION,
+            type: LacZActionType.USER_ADD_STRAIN_TO_COLLECTION,
             payload: response.data.laczAssayProtocols,
         });
     };
 }
 
-export function deleteStrainFromCollection(strainId, protocolId) {
-    return async (dispatch, getState) => {
+export function deleteStrainFromCollection(
+    strainId: String,
+    protocolId: String
+) {
+    return async (dispatch: Dispatch<ILacZ>, getState: () => State) => {
         const {
             auth: {
                 userLogIn: {
@@ -151,18 +157,18 @@ export function deleteStrainFromCollection(strainId, protocolId) {
         );
 
         dispatch({
-            type: USER_REMOVE_STRAIN_FROM_COLLECTION,
+            type: LacZActionType.USER_REMOVE_STRAIN_FROM_COLLECTION,
             payload: response.data.laczAssayProtocols,
         });
     };
 }
 
 export function addCollectionInputDataToStrain(
-    strainId,
-    protocolId,
-    inputArray
+    strainId: String,
+    protocolId: String,
+    inputArray: any
 ) {
-    return async (dispatch, getState) => {
+    return async (dispatch: Dispatch<ILacZ>, getState: () => State) => {
         const {
             auth: {
                 userLogIn: {
@@ -182,14 +188,17 @@ export function addCollectionInputDataToStrain(
         );
 
         dispatch({
-            type: USER_ADD_COLLECTION_DATA_TO_STRAIN,
+            type: LacZActionType.USER_ADD_COLLECTION_DATA_TO_STRAIN,
             payload: response.data.laczAssayProtocols,
         });
     };
 }
 
-export function addCollectionChartParsedData(protocolId, newArray) {
-    return async (dispatch, getState) => {
+export function addCollectionChartParsedData(
+    protocolId: String,
+    newArray: any
+) {
+    return async (dispatch: Dispatch<ILacZ>, getState: () => State) => {
         const {
             auth: {
                 userLogIn: {
@@ -208,20 +217,20 @@ export function addCollectionChartParsedData(protocolId, newArray) {
         );
 
         dispatch({
-            type: USER_ADD_COLLECTION_PARSED_DATA_TO_STRAIN,
+            type: LacZActionType.USER_ADD_COLLECTION_PARSED_DATA_TO_STRAIN,
             payload: response.data.laczAssayProtocols,
         });
     };
 }
 
 export function addlacZDataToStrain(
-    strainId,
-    protocolId,
-    lacZArray,
-    minutes,
-    volume
+    strainId: String,
+    protocolId: String,
+    lacZArray: any,
+    minutes: any,
+    volume: any
 ) {
-    return async (dispatch, getState) => {
+    return async (dispatch: Dispatch<ILacZ>, getState: () => State) => {
         const {
             auth: {
                 userLogIn: {
@@ -243,14 +252,18 @@ export function addlacZDataToStrain(
         );
 
         dispatch({
-            type: USER_ADD_LACZ_DATA_TO_STRAIN,
+            type: LacZActionType.USER_ADD_LACZ_DATA_TO_STRAIN,
             payload: response.data.laczAssayProtocols,
         });
     };
 }
 
-export function bgalDataToStrain(strainId, protocolId, bgalData) {
-    return async (dispatch, getState) => {
+export function bgalDataToStrain(
+    strainId: String,
+    protocolId: String,
+    bgalData: any
+) {
+    return async (dispatch: Dispatch<ILacZ>, getState: () => State) => {
         const {
             auth: {
                 userLogIn: {
@@ -270,7 +283,7 @@ export function bgalDataToStrain(strainId, protocolId, bgalData) {
         );
 
         dispatch({
-            type: USER_ADD_BGAL_DATA_TO_STRAIN,
+            type: LacZActionType.USER_ADD_BGAL_DATA_TO_STRAIN,
             payload: response.data.laczAssayProtocols,
         });
     };
