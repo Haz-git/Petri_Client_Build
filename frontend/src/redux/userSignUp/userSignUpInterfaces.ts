@@ -1,6 +1,6 @@
 import { SignUpActionType } from './action-types';
 
-export interface UserSignUpAction {
+export interface UserSignUpActionInterface {
     type: SignUpActionType.USER_SIGN_UP;
     payload?: any;
 }
