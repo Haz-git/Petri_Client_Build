@@ -63,3 +63,19 @@ export interface IAddBgal {
     type: LacZActionType.USER_ADD_BGAL_DATA_TO_STRAIN;
     payload?: any;
 }
+
+//Added union type for easier interface access in reducer
+
+export type Action =
+    | IAddProtocol
+    | IDeleteProtocol
+    | IEditProtocol
+    | IGetProtocol
+    | IAddStrain
+    | IEditStrain
+    | IDeleteStrain
+    | IGetStrain
+    | IAddCollection
+    | IAddCollectionParsed
+    | IAddLacZ
+    | IAddBgal;
