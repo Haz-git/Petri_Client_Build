@@ -1,9 +1,9 @@
-import { Action } from './lacZInterfaces';
+import { ILacZ } from './lacZInterfaces';
 import { LacZActionType } from './action-types';
 
 const initialState = {};
 
-export default (state: Object = initialState, action: Action) => {
+export default (state: Object = initialState, action: ILacZ) => {
     switch (action.type) {
         case LacZActionType.USER_GET_PROTOCOL:
             return { ...state, laczProtocol: action.payload };

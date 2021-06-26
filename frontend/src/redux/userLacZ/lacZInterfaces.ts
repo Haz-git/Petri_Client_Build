@@ -66,7 +66,7 @@ export interface IAddBgal {
 
 //Added union type for easier interface access in reducer
 
-export type Action =
+export type ILacZ =
     | IAddProtocol
     | IDeleteProtocol
     | IEditProtocol
