@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { Dispatch } from 'redux';
 import { SciNewsActionType } from './action-types';
-import { GetNewsAction } from './sciNewsInterfaces';
+import { IGetNewsAction } from './sciNewsInterfaces';
 
 export function getNews() {
-    return async (dispatch: Dispatch<GetNewsAction>) => {
+    return async (dispatch: Dispatch<IGetNewsAction>) => {
         const response = await axios.get(
             'https://gnews.io/api/v4/top-headlines?topic=science&lang=en&country=us&token=dcb305090c56e2139f572d0533ff0802'
         );
