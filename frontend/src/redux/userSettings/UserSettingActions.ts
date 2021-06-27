@@ -1,16 +1,25 @@
 import api from '../../api/index';
-import {
-    USER_ADD_NEW_PROFILE_PICTURE,
-    USER_GET_PROFILE_PICTURE,
-    USER_CHANGE_EMAIL_ADDRESS,
-    USER_CHANGE_FIRSTNAME,
-    USER_CHANGE_LASTNAME,
-    USER_CHANGE_USERNAME,
-} from './UserSettingTypes';
+import { Dispatch } from 'redux';
+import { SettingsActionType } from './action-types';
+import { SettingsAction } from './UserSettingInterfaces';
 import historyObject from '../../historyObject';
 
+interface State {
+    //Indexable Type:
+    auth: {
+        userLogIn: {
+            data: {
+                _id: String;
+            };
+        };
+    };
+}
+
 export function userGetProfilePicture() {
-    return async (dispatch, getState) => {
+    return async (
+        dispatch: Dispatch<SettingsAction>,
+        getState: () => State
+    ) => {
         try {
             const {
                 auth: {
@@ -25,7 +34,7 @@ export function userGetProfilePicture() {
             });
 
             dispatch({
-                type: USER_GET_PROFILE_PICTURE,
+                type: SettingsActionType.USER_GET_PROFILE_PICTURE,
                 payload: response.data.existingUser,
             });
         } catch (e) {
@@ -37,8 +46,11 @@ export function userGetProfilePicture() {
     };
 }
 
-export function userAddNewProfilePicture(imgURL, imgConstraints) {
-    return async (dispatch, getState) => {
+export function userAddNewProfilePicture(imgURL: any, imgConstraints: any) {
+    return async (
+        dispatch: Dispatch<SettingsAction>,
+        getState: () => State
+    ) => {
         const {
             auth: {
                 userLogIn: {
@@ -54,7 +66,7 @@ export function userAddNewProfilePicture(imgURL, imgConstraints) {
         });
 
         dispatch({
-            type: USER_ADD_NEW_PROFILE_PICTURE,
+            type: SettingsActionType.USER_ADD_NEW_PROFILE_PICTURE,
             payload: response.data.responseUpdatedProfilePic,
         });
 
@@ -62,8 +74,11 @@ export function userAddNewProfilePicture(imgURL, imgConstraints) {
     };
 }
 
-export function userChangeLastName(newLastName) {
-    return async (dispatch, getState) => {
+export function userChangeLastName(newLastName: String) {
+    return async (
+        dispatch: Dispatch<SettingsAction>,
+        getState: () => State
+    ) => {
         const {
             auth: {
                 userLogIn: {
@@ -78,7 +93,7 @@ export function userChangeLastName(newLastName) {
         });
 
         dispatch({
-            type: USER_CHANGE_LASTNAME,
+            type: SettingsActionType.USER_CHANGE_LASTNAME,
             payload: response.data.updatedLastNameUser,
         });
 
@@ -97,8 +112,11 @@ export function userChangeLastName(newLastName) {
     };
 }
 
-export function userChangeFirstName(newFirstName) {
-    return async (dispatch, getState) => {
+export function userChangeFirstName(newFirstName: String) {
+    return async (
+        dispatch: Dispatch<SettingsAction>,
+        getState: () => State
+    ) => {
         const {
             auth: {
                 userLogIn: {
@@ -113,14 +131,17 @@ export function userChangeFirstName(newFirstName) {
         });
 
         dispatch({
-            type: USER_CHANGE_FIRSTNAME,
+            type: SettingsActionType.USER_CHANGE_FIRSTNAME,
             payload: response.data.updatedFirstNameUser,
         });
     };
 }
 
-export function userChangeUserName(newUserName) {
-    return async (dispatch, getState) => {
+export function userChangeUserName(newUserName: String) {
+    return async (
+        dispatch: Dispatch<SettingsAction>,
+        getState: () => State
+    ) => {
         const {
             auth: {
                 userLogIn: {
@@ -135,14 +156,17 @@ export function userChangeUserName(newUserName) {
         });
 
         dispatch({
-            type: USER_CHANGE_USERNAME,
+            type: SettingsActionType.USER_CHANGE_USERNAME,
             payload: response.data.updatedUserNameUser,
         });
     };
 }
 
-export function userChangeEmailAddress(newEmailAddress) {
-    return async (dispatch, getState) => {
+export function userChangeEmailAddress(newEmailAddress: String) {
+    return async (
+        dispatch: Dispatch<SettingsAction>,
+        getState: () => State
+    ) => {
         const {
             auth: {
                 userLogIn: {
@@ -157,7 +181,7 @@ export function userChangeEmailAddress(newEmailAddress) {
         });
 
         dispatch({
-            type: USER_CHANGE_EMAIL_ADDRESS,
+            type: SettingsActionType.USER_CHANGE_EMAIL_ADDRESS,
             payload: response.data.updatedEmailAddressUser,
         });
     };
