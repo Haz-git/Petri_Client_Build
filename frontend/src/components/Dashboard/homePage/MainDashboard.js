@@ -203,7 +203,7 @@ class MainDashboard extends Component {
                         <MainDashboardHeaderContainer>
                             <Fade>
                                 <div>
-                                    {/* {this.renderDashBoardProfilePicture()} */}
+                                    {this.renderDashBoardProfilePicture()}
                                 </div>
                                 <DetailsContainer>
                                     <MainDashboardUserNameHeader>
