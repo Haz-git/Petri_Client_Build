@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getJWT } from '../../utils/jwthelper';
+import { logoutHelper } from '../../utils/logouthelper';
 
 //Styled-icons:
 
@@ -375,7 +376,7 @@ const Navbar = ({ StateJwt }) => {
                         <StyledCogs />
                         <StyledLinkLabel>SETTINGS</StyledLinkLabel>
                     </DashboardLink>
-                    <DashboardLink to="/logout">
+                    <DashboardLink to={() => logoutHelper()}>
                         <StyledLogOut />
                         <StyledLinkLabel>LOGOUT</StyledLinkLabel>
                     </DashboardLink>
