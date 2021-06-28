@@ -18,7 +18,7 @@ const fadeIn = keyframes`
     80% { opacity: 0.8 }
     90% { opacity: 0.9 }
     100% { opacity: 1 }
-`
+`;
 
 const MainContainer = styled.div`
     position: fixed;
@@ -27,14 +27,13 @@ const MainContainer = styled.div`
     width: 100vw;
     background-color: #141628;
     animation-name: ${fadeIn};
-    -webkit-animation: fadeIn .8s; /* Safari, Chrome and Opera > 12.1 */
-    -moz-animation: fadeIn .8s; /* Firefox < 16 */
-    -ms-animation: fadeIn .8s; /* Internet Explorer */
-    -o-animation: fadeIn .8s; /* Opera < 12.1 */
-    animation: fadeIn .8s;
+    -webkit-animation: fadeIn 0.8s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadeIn 0.8s; /* Firefox < 16 */
+    -ms-animation: fadeIn 0.8s; /* Internet Explorer */
+    -o-animation: fadeIn 0.8s; /* Opera < 12.1 */
+    animation: fadeIn 0.8s;
     z-index: 9999;
-`
-
+`;
 
 const SpinnerContainer = styled.div`
     position: fixed;
@@ -42,7 +41,7 @@ const SpinnerContainer = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
     color: White;
-`
+`;
 
 const LoadingCharacterContainer = styled.div`
     position: fixed;
@@ -50,26 +49,28 @@ const LoadingCharacterContainer = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
     color: White;
-`
+`;
 
 const LoadingCharacters = styled.h1`
     font-family: 'Nunito', sans-serif, helvetica;
     font-size: 30px;
     font-weight: 100;
     color: White;
-`
-
+`;
 
 //Render:
 
 const LoadingPage = ({ renderLoading }) => {
-
     if (renderLoading === true) {
         return (
             <>
                 <MainContainer>
                     <SpinnerContainer>
-                        <CircularProgress size={100} color='inherit' thickness={1} />
+                        <CircularProgress
+                            size={100}
+                            color="inherit"
+                            thickness={1}
+                        />
                     </SpinnerContainer>
                     <LoadingCharacterContainer>
                         <LoadingCharacters>
@@ -78,10 +79,10 @@ const LoadingPage = ({ renderLoading }) => {
                     </LoadingCharacterContainer>
                 </MainContainer>
             </>
-        )
+        );
     } else {
         return null;
     }
-}
+};
 
 export default LoadingPage;
