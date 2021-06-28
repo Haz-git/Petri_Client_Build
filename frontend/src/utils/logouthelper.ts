@@ -1,6 +1,6 @@
 import { userLogOut } from '../redux/logout_action';
 
-export const logouthelper = () => {
+export const logoutHelper = () => {
     //Remove JWT.
     localStorage.removeItem('jwt');
     localStorage.removeItem('persist:root');
