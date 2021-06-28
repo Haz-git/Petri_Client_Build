@@ -11,13 +11,13 @@ interface State {
     auth: {
         userLogIn: {
             data: {
-                _id: String;
+                _id: string;
             };
         };
     };
 }
 
-export function createNewBioNote(bioName: String, htmlState: any) {
+export function createNewBioNote(bioName: string, htmlState: any) {
     return async (dispatch: Dispatch<BionoteAction>, getState: () => State) => {
         const {
             auth: {

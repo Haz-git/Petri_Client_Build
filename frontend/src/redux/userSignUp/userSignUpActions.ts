@@ -8,7 +8,7 @@ import history from '../../historyObject';
 //Form Values is given as an object.
 
 const userSignUp =
-    (formValues: Object) =>
+    (formValues: {}) =>
     async (dispatch: Dispatch<UserSignUpActionInterface>) => {
         //Send redux form values to DB:
         const response = await authRequestAPI.post('/users/signup', {

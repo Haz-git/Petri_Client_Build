@@ -8,7 +8,7 @@ interface State {
     auth: {
         userLogIn: {
             data: {
-                _id: String;
+                _id: string;
             };
         };
     };
@@ -52,7 +52,7 @@ export function addNewTask(data: string) {
     };
 }
 
-export function deleteTask(task) {
+export function deleteTask(task: string) {
     return async (dispatch: Dispatch<Action>, getState: () => State) => {
         const {
             auth: {

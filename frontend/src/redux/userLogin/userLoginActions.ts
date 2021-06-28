@@ -6,7 +6,7 @@ import history from '../../historyObject';
 import authRequestAPI from '../../api/authRequest';
 
 const userLogin =
-    (formValues: Object) =>
+    (formValues: {}) =>
     async (dispatch: Dispatch<UserLogInActionInterface>) => {
         //Push the user to a loading page for confirmation of Login...:
         // Send a POST request to api;

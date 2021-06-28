@@ -8,7 +8,7 @@ interface State {
     auth: {
         userLogIn: {
             data: {
-                _id: String;
+                _id: string;
             };
         };
     };
@@ -33,7 +33,7 @@ export function getProtocols() {
     };
 }
 
-export function addNewProtocols(protocolName: String) {
+export function addNewProtocols(protocolName: string) {
     return async (dispatch: Dispatch<ILacZ>, getState: () => State) => {
         const {
             auth: {
@@ -56,8 +56,8 @@ export function addNewProtocols(protocolName: String) {
 }
 
 export function editProtocolName(
-    newProtocolName: String,
-    currentProtocolId: String
+    newProtocolName: string,
+    currentProtocolId: string
 ) {
     return async (dispatch: Dispatch<ILacZ>, getState: () => State) => {
         const {
@@ -81,7 +81,7 @@ export function editProtocolName(
     };
 }
 
-export function deleteProtocol(currentProtocolId: String) {
+export function deleteProtocol(currentProtocolId: string) {
     return async (dispatch: Dispatch<ILacZ>, getState: () => State) => {
         const {
             auth: {
@@ -104,8 +104,8 @@ export function deleteProtocol(currentProtocolId: String) {
 }
 
 export function addStrainToCollection(
-    collectionsObject: Object,
-    currentProtocolId: String
+    collectionsObject: {},
+    currentProtocolId: string
 ) {
     return async (dispatch: Dispatch<ILacZ>, getState: () => State) => {
         const {
@@ -135,8 +135,8 @@ export function addStrainToCollection(
 }
 
 export function deleteStrainFromCollection(
-    strainId: String,
-    protocolId: String
+    strainId: string,
+    protocolId: string
 ) {
     return async (dispatch: Dispatch<ILacZ>, getState: () => State) => {
         const {
@@ -164,8 +164,8 @@ export function deleteStrainFromCollection(
 }
 
 export function addCollectionInputDataToStrain(
-    strainId: String,
-    protocolId: String,
+    strainId: string,
+    protocolId: string,
     inputArray: any
 ) {
     return async (dispatch: Dispatch<ILacZ>, getState: () => State) => {
@@ -195,7 +195,7 @@ export function addCollectionInputDataToStrain(
 }
 
 export function addCollectionChartParsedData(
-    protocolId: String,
+    protocolId: string,
     newArray: any
 ) {
     return async (dispatch: Dispatch<ILacZ>, getState: () => State) => {
@@ -224,8 +224,8 @@ export function addCollectionChartParsedData(
 }
 
 export function addlacZDataToStrain(
-    strainId: String,
-    protocolId: String,
+    strainId: string,
+    protocolId: string,
     lacZArray: any,
     minutes: any,
     volume: any
@@ -259,8 +259,8 @@ export function addlacZDataToStrain(
 }
 
 export function bgalDataToStrain(
-    strainId: String,
-    protocolId: String,
+    strainId: string,
+    protocolId: string,
     bgalData: any
 ) {
     return async (dispatch: Dispatch<ILacZ>, getState: () => State) => {
