@@ -7,7 +7,7 @@ import { keyframes } from 'styled-components';
 const Wrapper = styled.div`
     margin-top: -10px;
     position: absolute;
-`
+`;
 
 const fadeIn = keyframes`
     0% { opacity: 0 }
@@ -21,16 +21,16 @@ const fadeIn = keyframes`
     80% { opacity: 0.8 }
     90% { opacity: 0.9 }
     100% { opacity: 1 }
-`
+`;
 
 const MainContainer = styled.div`
     animation-name: ${fadeIn};
-    -webkit-animation: fadeIn .8s; /* Safari, Chrome and Opera > 12.1 */
-    -moz-animation: fadeIn .8s; /* Firefox < 16 */
-    -ms-animation: fadeIn .8s; /* Internet Explorer */
-    -o-animation: fadeIn .8s; /* Opera < 12.1 */
-    animation: fadeIn .8s;
-`
+    -webkit-animation: fadeIn 0.8s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadeIn 0.8s; /* Firefox < 16 */
+    -ms-animation: fadeIn 0.8s; /* Internet Explorer */
+    -o-animation: fadeIn 0.8s; /* Opera < 12.1 */
+    animation: fadeIn 0.8s;
+`;
 
 const StyledTextVisible = styled.label`
     font-family: 'Nunito', sans-serif;
@@ -47,7 +47,7 @@ const StyledTextVisible = styled.label`
     @media only screen and (max-width: 850px) and (orientation: landscape) {
         font-size: 9px;
     }
-`
+`;
 
 const StyledTextInvisible = styled.label`
     font-family: 'Nunito', sans-serif;
@@ -65,52 +65,46 @@ const StyledTextInvisible = styled.label`
     @media only screen and (max-width: 850px) and (orientation: landscape) {
         font-size: 9px;
     }
-`
+`;
 
-
-
+interface VerifyErrorProps {
+    title: String;
+    render: Boolean;
+    center?: Boolean;
+}
 
 //Render:
 
-const VerifyError = ({ title, render, center }) => {
-
+const VerifyError = ({
+    title,
+    render,
+    center,
+}: VerifyErrorProps): JSX.Element => {
     const renderError = () => {
         if (render === undefined || render === false) {
             return (
                 <Wrapper>
-                    <StyledTextInvisible>
-                        {title}
-                    </StyledTextInvisible>
+                    <StyledTextInvisible>{title}</StyledTextInvisible>
                 </Wrapper>
-            )
-
-        } else if (render === true && center === 'true') {
+            );
+        } else if (render === true && center === true) {
             return (
                 <MainContainer>
-                    <StyledTextVisible>
-                        {title}
-                    </StyledTextVisible>
+                    <StyledTextVisible>{title}</StyledTextVisible>
                 </MainContainer>
-            )
-
+            );
         } else if (render === true) {
             return (
                 <Wrapper>
                     <MainContainer>
-                        <StyledTextVisible>
-                            {title}
-                        </StyledTextVisible>
+                        <StyledTextVisible>{title}</StyledTextVisible>
                     </MainContainer>
                 </Wrapper>
-            )
+            );
         }
-    }
+    };
 
-    return (
-        <>
-            {renderError()}
-        </>
-    )
-}
+    return <>{renderError()}</>;
+};
 
 export default VerifyError;

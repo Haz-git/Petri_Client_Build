@@ -36,7 +36,7 @@ import EditProfilePicture from './Dashboard/settings/EditProfilePicture';
 import { ThemeProvider } from 'styled-components';
 import { DashboardGlobalStyles } from '../components/Styling/GlobalStyles';
 import { lightTheme, darkTheme } from '../components/Styling/Theme';
-import { getMode } from '../components/Styling/useDarkMode';
+import { getMode } from './Styling/useDarkMode.ts';
 
 //Styling:
 
