@@ -20,6 +20,7 @@ class AuthenticatedComponents extends Component {
             !jwt ||
             (Object.keys(jwt).length === 0 && jwt.constructor === Object)
         ) {
+            console.log(jwt);
             history.push('/login');
         }
 

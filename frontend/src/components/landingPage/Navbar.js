@@ -376,7 +376,7 @@ const Navbar = ({ StateJwt }) => {
                         <StyledCogs />
                         <StyledLinkLabel>SETTINGS</StyledLinkLabel>
                     </DashboardLink>
-                    <DashboardLink to={() => logoutHelper()}>
+                    <DashboardLink to="/logout">
                         <StyledLogOut />
                         <StyledLinkLabel>LOGOUT</StyledLinkLabel>
                     </DashboardLink>
