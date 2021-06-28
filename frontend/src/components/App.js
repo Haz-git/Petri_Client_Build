@@ -9,7 +9,9 @@ import MainLandingPage from './landingPage/MainLandingPage';
 import SignUpForm from './signupPage/SignUpForm';
 import history from '../historyObject';
 import LoginForm from '../components/loginPage/LoginForm';
-import Logout from '../components/Logout';
+
+//Logout Helper:
+import { logoutHelper } from '../utils/logouthelper';
 
 //Authentication Component:
 import AuthenticatedComponents from '../components/authComponents/AuthenticatedComponents';
@@ -120,7 +122,7 @@ const App = () => {
                                         <Route
                                             exact
                                             path="/logout"
-                                            component={Logout}
+                                            component={() => logoutHelper()}
                                         />
                                         <Route
                                             exact
