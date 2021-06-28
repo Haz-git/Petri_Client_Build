@@ -60,7 +60,7 @@ const App = () => {
         initialState();
     }, []);
 
-    const changeModeStatus = (modeValue) => {
+    const changeModeStatus = (modeValue: string) => {
         //This callback function is passed down to UserSettings, where the toggle button is.
         setAppTheme(modeValue);
     };
