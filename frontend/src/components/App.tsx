@@ -70,6 +70,7 @@ const App = () => {
 
     const renderApp = () => {
         if (appTheme === '') {
+            console.log('AppTheme is null');
             return null;
         } else {
             //Meetings route set to main dashboard because currently in construction.
