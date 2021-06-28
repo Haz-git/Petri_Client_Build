@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { reduxForm, Field } from 'redux-form';
-import { connect } from 'react-redux';
+import { connect, ConnectedProps } from 'react-redux';
 import userSignUp from '../../redux/userSignUp/userSignUpActions';
 import signupImg from '../../Img/signupImg.jpg';
 import VerifyError from './VerifyError';
