@@ -9,7 +9,7 @@ interface State {
     auth: {
         userLogIn: {
             data: {
-                _id: String;
+                _id: string;
             };
         };
     };
@@ -74,7 +74,7 @@ export function userAddNewProfilePicture(imgURL: any, imgConstraints: any) {
     };
 }
 
-export function userChangeLastName(newLastName: String) {
+export function userChangeLastName(newLastName: string) {
     return async (
         dispatch: Dispatch<SettingsAction>,
         getState: () => State
