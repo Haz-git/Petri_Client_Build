@@ -30,7 +30,7 @@ export const lightTheme = {
     //ChatCard
     chatCardBGColor: 'white',
     chatCardTextColor: '#293241',
-    //Calendar 
+    //Calendar
     calendarContainerBGColor: '#f6f9fc',
     calendarSideBarContainerBG: '#293241',
     calendarChartBG: 'white',
@@ -44,7 +44,6 @@ export const lightTheme = {
     landingPageBGColor: '#f6f9fc',
     landingPageSecondaryHeader: '#293241',
     //lacZAssay
-    lacZMainContainerBG: '#f6f9fc',
     lacZMainHeaderBG: '#293241',
     lacZSecondaryHeaderBG: '#293241',
     lacZStyledInputC: 'black',
@@ -83,10 +82,7 @@ export const lightTheme = {
     settingsMainHeaderTextC: '#293241',
     settingsMainContainerBG: 'white',
     settingsAvatarBorderC: 'white',
-
-
-}
-
+};
 
 export const darkTheme = {
     mainBody: '#202345',
@@ -132,7 +128,6 @@ export const darkTheme = {
     landingPageBGColor: '#141628',
     landingPageSecondaryHeader: 'white',
     //lacZAssay
-    lacZMainContainerBG: '#141628',
     lacZMainHeaderBG: 'white',
     lacZSecondaryHeaderBG: 'white',
     lacZStyledInputC: 'white',
@@ -171,8 +166,4 @@ export const darkTheme = {
     settingsMainHeaderTextC: 'white',
     settingsMainContainerBG: 'white',
     settingsAvatarBorderC: '#242746',
-
-
-    
-
-}
+};
