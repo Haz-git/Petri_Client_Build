@@ -229,13 +229,18 @@ const EditProfilePicture = ({ userAddNewProfilePicture }) => {
                                     id="outlined-required"
                                     label="Height"
                                     variant="outlined"
-                                    // min="250"
-                                    // max="700"
                                     value={height}
                                     placeholder={`${height}`}
                                     onChange={handleHeightChange}
                                     InputLabelProps={{
                                         shrink: true,
+                                    }}
+                                    InputProps={{
+                                        inputProps: {
+                                            type: 'number',
+                                            min: 250,
+                                            max: 700,
+                                        },
                                     }}
                                 />
                             </DimensionDivider>
@@ -245,13 +250,18 @@ const EditProfilePicture = ({ userAddNewProfilePicture }) => {
                                     id="outlined-required"
                                     label="Width"
                                     variant="outlined"
-                                    // min="250"
-                                    // max="700"
                                     value={width}
                                     placeholder={`${width}`}
                                     onChange={handleWidthChange}
                                     InputLabelProps={{
                                         shrink: true,
+                                    }}
+                                    InputProps={{
+                                        inputProps: {
+                                            type: 'number',
+                                            min: 250,
+                                            max: 700,
+                                        },
                                     }}
                                 />
                             </DimensionDivider>
