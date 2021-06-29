@@ -159,7 +159,7 @@ const UserSettings = ({
         email: '',
     });
 
-    const handleDetailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleUserDetailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const val = e.target.value;
 
         setState({
@@ -191,23 +191,33 @@ const UserSettings = ({
         }
     };
 
-    const submitFirstName = () => {
-        userChangeFirstName(state.firstName);
+    enum ChangeDetails {
+        CHANGE_FIRSTNAME = 'CHANGE_FIRSTNAME',
+        CHANGE_USERNAME = 'CHANGE_USERNAME',
+        CHANGE_LASTNAME = 'CHANGE_LASTNAME',
+        CHANGE_EMAILADDRESS = 'CHANGE_EMAILADDRESS',
+    }
+
+    const submitUserDetailChange = (detail: string) => {
+        if (detail) {
+            switch (detail) {
+                case ChangeDetails.CHANGE_FIRSTNAME:
+                    return userChangeFirstName(state.firstName);
+                case ChangeDetails.CHANGE_USERNAME:
+                    return userChangeUserName(state.userName);
+                case ChangeDetails.CHANGE_LASTNAME:
+                    return userChangeLastName(state.lastName);
+                case ChangeDetails.CHANGE_EMAILADDRESS:
+                    return userChangeEmailAddress(state.email);
+                default:
+                    return new Error(
+                        'No submission detail was specified. Change request not processed.'
+                    );
+            }
+        }
     };
 
-    const submitUserName = () => {
-        userChangeUserName(state.userName);
-    };
-
-    const submitLastName = () => {
-        userChangeLastName(state.lastName);
-    };
-
-    const submitEmailAddress = () => {
-        userChangeEmailAddress(state.email);
-    };
-
-    const renderSubmitButton = (buttonValue, callback) => {
+    const renderSubmitButton = (buttonValue: string, detail: string) => {
         if (buttonValue.trim() !== '') {
             return (
                 <Fade>
@@ -215,7 +225,7 @@ const UserSettings = ({
                         <Button
                             variant="contained"
                             color="primary"
-                            onClick={callback}
+                            onClick={() => submitUserDetailChange(detail)}
                         >
                             Save
                         </Button>
@@ -253,11 +263,11 @@ const UserSettings = ({
                                     InputLabelProps={{
                                         shrink: true,
                                     }}
-                                    onChange={handleDetailChange}
+                                    onChange={handleUserDetailChange}
                                 />
                                 {renderSubmitButton(
                                     state.firstName,
-                                    submitFirstName
+                                    ChangeDetails.CHANGE_FIRSTNAME
                                 )}
                             </TextFieldContainer>
                             <TextFieldContainer>
@@ -270,11 +280,11 @@ const UserSettings = ({
                                     InputLabelProps={{
                                         shrink: true,
                                     }}
-                                    onChange={handleDetailChange}
+                                    onChange={handleUserDetailChange}
                                 />
                                 {renderSubmitButton(
                                     state.userName,
-                                    submitUserName
+                                    ChangeDetails.CHANGE_USERNAME
                                 )}
                             </TextFieldContainer>
                             <TextFieldContainer>
@@ -308,11 +318,11 @@ const UserSettings = ({
                                     InputLabelProps={{
                                         shrink: true,
                                     }}
-                                    onChange={handleDetailChange}
+                                    onChange={handleUserDetailChange}
                                 />
                                 {renderSubmitButton(
                                     state.lastName,
-                                    submitLastName
+                                    ChangeDetails.CHANGE_LASTNAME
                                 )}
                             </TextFieldContainer>
                             <TextFieldContainer>
@@ -338,11 +348,11 @@ const UserSettings = ({
                                         shrink: true,
                                     }}
                                     helperText="Changes log in credentials!"
-                                    onChange={handleDetailChange}
+                                    onChange={handleUserDetailChange}
                                 />
                                 {renderSubmitButton(
                                     state.email,
-                                    submitEmailAddress
+                                    ChangeDetails.CHANGE_EMAILADDRESS
                                 )}
                             </TextFieldContainer>
                         </div>
