@@ -10,6 +10,7 @@ import styled from 'styled-components';
 
 import petriLogoEdit2 from '../../Img/petriLogoEdit2.png';
 
+import Button from '@material-ui/core/Button';
 import { HomeHeart } from '@styled-icons/boxicons-solid/HomeHeart';
 import { VideoCamera } from '@styled-icons/entypo/VideoCamera';
 import { ChatLeftDotsFill } from '@styled-icons/bootstrap/ChatLeftDotsFill';
@@ -376,10 +377,17 @@ const Navbar = ({ StateJwt }) => {
                         <StyledCogs />
                         <StyledLinkLabel>SETTINGS</StyledLinkLabel>
                     </DashboardLink>
-                    <DashboardLink to="/logout">
+                    {/* <DashboardLink to="/logout">
                         <StyledLogOut />
                         <StyledLinkLabel>LOGOUT</StyledLinkLabel>
-                    </DashboardLink>
+                    </DashboardLink> */}
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={logoutHelper}
+                    >
+                        Logout
+                    </Button>
                 </DashboardNavbar>
             );
         } else {
