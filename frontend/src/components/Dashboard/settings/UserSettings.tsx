@@ -12,7 +12,7 @@ import {
 } from '../../../redux/userSettings/UserSettingActions';
 
 //Dark Mode Option:
-import { useDarkMode } from '../../Styling/useDarkMode.ts';
+import { useDarkMode } from '../../Styling/useDarkMode';
 import Toggler from '../../../components/Styling/Toggler';
 
 //Styles:
@@ -293,11 +293,11 @@ const UserSettings = ({
                                 />
                             </TextFieldContainer>
                             <TextFieldContainer>
-                                <Toggler
+                                {/* <Toggler
                                     theme={theme}
                                     toggleTheme={toggleTheme}
                                     callBack={modeStatus}
-                                />
+                                /> */}
                             </TextFieldContainer>
                         </div>
                         <div>
