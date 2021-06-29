@@ -18,19 +18,19 @@ const BlockDetailMain = styled.div`
         display: block;
         margin-top: 100px;
     }
-`
+`;
 const BlockDetailImg = styled.div`
     display: inline-block;
-`
+`;
 
 const BlockDetailText = styled.div`
     display: inline-block;
-`
+`;
 
 const HeaderDecoration = styled.div`
     display: grid;
     align-items: center;
-`
+`;
 
 const BlockDetailHeader = styled.h2`
     font-family: 'Open Sans', Arial, Helvetica, sans-serif;
@@ -42,7 +42,7 @@ const BlockDetailHeader = styled.h2`
     width: fit-content;
     margin: 0 auto;
     border-radius: 10px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0,0.12), 0 1px 2px rgba(0,0,0.24);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0.24);
 
     @media only screen and (max-width: 650px) {
         font-size: 20px;
@@ -53,15 +53,14 @@ const BlockDetailHeader = styled.h2`
         font-size: 20px;
         padding: 8px 8px;
     }
-
-`
+`;
 
 const BlockDetailDesc = styled.p`
     margin-top: 20px;
     font-family: 'Open Sans', Arial, Helvetica, sans-serif;
     font-size: 20px;
     font-weight: 400;
-    color: #F1F1E6;
+    color: #f1f1e6;
     text-align: justify;
     padding-left: 45px;
     padding-right: 45px;
@@ -77,12 +76,9 @@ const BlockDetailDesc = styled.p`
         padding-left: 35px;
         padding-right: 35px;
     }
-`
+`;
 
-
-const ImgContainer = styled.div`
-
-`
+const ImgContainer = styled.div``;
 
 const StyledImg = styled.img`
     max-width: 100%;
@@ -97,7 +93,7 @@ const StyledImg = styled.img`
     @media only screen and (max-width: 850px) and (orientation: landscape) {
         margin-top: 20px;
     }
-`
+`;
 
 //Helper Functions:
 
@@ -114,34 +110,45 @@ const reverseComponent = (title, description, img) => {
                 <BlockDetailDesc>{description}</BlockDetailDesc>
             </BlockDetailText>
         </>
-    )
+    );
+};
+
+interface BodyBlockProps {
+    Title: string;
+    Description: string;
+    Img: string;
+    Reverse?: string;
 }
 
 //Render:
-const BodyBlock = ({Title, Description, Img, Reverse}) => {
-
+const BodyBlock = ({
+    Title,
+    Description,
+    Img,
+    Reverse,
+}: BodyBlockProps): JSX.Element => {
     /*
         This is a very reusable component designed for displaying/advertising the app's features. The props are editable in the MainBackdrop. The 'Reverse' prop simple returns a version where the image and text are reversed. This is for aesthetic purposes.
 
         There is also an attached event listener to the window's viewwidth in order to make the website a bit more mobile friendly. If the viewWidth is less than 600, then the components will NOT be reversed because the display is no longer grid--it's block.
     */
 
-    const [ viewWidth, setViewWidth ] = useState(0);
-    const [ viewHeight, setViewHeight ] = useState(0);
+    const [viewWidth, setViewWidth] = useState(0);
+    const [viewHeight, setViewHeight] = useState(0);
 
     useEffect(() => {
         window.addEventListener('resize', updateWindowSettings);
 
         return () => window.removeEventListener('resize', updateWindowSettings);
-    }, [])
+    }, []);
 
     const updateWindowSettings = () => {
         setViewHeight(window.innerHeight);
         setViewWidth(window.innerWidth);
-    }
+    };
 
     if (Reverse === 'true') {
-        if (viewWidth <= 860 && viewWidth !== 0 || window.innerWidth <= 860) {
+        if ((viewWidth <= 860 && viewWidth !== 0) || window.innerWidth <= 860) {
             return (
                 <Fade>
                     <BlockDetailMain>
@@ -158,7 +165,7 @@ const BodyBlock = ({Title, Description, Img, Reverse}) => {
                         </BlockDetailImg>
                     </BlockDetailMain>
                 </Fade>
-            )
+            );
         } else {
             return (
                 <Fade>
@@ -166,7 +173,7 @@ const BodyBlock = ({Title, Description, Img, Reverse}) => {
                         {reverseComponent(Title, Description, Img)}
                     </BlockDetailMain>
                 </Fade>
-            )
+            );
         }
     }
 
@@ -186,7 +193,7 @@ const BodyBlock = ({Title, Description, Img, Reverse}) => {
                 </BlockDetailImg>
             </BlockDetailMain>
         </Fade>
-    )
-}
+    );
+};
 
 export default BodyBlock;

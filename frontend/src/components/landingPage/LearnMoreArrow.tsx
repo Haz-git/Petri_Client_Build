@@ -7,9 +7,8 @@ import { ArrowDown } from '@styled-icons/bootstrap/ArrowDown';
 
 const ArrowContainer = styled.div`
     display: flex;
-    transition: opacity .8s ease;
-
-`
+    transition: opacity 0.8s ease;
+`;
 
 const FadeOutText = styled.h2`
     color: white;
@@ -17,23 +16,21 @@ const FadeOutText = styled.h2`
     font-size: 22px;
     font-weight: 700;
 
-    @media only screen and (max-width: 650px)  {
+    @media only screen and (max-width: 650px) {
         font-size: 12px;
     }
 
     @media only screen and (max-width: 850px) and (orientation: landscape) {
         font-size: 14px;
     }
-
-    
-`
+`;
 const StyledArrowDown = styled(ArrowDown)`
     height: 25px;
     width: 25px;
     color: white;
     margin-right: 15px;
 
-    @media only screen and (max-width: 650px)  {
+    @media only screen and (max-width: 650px) {
         height: 15px;
         width: 15px;
         margin-right: 5px;
@@ -44,20 +41,16 @@ const StyledArrowDown = styled(ArrowDown)`
         width: 15px;
         margin-right: 5px;
     }
-`
-
-
-
+`;
 
 //Render:
 
 const LearnMoreArrow = () => {
-
     /*
         This learn more arrow should be at opacity: 1 on initial render of the component, when the user has initially entered the landing page. When the 'currentScrollPos', or pageYOffset becomes greater than 0--or when the user starts to scroll down, then the opacity is '0' (starts to fade away).
     */
 
-    const [ opacity, setOpacity ] = useState('1');
+    const [opacity, setOpacity] = useState('1');
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
@@ -66,24 +59,22 @@ const LearnMoreArrow = () => {
                 let maxScroll = document.body.scrollHeight - window.innerHeight;
                 // console.log(maxScroll);
                 // // && currentScrollPos < maxScroll
-                
+
                 if (currentScrollPos > 0) {
                     setOpacity('0');
                 } else {
                     setOpacity('1');
                 }
-            }
+            };
         }
-    })
+    });
 
     return (
-        <ArrowContainer
-            style={{ opacity: `${opacity}` }}
-        >
+        <ArrowContainer style={{ opacity: `${opacity}` }}>
             <StyledArrowDown />
             <FadeOutText>Learn More</FadeOutText>
         </ArrowContainer>
-    )
-}
+    );
+};
 
 export default LearnMoreArrow;

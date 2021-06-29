@@ -15,7 +15,6 @@ const MainContainer = styled.div`
     overflow: hidden;
 
     @media only screen and (max-width: 650px) and (min-width: 400px) {
-
         transform: scale(0.45) perspective(1200px) rotateY(-15deg);
         transform-origin: 0 0;
         width: 188%;
@@ -24,8 +23,7 @@ const MainContainer = styled.div`
     }
 
     @media only screen and (max-width: 400px) and (min-width: 325px) {
-
-        transform: scale(0.40) perspective(1200px) rotateY(-15deg);
+        transform: scale(0.4) perspective(1200px) rotateY(-15deg);
         transform-origin: 0 0;
         width: 189%;
         margin-left: 5px;
@@ -41,7 +39,6 @@ const MainContainer = styled.div`
     }
 
     @media only screen and (max-width: 380px) and (min-width: 365px) {
-
         transform: scale(0.4) perspective(1200px) rotateY(-15deg);
         transform-origin: 0 0;
         width: 204%;
@@ -64,8 +61,7 @@ const MainContainer = styled.div`
         margin-left: 5px;
         overflow: hidden;
     }
-
-`
+`;
 
 const SideBarGraphic = styled.div`
     position: absolute;
@@ -74,32 +70,31 @@ const SideBarGraphic = styled.div`
     background-color: #293241;
     z-index: 1;
     border-radius: 15px;
-`
+`;
 
 const IconGraphics = styled.div`
     display: block;
     height: 30px;
     width: 30px;
     border-radius: 50%;
-    background-color: #588BAE;
+    background-color: #588bae;
     margin-left: 10px;
     margin-top: 12px;
     margin-bottom: 12px;
     z-index: 2;
-`
+`;
 
 const LogoGraphic = styled.div`
     display: block;
     height: 30px;
     width: 30px;
     border-radius: 50%;
-    background-color: #EB9605;
+    background-color: #eb9605;
     margin-left: 10px;
     margin-top: 12px;
     margin-bottom: 30px;
     z-index: 2;
-
-`
+`;
 
 const BodyGraphic = styled.div`
     position: absolute;
@@ -109,10 +104,9 @@ const BodyGraphic = styled.div`
     width: 550px;
     top: 50px;
     left: 50px;
-    background-color: #001B3A;
+    background-color: #001b3a;
     z-index: 2;
-
-`
+`;
 
 const BodyDetailBox = styled.div`
     position: absolute;
@@ -120,10 +114,10 @@ const BodyDetailBox = styled.div`
     width: 150px;
     top: 25px;
     left: 25px;
-    background-color: #1D2951;
+    background-color: #1d2951;
     border-radius: 8px;
     z-index: 3;
-`
+`;
 
 const BodyDetailHeader = styled.div`
     position: absolute;
@@ -133,7 +127,7 @@ const BodyDetailHeader = styled.div`
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     z-index: 4;
-`
+`;
 
 const BodyDetailContents = styled.div`
     position: relative;
@@ -146,7 +140,7 @@ const BodyDetailContents = styled.div`
     background-color: #03506f;
     border-radius: 4px;
     z-index: 5;
-`
+`;
 
 const BodyDetailBox2 = styled.div`
     position: absolute;
@@ -154,10 +148,10 @@ const BodyDetailBox2 = styled.div`
     width: 330px;
     top: 25px;
     left: 200px;
-    background-color: #1D2951;
+    background-color: #1d2951;
     border-radius: 8px;
     z-index: 3;
-`
+`;
 
 const BodyDetailHeader2 = styled.div`
     position: absolute;
@@ -167,7 +161,7 @@ const BodyDetailHeader2 = styled.div`
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     z-index: 4;
-`
+`;
 
 const BodyDetailContents2 = styled.div`
     position: relative;
@@ -180,7 +174,7 @@ const BodyDetailContents2 = styled.div`
     background-color: #03506f;
     border-radius: 4px;
     z-index: 5;
-`
+`;
 
 const BodyDetailContents2MedBox = styled.div`
     position: relative;
@@ -193,7 +187,7 @@ const BodyDetailContents2MedBox = styled.div`
     background-color: #03506f;
     border-radius: 4px;
     z-index: 5;
-`
+`;
 
 const BodyDetailContents2LargeBox = styled.div`
     position: absolute;
@@ -206,7 +200,7 @@ const BodyDetailContents2LargeBox = styled.div`
     background-color: #03506f;
     border-radius: 4px;
     z-index: 5;
-`
+`;
 
 const BodyDetailBox3 = styled.div`
     position: absolute;
@@ -214,20 +208,20 @@ const BodyDetailBox3 = styled.div`
     width: 505px;
     top: 240px;
     left: 25px;
-    background-color: #1D2951;
+    background-color: #1d2951;
     border-radius: 8px;
     z-index: 3;
-`
+`;
 
 const BodyDetailHeader3 = styled.div`
     position: absolute;
     height: 25px;
     width: 505px;
-    background-color:  #394867;
+    background-color: #394867;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     z-index: 4;
-`
+`;
 
 const BodyDetailContents3 = styled.div`
     position: relative;
@@ -240,7 +234,7 @@ const BodyDetailContents3 = styled.div`
     background-color: #03506f;
     border-radius: 4px;
     z-index: 5;
-`
+`;
 
 const BodyDetailContents3MedBox = styled.div`
     position: absolute;
@@ -250,10 +244,10 @@ const BodyDetailContents3MedBox = styled.div`
     height: 147px;
     width: 120px;
     left: 150px;
-    background-color:#03506f;
+    background-color: #03506f;
     border-radius: 4px;
     z-index: 5;
-`
+`;
 const BodyDetailContents3MedBox2 = styled.div`
     position: absolute;
     margin-top: 7px;
@@ -265,7 +259,7 @@ const BodyDetailContents3MedBox2 = styled.div`
     background-color: #03506f;
     border-radius: 4px;
     z-index: 5;
-`
+`;
 const BodyDetailContents3MedBox3 = styled.div`
     position: absolute;
     margin-top: 7px;
@@ -277,7 +271,7 @@ const BodyDetailContents3MedBox3 = styled.div`
     background-color: #03506f;
     border-radius: 4px;
     z-index: 5;
-`
+`;
 
 //Render:
 
@@ -331,7 +325,7 @@ const BackdropGraphic = () => {
                 </MainContainer>
             </Fade>
         </>
-    )
-}
+    );
+};
 
 export default BackdropGraphic;
