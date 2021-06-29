@@ -150,10 +150,25 @@ const UserSettings = ({
     //Dark Mode Toggler:
     const [theme, toggleTheme] = useDarkMode();
 
-    const [newFirstName, setNewFirstName] = useState('');
-    const [newUserName, setNewUserName] = useState('');
-    const [newLastName, setNewLastName] = useState('');
-    const [newEmailAddress, setNewEmailAddress] = useState('');
+    //Form Handler Consolidated:
+
+    const [state, setState] = useState({
+        firstName: '',
+        lastName: '',
+        userName: '',
+        email: '',
+    });
+
+    const handleDetailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const val = e.target.value;
+
+        setState({
+            ...state,
+            [e.target.name]: val,
+        });
+    };
+
+    console.log(state);
 
     const renderUserImage = () => {
         if (
@@ -176,40 +191,20 @@ const UserSettings = ({
         }
     };
 
-    const handleFirstNameChange = (e) => {
-        e.preventDefault();
-        setNewFirstName(e.target.value);
-    };
-
-    const handleUserNameChange = (e) => {
-        e.preventDefault();
-        setNewUserName(e.target.value);
-    };
-
-    const handleLastNameChange = (e) => {
-        e.preventDefault();
-        setNewLastName(e.target.value);
-    };
-
-    const handleEmailChange = (e) => {
-        e.preventDefault();
-        setNewEmailAddress(e.target.value);
-    };
-
     const submitFirstName = () => {
-        userChangeFirstName(newFirstName);
+        userChangeFirstName(state.firstName);
     };
 
     const submitUserName = () => {
-        userChangeUserName(newUserName);
+        userChangeUserName(state.userName);
     };
 
     const submitLastName = () => {
-        userChangeLastName(newLastName);
+        userChangeLastName(state.lastName);
     };
 
     const submitEmailAddress = () => {
-        userChangeEmailAddress(newEmailAddress);
+        userChangeEmailAddress(state.email);
     };
 
     const renderSubmitButton = (buttonValue, callback) => {
@@ -250,6 +245,7 @@ const UserSettings = ({
                         <div>
                             <TextFieldContainer>
                                 <TextField
+                                    name="firstName"
                                     id="outlined-required"
                                     label="First Name"
                                     variant="outlined"
@@ -257,15 +253,16 @@ const UserSettings = ({
                                     InputLabelProps={{
                                         shrink: true,
                                     }}
-                                    onChange={handleFirstNameChange}
+                                    onChange={handleDetailChange}
                                 />
                                 {renderSubmitButton(
-                                    newFirstName,
+                                    state.firstName,
                                     submitFirstName
                                 )}
                             </TextFieldContainer>
                             <TextFieldContainer>
                                 <TextField
+                                    name="userName"
                                     id="outlined-required"
                                     label="Username"
                                     variant="outlined"
@@ -273,10 +270,10 @@ const UserSettings = ({
                                     InputLabelProps={{
                                         shrink: true,
                                     }}
-                                    onChange={handleUserNameChange}
+                                    onChange={handleDetailChange}
                                 />
                                 {renderSubmitButton(
-                                    newUserName,
+                                    state.userName,
                                     submitUserName
                                 )}
                             </TextFieldContainer>
@@ -303,6 +300,7 @@ const UserSettings = ({
                         <div>
                             <TextFieldContainer>
                                 <TextField
+                                    name="lastName"
                                     id="outlined-required"
                                     label="Last Name"
                                     variant="outlined"
@@ -310,10 +308,10 @@ const UserSettings = ({
                                     InputLabelProps={{
                                         shrink: true,
                                     }}
-                                    onChange={handleLastNameChange}
+                                    onChange={handleDetailChange}
                                 />
                                 {renderSubmitButton(
-                                    newLastName,
+                                    state.lastName,
                                     submitLastName
                                 )}
                             </TextFieldContainer>
@@ -331,6 +329,7 @@ const UserSettings = ({
                             </TextFieldContainer>
                             <TextFieldContainer>
                                 <TextField
+                                    name="email"
                                     id="outlined-required"
                                     label="Email Address"
                                     variant="outlined"
@@ -339,10 +338,10 @@ const UserSettings = ({
                                         shrink: true,
                                     }}
                                     helperText="Changes log in credentials!"
-                                    onChange={handleEmailChange}
+                                    onChange={handleDetailChange}
                                 />
                                 {renderSubmitButton(
-                                    newEmailAddress,
+                                    state.email,
                                     submitEmailAddress
                                 )}
                             </TextFieldContainer>
@@ -360,8 +359,6 @@ Notes:
 Profile Picture and avatar should use implementation of both react-avatar-editor and react-dropzone.
 https://www.npmjs.com/package/react-avatar-editor
 https://react-dropzone.js.org/
-
-
 
 
 */
