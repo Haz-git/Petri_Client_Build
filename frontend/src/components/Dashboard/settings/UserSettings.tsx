@@ -131,20 +131,27 @@ const ButtonRevealContainer = styled.div`
     margin-left: 10px;
 `;
 
-interface IStateProps {
-    userData: {
-        userSettings: {
-            userSettings: {};
-        };
-    };
-    userSettings: {
-        userSettings: {};
-    };
+//This interface represents the state slices returned by mapStateToProps
+interface IMapStateToProps {
+    userData: any;
+    userSettings: any;
 }
 
-interface IOwnProps {
+//This interface represents the dispatch props (or functions in this case)
+interface IDispatchProps {
+    userGetProfilePicture: () => void;
+    userChangeEmailAddress: (value: string) => void;
+    userChangeFirstName: (value: string) => void;
+    userChangeLastName: (value: string) => void;
+    userChangeUserName: (value: string) => void;
+}
+
+//This interface represents UserSetting's own props that are not dispatch or state from redux.
+interface IUserSettings {
     modeStatus: (modeValue: string) => void;
 }
+
+type ComponentProps = IDispatchProps & IUserSettings & IMapStateToProps;
 
 //Render:
 
@@ -157,7 +164,7 @@ const UserSettings = ({
     userChangeLastName,
     userChangeUserName,
     modeStatus,
-}) => {
+}: ComponentProps): JSX.Element => {
     useEffect(() => {
         userGetProfilePicture();
     }, []);
@@ -386,7 +393,7 @@ https://react-dropzone.js.org/
 
 */
 
-const mapStateToProps = (state: IStateProps, ownProps: IOwnProps) => {
+const mapStateToProps = (state: IMapStateToProps, ownProps: IUserSettings) => {
     return {
         userData: state.userSettings.userSettings,
         userSettings: state.userSettings,
