@@ -131,6 +131,21 @@ const ButtonRevealContainer = styled.div`
     margin-left: 10px;
 `;
 
+interface IStateProps {
+    userData: {
+        userSettings: {
+            userSettings: {};
+        };
+    };
+    userSettings: {
+        userSettings: {};
+    };
+}
+
+interface IOwnProps {
+    modeStatus: (modeValue: string) => void;
+}
+
 //Render:
 
 const UserSettings = ({
@@ -167,8 +182,6 @@ const UserSettings = ({
             [e.target.name]: val,
         });
     };
-
-    console.log(state);
 
     const renderUserImage = () => {
         if (
@@ -373,7 +386,7 @@ https://react-dropzone.js.org/
 
 */
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: IStateProps, ownProps: IOwnProps) => {
     return {
         userData: state.userSettings.userSettings,
         userSettings: state.userSettings,
