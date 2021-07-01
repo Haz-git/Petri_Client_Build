@@ -6,6 +6,14 @@ import { createGlobalStyle } from 'styled-components';
 
 export const DashboardGlobalStyles = createGlobalStyle`
 
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 0;
+    outline: 0;
+  }
+
   html {
     height: 100%;
   }
@@ -14,6 +22,21 @@ export const DashboardGlobalStyles = createGlobalStyle`
     background: ${({ theme }) => theme.background};
     min-height: 100%;
     margin-left: 100px;
+  }
+
+  h1 {
+    margin: 0;
+    padding: 0;
+  }
+
+  h2 {
+    margin: 0;
+    padding: 0;
+  }
+
+  h3 {
+    margin: 0;
+    padding: 0;
   }
 
 `;
