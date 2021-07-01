@@ -2,17 +2,17 @@
 
 export const lightTheme = {
     mainBody: '#f6f9fc',
-    text: '#1c1e37',
-    background: '#f6f9fc',
+    text: '#000022',
+    background: '#E5E5E5',
     //Main Dashboard
     navAvatarBorder: '#293241',
-    navBgColor: 'white',
+    navBgColor: '#222444',
     navBorderColor: '3px solid #293241',
     navDetailUserName: '#141628',
     navDetailName: '#141628',
     navDetailEmail: '#141628',
     LogoDividerColor: '#293241',
-    navIconColor: '#2e3054',
+    navIconColor: '#ffffff',
     navIconHoverColor: '#01348e',
     mdTodoBgColor: 'white',
     //MDsciCard
