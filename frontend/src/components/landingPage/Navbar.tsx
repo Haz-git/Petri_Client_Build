@@ -111,7 +111,7 @@ const LogoLink = styled(Link)`
 
 const DashboardNavbar = styled.div`
     height: 100%;
-    width: fit-content;
+    width: 100px;
     position: fixed;
     z-index: 99999;
     top: 0;
