@@ -25,25 +25,24 @@ import defaultAvatar from '../../../Img/default_avatar.png';
 import Badge from '@material-ui/core/Badge';
 import Fade from 'react-reveal/Fade';
 
-const BackgroundContainer = styled.div`
-    height: 100vh;
-    overflow-y: hidden;
-    background-color: ${(props) => props.theme.background};
-    transition: all 0.5s linear;
+const PageHeaderContainer = styled.div`
+    padding: 1rem 1rem;
+    margin: 1rem 1rem;
 `;
 
 const MainContainer = styled.div`
     /* margin: 30px auto; */
+    margin: 1rem 1rem;
     height: fit-content;
+    max-width: 40rem;
     background-color: ${(props) => props.theme.settingsMainContainerBG};
-    width: 950px;
     box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
         0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
         0 22.3px 17.9px rgba(0, 0, 0, 0.072),
         0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 60px 40px rgba(0, 0, 0, 0.12);
     transition: all 0.5s linear;
     border-radius: 20px;
-    padding: 30px 20px;
+    padding: 1rem 1rem;
 `;
 
 const MainGridContainer = styled.div`
@@ -52,12 +51,6 @@ const MainGridContainer = styled.div`
     justify-items: center;
 `;
 
-const StyledMainHeader = styled.h1`
-    font-family: 'Montserrat', sans-serif;
-    font-size: 50px;
-    font-weight: 100;
-    color: ${(props) => props.theme.settingsMainHeaderTextC};
-`;
 const ProfileImageContainer = styled.div`
     text-align: center;
     margin-top: 20px;
@@ -244,127 +237,125 @@ const UserSettings = ({
 
     return (
         <>
-            <BackgroundContainer>
+            <PageHeaderContainer>
                 <PageHeader
                     headerTitle="Settings"
                     headerDesc="Change your profile and account settings"
                 />
-                <MainContainer>
-                    <ProfileImageContainer>
-                        <Link
-                            to={`settings/editProfilePicture/${userData._id}`}
-                        >
-                            {renderUserImage()}
-                        </Link>
-                    </ProfileImageContainer>
-                    <MainGridContainer>
-                        <div>
-                            <TextFieldContainer>
-                                <TextField
-                                    name="firstName"
-                                    id="outlined-required"
-                                    label="First Name"
-                                    variant="outlined"
-                                    placeholder={`${userData.firstName}`}
-                                    InputLabelProps={{
-                                        shrink: true,
-                                    }}
-                                    onChange={handleUserDetailChange}
-                                />
-                                {renderSubmitButton(
-                                    state.firstName,
-                                    ChangeDetails.CHANGE_FIRSTNAME
-                                )}
-                            </TextFieldContainer>
-                            <TextFieldContainer>
-                                <TextField
-                                    name="userName"
-                                    id="outlined-required"
-                                    label="Username"
-                                    variant="outlined"
-                                    placeholder={`${userData.userName}`}
-                                    InputLabelProps={{
-                                        shrink: true,
-                                    }}
-                                    onChange={handleUserDetailChange}
-                                />
-                                {renderSubmitButton(
-                                    state.userName,
-                                    ChangeDetails.CHANGE_USERNAME
-                                )}
-                            </TextFieldContainer>
-                            <TextFieldContainer>
-                                <TextField
-                                    disabled
-                                    id="outlined-required"
-                                    label="Role"
-                                    variant="outlined"
-                                    placeholder="Basic-User"
-                                    InputLabelProps={{
-                                        shrink: true,
-                                    }}
-                                />
-                            </TextFieldContainer>
-                            <TextFieldContainer>
-                                <Toggler
-                                    theme={theme}
-                                    toggleTheme={toggleTheme}
-                                    callBack={modeStatus}
-                                />
-                            </TextFieldContainer>
-                        </div>
-                        <div>
-                            <TextFieldContainer>
-                                <TextField
-                                    name="lastName"
-                                    id="outlined-required"
-                                    label="Last Name"
-                                    variant="outlined"
-                                    placeholder={`${userData.lastName}`}
-                                    InputLabelProps={{
-                                        shrink: true,
-                                    }}
-                                    onChange={handleUserDetailChange}
-                                />
-                                {renderSubmitButton(
-                                    state.lastName,
-                                    ChangeDetails.CHANGE_LASTNAME
-                                )}
-                            </TextFieldContainer>
-                            <TextFieldContainer>
-                                <TextField
-                                    disabled
-                                    id="outlined-required"
-                                    label="Title"
-                                    variant="outlined"
-                                    placeholder="Researcher"
-                                    InputLabelProps={{
-                                        shrink: true,
-                                    }}
-                                />
-                            </TextFieldContainer>
-                            <TextFieldContainer>
-                                <TextField
-                                    name="email"
-                                    id="outlined-required"
-                                    label="Email Address"
-                                    variant="outlined"
-                                    placeholder={`${userData.email}`}
-                                    InputLabelProps={{
-                                        shrink: true,
-                                    }}
-                                    helperText="Changes log in credentials!"
-                                    onChange={handleUserDetailChange}
-                                />
-                                {renderSubmitButton(
-                                    state.email,
-                                    ChangeDetails.CHANGE_EMAILADDRESS
-                                )}
-                            </TextFieldContainer>
-                        </div>
-                    </MainGridContainer>
-                </MainContainer>
-            </BackgroundContainer>
+            </PageHeaderContainer>
+            <MainContainer>
+                <ProfileImageContainer>
+                    <Link to={`settings/editProfilePicture/${userData._id}`}>
+                        {renderUserImage()}
+                    </Link>
+                </ProfileImageContainer>
+                <MainGridContainer>
+                    <div>
+                        <TextFieldContainer>
+                            <TextField
+                                name="firstName"
+                                id="outlined-required"
+                                label="First Name"
+                                variant="outlined"
+                                placeholder={`${userData.firstName}`}
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                                onChange={handleUserDetailChange}
+                            />
+                            {renderSubmitButton(
+                                state.firstName,
+                                ChangeDetails.CHANGE_FIRSTNAME
+                            )}
+                        </TextFieldContainer>
+                        <TextFieldContainer>
+                            <TextField
+                                name="userName"
+                                id="outlined-required"
+                                label="Username"
+                                variant="outlined"
+                                placeholder={`${userData.userName}`}
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                                onChange={handleUserDetailChange}
+                            />
+                            {renderSubmitButton(
+                                state.userName,
+                                ChangeDetails.CHANGE_USERNAME
+                            )}
+                        </TextFieldContainer>
+                        <TextFieldContainer>
+                            <TextField
+                                disabled
+                                id="outlined-required"
+                                label="Role"
+                                variant="outlined"
+                                placeholder="Basic-User"
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                            />
+                        </TextFieldContainer>
+                        <TextFieldContainer>
+                            <Toggler
+                                theme={theme}
+                                toggleTheme={toggleTheme}
+                                callBack={modeStatus}
+                            />
+                        </TextFieldContainer>
+                    </div>
+                    <div>
+                        <TextFieldContainer>
+                            <TextField
+                                name="lastName"
+                                id="outlined-required"
+                                label="Last Name"
+                                variant="outlined"
+                                placeholder={`${userData.lastName}`}
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                                onChange={handleUserDetailChange}
+                            />
+                            {renderSubmitButton(
+                                state.lastName,
+                                ChangeDetails.CHANGE_LASTNAME
+                            )}
+                        </TextFieldContainer>
+                        <TextFieldContainer>
+                            <TextField
+                                disabled
+                                id="outlined-required"
+                                label="Title"
+                                variant="outlined"
+                                placeholder="Researcher"
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                            />
+                        </TextFieldContainer>
+                        <TextFieldContainer>
+                            <TextField
+                                name="email"
+                                id="outlined-required"
+                                label="Email Address"
+                                variant="outlined"
+                                placeholder={`${userData.email}`}
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                                helperText="Changes log in credentials!"
+                                onChange={handleUserDetailChange}
+                            />
+                            {renderSubmitButton(
+                                state.email,
+                                ChangeDetails.CHANGE_EMAILADDRESS
+                            )}
+                        </TextFieldContainer>
+                    </div>
+                </MainGridContainer>
+            </MainContainer>
         </>
     );
 };
