@@ -320,11 +320,11 @@ const UserSettings = ({
                                 />
                             </TextFieldContainer>
                             <TextFieldContainer>
-                                {/* <Toggler
+                                <Toggler
                                     theme={theme}
                                     toggleTheme={toggleTheme}
                                     callBack={modeStatus}
-                                /> */}
+                                />
                             </TextFieldContainer>
                         </div>
                         <div>
