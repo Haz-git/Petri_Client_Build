@@ -21,7 +21,13 @@ const Button = styled.button`
     }
 `;
 
-const Toggle = ({ theme, toggleTheme, callBack }) => {
+interface ToggleProps {
+    theme: any;
+    toggleTheme: any;
+    callBack: any;
+}
+
+const Toggle = ({ theme, toggleTheme, callBack }: ToggleProps): JSX.Element => {
     const renderThemeTitle = () => {
         if (theme === 'light') {
             return 'Himalayan Snow';
@@ -36,11 +42,6 @@ const Toggle = ({ theme, toggleTheme, callBack }) => {
             {renderThemeTitle()}
         </Button>
     );
-};
-
-Toggle.propTypes = {
-    theme: string.isRequired,
-    toggleTheme: func.isRequired,
 };
 
 export default Toggle;
