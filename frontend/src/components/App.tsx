@@ -38,7 +38,6 @@ import { getMode } from './Styling/useDarkMode';
 //Styling:
 
 const DashboardContainer = styled.div`
-    margin-left: 83.9375px;
     padding: 0px;
 `;
 
