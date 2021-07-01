@@ -11,6 +11,9 @@ import {
     userChangeUserName,
 } from '../../../redux/userSettings/UserSettingActions';
 
+//Components:
+import PageHeader from '../general_components/PageHeader';
+
 //Dark Mode Option:
 import { useDarkMode } from '../../Styling/useDarkMode';
 import Toggler from '../../../components/Styling/Toggler';
@@ -21,24 +24,6 @@ import { Save } from '@styled-icons/entypo/Save';
 import defaultAvatar from '../../../Img/default_avatar.png';
 import Badge from '@material-ui/core/Badge';
 import Fade from 'react-reveal/Fade';
-
-// const MainSettingsHeaderContainer = styled.div`
-//     padding-left: 40px;
-//     display: flex;
-//     text-align: center;
-//     background-color: ${(props) => props.theme.settingsHeaderBG};
-//     height: 85px;
-//     border-left: 1px solid #f6f9fc;
-//     justify-content: flex-start;
-//     align-items: center;
-//     margin: 0;
-//     padding-top: 0;
-//     padding-bottom: 0;
-//     box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-//         0 1px 1px rgba(0, 0, 0, 0.048), 0 2px 2px rgba(0, 0, 0, 0.06),
-//         0 3px 3px rgba(0, 0, 0, 0.072), 0 3px 4px rgba(0, 0, 0, 0.086),
-//         0 2px 1px rgba(0, 0, 0, 0.12); ;
-// `;
 
 const BackgroundContainer = styled.div`
     height: 100vh;
@@ -260,9 +245,7 @@ const UserSettings = ({
     return (
         <>
             <BackgroundContainer>
-                {/* <MainSettingsHeaderContainer>
-                    <StyledMainHeader>Your Settings</StyledMainHeader>
-                </MainSettingsHeaderContainer> */}
+                <PageHeader headerTitle="Settings" />
                 <MainContainer>
                     <ProfileImageContainer>
                         <Link
