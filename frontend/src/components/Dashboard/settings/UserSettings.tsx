@@ -28,12 +28,12 @@ import Fade from 'react-reveal/Fade';
 const BackgroundContainer = styled.div`
     height: 100vh;
     overflow-y: hidden;
-    background-color: ${(props) => props.theme.settingsBackgroundContainer};
+    background-color: ${(props) => props.theme.background};
     transition: all 0.5s linear;
 `;
 
 const MainContainer = styled.div`
-    margin: 30px auto;
+    /* margin: 30px auto; */
     height: fit-content;
     background-color: ${(props) => props.theme.settingsMainContainerBG};
     width: 950px;
@@ -245,7 +245,10 @@ const UserSettings = ({
     return (
         <>
             <BackgroundContainer>
-                <PageHeader headerTitle="Settings" />
+                <PageHeader
+                    headerTitle="Settings"
+                    headerDesc="Change your profile and account settings"
+                />
                 <MainContainer>
                     <ProfileImageContainer>
                         <Link
