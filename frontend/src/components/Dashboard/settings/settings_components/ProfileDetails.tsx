@@ -6,6 +6,7 @@ import TextFieldInput from '../../general_components/TextFieldInput';
 
 const MainContainer = styled.div`
     background-color: ${(props) => props.theme.settingsMainContainerBG};
+    /* background-color: salmon; */
 `;
 
 const FormHeader = styled.h2`
