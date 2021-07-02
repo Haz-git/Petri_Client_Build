@@ -16,6 +16,7 @@ const FormHeader = styled.h2`
     font-weight: 700;
     color: ${(props) => props.theme.text};
     opacity: 1;
+    margin-bottom: 2rem;
 `;
 
 const FormContainer = styled.div``;
@@ -24,7 +25,19 @@ const TextFieldContainer = styled.div`
     margin: 1rem 0;
 `;
 
-const ProfileDetails = () => {
+interface IProfileDetails {
+    firstName: string;
+    lastName: string;
+    userName: string;
+    email: string;
+}
+
+const ProfileDetails = ({
+    firstName,
+    lastName,
+    userName,
+    email,
+}: IProfileDetails): JSX.Element => {
     return (
         <MainContainer>
             <FormHeader>Personal Details</FormHeader>
@@ -33,38 +46,28 @@ const ProfileDetails = () => {
                     <SettingsInputTextField
                         name="firstName"
                         label="First name"
+                        placeholder={firstName}
                     />
                 </TextFieldContainer>
                 <TextFieldContainer>
-                    <TextFieldInput
-                        name="firstName"
-                        id="outlined-required"
-                        label="First Name"
-                        variant="outlined"
-                    />
-                </TextFieldContainer>
-                <TextFieldContainer>
-                    <TextFieldInput
+                    <SettingsInputTextField
                         name="lastName"
-                        id="outlined-required"
-                        label="Last Name"
-                        variant="outlined"
+                        label="Last name"
+                        placeholder={lastName}
                     />
                 </TextFieldContainer>
                 <TextFieldContainer>
-                    <TextFieldInput
+                    <SettingsInputTextField
                         name="userName"
-                        id="outlined-required"
-                        label="Username"
-                        variant="outlined"
+                        label="User name"
+                        placeholder={userName}
                     />
                 </TextFieldContainer>
                 <TextFieldContainer>
-                    <TextFieldInput
+                    <SettingsInputTextField
                         name="email"
-                        id="outlined-required"
-                        label="Email Address"
-                        variant="outlined"
+                        label="Email Address - This will change your log in credentials!"
+                        placeholder={email}
                     />
                 </TextFieldContainer>
             </FormContainer>
