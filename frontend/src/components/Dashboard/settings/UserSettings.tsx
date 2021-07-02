@@ -51,7 +51,6 @@ const MainContainer = styled.div`
 const ContentWrapper = styled.div`
     display: grid;
     grid-template-columns: 1fr 3fr;
-    grid-column-gap: 1em;
 `;
 
 const LinkContainer = styled.div`
@@ -66,6 +65,10 @@ const LinkButton = styled.button`
     padding: 1rem 1rem;
     margin: 0.5rem 0.5rem;
     border-radius: 0.5rem;
+`;
+
+const FormContainer = styled.div`
+    padding: 1rem 1rem;
 `;
 
 const MainGridContainer = styled.div`
@@ -200,18 +203,12 @@ const UserSettings = ({
             userSettings.userSettings.profileImg.url !== null
         ) {
             return (
-                <Badge badgeContent={'Edit'} overlap="circle" color="secondary">
-                    <StyledCustomAvatar
-                        src={userSettings.userSettings.profileImg.url}
-                    />
-                </Badge>
+                <StyledCustomAvatar
+                    src={userSettings.userSettings.profileImg.url}
+                />
             );
         } else {
-            return (
-                <Badge badgeContent={'Edit'} overlap="circle" color="secondary">
-                    <StyledDefaultAvatar src={defaultAvatar} />
-                </Badge>
-            );
+            return <StyledDefaultAvatar src={defaultAvatar} />;
         }
     };
 
@@ -284,7 +281,9 @@ const UserSettings = ({
                         <LinkButton>Security & Privacy</LinkButton>
                         <LinkButton>Upgrade</LinkButton>
                     </LinkContainer>
-                    <ProfileDetails />
+                    <FormContainer>
+                        <ProfileDetails />
+                    </FormContainer>
                 </ContentWrapper>
 
                 {/* <MainGridContainer>
