@@ -3,7 +3,7 @@
 export const lightTheme = {
     mainBody: '#f6f9fc',
     text: '#000022',
-    background: '#E5E5E5',
+    background: '#F8F8FF',
     //Main Dashboard
     navAvatarBorder: '#293241',
     navBgColor: '#222444',
