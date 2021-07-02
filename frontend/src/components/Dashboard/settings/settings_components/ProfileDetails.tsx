@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import TextFieldInput from '../../general_components/TextFieldInput';
+import SettingsInputTextField from './SettingsInputTextField';
 
 //Styles:
 
@@ -20,7 +21,7 @@ const FormHeader = styled.h2`
 const FormContainer = styled.div``;
 
 const TextFieldContainer = styled.div`
-    margin: 0.8em 0;
+    margin: 1rem 0;
 `;
 
 const ProfileDetails = () => {
@@ -28,6 +29,12 @@ const ProfileDetails = () => {
         <MainContainer>
             <FormHeader>Personal Details</FormHeader>
             <FormContainer>
+                <TextFieldContainer>
+                    <SettingsInputTextField
+                        name="firstName"
+                        label="First name"
+                    />
+                </TextFieldContainer>
                 <TextFieldContainer>
                     <TextFieldInput
                         name="firstName"
