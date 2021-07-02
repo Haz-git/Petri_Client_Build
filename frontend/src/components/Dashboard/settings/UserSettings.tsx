@@ -14,6 +14,8 @@ import {
 //Components:
 import PageHeader from '../general_components/PageHeader';
 import TextFieldInput from '../general_components/TextFieldInput';
+//temp:
+import ProfileDetails from './settings_components/ProfileDetails';
 
 //Dark Mode Option:
 import { useDarkMode } from '../../Styling/useDarkMode';
