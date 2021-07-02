@@ -35,9 +35,9 @@ const PageHeaderContainer = styled.div`
 
 const MainContainer = styled.div`
     /* margin: 30px auto; */
-    margin: 1rem 1rem;
+    margin: 1rem 2rem;
     /* height: fit-content; */
-    max-width: 40rem;
+    max-width: 60rem;
     background-color: ${(props) => props.theme.settingsMainContainerBG};
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
         rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
@@ -48,7 +48,7 @@ const MainContainer = styled.div`
 
 const ContentWrapper = styled.div`
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1.5fr 4fr;
 `;
 
 const LinkContainer = styled.div`
@@ -59,14 +59,23 @@ const LinkContainer = styled.div`
 `;
 
 const LinkButton = styled.button`
-    border: none;
-    padding: 1rem 1rem;
-    margin: 0.5rem 0.5rem;
-    border-radius: 0.5rem;
+    border-bottom: 3px solid #f8f8ff;
+    text-align: center;
+    padding: 1.5rem 0;
+    background-color: white;
+    font-family: 'Lato', sans-serif;
+    font-size: 1em;
+    font-weight: 700;
+    color: ${(props) => props.theme.text};
+    opacity: 0.7;
+
+    &:focus {
+        outline: 0;
+    }
 `;
 
 const FormContainer = styled.div`
-    padding: 1rem 1rem;
+    padding: 2rem 4rem;
 `;
 
 const MainGridContainer = styled.div`
@@ -88,16 +97,6 @@ const StyledCustomAvatar = styled.img`
     border-radius: 50%;
     vertical-align: middle;
     border: 1px solid ${(props) => props.theme.settingsAvatarBorderC};
-    /* box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-        0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
-        0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-        0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 60px 40px rgba(0, 0, 0, 0.12); */
-    /* transition: transform 0.2s;
-    transition: all 0.5s linear; */
-    /* 
-    &:hover {
-        transform: scale(1.1);
-    } */
 `;
 
 const StyledDefaultAvatar = styled.img`
@@ -108,15 +107,14 @@ const StyledDefaultAvatar = styled.img`
     border-radius: 50%;
     vertical-align: middle;
     border: 1px solid white;
-    /* box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-        0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
-        0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-        0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 60px 40px rgba(0, 0, 0, 0.12);
-    transition: transform 0.2s;
+`;
 
-    &:hover {
-        transform: scale(1.1);
-    } */
+const AvatarName = styled.p`
+    font-family: 'Lato', sans-serif;
+    font-size: 1.2em;
+    font-weight: 900;
+    color: ${(props) => props.theme.text};
+    opacity: 1;
 `;
 
 const SaveIcon = styled(Save)`
@@ -273,6 +271,9 @@ const UserSettings = ({
                         > */}
                             {renderUserImage()}
                             {/* </Link> */}
+                            <AvatarName>
+                                {userData.firstName + ' ' + userData.lastName}
+                            </AvatarName>
                         </ProfileImageContainer>
                         <LinkButton>User Profile</LinkButton>
                         <LinkButton>Password</LinkButton>
@@ -280,7 +281,12 @@ const UserSettings = ({
                         <LinkButton>Upgrade</LinkButton>
                     </LinkContainer>
                     <FormContainer>
-                        <ProfileDetails />
+                        <ProfileDetails
+                            firstName={userData.firstName}
+                            lastName={userData.lastName}
+                            userName={userData.userName}
+                            email={userData.email}
+                        />
                     </FormContainer>
                 </ContentWrapper>
 
