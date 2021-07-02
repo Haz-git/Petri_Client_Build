@@ -41,7 +41,7 @@ const MainContainer = styled.div`
         0 22.3px 17.9px rgba(0, 0, 0, 0.072),
         0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 60px 40px rgba(0, 0, 0, 0.12);
     transition: all 0.5s linear;
-    border-radius: 20px;
+    border-radius: 0.5em;
     padding: 1rem 1rem;
 `;
 
