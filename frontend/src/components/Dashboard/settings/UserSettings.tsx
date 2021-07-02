@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import TextField from '@material-ui/core/TextField';
+// import TextField from '@material-ui/core/TextField';
 import {
     userGetProfilePicture,
     userChangeEmailAddress,
@@ -13,6 +13,7 @@ import {
 
 //Components:
 import PageHeader from '../general_components/PageHeader';
+import TextFieldInput from '../general_components/TextFieldInput';
 
 //Dark Mode Option:
 import { useDarkMode } from '../../Styling/useDarkMode';
@@ -252,7 +253,7 @@ const UserSettings = ({
                 <MainGridContainer>
                     <div>
                         <TextFieldContainer>
-                            <TextField
+                            <TextFieldInput
                                 name="firstName"
                                 id="outlined-required"
                                 label="First Name"
@@ -269,7 +270,7 @@ const UserSettings = ({
                             )}
                         </TextFieldContainer>
                         <TextFieldContainer>
-                            <TextField
+                            <TextFieldInput
                                 name="userName"
                                 id="outlined-required"
                                 label="Username"
@@ -286,7 +287,7 @@ const UserSettings = ({
                             )}
                         </TextFieldContainer>
                         <TextFieldContainer>
-                            <TextField
+                            <TextFieldInput
                                 disabled
                                 id="outlined-required"
                                 label="Role"
@@ -307,7 +308,7 @@ const UserSettings = ({
                     </div>
                     <div>
                         <TextFieldContainer>
-                            <TextField
+                            <TextFieldInput
                                 name="lastName"
                                 id="outlined-required"
                                 label="Last Name"
@@ -324,7 +325,7 @@ const UserSettings = ({
                             )}
                         </TextFieldContainer>
                         <TextFieldContainer>
-                            <TextField
+                            <TextFieldInput
                                 disabled
                                 id="outlined-required"
                                 label="Title"
@@ -336,7 +337,7 @@ const UserSettings = ({
                             />
                         </TextFieldContainer>
                         <TextFieldContainer>
-                            <TextField
+                            <TextFieldInput
                                 name="email"
                                 id="outlined-required"
                                 label="Email Address"
