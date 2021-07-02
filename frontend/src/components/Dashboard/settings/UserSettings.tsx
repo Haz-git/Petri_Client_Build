@@ -13,7 +13,7 @@ import {
 
 //Components:
 import PageHeader from '../general_components/PageHeader';
-import TextFieldInput from '../general_components/TextFieldInput';
+
 //temp:
 import ProfileDetails from './settings_components/ProfileDetails';
 
@@ -39,10 +39,8 @@ const MainContainer = styled.div`
     /* height: fit-content; */
     max-width: 40rem;
     background-color: ${(props) => props.theme.settingsMainContainerBG};
-    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-        0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
-        0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-        0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 60px 40px rgba(0, 0, 0, 0.12);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+        rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     transition: all 0.5s linear;
     border-radius: 0.5em;
     /* padding: 1rem 1rem; */
@@ -54,7 +52,7 @@ const ContentWrapper = styled.div`
 `;
 
 const LinkContainer = styled.div`
-    border-right: 3px solid #e5e5e5;
+    border-right: 3px solid #f8f8ff;
     /* padding: 1rem 1rem; */
     display: flex;
     flex-direction: column;
@@ -80,7 +78,7 @@ const MainGridContainer = styled.div`
 const ProfileImageContainer = styled.div`
     text-align: center;
     /* margin-top: 20px; */
-    border-bottom: 3px solid #e5e5e5;
+    border-bottom: 3px solid #f8f8ff;
 `;
 
 const StyledCustomAvatar = styled.img`
