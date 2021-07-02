@@ -36,7 +36,7 @@ const PageHeaderContainer = styled.div`
 const MainContainer = styled.div`
     /* margin: 30px auto; */
     margin: 1rem 1rem;
-    height: fit-content;
+    /* height: fit-content; */
     max-width: 40rem;
     background-color: ${(props) => props.theme.settingsMainContainerBG};
     box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
@@ -45,7 +45,27 @@ const MainContainer = styled.div`
         0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 60px 40px rgba(0, 0, 0, 0.12);
     transition: all 0.5s linear;
     border-radius: 0.5em;
+    /* padding: 1rem 1rem; */
+`;
+
+const ContentWrapper = styled.div`
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-column-gap: 1em;
+`;
+
+const LinkContainer = styled.div`
+    border-right: 3px solid #e5e5e5;
+    /* padding: 1rem 1rem; */
+    display: flex;
+    flex-direction: column;
+`;
+
+const LinkButton = styled.button`
+    border: none;
     padding: 1rem 1rem;
+    margin: 0.5rem 0.5rem;
+    border-radius: 0.5rem;
 `;
 
 const MainGridContainer = styled.div`
@@ -56,35 +76,38 @@ const MainGridContainer = styled.div`
 
 const ProfileImageContainer = styled.div`
     text-align: center;
-    margin-top: 20px;
+    /* margin-top: 20px; */
+    border-bottom: 3px solid #e5e5e5;
 `;
 
 const StyledCustomAvatar = styled.img`
-    height: 220px;
-    width: 220px;
+    height: 200px;
+    width: 200px;
+    padding: 1rem 1rem;
     border-radius: 50%;
     vertical-align: middle;
-    border: 5px solid ${(props) => props.theme.settingsAvatarBorderC};
-    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    border: 1px solid ${(props) => props.theme.settingsAvatarBorderC};
+    /* box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
         0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
         0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-        0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 60px 40px rgba(0, 0, 0, 0.12);
-    transition: transform 0.2s;
-    transition: all 0.5s linear;
-
+        0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 60px 40px rgba(0, 0, 0, 0.12); */
+    /* transition: transform 0.2s;
+    transition: all 0.5s linear; */
+    /* 
     &:hover {
         transform: scale(1.1);
-    }
+    } */
 `;
 
 const StyledDefaultAvatar = styled.img`
-    height: 220px;
-    width: 220px;
+    height: 200px;
+    width: 200px;
+    padding: 1rem 1rem;
     background-color: white;
     border-radius: 50%;
     vertical-align: middle;
-    border: 5px solid white;
-    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    border: 1px solid white;
+    /* box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
         0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
         0 22.3px 17.9px rgba(0, 0, 0, 0.072),
         0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 60px 40px rgba(0, 0, 0, 0.12);
@@ -92,7 +115,7 @@ const StyledDefaultAvatar = styled.img`
 
     &:hover {
         transform: scale(1.1);
-    }
+    } */
 `;
 
 const SaveIcon = styled(Save)`
@@ -247,12 +270,24 @@ const UserSettings = ({
                 />
             </PageHeaderContainer>
             <MainContainer>
-                <ProfileImageContainer>
-                    <Link to={`settings/editProfilePicture/${userData._id}`}>
-                        {renderUserImage()}
-                    </Link>
-                </ProfileImageContainer>
-                <MainGridContainer>
+                <ContentWrapper>
+                    <LinkContainer>
+                        <ProfileImageContainer>
+                            {/* <Link
+                            to={`settings/editProfilePicture/${userData._id}`}
+                        > */}
+                            {renderUserImage()}
+                            {/* </Link> */}
+                        </ProfileImageContainer>
+                        <LinkButton>User Profile</LinkButton>
+                        <LinkButton>Password</LinkButton>
+                        <LinkButton>Security & Privacy</LinkButton>
+                        <LinkButton>Upgrade</LinkButton>
+                    </LinkContainer>
+                    <ProfileDetails />
+                </ContentWrapper>
+
+                {/* <MainGridContainer>
                     <div>
                         <TextFieldContainer>
                             <TextFieldInput
@@ -357,7 +392,7 @@ const UserSettings = ({
                             )}
                         </TextFieldContainer>
                     </div>
-                </MainGridContainer>
+                </MainGridContainer> */}
             </MainContainer>
         </>
     );
