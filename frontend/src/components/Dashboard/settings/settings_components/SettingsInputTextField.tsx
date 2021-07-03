@@ -32,6 +32,7 @@ interface ISettingsInputTextField {
     onChange?: React.ChangeEventHandler<HTMLInputElement>;
     disabled?: boolean;
     placeholder?: string;
+    type?: string;
 }
 
 const SettingsInputTextField = ({
@@ -40,6 +41,7 @@ const SettingsInputTextField = ({
     onChange,
     disabled,
     placeholder,
+    type,
 }: ISettingsInputTextField): JSX.Element => {
     return (
         <MainContainer>
@@ -50,6 +52,7 @@ const SettingsInputTextField = ({
                 onChange={onChange}
                 disabled={disabled}
                 placeholder={placeholder}
+                type={type}
             />
         </MainContainer>
     );
