@@ -1,5 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+
+import { connect } from 'react-redux';
+import {
+    userChangeEmailAddress,
+    userChangeFirstName,
+    userChangeLastName,
+    userChangeUserName,
+} from '../../../../redux/userSettings/UserSettingActions';
 
 //Components:
 
@@ -41,7 +49,15 @@ const ProfileButtonContainer = styled.div`
     float: right;
 `;
 
-//Interface
+//Interface dispatch props
+interface IDispatchProps {
+    userChangeEmailAddress: (value: string) => void;
+    userChangeFirstName: (value: string) => void;
+    userChangeLastName: (value: string) => void;
+    userChangeUserName: (value: string) => void;
+}
+
+//Interface props
 interface IProfileDetails {
     firstName: string;
     lastName: string;
@@ -49,12 +65,66 @@ interface IProfileDetails {
     email: string;
 }
 
+type ProfileDetailsProps = IProfileDetails & IDispatchProps;
+
 const ProfileDetails = ({
     firstName,
     lastName,
     userName,
     email,
-}: IProfileDetails): JSX.Element => {
+    userChangeEmailAddress,
+    userChangeFirstName,
+    userChangeLastName,
+    userChangeUserName,
+}: ProfileDetailsProps): JSX.Element => {
+    //Form Handler:
+
+    const [userInputDetails, setUserInputDetails] = useState({
+        firstName: '',
+        lastName: '',
+        userName: '',
+        email: '',
+    });
+
+    //Form input constants:
+    enum ChangeDetails {
+        CHANGE_FIRSTNAME = 'CHANGE_FIRSTNAME',
+        CHANGE_USERNAME = 'CHANGE_USERNAME',
+        CHANGE_LASTNAME = 'CHANGE_LASTNAME',
+        CHANGE_EMAILADDRESS = 'CHANGE_EMAILADDRESS',
+    }
+
+    //Form event handler:
+    const handleUserDetailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const val = e.target.value;
+
+        setUserInputDetails({
+            ...userInputDetails,
+            [e.target.name]: val,
+        });
+    };
+
+    //Form submission handler:
+
+    const submitUserDetailChange = (detail: string) => {
+        if (detail) {
+            switch (detail) {
+                case ChangeDetails.CHANGE_FIRSTNAME:
+                    return userChangeFirstName(userInputDetails.firstName);
+                case ChangeDetails.CHANGE_USERNAME:
+                    return userChangeUserName(userInputDetails.userName);
+                case ChangeDetails.CHANGE_LASTNAME:
+                    return userChangeLastName(userInputDetails.lastName);
+                case ChangeDetails.CHANGE_EMAILADDRESS:
+                    return userChangeEmailAddress(userInputDetails.email);
+                default:
+                    return new Error(
+                        'No submission detail was specified. Change request not processed.'
+                    );
+            }
+        }
+    };
+
     return (
         <MainContainer>
             <FormHeader>Personal Details</FormHeader>
@@ -105,4 +175,9 @@ const ProfileDetails = ({
     );
 };
 
-export default ProfileDetails;
+export default connect(null, {
+    userChangeEmailAddress,
+    userChangeFirstName,
+    userChangeLastName,
+    userChangeUserName,
+})(ProfileDetails);
