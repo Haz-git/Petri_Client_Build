@@ -16,6 +16,7 @@ import PageHeader from '../general_components/PageHeader';
 
 //temp:
 import ProfileDetails from './settings_components/ProfileDetails';
+import PasswordDetails from './settings_components/PasswordDetails';
 
 //Dark Mode Option:
 import { useDarkMode } from '../../Styling/useDarkMode';
@@ -172,6 +173,8 @@ const UserSettings = ({
         userGetProfilePicture();
     }, []);
 
+    console.log('test for re-render');
+
     //Dark Mode Toggler:
     const [theme, toggleTheme] = useDarkMode();
 
@@ -183,6 +186,49 @@ const UserSettings = ({
         userName: '',
         email: '',
     });
+
+    enum RenderView {
+        RENDER_USER_PROFILE = 'RENDER_USER_PROFILE',
+        RENDER_PASSWORD = 'RENDER_PASSWORD',
+    }
+
+    //Settings view state handler:
+    const [stateView, setStateView] = useState(RenderView.RENDER_USER_PROFILE);
+
+    enum ChangeDetails {
+        CHANGE_FIRSTNAME = 'CHANGE_FIRSTNAME',
+        CHANGE_USERNAME = 'CHANGE_USERNAME',
+        CHANGE_LASTNAME = 'CHANGE_LASTNAME',
+        CHANGE_EMAILADDRESS = 'CHANGE_EMAILADDRESS',
+    }
+
+    const renderSettingsView = (view: RenderView) => {
+        if (view) {
+            switch (view) {
+                case RenderView.RENDER_USER_PROFILE:
+                    return (
+                        <ProfileDetails
+                            firstName={userData.firstName}
+                            lastName={userData.lastName}
+                            userName={userData.userName}
+                            email={userData.email}
+                        />
+                    );
+                case RenderView.RENDER_PASSWORD:
+                    return <PasswordDetails />;
+
+                default:
+                    return <></>;
+            }
+        }
+    };
+
+    const changeRenderView = (view: RenderView) => {
+        if (view !== stateView) {
+            console.log(view);
+            setStateView(view);
+        }
+    };
 
     const handleUserDetailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const val = e.target.value;
@@ -207,13 +253,6 @@ const UserSettings = ({
             return <StyledDefaultAvatar src={defaultAvatar} />;
         }
     };
-
-    enum ChangeDetails {
-        CHANGE_FIRSTNAME = 'CHANGE_FIRSTNAME',
-        CHANGE_USERNAME = 'CHANGE_USERNAME',
-        CHANGE_LASTNAME = 'CHANGE_LASTNAME',
-        CHANGE_EMAILADDRESS = 'CHANGE_EMAILADDRESS',
-    }
 
     const submitUserDetailChange = (detail: string) => {
         if (detail) {
@@ -275,18 +314,25 @@ const UserSettings = ({
                                 {userData.firstName + ' ' + userData.lastName}
                             </AvatarName>
                         </ProfileImageContainer>
-                        <LinkButton>User Profile</LinkButton>
-                        <LinkButton>Password</LinkButton>
+                        <LinkButton
+                            onClick={() =>
+                                changeRenderView(RenderView.RENDER_USER_PROFILE)
+                            }
+                        >
+                            User Profile
+                        </LinkButton>
+                        <LinkButton
+                            onClick={() =>
+                                changeRenderView(RenderView.RENDER_PASSWORD)
+                            }
+                        >
+                            Password
+                        </LinkButton>
                         <LinkButton>Security & Privacy</LinkButton>
                         <LinkButton>Upgrade</LinkButton>
                     </LinkContainer>
                     <FormContainer>
-                        <ProfileDetails
-                            firstName={userData.firstName}
-                            lastName={userData.lastName}
-                            userName={userData.userName}
-                            email={userData.email}
-                        />
+                        {renderSettingsView(stateView)}
                     </FormContainer>
                 </ContentWrapper>
 
