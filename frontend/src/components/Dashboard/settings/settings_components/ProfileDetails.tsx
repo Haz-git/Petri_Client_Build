@@ -8,12 +8,12 @@ import GeneralButton from '../../general_components/GeneralButton';
 
 //Styles:
 
-const MainContainer = styled.div`
+export const MainContainer = styled.div`
     background-color: ${(props) => props.theme.settingsMainContainerBG};
     /* background-color: salmon; */
 `;
 
-const FormHeader = styled.h2`
+export const FormHeader = styled.h2`
     font-family: 'Lato', sans-serif;
     font-size: 1.4em;
     font-weight: 700;
@@ -22,17 +22,17 @@ const FormHeader = styled.h2`
     margin-bottom: 2rem;
 `;
 
-const FormContainer = styled.div``;
+export const FormContainer = styled.div``;
 
-const TextFieldContainer = styled.div`
+export const TextFieldContainer = styled.div`
     margin: 1rem 0;
 `;
 
-const ButtonContainer = styled.div`
+export const ButtonContainer = styled.div`
     margin-top: 2rem;
 `;
 
-const ButtonSpacer = styled.div`
+export const ButtonSpacer = styled.div`
     display: inline-block;
     width: 1rem;
 `;
