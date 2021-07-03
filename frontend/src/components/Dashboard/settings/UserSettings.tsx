@@ -1,20 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-// import TextField from '@material-ui/core/TextField';
-import {
-    userGetProfilePicture,
-    userChangeEmailAddress,
-    userChangeFirstName,
-    userChangeLastName,
-    userChangeUserName,
-} from '../../../redux/userSettings/UserSettingActions';
+import { userGetProfilePicture } from '../../../redux/userSettings/UserSettingActions';
 
 //Components:
 import PageHeader from '../general_components/PageHeader';
 
-//temp:
+//Wizard form views:
 import ProfileDetails from './settings_components/ProfileDetails';
 import PasswordDetails from './settings_components/PasswordDetails';
 
@@ -23,11 +15,8 @@ import { useDarkMode } from '../../Styling/useDarkMode';
 import Toggler from '../../../components/Styling/Toggler';
 
 //Styles:
-import Button from '@material-ui/core/Button';
 import { Save } from '@styled-icons/entypo/Save';
 import defaultAvatar from '../../../Img/default_avatar.png';
-import Badge from '@material-ui/core/Badge';
-import Fade from 'react-reveal/Fade';
 
 const PageHeaderContainer = styled.div`
     padding: 1rem 1rem;
@@ -144,10 +133,6 @@ interface IMapStateToProps {
 //This interface represents the dispatch props (or functions in this case)
 interface IDispatchProps {
     userGetProfilePicture: () => void;
-    userChangeEmailAddress: (value: string) => void;
-    userChangeFirstName: (value: string) => void;
-    userChangeLastName: (value: string) => void;
-    userChangeUserName: (value: string) => void;
 }
 
 //This interface represents UserSetting's own props that are not dispatch or state from redux.
@@ -155,7 +140,7 @@ interface IUserSettings {
     modeStatus: (modeValue: string) => void;
 }
 
-type ComponentProps = IDispatchProps & IUserSettings & IMapStateToProps;
+type UserSettingsProps = IDispatchProps & IUserSettings & IMapStateToProps;
 
 //Render:
 
@@ -163,27 +148,14 @@ const UserSettings = ({
     userData,
     userSettings,
     userGetProfilePicture,
-    userChangeEmailAddress,
-    userChangeFirstName,
-    userChangeLastName,
-    userChangeUserName,
     modeStatus,
-}: ComponentProps): JSX.Element => {
+}: UserSettingsProps): JSX.Element => {
     useEffect(() => {
         userGetProfilePicture();
     }, []);
 
     //Dark Mode Toggler:
     const [theme, toggleTheme] = useDarkMode();
-
-    //Form Handler Consolidated:
-
-    const [state, setState] = useState({
-        firstName: '',
-        lastName: '',
-        userName: '',
-        email: '',
-    });
 
     enum RenderView {
         RENDER_USER_PROFILE = 'RENDER_USER_PROFILE',
@@ -192,13 +164,6 @@ const UserSettings = ({
 
     //Settings view state handler:
     const [stateView, setStateView] = useState(RenderView.RENDER_USER_PROFILE);
-
-    enum ChangeDetails {
-        CHANGE_FIRSTNAME = 'CHANGE_FIRSTNAME',
-        CHANGE_USERNAME = 'CHANGE_USERNAME',
-        CHANGE_LASTNAME = 'CHANGE_LASTNAME',
-        CHANGE_EMAILADDRESS = 'CHANGE_EMAILADDRESS',
-    }
 
     const renderSettingsView = (view: RenderView) => {
         if (view) {
@@ -227,15 +192,6 @@ const UserSettings = ({
         }
     };
 
-    const handleUserDetailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const val = e.target.value;
-
-        setState({
-            ...state,
-            [e.target.name]: val,
-        });
-    };
-
     const renderUserImage = () => {
         if (
             userSettings.userSettings.profileImg.url !== undefined &&
@@ -248,45 +204,6 @@ const UserSettings = ({
             );
         } else {
             return <StyledDefaultAvatar src={defaultAvatar} />;
-        }
-    };
-
-    const submitUserDetailChange = (detail: string) => {
-        if (detail) {
-            switch (detail) {
-                case ChangeDetails.CHANGE_FIRSTNAME:
-                    return userChangeFirstName(state.firstName);
-                case ChangeDetails.CHANGE_USERNAME:
-                    return userChangeUserName(state.userName);
-                case ChangeDetails.CHANGE_LASTNAME:
-                    return userChangeLastName(state.lastName);
-                case ChangeDetails.CHANGE_EMAILADDRESS:
-                    return userChangeEmailAddress(state.email);
-                default:
-                    return new Error(
-                        'No submission detail was specified. Change request not processed.'
-                    );
-            }
-        }
-    };
-
-    const renderSubmitButton = (buttonValue: string, detail: string) => {
-        if (buttonValue.trim() !== '') {
-            return (
-                <Fade>
-                    <ButtonRevealContainer>
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            onClick={() => submitUserDetailChange(detail)}
-                        >
-                            Save
-                        </Button>
-                    </ButtonRevealContainer>
-                </Fade>
-            );
-        } else {
-            return null;
         }
     };
 
@@ -332,113 +249,6 @@ const UserSettings = ({
                         {renderSettingsView(stateView)}
                     </FormContainer>
                 </ContentWrapper>
-
-                {/* <MainGridContainer>
-                    <div>
-                        <TextFieldContainer>
-                            <TextFieldInput
-                                name="firstName"
-                                id="outlined-required"
-                                label="First Name"
-                                variant="outlined"
-                                placeholder={`${userData.firstName}`}
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
-                                onChange={handleUserDetailChange}
-                            />
-                            {renderSubmitButton(
-                                state.firstName,
-                                ChangeDetails.CHANGE_FIRSTNAME
-                            )}
-                        </TextFieldContainer>
-                        <TextFieldContainer>
-                            <TextFieldInput
-                                name="userName"
-                                id="outlined-required"
-                                label="Username"
-                                variant="outlined"
-                                placeholder={`${userData.userName}`}
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
-                                onChange={handleUserDetailChange}
-                            />
-                            {renderSubmitButton(
-                                state.userName,
-                                ChangeDetails.CHANGE_USERNAME
-                            )}
-                        </TextFieldContainer>
-                        <TextFieldContainer>
-                            <TextFieldInput
-                                disabled
-                                id="outlined-required"
-                                label="Role"
-                                variant="outlined"
-                                placeholder="Basic-User"
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
-                            />
-                        </TextFieldContainer>
-                        <TextFieldContainer>
-                            <Toggler
-                                theme={theme}
-                                toggleTheme={toggleTheme}
-                                callBack={modeStatus}
-                            />
-                        </TextFieldContainer>
-                    </div>
-                    <div>
-                        <TextFieldContainer>
-                            <TextFieldInput
-                                name="lastName"
-                                id="outlined-required"
-                                label="Last Name"
-                                variant="outlined"
-                                placeholder={`${userData.lastName}`}
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
-                                onChange={handleUserDetailChange}
-                            />
-                            {renderSubmitButton(
-                                state.lastName,
-                                ChangeDetails.CHANGE_LASTNAME
-                            )}
-                        </TextFieldContainer>
-                        <TextFieldContainer>
-                            <TextFieldInput
-                                disabled
-                                id="outlined-required"
-                                label="Title"
-                                variant="outlined"
-                                placeholder="Researcher"
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
-                            />
-                        </TextFieldContainer>
-                        <TextFieldContainer>
-                            <TextFieldInput
-                                name="email"
-                                id="outlined-required"
-                                label="Email Address"
-                                variant="outlined"
-                                placeholder={`${userData.email}`}
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
-                                helperText="Changes log in credentials!"
-                                onChange={handleUserDetailChange}
-                            />
-                            {renderSubmitButton(
-                                state.email,
-                                ChangeDetails.CHANGE_EMAILADDRESS
-                            )}
-                        </TextFieldContainer>
-                    </div>
-                </MainGridContainer> */}
             </MainContainer>
         </>
     );
@@ -463,8 +273,4 @@ const mapStateToProps = (state: IMapStateToProps, ownProps: IUserSettings) => {
 
 export default connect(mapStateToProps, {
     userGetProfilePicture,
-    userChangeEmailAddress,
-    userChangeFirstName,
-    userChangeLastName,
-    userChangeUserName,
 })(UserSettings);
