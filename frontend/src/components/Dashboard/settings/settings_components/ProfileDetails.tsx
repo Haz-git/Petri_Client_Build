@@ -72,7 +72,7 @@ const ProfileDetails = ({
                 <TextFieldContainer>
                     <SettingsInputTextField
                         name="userName"
-                        label="User name"
+                        label="Username"
                         placeholder={userName}
                     />
                 </TextFieldContainer>
