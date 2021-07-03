@@ -37,6 +37,10 @@ const ButtonSpacer = styled.div`
     width: 1rem;
 `;
 
+const ProfileButtonContainer = styled.div`
+    float: right;
+`;
+
 //Interface
 interface IProfileDetails {
     firstName: string;
@@ -92,6 +96,10 @@ const ProfileDetails = ({
                     buttonBackground="rgba(0, 0, 34, 0.1)"
                     buttonTextColor="rgba(0, 0, 34, 0.7)"
                 />
+                <ButtonSpacer />
+                <ProfileButtonContainer>
+                    <GeneralButton buttonLabel="Change Profile Picture" />
+                </ProfileButtonContainer>
             </ButtonContainer>
         </MainContainer>
     );
