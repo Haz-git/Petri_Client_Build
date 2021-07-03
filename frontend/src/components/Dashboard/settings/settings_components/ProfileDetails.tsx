@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import EmailValidator from 'email-validator';
 
 import { connect } from 'react-redux';
 import {
@@ -85,6 +86,9 @@ const ProfileDetails = ({
         email: '',
     });
 
+    const [allInputError, setAllInputError] = useState(false);
+    const [emailError, setEmailError] = useState(false);
+
     console.log(userInputDetails);
 
     //Form input constants:
@@ -97,6 +101,10 @@ const ProfileDetails = ({
 
     //Form event handler:
     const handleUserDetailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        //Reset input errors (if any) on press:
+        if (allInputError === true) setAllInputError(false);
+        if (emailError === true) setEmailError(false);
+
         const val = e.target.value;
 
         setUserInputDetails({
@@ -105,9 +113,42 @@ const ProfileDetails = ({
         });
     };
 
+    //Object empty checker:
+    const isObjectEmpty = (obj: {}) => {
+        for (const key in obj) {
+            if (obj[key] !== '' && obj[key] !== null) {
+                return false;
+            }
+        }
+
+        return true;
+    };
+
     //Form submission handler:
 
-    const submitUserDetailChange = (detail: string) => {
+    const submitUserDetailChange = () => {
+        //Check if the state object is all empty strings:
+        const stateStatus = isObjectEmpty(userInputDetails);
+
+        if (stateStatus === true) {
+            setAllInputError(true);
+            setEmailError(true);
+            return;
+        }
+
+        if (userInputDetails.email !== '') {
+            const emailStatus = EmailValidator.validate(userInputDetails.email);
+
+            if (emailStatus === false) {
+                setEmailError(true);
+                return;
+            }
+        }
+
+        //Check if valid email:
+    };
+
+    const test = (detail: string) => {
         if (detail) {
             switch (detail) {
                 case ChangeDetails.CHANGE_FIRSTNAME:
@@ -136,6 +177,7 @@ const ProfileDetails = ({
                         label="First name"
                         placeholder={firstName}
                         onChange={handleUserDetailChange}
+                        hasError={allInputError}
                     />
                 </TextFieldContainer>
                 <TextFieldContainer>
@@ -144,6 +186,7 @@ const ProfileDetails = ({
                         label="Last name"
                         placeholder={lastName}
                         onChange={handleUserDetailChange}
+                        hasError={allInputError}
                     />
                 </TextFieldContainer>
                 <TextFieldContainer>
@@ -152,6 +195,7 @@ const ProfileDetails = ({
                         label="Username"
                         placeholder={userName}
                         onChange={handleUserDetailChange}
+                        hasError={allInputError}
                     />
                 </TextFieldContainer>
                 <TextFieldContainer>
@@ -161,11 +205,15 @@ const ProfileDetails = ({
                         placeholder={email}
                         onChange={handleUserDetailChange}
                         type="email"
+                        hasError={emailError}
                     />
                 </TextFieldContainer>
             </FormContainer>
             <ButtonContainer>
-                <GeneralButton buttonLabel="Update" />
+                <GeneralButton
+                    buttonLabel="Update"
+                    onClick={submitUserDetailChange}
+                />
                 <ButtonSpacer />
                 <GeneralButton
                     buttonLabel="Reset"
