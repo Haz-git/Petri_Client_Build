@@ -27,18 +27,21 @@ const PasswordDetails = () => {
                     <SettingsInputTextField
                         name="currentPassword"
                         label="Current password"
+                        type="password"
                     />
                 </TextFieldContainer>
                 <TextFieldContainer>
                     <SettingsInputTextField
                         name="newPassword"
                         label="New password"
+                        type="password"
                     />
                 </TextFieldContainer>
                 <TextFieldContainer>
                     <SettingsInputTextField
                         name="newPasswordConfirm"
                         label="Confirm new password"
+                        type="password"
                     />
                 </TextFieldContainer>
             </FormContainer>
