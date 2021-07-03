@@ -78,13 +78,14 @@ const ProfileDetails = ({
     userChangeUserName,
 }: ProfileDetailsProps): JSX.Element => {
     //Form Handler:
-
     const [userInputDetails, setUserInputDetails] = useState({
         firstName: '',
         lastName: '',
         userName: '',
         email: '',
     });
+
+    console.log(userInputDetails);
 
     //Form input constants:
     enum ChangeDetails {
@@ -134,6 +135,7 @@ const ProfileDetails = ({
                         name="firstName"
                         label="First name"
                         placeholder={firstName}
+                        onChange={handleUserDetailChange}
                     />
                 </TextFieldContainer>
                 <TextFieldContainer>
@@ -141,6 +143,7 @@ const ProfileDetails = ({
                         name="lastName"
                         label="Last name"
                         placeholder={lastName}
+                        onChange={handleUserDetailChange}
                     />
                 </TextFieldContainer>
                 <TextFieldContainer>
@@ -148,6 +151,7 @@ const ProfileDetails = ({
                         name="userName"
                         label="Username"
                         placeholder={userName}
+                        onChange={handleUserDetailChange}
                     />
                 </TextFieldContainer>
                 <TextFieldContainer>
@@ -155,6 +159,8 @@ const ProfileDetails = ({
                         name="email"
                         label="Email Address - This will change your log in credentials!"
                         placeholder={email}
+                        onChange={handleUserDetailChange}
+                        type="email"
                     />
                 </TextFieldContainer>
             </FormContainer>
