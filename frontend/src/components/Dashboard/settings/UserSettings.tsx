@@ -173,8 +173,6 @@ const UserSettings = ({
         userGetProfilePicture();
     }, []);
 
-    console.log('test for re-render');
-
     //Dark Mode Toggler:
     const [theme, toggleTheme] = useDarkMode();
 
@@ -225,7 +223,6 @@ const UserSettings = ({
 
     const changeRenderView = (view: RenderView) => {
         if (view !== stateView) {
-            console.log(view);
             setStateView(view);
         }
     };
