@@ -6,7 +6,7 @@ import styled from 'styled-components';
 //Interface:
 
 const PasswordDetails = () => {
-    return <div></div>;
+    return <div>This is a temporary placeholder PASSWORD PAGE</div>;
 };
 
 export default PasswordDetails;
