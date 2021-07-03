@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const ConfirmationButton = () => {
+const GeneralButton = () => {
     return <div>Update or confirm...</div>;
 };
 
-export default ConfirmationButton;
+export default GeneralButton;
