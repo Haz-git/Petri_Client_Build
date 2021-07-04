@@ -89,16 +89,6 @@ const ProfileDetails = ({
     const [allInputError, setAllInputError] = useState(false);
     const [emailError, setEmailError] = useState(false);
 
-    console.log(userInputDetails);
-
-    //Form input constants:
-    enum ChangeDetails {
-        CHANGE_FIRSTNAME = 'CHANGE_FIRSTNAME',
-        CHANGE_USERNAME = 'CHANGE_USERNAME',
-        CHANGE_LASTNAME = 'CHANGE_LASTNAME',
-        CHANGE_EMAILADDRESS = 'CHANGE_EMAILADDRESS',
-    }
-
     //Form event handler:
     const handleUserDetailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         //Reset input errors (if any) on press:
