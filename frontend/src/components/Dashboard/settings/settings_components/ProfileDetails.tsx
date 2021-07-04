@@ -184,6 +184,15 @@ const ProfileDetails = ({
         }
     };
 
+    const resetAllUserSubmissions = () => {
+        setUserInputDetails({
+            firstName: '',
+            lastName: '',
+            userName: '',
+            email: '',
+        });
+    };
+
     return (
         <MainContainer>
             <FormHeader>Personal Details</FormHeader>
@@ -240,6 +249,7 @@ const ProfileDetails = ({
                     buttonLabel="Reset"
                     buttonBackground="rgba(0, 0, 34, 0.1)"
                     buttonTextColor="rgba(0, 0, 34, 0.7)"
+                    onClick={resetAllUserSubmissions}
                 />
                 <ButtonSpacer />
                 <ProfileButtonContainer>
