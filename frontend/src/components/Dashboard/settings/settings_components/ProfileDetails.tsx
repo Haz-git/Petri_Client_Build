@@ -136,6 +136,8 @@ const ProfileDetails = ({
             return;
         }
 
+        //Check if valid email:
+
         if (userInputDetails.email !== '') {
             const emailStatus = EmailValidator.validate(userInputDetails.email);
 
@@ -145,20 +147,45 @@ const ProfileDetails = ({
             }
         }
 
-        //Check if valid email:
+        //Loop through all keys in userInputDetails, identify non-empty values
+
+        for (const key in userInputDetails) {
+            if (
+                userInputDetails[key] !== '' &&
+                userInputDetails[key] !== null
+            ) {
+                console.log(key);
+                inputSubmissionParser(key);
+            }
+        }
     };
 
-    const test = (detail: string) => {
+    const resetUserSubmission = (detail: string) => {
+        setUserInputDetails({
+            ...userInputDetails,
+            [detail]: '',
+        });
+    };
+
+    const inputSubmissionParser = (detail: string) => {
         if (detail) {
             switch (detail) {
-                case ChangeDetails.CHANGE_FIRSTNAME:
-                    return userChangeFirstName(userInputDetails.firstName);
-                case ChangeDetails.CHANGE_USERNAME:
-                    return userChangeUserName(userInputDetails.userName);
-                case ChangeDetails.CHANGE_LASTNAME:
-                    return userChangeLastName(userInputDetails.lastName);
-                case ChangeDetails.CHANGE_EMAILADDRESS:
-                    return userChangeEmailAddress(userInputDetails.email);
+                case 'firstName':
+                    userChangeFirstName(userInputDetails.firstName);
+                    resetUserSubmission(detail);
+                    break;
+                case 'userName':
+                    userChangeUserName(userInputDetails.userName);
+                    resetUserSubmission(detail);
+                    break;
+                case 'lastName':
+                    userChangeLastName(userInputDetails.lastName);
+                    resetUserSubmission(detail);
+                    break;
+                case 'email':
+                    userChangeEmailAddress(userInputDetails.email);
+                    resetUserSubmission(detail);
+                    break;
                 default:
                     return new Error(
                         'No submission detail was specified. Change request not processed.'
@@ -178,6 +205,7 @@ const ProfileDetails = ({
                         placeholder={firstName}
                         onChange={handleUserDetailChange}
                         hasError={allInputError}
+                        value={userInputDetails.firstName}
                     />
                 </TextFieldContainer>
                 <TextFieldContainer>
@@ -187,6 +215,7 @@ const ProfileDetails = ({
                         placeholder={lastName}
                         onChange={handleUserDetailChange}
                         hasError={allInputError}
+                        value={userInputDetails.lastName}
                     />
                 </TextFieldContainer>
                 <TextFieldContainer>
@@ -196,6 +225,7 @@ const ProfileDetails = ({
                         placeholder={userName}
                         onChange={handleUserDetailChange}
                         hasError={allInputError}
+                        value={userInputDetails.userName}
                     />
                 </TextFieldContainer>
                 <TextFieldContainer>
@@ -206,6 +236,7 @@ const ProfileDetails = ({
                         onChange={handleUserDetailChange}
                         type="email"
                         hasError={emailError}
+                        value={userInputDetails.email}
                     />
                 </TextFieldContainer>
             </FormContainer>
