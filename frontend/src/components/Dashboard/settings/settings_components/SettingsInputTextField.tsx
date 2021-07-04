@@ -35,6 +35,7 @@ interface ISettingsInputTextField {
     placeholder?: string;
     type?: string;
     hasError?: boolean;
+    value?: string;
 }
 
 const SettingsInputTextField = ({
@@ -45,6 +46,7 @@ const SettingsInputTextField = ({
     placeholder,
     type,
     hasError = false,
+    value,
 }: ISettingsInputTextField): JSX.Element => {
     return (
         <MainContainer>
@@ -59,6 +61,7 @@ const SettingsInputTextField = ({
                 disabled={disabled}
                 placeholder={placeholder}
                 type={type}
+                value={value}
             />
         </MainContainer>
     );
