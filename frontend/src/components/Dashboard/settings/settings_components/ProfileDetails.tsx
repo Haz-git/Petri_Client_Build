@@ -163,6 +163,8 @@ const ProfileDetails = ({
         }
     };
 
+    //Clears recent user detail change input bar:
+
     const resetUserSubmission = (detail: string) => {
         setUserInputDetails({
             ...userInputDetails,
@@ -170,24 +172,57 @@ const ProfileDetails = ({
         });
     };
 
+    //Checks if user wants to change to already existing name:
+
+    const isSameInput = (type: string) => {
+        if (type) {
+            switch (type) {
+                case 'firstName':
+                    if (userInputDetails.firstName === firstName) return true;
+                case 'lastName':
+                    if (userInputDetails.lastName === lastName) return true;
+                case 'userName':
+                    if (userInputDetails.userName === userName) return true;
+                case 'email':
+                    if (userInputDetails.email === firstName) return true;
+            }
+        }
+    };
+
+    //Handles submission:
+
     const inputSubmissionParser = (detail: string) => {
         if (detail) {
             switch (detail) {
                 case 'firstName':
-                    userChangeFirstName(userInputDetails.firstName, snackbar);
-                    resetUserSubmission(detail);
+                    if (isSameInput(detail) !== true) {
+                        userChangeFirstName(
+                            userInputDetails.firstName,
+                            snackbar
+                        );
+                        resetUserSubmission(detail);
+                    }
                     break;
                 case 'userName':
-                    userChangeUserName(userInputDetails.userName, snackbar);
-                    resetUserSubmission(detail);
+                    if (isSameInput(detail) !== true) {
+                        userChangeUserName(userInputDetails.userName, snackbar);
+                        resetUserSubmission(detail);
+                    }
                     break;
                 case 'lastName':
-                    userChangeLastName(userInputDetails.lastName, snackbar);
-                    resetUserSubmission(detail);
+                    if (isSameInput(detail) !== true) {
+                        userChangeLastName(userInputDetails.lastName, snackbar);
+                        resetUserSubmission(detail);
+                    }
                     break;
                 case 'email':
-                    userChangeEmailAddress(userInputDetails.email, snackbar);
-                    resetUserSubmission(detail);
+                    if (isSameInput(detail) !== true) {
+                        userChangeEmailAddress(
+                            userInputDetails.email,
+                            snackbar
+                        );
+                        resetUserSubmission(detail);
+                    }
                     break;
                 default:
                     return new Error(
