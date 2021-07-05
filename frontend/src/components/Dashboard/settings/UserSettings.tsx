@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { userGetProfilePicture } from '../../../redux/userSettings/UserSettingActions';
+import { toggleSnackbarOpen } from '../../../redux/snackBar/snackBarActions';
 
 //Components:
 import PageHeader from '../general_components/PageHeader';
+import Snackbar from '../general_components/Snackbar';
 
 //Wizard form views:
 import ProfileDetails from './settings_components/ProfileDetails';
@@ -133,6 +135,7 @@ interface IMapStateToProps {
 //This interface represents the dispatch props (or functions in this case)
 interface IDispatchProps {
     userGetProfilePicture: () => void;
+    toggleSnackbarOpen: (message: string) => void;
 }
 
 //This interface represents UserSetting's own props that are not dispatch or state from redux.
@@ -149,6 +152,7 @@ const UserSettings = ({
     userSettings,
     userGetProfilePicture,
     modeStatus,
+    toggleSnackbarOpen,
 }: UserSettingsProps): JSX.Element => {
     useEffect(() => {
         userGetProfilePicture();
@@ -175,6 +179,7 @@ const UserSettings = ({
                             lastName={userData.lastName}
                             userName={userData.userName}
                             email={userData.email}
+                            snackbar={toggleSnackbarOpen}
                         />
                     );
                 case RenderView.RENDER_PASSWORD:
@@ -209,6 +214,7 @@ const UserSettings = ({
 
     return (
         <>
+            <Snackbar timeout={3000} />
             <PageHeaderContainer>
                 <PageHeader
                     headerTitle="Settings"
@@ -273,4 +279,5 @@ const mapStateToProps = (state: IMapStateToProps, ownProps: IUserSettings) => {
 
 export default connect(mapStateToProps, {
     userGetProfilePicture,
+    toggleSnackbarOpen,
 })(UserSettings);
