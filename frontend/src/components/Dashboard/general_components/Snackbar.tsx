@@ -4,48 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleSnackbarClose } from '../../../redux/snackBar/snackBarActions';
 import { FiX } from 'react-icons/fi';
 
-const Snackbar = ({ timeout }) => {
-    const dispatch = useDispatch();
-
-    // select the UI states from the redux store
-    const SHOW = useSelector((state: any) => state.snackBar.toggleSnackbar);
-    const MESSAGE = useSelector((state: any) => state.snackBar.snackbarMessage);
-
-    // convert the timeout prop to pass into the styled component
-    let TIME = (timeout - 500) / 1000 + 's';
-
-    let TIMER;
-    function handleTimeout() {
-        TIMER = setTimeout(() => {
-            dispatch(toggleSnackbarClose());
-        }, timeout);
-    }
-
-    function handleClose() {
-        clearTimeout(TIMER);
-        dispatch(toggleSnackbarClose());
-    }
-
-    useEffect(() => {
-        if (SHOW) {
-            handleTimeout();
-        }
-        return () => {
-            clearTimeout(TIMER);
-        };
-    }, [SHOW, TIMER]);
-
-    return (
-        SHOW && (
-            <Container time={TIME}>
-                <p>{MESSAGE}</p>
-                <Button onClick={handleClose}>
-                    <FiX />
-                </Button>
-            </Container>
-        )
-    );
-};
+//Styles:
 
 const fadein = keyframes`
     from {
@@ -110,5 +69,48 @@ const Button = styled.button`
         background-color: hsl(200, 100%, 60%);
     }
 `;
+
+const Snackbar = ({ timeout }) => {
+    const dispatch = useDispatch();
+
+    // select the UI states from the redux store
+    const SHOW = useSelector((state: any) => state.snackBar.toggleSnackbar);
+    const MESSAGE = useSelector((state: any) => state.snackBar.snackbarMessage);
+
+    // convert the timeout prop to pass into the styled component
+    let TIME = (timeout - 500) / 1000 + 's';
+
+    let TIMER;
+    function handleTimeout() {
+        TIMER = setTimeout(() => {
+            dispatch(toggleSnackbarClose());
+        }, timeout);
+    }
+
+    function handleClose() {
+        clearTimeout(TIMER);
+        dispatch(toggleSnackbarClose());
+    }
+
+    useEffect(() => {
+        if (SHOW) {
+            handleTimeout();
+        }
+        return () => {
+            clearTimeout(TIMER);
+        };
+    }, [SHOW, TIMER]);
+
+    return (
+        SHOW && (
+            <Container time={TIME}>
+                <p>{MESSAGE}</p>
+                <Button onClick={handleClose}>
+                    <FiX />
+                </Button>
+            </Container>
+        )
+    );
+};
 
 export default Snackbar;
