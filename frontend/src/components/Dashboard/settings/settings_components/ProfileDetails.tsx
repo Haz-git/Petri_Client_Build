@@ -154,10 +154,7 @@ const ProfileDetails = ({
         //Loop through all keys in userInputDetails, identify non-empty values
 
         for (const key in userInputDetails) {
-            if (
-                userInputDetails[key] !== '' &&
-                userInputDetails[key] !== null
-            ) {
+            if (userInputDetails[key] !== '') {
                 inputSubmissionParser(key);
             }
         }
