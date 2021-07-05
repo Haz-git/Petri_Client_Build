@@ -158,7 +158,6 @@ const ProfileDetails = ({
                 userInputDetails[key] !== '' &&
                 userInputDetails[key] !== null
             ) {
-                console.log(key);
                 inputSubmissionParser(key);
             }
         }
