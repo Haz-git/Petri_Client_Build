@@ -95,7 +95,7 @@ export function userChangeLastName(
             newLastName,
         });
 
-        if (response) renderSnackbar('Your last name has been updated.');
+        if (response) renderSnackbar('Your personal details have been updated');
 
         dispatch({
             type: SettingsActionType.USER_CHANGE_LASTNAME,
@@ -138,7 +138,7 @@ export function userChangeFirstName(
             newFirstName,
         });
 
-        if (response) renderSnackbar('Your first name has been updated.');
+        if (response) renderSnackbar('Your personal details have been updated');
 
         dispatch({
             type: SettingsActionType.USER_CHANGE_FIRSTNAME,
@@ -168,7 +168,7 @@ export function userChangeUserName(
             newUserName,
         });
 
-        if (response) renderSnackbar('Your username has been updated.');
+        if (response) renderSnackbar('Your personal details have been updated');
 
         dispatch({
             type: SettingsActionType.USER_CHANGE_USERNAME,
@@ -198,7 +198,7 @@ export function userChangeEmailAddress(
             newEmailAddress,
         });
 
-        if (response) renderSnackbar('Your email has been updated.');
+        if (response) renderSnackbar('Your personal details have been updated');
 
         dispatch({
             type: SettingsActionType.USER_CHANGE_EMAIL_ADDRESS,
