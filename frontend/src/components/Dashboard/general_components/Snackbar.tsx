@@ -65,9 +65,6 @@ const Message = styled.p`
 `;
 
 const Button = styled.button`
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
     padding: 0;
     margin-left: 0.75rem;
     height: 1.75rem;
