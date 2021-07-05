@@ -52,10 +52,22 @@ const ProfileButtonContainer = styled.div`
 
 //Interface dispatch props
 interface IDispatchProps {
-    userChangeEmailAddress: (value: string) => void;
-    userChangeFirstName: (value: string) => void;
-    userChangeLastName: (value: string) => void;
-    userChangeUserName: (value: string) => void;
+    userChangeEmailAddress: (
+        value: string,
+        callback: (message: string) => void
+    ) => void;
+    userChangeFirstName: (
+        value: string,
+        callback: (message: string) => void
+    ) => void;
+    userChangeLastName: (
+        value: string,
+        callback: (message: string) => void
+    ) => void;
+    userChangeUserName: (
+        value: string,
+        callback: (message: string) => void
+    ) => void;
 }
 
 //Interface props
@@ -64,6 +76,7 @@ interface IProfileDetails {
     lastName: string;
     userName: string;
     email: string;
+    snackbar: (message: string) => void;
 }
 
 type ProfileDetailsProps = IProfileDetails & IDispatchProps;
@@ -73,6 +86,7 @@ const ProfileDetails = ({
     lastName,
     userName,
     email,
+    snackbar,
     userChangeEmailAddress,
     userChangeFirstName,
     userChangeLastName,
@@ -161,19 +175,19 @@ const ProfileDetails = ({
         if (detail) {
             switch (detail) {
                 case 'firstName':
-                    userChangeFirstName(userInputDetails.firstName);
+                    userChangeFirstName(userInputDetails.firstName, snackbar);
                     resetUserSubmission(detail);
                     break;
                 case 'userName':
-                    userChangeUserName(userInputDetails.userName);
+                    userChangeUserName(userInputDetails.userName, snackbar);
                     resetUserSubmission(detail);
                     break;
                 case 'lastName':
-                    userChangeLastName(userInputDetails.lastName);
+                    userChangeLastName(userInputDetails.lastName, snackbar);
                     resetUserSubmission(detail);
                     break;
                 case 'email':
-                    userChangeEmailAddress(userInputDetails.email);
+                    userChangeEmailAddress(userInputDetails.email, snackbar);
                     resetUserSubmission(detail);
                     break;
                 default:
