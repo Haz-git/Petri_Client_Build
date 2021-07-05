@@ -7,12 +7,14 @@ import bionotesReducer from './userBioNote/bionoteReducer';
 import calendarReducer from './userCalendar/calendarReducer';
 import lacZReducer from './userLacZ/LacZReducer';
 import userReducer from './userSettings/UserSettingReducer';
+import snackbarReducer from './snackBar/snackBarReducer';
 import { reducer as formReducer } from 'redux-form';
 import reduxThunk from 'redux-thunk';
 import { persistStore } from 'redux-persist';
 import { persistReducer } from 'redux-persist';
 //Get localstorage on window browser--session storage also availiable:
 import storage from 'redux-persist/lib/storage';
+import snackBarReducer from './snackBar/snackBarReducer';
 
 const persistConfig = {
     //key = point of storage inside reducer--start storing at root.
@@ -38,6 +40,7 @@ const appReducer = combineReducers({
     calendarEvents: calendarReducer,
     laczAssayProtocols: lacZReducer,
     userSettings: userReducer,
+    snackBar: snackBarReducer,
 });
 
 const rootReducer = (state: any, action: any) => {
