@@ -36,7 +36,10 @@ const CheckIcon = styled(CheckCircle)`
     margin-right: 0.75rem;
 `;
 
-const Container = styled.div`
+const MainWrapper = styled.div`
+    background-color: white;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    animation: ${fadein} 0.5s, ${fadeout} 0.5s ${(props) => props.time};
     display: flex;
     justify-content: center;
     align-items: center;
@@ -46,13 +49,16 @@ const Container = styled.div`
     left: 50%;
     transform: translateX(-50%);
     height: auto;
-    padding: 0.8rem 0.8rem;
     border-radius: 0.3rem;
     border: transparent;
-    background-color: white;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+`;
 
-    animation: ${fadein} 0.5s, ${fadeout} 0.5s ${(props) => props.time};
+const Container = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
 `;
 
 const Message = styled.p`
@@ -64,9 +70,13 @@ const Message = styled.p`
     padding: 0;
 `;
 
+const ButtonContainer = styled.div`
+    text-align: center;
+    border-left: 2px solid #e8e8e8;
+    padding: 0.8rem 0.2rem;
+`;
+
 const Button = styled.button`
-    padding: 0;
-    margin-left: 0.75rem;
     height: 1.75rem;
     width: 1.75rem;
     text-align: center;
@@ -112,13 +122,17 @@ const Snackbar = ({ timeout }) => {
 
     return (
         SHOW && (
-            <Container time={TIME}>
-                <CheckIcon />
-                <Message>{MESSAGE}</Message>
-                <Button onClick={handleClose}>
-                    <FiX />
-                </Button>
-            </Container>
+            <MainWrapper time={TIME}>
+                <Container>
+                    <CheckIcon />
+                    <Message>{MESSAGE}</Message>
+                </Container>
+                <ButtonContainer>
+                    <Button onClick={handleClose}>
+                        <FiX />
+                    </Button>
+                </ButtonContainer>
+            </MainWrapper>
         )
     );
 };
