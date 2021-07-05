@@ -74,7 +74,10 @@ export function userAddNewProfilePicture(imgURL: any, imgConstraints: any) {
     };
 }
 
-export function userChangeLastName(newLastName: string) {
+export function userChangeLastName(
+    newLastName: string,
+    renderSnackbar: (message: string) => void
+) {
     return async (
         dispatch: Dispatch<SettingsAction>,
         getState: () => State
@@ -91,6 +94,8 @@ export function userChangeLastName(newLastName: string) {
             _id,
             newLastName,
         });
+
+        if (response) renderSnackbar('Your last name has been updated.');
 
         dispatch({
             type: SettingsActionType.USER_CHANGE_LASTNAME,
@@ -112,7 +117,10 @@ export function userChangeLastName(newLastName: string) {
     };
 }
 
-export function userChangeFirstName(newFirstName: String) {
+export function userChangeFirstName(
+    newFirstName: String,
+    renderSnackbar: (message: string) => void
+) {
     return async (
         dispatch: Dispatch<SettingsAction>,
         getState: () => State
@@ -130,6 +138,8 @@ export function userChangeFirstName(newFirstName: String) {
             newFirstName,
         });
 
+        if (response) renderSnackbar('Your first name has been updated.');
+
         dispatch({
             type: SettingsActionType.USER_CHANGE_FIRSTNAME,
             payload: response.data.updatedFirstNameUser,
@@ -137,7 +147,10 @@ export function userChangeFirstName(newFirstName: String) {
     };
 }
 
-export function userChangeUserName(newUserName: String) {
+export function userChangeUserName(
+    newUserName: String,
+    renderSnackbar: (message: string) => void
+) {
     return async (
         dispatch: Dispatch<SettingsAction>,
         getState: () => State
@@ -155,6 +168,8 @@ export function userChangeUserName(newUserName: String) {
             newUserName,
         });
 
+        if (response) renderSnackbar('Your username has been updated.');
+
         dispatch({
             type: SettingsActionType.USER_CHANGE_USERNAME,
             payload: response.data.updatedUserNameUser,
@@ -162,7 +177,10 @@ export function userChangeUserName(newUserName: String) {
     };
 }
 
-export function userChangeEmailAddress(newEmailAddress: String) {
+export function userChangeEmailAddress(
+    newEmailAddress: String,
+    renderSnackbar: (message: string) => void
+) {
     return async (
         dispatch: Dispatch<SettingsAction>,
         getState: () => State
@@ -179,6 +197,8 @@ export function userChangeEmailAddress(newEmailAddress: String) {
             _id,
             newEmailAddress,
         });
+
+        if (response) renderSnackbar('Your email has been updated.');
 
         dispatch({
             type: SettingsActionType.USER_CHANGE_EMAIL_ADDRESS,
