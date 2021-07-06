@@ -60,6 +60,7 @@ const GeneralButton = ({
                 name={name}
                 buttonBackground={buttonBackground}
                 buttonTextColor={buttonTextColor}
+                disabled={isDisabledOnLoading}
             >
                 {buttonLabel}
                 {isDisabledOnLoading === true ? (
