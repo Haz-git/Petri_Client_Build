@@ -54,19 +54,23 @@ const ProfileButtonContainer = styled.div`
 interface IDispatchProps {
     userChangeEmailAddress: (
         value: string,
-        callback: (message: string) => void
+        snackbar: (message: string) => void,
+        callback: () => void
     ) => void;
     userChangeFirstName: (
         value: string,
-        callback: (message: string) => void
+        snackbar: (message: string) => void,
+        callback: () => void
     ) => void;
     userChangeLastName: (
         value: string,
-        callback: (message: string) => void
+        snackbar: (message: string) => void,
+        callback: () => void
     ) => void;
     userChangeUserName: (
         value: string,
-        callback: (message: string) => void
+        snackbar: (message: string) => void,
+        callback: () => void
     ) => void;
 }
 
@@ -293,7 +297,7 @@ const ProfileDetails = ({
                 <GeneralButton
                     buttonLabel="Reset"
                     buttonBackground="rgba(0, 0, 34, 0.1)"
-                    buttonTextColor="rgba(0, 0, 34, 0.7)"
+                    buttonTextColor="rgba(5, 5, 20, 0.7)"
                     onClick={resetAllUserSubmissions}
                 />
                 <ButtonSpacer />
