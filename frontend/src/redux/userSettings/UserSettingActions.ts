@@ -77,7 +77,7 @@ export function userAddNewProfilePicture(imgURL: any, imgConstraints: any) {
 export function userChangeLastName(
     newLastName: string,
     renderSnackbar: (message: string) => void,
-    callback: () => void
+    btnCallback: (status: boolean) => void
 ) {
     return async (
         dispatch: Dispatch<SettingsAction>,
@@ -96,7 +96,10 @@ export function userChangeLastName(
             newLastName,
         });
 
-        if (response) renderSnackbar('Your personal details have been updated');
+        if (response) {
+            renderSnackbar('Your personal details have been updated');
+            btnCallback(false);
+        }
 
         dispatch({
             type: SettingsActionType.USER_CHANGE_LASTNAME,
@@ -121,7 +124,7 @@ export function userChangeLastName(
 export function userChangeFirstName(
     newFirstName: String,
     renderSnackbar: (message: string) => void,
-    callback: () => void
+    btnCallback: (status: boolean) => void
 ) {
     return async (
         dispatch: Dispatch<SettingsAction>,
@@ -140,7 +143,10 @@ export function userChangeFirstName(
             newFirstName,
         });
 
-        if (response) renderSnackbar('Your personal details have been updated');
+        if (response) {
+            renderSnackbar('Your personal details have been updated');
+            btnCallback(false);
+        }
 
         dispatch({
             type: SettingsActionType.USER_CHANGE_FIRSTNAME,
@@ -152,7 +158,7 @@ export function userChangeFirstName(
 export function userChangeUserName(
     newUserName: String,
     renderSnackbar: (message: string) => void,
-    callback: () => void
+    btnCallback: (status: boolean) => void
 ) {
     return async (
         dispatch: Dispatch<SettingsAction>,
@@ -171,7 +177,10 @@ export function userChangeUserName(
             newUserName,
         });
 
-        if (response) renderSnackbar('Your personal details have been updated');
+        if (response) {
+            renderSnackbar('Your personal details have been updated');
+            btnCallback(false);
+        }
 
         dispatch({
             type: SettingsActionType.USER_CHANGE_USERNAME,
@@ -183,7 +192,7 @@ export function userChangeUserName(
 export function userChangeEmailAddress(
     newEmailAddress: String,
     renderSnackbar: (message: string) => void,
-    callback: () => void
+    btnCallback: (status: boolean) => void
 ) {
     return async (
         dispatch: Dispatch<SettingsAction>,
@@ -202,7 +211,10 @@ export function userChangeEmailAddress(
             newEmailAddress,
         });
 
-        if (response) renderSnackbar('Your personal details have been updated');
+        if (response) {
+            renderSnackbar('Your personal details have been updated');
+            btnCallback(false);
+        }
 
         dispatch({
             type: SettingsActionType.USER_CHANGE_EMAIL_ADDRESS,
