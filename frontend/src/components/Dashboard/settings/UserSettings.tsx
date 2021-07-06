@@ -26,16 +26,12 @@ const PageHeaderContainer = styled.div`
 `;
 
 const MainContainer = styled.div`
-    /* margin: 30px auto; */
     margin: 1rem 2rem;
-    /* height: fit-content; */
-    max-width: 60rem;
     background-color: ${(props) => props.theme.settingsMainContainerBG};
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
         rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     transition: all 0.5s linear;
     border-radius: 0.5em;
-    /* padding: 1rem 1rem; */
 `;
 
 const ContentWrapper = styled.div`
@@ -45,7 +41,6 @@ const ContentWrapper = styled.div`
 
 const LinkContainer = styled.div`
     border-right: 3px solid #f8f8ff;
-    /* padding: 1rem 1rem; */
     display: flex;
     flex-direction: column;
 `;
@@ -78,7 +73,6 @@ const MainGridContainer = styled.div`
 
 const ProfileImageContainer = styled.div`
     text-align: center;
-    /* margin-top: 20px; */
     border-bottom: 3px solid #f8f8ff;
 `;
 
