@@ -38,16 +38,23 @@ export const TextFieldContainer = styled.div`
 `;
 
 export const ButtonContainer = styled.div`
+    position: relative;
     margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+`;
+
+const ButtonDivider = styled.div`
+    max-width: 20rem;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
 `;
 
 export const ButtonSpacer = styled.div`
     display: inline-block;
     width: 1rem;
-`;
-
-const ProfileButtonContainer = styled.div`
-    float: right;
 `;
 
 //Interface dispatch props
@@ -321,24 +328,26 @@ const ProfileDetails = ({
                 </TextFieldContainer>
             </FormContainer>
             <ButtonContainer>
-                <GeneralButton
-                    buttonLabel={
-                        isButtonLoading === false ? 'Update' : 'Updating...'
-                    }
-                    onClick={submitUserDetailChange}
-                    isDisabledOnLoading={isButtonLoading}
-                />
-                <ButtonSpacer />
-                <GeneralButton
-                    buttonLabel="Reset"
-                    buttonBackground="rgba(0, 0, 34, 0.1)"
-                    buttonTextColor="rgba(5, 5, 20, 0.7)"
-                    onClick={resetAllUserSubmissions}
-                />
-                <ButtonSpacer />
-                <ProfileButtonContainer>
+                <ButtonDivider>
+                    <GeneralButton
+                        buttonLabel={
+                            isButtonLoading === false ? 'Update' : 'Updating...'
+                        }
+                        onClick={submitUserDetailChange}
+                        isDisabledOnLoading={isButtonLoading}
+                    />
+                </ButtonDivider>
+                <ButtonDivider>
+                    <GeneralButton
+                        buttonLabel="Reset"
+                        buttonBackground="rgba(0, 0, 34, 0.1)"
+                        buttonTextColor="rgba(5, 5, 20, 0.7)"
+                        onClick={resetAllUserSubmissions}
+                    />
+                </ButtonDivider>
+                <ButtonDivider>
                     <GeneralButton buttonLabel="Change Profile Picture" />
-                </ProfileButtonContainer>
+                </ButtonDivider>
             </ButtonContainer>
         </MainContainer>
     );
