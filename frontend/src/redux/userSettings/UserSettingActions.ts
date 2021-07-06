@@ -76,7 +76,8 @@ export function userAddNewProfilePicture(imgURL: any, imgConstraints: any) {
 
 export function userChangeLastName(
     newLastName: string,
-    renderSnackbar: (message: string) => void
+    renderSnackbar: (message: string) => void,
+    callback: () => void
 ) {
     return async (
         dispatch: Dispatch<SettingsAction>,
@@ -119,7 +120,8 @@ export function userChangeLastName(
 
 export function userChangeFirstName(
     newFirstName: String,
-    renderSnackbar: (message: string) => void
+    renderSnackbar: (message: string) => void,
+    callback: () => void
 ) {
     return async (
         dispatch: Dispatch<SettingsAction>,
@@ -149,7 +151,8 @@ export function userChangeFirstName(
 
 export function userChangeUserName(
     newUserName: String,
-    renderSnackbar: (message: string) => void
+    renderSnackbar: (message: string) => void,
+    callback: () => void
 ) {
     return async (
         dispatch: Dispatch<SettingsAction>,
@@ -179,7 +182,8 @@ export function userChangeUserName(
 
 export function userChangeEmailAddress(
     newEmailAddress: String,
-    renderSnackbar: (message: string) => void
+    renderSnackbar: (message: string) => void,
+    callback: () => void
 ) {
     return async (
         dispatch: Dispatch<SettingsAction>,
