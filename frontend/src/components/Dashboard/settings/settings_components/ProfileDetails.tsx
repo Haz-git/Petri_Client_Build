@@ -55,22 +55,22 @@ interface IDispatchProps {
     userChangeEmailAddress: (
         value: string,
         snackbar: (message: string) => void,
-        callback: () => void
+        callback: (status: boolean) => void
     ) => void;
     userChangeFirstName: (
         value: string,
         snackbar: (message: string) => void,
-        callback: () => void
+        callback: (status: boolean) => void
     ) => void;
     userChangeLastName: (
         value: string,
         snackbar: (message: string) => void,
-        callback: () => void
+        callback: (status: boolean) => void
     ) => void;
     userChangeUserName: (
         value: string,
         snackbar: (message: string) => void,
-        callback: () => void
+        callback: (status: boolean) => void
     ) => void;
 }
 
@@ -104,6 +104,14 @@ const ProfileDetails = ({
         email: '',
     });
 
+    //Button State:
+    const [isButtonLoading, setIsButtonLoading] = useState(false);
+
+    //Button State Handler:
+    const setButtonState = (status: boolean) => {
+        setIsButtonLoading(status);
+    };
+
     const [allInputError, setAllInputError] = useState(false);
     const [emailError, setEmailError] = useState(false);
 
@@ -135,12 +143,16 @@ const ProfileDetails = ({
     //Form submission handler:
 
     const submitUserDetailChange = () => {
+        //Set Button State to load to avoid all subsequent requests:
+        setButtonState(true);
+
         //Check if the state object is all empty strings:
         const stateStatus = isObjectEmpty(userInputDetails);
 
         if (stateStatus === true) {
             setAllInputError(true);
             setEmailError(true);
+            setButtonState(false);
             return;
         }
 
@@ -151,6 +163,7 @@ const ProfileDetails = ({
 
             if (emailStatus === false) {
                 setEmailError(true);
+                setButtonState(false);
                 return;
             }
         }
@@ -199,30 +212,49 @@ const ProfileDetails = ({
                     if (isSameInput(detail) !== true) {
                         userChangeFirstName(
                             userInputDetails.firstName,
-                            snackbar
+                            snackbar,
+                            setButtonState
                         );
                         resetUserSubmission(detail);
+                    } else {
+                        setButtonState(false);
                     }
+
                     break;
                 case 'userName':
                     if (isSameInput(detail) !== true) {
-                        userChangeUserName(userInputDetails.userName, snackbar);
+                        userChangeUserName(
+                            userInputDetails.userName,
+                            snackbar,
+                            setButtonState
+                        );
                         resetUserSubmission(detail);
+                    } else {
+                        setButtonState(false);
                     }
                     break;
                 case 'lastName':
                     if (isSameInput(detail) !== true) {
-                        userChangeLastName(userInputDetails.lastName, snackbar);
+                        userChangeLastName(
+                            userInputDetails.lastName,
+                            snackbar,
+                            setButtonState
+                        );
                         resetUserSubmission(detail);
+                    } else {
+                        setButtonState(false);
                     }
                     break;
                 case 'email':
                     if (isSameInput(detail) !== true) {
                         userChangeEmailAddress(
                             userInputDetails.email,
-                            snackbar
+                            snackbar,
+                            setButtonState
                         );
                         resetUserSubmission(detail);
+                    } else {
+                        setButtonState(false);
                     }
                     break;
                 default:
@@ -290,8 +322,11 @@ const ProfileDetails = ({
             </FormContainer>
             <ButtonContainer>
                 <GeneralButton
-                    buttonLabel="Update"
+                    buttonLabel={
+                        isButtonLoading === false ? 'Update' : 'Updating...'
+                    }
                     onClick={submitUserDetailChange}
+                    isDisabledOnLoading={isButtonLoading}
                 />
                 <ButtonSpacer />
                 <GeneralButton
