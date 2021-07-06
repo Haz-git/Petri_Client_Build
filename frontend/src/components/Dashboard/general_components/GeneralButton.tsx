@@ -1,8 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 //Styles:
 const StyledGeneralButton = styled.button<IGeneralButtonProps>`
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: none;
     background: ${(props) => props.buttonBackground};
     padding: 0.7rem 1rem;
@@ -26,6 +30,10 @@ const StyledGeneralButton = styled.button<IGeneralButtonProps>`
     }
 `;
 
+const LoaderContainer = styled.div`
+    margin-left: 0.5rem;
+`;
+
 //Interface:
 
 interface IGeneralButtonProps {
@@ -34,6 +42,7 @@ interface IGeneralButtonProps {
     onClick?: React.ChangeEventHandler<HTMLInputElement>;
     buttonBackground?: string;
     buttonTextColor?: string;
+    isDisabledOnLoading?: boolean;
 }
 
 const GeneralButton = ({
@@ -42,6 +51,7 @@ const GeneralButton = ({
     buttonBackground = '#222444',
     buttonTextColor = 'white',
     onClick,
+    isDisabledOnLoading = false,
 }: IGeneralButtonProps): JSX.Element => {
     return (
         <>
@@ -52,6 +62,15 @@ const GeneralButton = ({
                 buttonTextColor={buttonTextColor}
             >
                 {buttonLabel}
+                {isDisabledOnLoading === true ? (
+                    <LoaderContainer>
+                        <CircularProgress
+                            size={17}
+                            thickness={6}
+                            color="inherit"
+                        />
+                    </LoaderContainer>
+                ) : null}
             </StyledGeneralButton>
         </>
     );
