@@ -30,10 +30,16 @@ export interface IChangeEmailAddress {
     payload?: any;
 }
 
+export interface IChangePassword {
+    type: SettingsActionType.USER_CHANGE_PASSWORD;
+    payload?: any;
+}
+
 export type SettingsAction =
     | IGetProfilePic
     | IAddNewProfilePic
     | IChangeLastName
     | IChangeFirstName
     | IChangeUserName
-    | IChangeEmailAddress;
+    | IChangeEmailAddress
+    | IChangePassword;

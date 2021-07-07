@@ -122,7 +122,7 @@ export function userChangeLastName(
 }
 
 export function userChangeFirstName(
-    newFirstName: String,
+    newFirstName: string,
     renderSnackbar: (message: string) => void,
     btnCallback: (status: boolean) => void
 ) {
@@ -156,7 +156,7 @@ export function userChangeFirstName(
 }
 
 export function userChangeUserName(
-    newUserName: String,
+    newUserName: string,
     renderSnackbar: (message: string) => void,
     btnCallback: (status: boolean) => void
 ) {
@@ -190,7 +190,7 @@ export function userChangeUserName(
 }
 
 export function userChangeEmailAddress(
-    newEmailAddress: String,
+    newEmailAddress: string,
     renderSnackbar: (message: string) => void,
     btnCallback: (status: boolean) => void
 ) {
@@ -220,5 +220,37 @@ export function userChangeEmailAddress(
             type: SettingsActionType.USER_CHANGE_EMAIL_ADDRESS,
             payload: response.data.updatedEmailAddressUser,
         });
+    };
+}
+
+//Change user password:
+
+export function userChangePassword(
+    newPassword: string,
+    newPasswordConfirm: string,
+    currentPassword: string
+) {
+    return async (
+        dispatch: Dispatch<SettingsAction>,
+        getState: () => State
+    ) => {
+        const {
+            auth: {
+                userLogIn: {
+                    data: { _id },
+                },
+            },
+        } = getState();
+
+        const response = await api.post('/users/settings/changePassword', {
+            _id,
+            newPassword,
+            newPasswordConfirm,
+            currentPassword,
+        });
+
+        console.log(response);
+
+        //No need to dispatch anything.
     };
 }
