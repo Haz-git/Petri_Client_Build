@@ -59,7 +59,7 @@ const LinkButton = styled.button<LinkButtonProps>`
     opacity: ${(props) => (props.state === true ? '1' : '0.7')};
     box-shadow: ${(props) =>
         props.state === true
-            ? 'rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;'
+            ? ' rgb(38, 57, 77) 0px 20px 30px -10px;'
             : 'none'};
 
     &:focus {
@@ -90,8 +90,8 @@ const StyledCustomAvatar = styled.img`
     border-radius: 50%;
     vertical-align: middle;
     border: 5px solid ${(props) => props.theme.settingsAvatarBorderC};
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-        rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+        rgba(0, 0, 0, 0.23) 0px 6px 6px;
 `;
 
 const StyledDefaultAvatar = styled.img`
@@ -103,8 +103,8 @@ const StyledDefaultAvatar = styled.img`
     border-radius: 50%;
     vertical-align: middle;
     border: 5px solid ${(props) => props.theme.settingsAvatarBorderC};
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-        rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+        rgba(0, 0, 0, 0.23) 0px 6px 6px;
 `;
 
 const AvatarName = styled.p`
