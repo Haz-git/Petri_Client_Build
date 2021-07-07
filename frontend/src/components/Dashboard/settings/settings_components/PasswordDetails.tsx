@@ -116,6 +116,17 @@ const PasswordDetails = ({
         return p1.trim().normalize() === p2.trim().normalize();
     };
 
+    //Checks if password adheres to user model rules (6 < password < 20):
+    const checkPasswordLength = (password) => {
+        let length = password.trim().length;
+
+        if (length >= 6 && length <= 20) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+
     //Handles password submission:
     const submitUserPasswordChange = () => {
         //Set Button State to load to avoid all subsequent requests:
@@ -137,6 +148,16 @@ const PasswordDetails = ({
 
         const { newPassword, newPasswordConfirm, currentPassword } =
             userInputPasswords;
+
+        if (checkPasswordLength(newPassword) !== true) {
+            setMatchPassError(true);
+            setButtonState(false);
+            setErrorDesc(
+                'Your new password must be greater than 6 characters and less than 20 characters.'
+            );
+            setShowErrorText(true);
+            return;
+        }
 
         const samePassword = isPasswordSame(newPassword, newPasswordConfirm);
 
