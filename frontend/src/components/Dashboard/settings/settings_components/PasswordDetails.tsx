@@ -26,7 +26,10 @@ interface IDispatchProps {
     userChangePassword: (
         newPassword: string,
         newPasswordConfirm: string,
-        currentPassword: string
+        currentPassword: string,
+        snackbarCallback: (message: string) => void,
+        btnCallback: (status: boolean) => void,
+        errorCallback: (status: boolean, message: string) => void
     ) => void;
 }
 
@@ -63,6 +66,13 @@ const PasswordDetails = ({
     //Button State Handler:
     const setButtonState = (status: boolean) => {
         setIsButtonLoading(status);
+    };
+
+    //Curr password error state handler:
+    const setCurrPasswordState = (status: boolean, message: string) => {
+        setAllInputError(status);
+        setShowErrorText(status);
+        setErrorDesc(message);
     };
 
     //Form event handler:
@@ -165,8 +175,13 @@ const PasswordDetails = ({
             userChangePassword(
                 newPassword,
                 newPasswordConfirm,
-                currentPassword
+                currentPassword,
+                snackbar,
+                setButtonState,
+                setCurrPasswordState
             );
+
+            resetAllUserSubmissions();
         } else {
             setMatchPassError(true);
             setButtonState(false);
