@@ -187,7 +187,7 @@ const UserSettings = ({
                         />
                     );
                 case RenderView.RENDER_PASSWORD:
-                    return <PasswordDetails />;
+                    return <PasswordDetails snackbar={toggleSnackbarOpen} />;
 
                 default:
                     return <></>;
