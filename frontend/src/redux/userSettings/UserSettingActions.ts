@@ -97,7 +97,9 @@ export function userChangeLastName(
         });
 
         if (response) {
-            renderSnackbar('Your personal details have been updated');
+            renderSnackbar(
+                'Your personal details have been updated successfully.'
+            );
             btnCallback(false);
         }
 
@@ -144,7 +146,9 @@ export function userChangeFirstName(
         });
 
         if (response) {
-            renderSnackbar('Your personal details have been updated');
+            renderSnackbar(
+                'Your personal details have been updated successfully.'
+            );
             btnCallback(false);
         }
 
@@ -178,7 +182,9 @@ export function userChangeUserName(
         });
 
         if (response) {
-            renderSnackbar('Your personal details have been updated');
+            renderSnackbar(
+                'Your personal details have been updated successfully.'
+            );
             btnCallback(false);
         }
 
@@ -212,7 +218,9 @@ export function userChangeEmailAddress(
         });
 
         if (response) {
-            renderSnackbar('Your personal details have been updated');
+            renderSnackbar(
+                'Your personal details have been updated successfully.'
+            );
             btnCallback(false);
         }
 
@@ -228,7 +236,10 @@ export function userChangeEmailAddress(
 export function userChangePassword(
     newPassword: string,
     newPasswordConfirm: string,
-    currentPassword: string
+    currentPassword: string,
+    snackbarCallback: (message: string) => void,
+    btnCallback: (status: boolean) => void,
+    errorCallback: (status: boolean, message: string) => void
 ) {
     return async (
         dispatch: Dispatch<SettingsAction>,
@@ -242,14 +253,24 @@ export function userChangePassword(
             },
         } = getState();
 
-        const response = await api.post('/users/settings/changePassword', {
-            _id,
-            newPassword,
-            newPasswordConfirm,
-            currentPassword,
-        });
+        try {
+            const response = await api.post('/users/settings/changePassword', {
+                _id,
+                newPassword,
+                newPasswordConfirm,
+                currentPassword,
+            });
 
-        console.log(response);
+            if (response) {
+                snackbarCallback(
+                    'Your password has been changed successfully.'
+                );
+                btnCallback(false);
+            }
+        } catch (error) {
+            errorCallback(true, error.response.data.msg);
+            btnCallback(false);
+        }
 
         //No need to dispatch anything.
     };
