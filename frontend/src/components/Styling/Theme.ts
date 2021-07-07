@@ -81,7 +81,7 @@ export const lightTheme = {
     settingsBackgroundContainer: '#f6f9fc',
     settingsMainHeaderTextC: '#293241',
     settingsMainContainerBG: 'white',
-    settingsAvatarBorderC: 'white',
+    settingsAvatarBorderC: '#222444',
 };
 
 export const darkTheme = {
@@ -165,5 +165,5 @@ export const darkTheme = {
     settingsBackgroundContainer: '#141628',
     settingsMainHeaderTextC: 'white',
     settingsMainContainerBG: 'white',
-    settingsAvatarBorderC: '#242746',
+    settingsAvatarBorderC: '#222444',
 };
