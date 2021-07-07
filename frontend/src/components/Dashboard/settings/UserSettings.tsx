@@ -45,16 +45,22 @@ const LinkContainer = styled.div`
     flex-direction: column;
 `;
 
-const LinkButton = styled.button`
-    border-bottom: 3px solid #f8f8ff;
+const LinkButton = styled.button<LinkButtonProps>`
+    border-bottom: ${(props) =>
+        props.state === true ? '3px solid @222444' : '3px solid #f8f8ff'};
     text-align: center;
     padding: 1.5rem 0;
-    background-color: white;
+    background-color: ${(props) =>
+        props.state === true ? '#222444' : 'white'};
     font-family: 'Lato', sans-serif;
     font-size: 1em;
     font-weight: 700;
-    color: ${(props) => props.theme.text};
-    opacity: 0.7;
+    color: ${(props) => (props.state === true ? 'white' : props.theme.text)};
+    opacity: ${(props) => (props.state === true ? '1' : '0.7')};
+    box-shadow: ${(props) =>
+        props.state === true
+            ? 'rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;'
+            : 'none'};
 
     &:focus {
         outline: 0;
@@ -130,6 +136,10 @@ const ButtonRevealContainer = styled.div`
     margin-left: 10px;
 `;
 
+interface LinkButtonProps {
+    stateOnClick: boolean;
+}
+
 //This interface represents the state slices returned by mapStateToProps
 interface IMapStateToProps {
     userData: any;
@@ -165,6 +175,10 @@ const UserSettings = ({
     //Dark Mode Toggler:
     const [theme, toggleTheme] = useDarkMode();
 
+    //Button Link States:
+    const [profileViewBtn, setProfileViewBtn] = useState(true);
+    const [passwordViewBtn, setPasswordViewBtn] = useState(false);
+
     enum RenderView {
         RENDER_USER_PROFILE = 'RENDER_USER_PROFILE',
         RENDER_PASSWORD = 'RENDER_PASSWORD',
@@ -173,10 +187,29 @@ const UserSettings = ({
     //Settings view state handler:
     const [stateView, setStateView] = useState(RenderView.RENDER_USER_PROFILE);
 
+    //Button Link State handler -- align with view:
+    const alignLinkButtonWithView = (view: RenderView) => {
+        switch (view) {
+            case RenderView.RENDER_USER_PROFILE:
+                setPasswordViewBtn(false);
+                setProfileViewBtn(true);
+                break;
+            case RenderView.RENDER_PASSWORD:
+                setPasswordViewBtn(true);
+                setProfileViewBtn(false);
+                break;
+            default:
+                setProfileViewBtn(true);
+                setPasswordViewBtn(false);
+        }
+    };
+
     const renderSettingsView = (view: RenderView) => {
         if (view) {
             switch (view) {
                 case RenderView.RENDER_USER_PROFILE:
+                    if (profileViewBtn !== true)
+                        alignLinkButtonWithView(RenderView.RENDER_USER_PROFILE);
                     return (
                         <ProfileDetails
                             firstName={userData.firstName}
@@ -187,6 +220,8 @@ const UserSettings = ({
                         />
                     );
                 case RenderView.RENDER_PASSWORD:
+                    if (passwordViewBtn !== true)
+                        alignLinkButtonWithView(RenderView.RENDER_PASSWORD);
                     return <PasswordDetails snackbar={toggleSnackbarOpen} />;
 
                 default:
@@ -243,6 +278,7 @@ const UserSettings = ({
                             onClick={() =>
                                 changeRenderView(RenderView.RENDER_USER_PROFILE)
                             }
+                            state={profileViewBtn}
                         >
                             User Profile
                         </LinkButton>
@@ -250,6 +286,7 @@ const UserSettings = ({
                             onClick={() =>
                                 changeRenderView(RenderView.RENDER_PASSWORD)
                             }
+                            state={passwordViewBtn}
                         >
                             Password
                         </LinkButton>
