@@ -200,10 +200,13 @@ const ProfileDetails = ({
             switch (type) {
                 case 'firstName':
                     if (userInputDetails.firstName === firstName) return true;
+                    break;
                 case 'lastName':
                     if (userInputDetails.lastName === lastName) return true;
+                    break;
                 case 'userName':
                     if (userInputDetails.userName === userName) return true;
+                    break;
                 case 'email':
                     if (userInputDetails.email === firstName) return true;
             }
