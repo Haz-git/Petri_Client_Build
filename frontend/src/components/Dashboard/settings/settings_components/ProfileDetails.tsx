@@ -14,6 +14,7 @@ import {
 
 import SettingsInputTextField from './SettingsInputTextField';
 import GeneralButton from '../../general_components/GeneralButton';
+import ErrorText from './ErrorText';
 
 //Styles:
 
@@ -28,7 +29,7 @@ export const FormHeader = styled.h2`
     font-weight: 700;
     color: ${(props) => props.theme.text};
     opacity: 1;
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
 `;
 
 export const FormContainer = styled.div``;
@@ -111,6 +112,10 @@ const ProfileDetails = ({
         email: '',
     });
 
+    //Error text state:
+    const [showErrorText, setShowErrorText] = useState(false);
+    const [errorDesc, setErrorDesc] = useState('');
+
     //Button State:
     const [isButtonLoading, setIsButtonLoading] = useState(false);
 
@@ -127,6 +132,10 @@ const ProfileDetails = ({
         //Reset input errors (if any) on press:
         if (allInputError === true) setAllInputError(false);
         if (emailError === true) setEmailError(false);
+        if (showErrorText === true) {
+            setShowErrorText(false);
+            setErrorDesc('.');
+        }
 
         const val = e.target.value;
 
@@ -160,6 +169,8 @@ const ProfileDetails = ({
             setAllInputError(true);
             setEmailError(true);
             setButtonState(false);
+            setErrorDesc('Please change atleast one value prior to updating.');
+            setShowErrorText(true);
             return;
         }
 
@@ -171,6 +182,10 @@ const ProfileDetails = ({
             if (emailStatus === false) {
                 setEmailError(true);
                 setButtonState(false);
+                setErrorDesc(
+                    'Your new email address is not valid. Please try again.'
+                );
+                setShowErrorText(true);
                 return;
             }
         }
@@ -228,6 +243,10 @@ const ProfileDetails = ({
                         resetUserSubmission(detail);
                     } else {
                         setButtonState(false);
+                        setErrorDesc(
+                            'You cannot change to your pre-existing first name.'
+                        );
+                        setShowErrorText(true);
                     }
 
                     break;
@@ -241,6 +260,10 @@ const ProfileDetails = ({
                         resetUserSubmission(detail);
                     } else {
                         setButtonState(false);
+                        setErrorDesc(
+                            'You cannot change to your pre-existing username.'
+                        );
+                        setShowErrorText(true);
                     }
                     break;
                 case 'lastName':
@@ -253,6 +276,10 @@ const ProfileDetails = ({
                         resetUserSubmission(detail);
                     } else {
                         setButtonState(false);
+                        setErrorDesc(
+                            'You cannot change to your pre-existing last name.'
+                        );
+                        setShowErrorText(true);
                     }
                     break;
                 case 'email':
@@ -265,6 +292,10 @@ const ProfileDetails = ({
                         resetUserSubmission(detail);
                     } else {
                         setButtonState(false);
+                        setErrorDesc(
+                            'You cannot change to your pre-existing email address.'
+                        );
+                        setShowErrorText(true);
                     }
                     break;
                 default:
@@ -287,6 +318,7 @@ const ProfileDetails = ({
     return (
         <MainContainer>
             <FormHeader>Personal Details</FormHeader>
+            <ErrorText desc={errorDesc} isShown={showErrorText} />
             <FormContainer>
                 <TextFieldContainer>
                     <SettingsInputTextField
