@@ -148,7 +148,7 @@ export const darkTheme = {
     ColStrainInputBG: '#293241',
     ColStrainInputC: 'white',
     ColStrainsContainerBG: '#242746',
-    ColStrainsContainerBorder: '1px solid#2d2f57',
+    ColStrainsContainerBorder: '1px solid #2d2f57',
     ColStrainCardBG: '#242746',
     ColStrainCardExistingCDataC: 'black',
     //LacZ
