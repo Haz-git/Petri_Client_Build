@@ -77,22 +77,28 @@ const ProfileImageContainer = styled.div`
 `;
 
 const StyledCustomAvatar = styled.img`
-    height: 200px;
-    width: 200px;
-    padding: 1rem 1rem;
+    margin-top: 1rem;
+    height: 12.5rem;
+    width: 12.5rem;
+    /* padding: 1rem 1rem; */
     border-radius: 50%;
     vertical-align: middle;
-    border: 1px solid ${(props) => props.theme.settingsAvatarBorderC};
+    border: 5px solid ${(props) => props.theme.settingsAvatarBorderC};
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+        rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 `;
 
 const StyledDefaultAvatar = styled.img`
-    height: 200px;
-    width: 200px;
-    padding: 1rem 1rem;
+    margin-top: 1rem;
+    height: 12.5rem;
+    width: 12.5rem;
+    /* padding: 1rem 1rem; */
     background-color: white;
     border-radius: 50%;
     vertical-align: middle;
-    border: 1px solid white;
+    border: 5px solid ${(props) => props.theme.settingsAvatarBorderC};
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+        rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 `;
 
 const AvatarName = styled.p`
@@ -101,6 +107,10 @@ const AvatarName = styled.p`
     font-weight: 900;
     color: ${(props) => props.theme.text};
     opacity: 1;
+`;
+
+const AvatarSpacer = styled.div`
+    margin: 1rem 0;
 `;
 
 const SaveIcon = styled(Save)`
@@ -224,6 +234,7 @@ const UserSettings = ({
                         > */}
                             {renderUserImage()}
                             {/* </Link> */}
+                            <AvatarSpacer />
                             <AvatarName>
                                 {userData.firstName + ' ' + userData.lastName}
                             </AvatarName>
