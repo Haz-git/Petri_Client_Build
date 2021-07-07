@@ -307,6 +307,12 @@ const ProfileDetails = ({
     };
 
     const resetAllUserSubmissions = () => {
+        if (allInputError === true) setAllInputError(false);
+        if (emailError === true) setEmailError(false);
+        if (showErrorText === true) {
+            setShowErrorText(false);
+            setErrorDesc('.');
+        }
         setUserInputDetails({
             firstName: '',
             lastName: '',

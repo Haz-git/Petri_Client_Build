@@ -96,6 +96,14 @@ const PasswordDetails = ({
 
     //Clears all recent user detail change input bar:
     const resetAllUserSubmissions = () => {
+        //Reset input errors (if any) on press:
+        if (allInputError === true) setAllInputError(false);
+        if (matchPassError === true) setMatchPassError(false);
+        if (showErrorText === true) {
+            setShowErrorText(false);
+            setErrorDesc('.');
+        }
+
         setUserInputPasswords({
             currentPassword: '',
             newPassword: '',
