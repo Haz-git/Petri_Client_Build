@@ -7,6 +7,7 @@ import { toggleSnackbarOpen } from '../../../redux/snackBar/snackBarActions';
 //Components:
 import PageHeader from '../general_components/PageHeader';
 import Snackbar from '../general_components/Snackbar';
+import ProfilePictureModal from './settings_components/ProfilePictureModal';
 
 //Wizard form views:
 import ProfileDetails from './settings_components/ProfileDetails';
@@ -151,9 +152,14 @@ const UserSettings = ({
     //Dark Mode Toggler:
     const [theme, toggleTheme] = useDarkMode();
 
+    //EditProfilePicture Modal states:
+    const [profileModalState, setProfileModalState] = useState(false);
+
     //Button Link States:
     const [profileViewBtn, setProfileViewBtn] = useState(true);
     const [passwordViewBtn, setPasswordViewBtn] = useState(false);
+
+    //View Constants
 
     enum RenderView {
         RENDER_USER_PROFILE = 'RENDER_USER_PROFILE',
@@ -162,6 +168,15 @@ const UserSettings = ({
 
     //Settings view state handler:
     const [stateView, setStateView] = useState(RenderView.RENDER_USER_PROFILE);
+
+    //EditProfilePicture Modal state handlers:
+    const openProfilePicModal = () => {
+        setProfileModalState(true);
+    };
+
+    const closeProfilePicModal = () => {
+        setProfileModalState(false);
+    };
 
     //Button Link State handler -- align with view:
     const alignLinkButtonWithView = (view: RenderView) => {
@@ -193,6 +208,7 @@ const UserSettings = ({
                             userName={userData.userName}
                             email={userData.email}
                             snackbar={toggleSnackbarOpen}
+                            openProfilePicModal={openProfilePicModal}
                         />
                     );
                 case RenderView.RENDER_PASSWORD:
@@ -274,6 +290,10 @@ const UserSettings = ({
                     </FormContainer>
                 </ContentWrapper>
             </MainContainer>
+            <ProfilePictureModal
+                openState={profileModalState}
+                closeFunc={closeProfilePicModal}
+            />
         </>
     );
 };
