@@ -89,6 +89,7 @@ interface IProfileDetails {
     userName: string;
     email: string;
     snackbar: (message: string) => void;
+    openProfilePicModal: () => void;
 }
 
 type ProfileDetailsProps = IProfileDetails & IDispatchProps;
@@ -99,6 +100,7 @@ const ProfileDetails = ({
     userName,
     email,
     snackbar,
+    openProfilePicModal,
     userChangeEmailAddress,
     userChangeFirstName,
     userChangeLastName,
@@ -377,7 +379,10 @@ const ProfileDetails = ({
                     />
                 </ButtonDivider>
                 <ButtonDivider>
-                    <GeneralButton buttonLabel="Change Profile Picture" />
+                    <GeneralButton
+                        buttonLabel="Change Profile Picture"
+                        onClick={openProfilePicModal}
+                    />
                 </ButtonDivider>
             </ButtonContainer>
         </MainContainer>
