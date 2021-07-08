@@ -17,7 +17,6 @@ import { useDarkMode } from '../../Styling/useDarkMode';
 import Toggler from '../../../components/Styling/Toggler';
 
 //Styles:
-import { Save } from '@styled-icons/entypo/Save';
 import defaultAvatar from '../../../Img/default_avatar.png';
 
 const PageHeaderContainer = styled.div`
@@ -71,12 +70,6 @@ const FormContainer = styled.div`
     padding: 2rem 4rem;
 `;
 
-const MainGridContainer = styled.div`
-    display: grid;
-    grid-template-columns: 50% 50%;
-    justify-items: center;
-`;
-
 const ProfileImageContainer = styled.div`
     text-align: center;
     border-bottom: 3px solid #f8f8ff;
@@ -117,23 +110,6 @@ const AvatarName = styled.p`
 
 const AvatarSpacer = styled.div`
     margin: 1rem 0;
-`;
-
-const SaveIcon = styled(Save)`
-    height: 23px;
-    width: 23px;
-`;
-
-const TextFieldContainer = styled.div`
-    display: flex;
-    align-items: flex-start;
-    position: relative;
-    margin-top: 30px;
-    margin-bottom: 30px;
-`;
-const ButtonRevealContainer = styled.div`
-    position: absolute;
-    margin-left: 10px;
 `;
 
 interface LinkButtonProps {
