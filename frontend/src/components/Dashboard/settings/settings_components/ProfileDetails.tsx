@@ -197,15 +197,9 @@ const ProfileDetails = ({
                 inputSubmissionParser(key);
             }
         }
-    };
 
-    //Clears recent user detail change input bar:
-
-    const resetUserSubmission = (detail: string) => {
-        setUserInputDetails({
-            ...userInputDetails,
-            [detail]: '',
-        });
+        //After looping, reset all user submissions, in case.
+        resetAllUserSubmissions();
     };
 
     //Checks if user wants to change to already existing name:
@@ -240,7 +234,6 @@ const ProfileDetails = ({
                             snackbar,
                             setButtonState
                         );
-                        resetUserSubmission(detail);
                     } else {
                         setButtonState(false);
                         setErrorDesc(
@@ -257,7 +250,6 @@ const ProfileDetails = ({
                             snackbar,
                             setButtonState
                         );
-                        resetUserSubmission(detail);
                     } else {
                         setButtonState(false);
                         setErrorDesc(
@@ -273,7 +265,6 @@ const ProfileDetails = ({
                             snackbar,
                             setButtonState
                         );
-                        resetUserSubmission(detail);
                     } else {
                         setButtonState(false);
                         setErrorDesc(
@@ -289,7 +280,6 @@ const ProfileDetails = ({
                             snackbar,
                             setButtonState
                         );
-                        resetUserSubmission(detail);
                     } else {
                         setButtonState(false);
                         setErrorDesc(
