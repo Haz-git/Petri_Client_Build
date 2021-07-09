@@ -45,12 +45,12 @@ const ModalContainer = styled.div`
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
         rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 
-    animation: ${fadein} 0.5s ease-in-out;
+    animation: ${fadein} 0.3s ease-in-out;
 `;
 
 const ContentWrapper = styled.div`
     display: grid;
-    grid-template-columns: 60% 40%;
+    grid-template-columns: 55% 45%;
 `;
 
 const ModalHeader = styled.h1`
@@ -74,13 +74,13 @@ const ModalDescText = styled.h2`
 
 const PictureContainer = styled.div`
     border-right: 1px solid black;
-    padding: 1rem 1rem;
+    padding: 2rem 2rem;
 `;
 
 const UploadFileContainer = styled.div`
     display: flex;
     align-items: center;
-    margin: 0.5rem 0;
+    margin: 1rem 0;
     text-align: left;
 `;
 
@@ -94,7 +94,9 @@ const UploadFileText = styled.p`
     margin-left: 1rem;
 `;
 
-const DropContainer = styled.div``;
+const DropContainer = styled.div`
+    text-align: left;
+`;
 
 const SettingsContainer = styled.div``;
 //Interface:
@@ -115,7 +117,7 @@ const ProfilePictureModal = ({
         width: 250,
         height: 250,
         border: 5,
-        color: [115, 120, 212, 0.4],
+        color: [0, 0, 34, 0.1],
         scale: 1,
         rotate: 0,
         borderRadius: 200,
@@ -124,6 +126,11 @@ const ProfilePictureModal = ({
             y: 0.0,
         },
     });
+
+    //React Avatar Styles Object:
+    const avatarStyles = {
+        border: '1px solid red',
+    };
 
     //Uploaded File State:
     const [uploadedFileName, setUploadedFileName] = useState(
@@ -155,6 +162,16 @@ const ProfilePictureModal = ({
         }
     };
 
+    //Avatar Adjustment Handler
+    const adjustAvatarState = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const val = e.target.value;
+
+        setAvatarState({
+            ...avatarState,
+            [e.target.name]: val,
+        });
+    };
+
     return (
         <MainContainer>
             <Modal open={openState} onClose={closeFunc}>
@@ -182,6 +199,17 @@ const ProfilePictureModal = ({
                                         <div {...getRootProps()}>
                                             <AvatarEditor
                                                 image={avatarState.image}
+                                                width={avatarState.width}
+                                                height={avatarState.height}
+                                                border={avatarState.border}
+                                                color={avatarState.color}
+                                                scale={avatarState.scale}
+                                                rotate={avatarState.rotate}
+                                                borderRadius={
+                                                    avatarState.borderRadius
+                                                }
+                                                // position={avatarState.position}
+                                                style={avatarStyles}
                                             />
                                             <input {...getInputProps()} />
                                         </div>
