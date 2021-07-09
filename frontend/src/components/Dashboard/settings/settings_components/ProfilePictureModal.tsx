@@ -50,7 +50,7 @@ const ModalContainer = styled.div`
 
 const ContentWrapper = styled.div`
     display: grid;
-    grid-template-columns: 55% 45%;
+    grid-template-columns: 65% 35%;
 `;
 
 const ModalHeader = styled.h1`
@@ -80,8 +80,9 @@ const PictureContainer = styled.div`
 const UploadFileContainer = styled.div`
     display: flex;
     align-items: center;
-    margin: 1rem 0;
+    /* margin: 1rem 0; */
     text-align: left;
+    margin-bottom: 1rem;
 `;
 
 const UploadFileText = styled.p`
@@ -95,7 +96,26 @@ const UploadFileText = styled.p`
 `;
 
 const DropContainer = styled.div`
+    display: grid;
+    grid-template-columns: 50% 50%;
     text-align: left;
+    margin: 1rem 0;
+`;
+
+const DropWrapper = styled.div``;
+
+const PreviewText = styled.p`
+    font-family: 'Lato', sans-serif;
+    font-size: 1em;
+    font-weight: 700;
+    color: ${(props) => props.theme.text};
+    opacity: 1;
+    text-align: center;
+    margin-top: 0.25rem;
+`;
+
+const PreviewTextContainer = styled.div`
+    border-left: 3px solid rgba(0, 0, 34, 0.1);
 `;
 
 const SettingsContainer = styled.div``;
@@ -116,8 +136,8 @@ const ProfilePictureModal = ({
         image: '',
         width: 300,
         height: 300,
-        border: 5,
-        color: [0, 0, 34, 0.1],
+        border: 1,
+        color: [0, 0, 34, 0.2],
         scale: 1,
         rotate: 0,
         borderRadius: 200,
@@ -136,9 +156,8 @@ const ProfilePictureModal = ({
     };
 
     //Uploaded File State:
-    const [uploadedFileName, setUploadedFileName] = useState(
-        'Uploaded: No file uploaded.'
-    );
+    const [uploadedFileName, setUploadedFileName] =
+        useState('No file uploaded.');
 
     //Dropzone image handler
     const handleImageDrop = (dropped: any) => {
@@ -186,38 +205,45 @@ const ProfilePictureModal = ({
                                 Drag and drop your new profile picture from your
                                 files, or click 'Upload file'.
                             </ModalDescText>
-                            <UploadFileContainer>
-                                <FileInput onUpload={handleImageUpload} />
-                                <UploadFileText>
-                                    {uploadedFileName}
-                                </UploadFileText>
-                            </UploadFileContainer>
                             <DropContainer>
-                                <DropZone
-                                    onDrop={handleImageDrop}
-                                    noClick
-                                    noKeyboard
-                                >
-                                    {({ getRootProps, getInputProps }) => (
-                                        <div {...getRootProps()}>
-                                            <AvatarEditor
-                                                image={avatarState.image}
-                                                width={avatarState.width}
-                                                height={avatarState.height}
-                                                border={avatarState.border}
-                                                color={avatarState.color}
-                                                scale={avatarState.scale}
-                                                rotate={avatarState.rotate}
-                                                borderRadius={
-                                                    avatarState.borderRadius
-                                                }
-                                                // position={avatarState.position}
-                                                style={avatarStyles}
-                                            />
-                                            <input {...getInputProps()} />
-                                        </div>
-                                    )}
-                                </DropZone>
+                                <DropWrapper>
+                                    <UploadFileContainer>
+                                        <FileInput
+                                            onUpload={handleImageUpload}
+                                        />
+                                        <UploadFileText>
+                                            {uploadedFileName}
+                                        </UploadFileText>
+                                    </UploadFileContainer>
+                                    <DropZone
+                                        onDrop={handleImageDrop}
+                                        noClick
+                                        noKeyboard
+                                    >
+                                        {({ getRootProps, getInputProps }) => (
+                                            <div {...getRootProps()}>
+                                                <AvatarEditor
+                                                    image={avatarState.image}
+                                                    width={avatarState.width}
+                                                    height={avatarState.height}
+                                                    border={avatarState.border}
+                                                    color={avatarState.color}
+                                                    scale={avatarState.scale}
+                                                    rotate={avatarState.rotate}
+                                                    borderRadius={
+                                                        avatarState.borderRadius
+                                                    }
+                                                    // position={avatarState.position}
+                                                    style={avatarStyles}
+                                                />
+                                                <input {...getInputProps()} />
+                                            </div>
+                                        )}
+                                    </DropZone>
+                                </DropWrapper>
+                                <PreviewTextContainer>
+                                    <PreviewText>Live Preview</PreviewText>
+                                </PreviewTextContainer>
                             </DropContainer>
                         </PictureContainer>
                         <SettingsContainer></SettingsContainer>
