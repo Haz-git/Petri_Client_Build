@@ -114,8 +114,8 @@ const ProfilePictureModal = ({
     //Avatar Customization State:
     const [avatarState, setAvatarState] = useState({
         image: '',
-        width: 250,
-        height: 250,
+        width: 300,
+        height: 300,
         border: 5,
         color: [0, 0, 34, 0.1],
         scale: 1,
@@ -129,7 +129,10 @@ const ProfilePictureModal = ({
 
     //React Avatar Styles Object:
     const avatarStyles = {
-        border: '1px solid red',
+        border: '3px solid rgba(0, 0, 34, 0.5)',
+        borderRadius: '.4rem',
+        boxShadow:
+            'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,rgba(0, 0, 0, 0.3) 0px 1px 3px -1px',
     };
 
     //Uploaded File State:
