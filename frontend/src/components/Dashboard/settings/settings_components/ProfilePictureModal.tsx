@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import Modal from '@material-ui/core/Modal';
 import GeneralButton from '../../general_components/GeneralButton';
@@ -45,7 +45,7 @@ const ModalContainer = styled.div`
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
         rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 
-    animation: ${fadein} 0.3s ease-in-out;
+    animation: ${fadein} 0.5s ease-in-out;
 `;
 
 const ContentWrapper = styled.div`
@@ -131,6 +131,9 @@ const ProfilePictureModal = ({
     closeFunc,
     userAddNewProfilePicture,
 }: ProfilePictureModalProps): JSX.Element => {
+    //Editor ref
+    const editorRef = useRef();
+
     //Avatar Customization State:
     const [avatarState, setAvatarState] = useState({
         image: '',
@@ -145,6 +148,16 @@ const ProfilePictureModal = ({
             x: 0.0,
             y: 0.0,
         },
+    });
+
+    // Preview State:
+    const [preview, setPreview] = useState({
+        image: '',
+        rect: 0,
+        scale: 0,
+        width: 0,
+        height: 0,
+        borderRadius: 0,
     });
 
     //React Avatar Styles Object:
@@ -182,6 +195,17 @@ const ProfilePictureModal = ({
         } else {
             setUploadedFileName(`Uploaded: ${e.target.files[0].name}`);
         }
+
+        const previewImg = (editorRef as any).current
+            .getImageScaledToCanvas()
+            .toDataURL();
+        const previewRect = (editorRef as any).current.getCroppingRect();
+
+        setPreview({
+            ...preview,
+            image: previewImg,
+            rect: previewRect,
+        });
     };
 
     //Avatar Adjustment Handler
@@ -192,6 +216,26 @@ const ProfilePictureModal = ({
             ...avatarState,
             [e.target.name]: val,
         });
+    };
+
+    //Render Preview:
+    const handlePreviewRender = () => {
+        if (
+            Object.keys(preview).length !== 0 &&
+            preview.constructor === Object
+        ) {
+            return (
+                <img
+                    src={preview.image}
+                    style={{
+                        borderRadius: `${preview.borderRadius} px`,
+                        width: `${preview.width} px`,
+                        height: `${preview.height} px`,
+                    }}
+                    alt="preview"
+                />
+            );
+        }
     };
 
     return (
@@ -223,6 +267,7 @@ const ProfilePictureModal = ({
                                         {({ getRootProps, getInputProps }) => (
                                             <div {...getRootProps()}>
                                                 <AvatarEditor
+                                                    ref={editorRef}
                                                     image={avatarState.image}
                                                     width={avatarState.width}
                                                     height={avatarState.height}
@@ -243,6 +288,7 @@ const ProfilePictureModal = ({
                                 </DropWrapper>
                                 <PreviewTextContainer>
                                     <PreviewText>Live Preview</PreviewText>
+                                    {handlePreviewRender()}
                                 </PreviewTextContainer>
                             </DropContainer>
                         </PictureContainer>
