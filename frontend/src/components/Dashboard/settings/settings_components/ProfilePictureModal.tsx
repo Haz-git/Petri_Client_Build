@@ -129,6 +129,19 @@ const SettingsContainer = styled.div`
 
 const CustomizationContainer = styled.div``;
 
+const OptionContainer = styled.div`
+    margin: 1rem 0;
+`;
+
+const OptionText = styled.p`
+    font-family: 'Lato', sans-serif;
+    font-size: 1em;
+    font-weight: 700;
+    color: ${(props) => props.theme.text};
+    opacity: 1;
+    text-align: left;
+`;
+
 //Interface:
 interface ProfilePictureModalProps {
     openState: boolean;
@@ -224,13 +237,13 @@ const ProfilePictureModal = ({
     };
 
     //Avatar Adjustment Handler
-    const adjustAvatarState = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const val = e.target.value;
-
-        setAvatarState({
-            ...avatarState,
-            [e.target.name]: val,
-        });
+    const adjustAvatarState = (e: any, value?: any) => {
+        if (avatarState.image !== '') {
+            setAvatarState({
+                ...avatarState,
+                [e.target.name]: value,
+            });
+        }
     };
 
     //Render Preview:
@@ -320,7 +333,16 @@ const ProfilePictureModal = ({
                                 Modify your new profile picture with a few
                                 options.
                             </ModalDescText>
-                            <CustomizationContainer></CustomizationContainer>
+                            <CustomizationContainer>
+                                <OptionContainer>
+                                    <OptionText>Scale</OptionText>
+                                    <Slider
+                                        name="scale"
+                                        value={avatarState.scale}
+                                        onChange={adjustAvatarState}
+                                    />
+                                </OptionContainer>
+                            </CustomizationContainer>
                         </SettingsContainer>
                     </ContentWrapper>
                 </ModalContainer>
