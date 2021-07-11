@@ -112,10 +112,15 @@ const PreviewText = styled.p`
     opacity: 1;
     text-align: center;
     margin-top: 0.25rem;
+    margin-bottom: 1rem;
 `;
 
 const PreviewTextContainer = styled.div`
     border-left: 3px solid rgba(0, 0, 34, 0.1);
+`;
+
+const PreviewImageContainer = styled.div`
+    text-align: center;
 `;
 
 const SettingsContainer = styled.div``;
@@ -232,7 +237,7 @@ const ProfilePictureModal = ({
                         width: avatarState.width,
                         height: avatarState.height,
                         border: `5px solid #222444`,
-                        boxShadow: `rgba(0, 0, 0, 0.19) 0px 10px 20px,rgba(0, 0, 0, 0.23) 0px 6px 6px;`,
+                        boxShadow: `rgba(0, 0, 0, 0.19) 0px 10px 20px,rgba(0, 0, 0, 0.23) 0px 6px 6px`,
                     }}
                     alt=""
                 />
@@ -296,7 +301,9 @@ const ProfilePictureModal = ({
                                 </DropWrapper>
                                 <PreviewTextContainer>
                                     <PreviewText>Live Preview</PreviewText>
-                                    {handlePreviewRender()}
+                                    <PreviewImageContainer>
+                                        {handlePreviewRender()}
+                                    </PreviewImageContainer>
                                 </PreviewTextContainer>
                             </DropContainer>
                         </PictureContainer>
