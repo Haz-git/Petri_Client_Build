@@ -195,7 +195,10 @@ const ProfilePictureModal = ({
         } else {
             setUploadedFileName(`Uploaded: ${e.target.files[0].name}`);
         }
+    };
 
+    //Matches the preview to editor picture on image change
+    const matchPreviewToEditor = () => {
         const previewImg = (editorRef as any).current
             .getImageScaledToCanvas()
             .toDataURL();
@@ -220,19 +223,18 @@ const ProfilePictureModal = ({
 
     //Render Preview:
     const handlePreviewRender = () => {
-        if (
-            Object.keys(preview).length !== 0 &&
-            preview.constructor === Object
-        ) {
+        if (preview.image !== '') {
             return (
                 <img
                     src={preview.image}
                     style={{
-                        borderRadius: `${preview.borderRadius} px`,
-                        width: `${preview.width} px`,
-                        height: `${preview.height} px`,
+                        borderRadius: avatarState.borderRadius,
+                        width: avatarState.width,
+                        height: avatarState.height,
+                        border: `5px solid #222444`,
+                        boxShadow: `rgba(0, 0, 0, 0.19) 0px 10px 20px,rgba(0, 0, 0, 0.23) 0px 6px 6px;`,
                     }}
-                    alt="preview"
+                    alt=""
                 />
             );
         }
@@ -268,6 +270,12 @@ const ProfilePictureModal = ({
                                             <div {...getRootProps()}>
                                                 <AvatarEditor
                                                     ref={editorRef}
+                                                    onImageChange={
+                                                        matchPreviewToEditor
+                                                    }
+                                                    onImageReady={
+                                                        matchPreviewToEditor
+                                                    }
                                                     image={avatarState.image}
                                                     width={avatarState.width}
                                                     height={avatarState.height}
