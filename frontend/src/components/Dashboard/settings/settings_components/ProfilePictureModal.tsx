@@ -73,7 +73,7 @@ const ModalDescText = styled.h2`
 `;
 
 const PictureContainer = styled.div`
-    border-right: 1px solid black;
+    border-right: 3px solid rgba(0, 0, 34, 0.1);
     padding: 2rem 2rem;
 `;
 
@@ -123,7 +123,9 @@ const PreviewImageContainer = styled.div`
     text-align: center;
 `;
 
-const SettingsContainer = styled.div``;
+const SettingsContainer = styled.div`
+    padding: 2rem 2rem;
+`;
 //Interface:
 interface ProfilePictureModalProps {
     openState: boolean;
@@ -251,7 +253,7 @@ const ProfilePictureModal = ({
                 <ModalContainer>
                     <ContentWrapper>
                         <PictureContainer>
-                            <ModalHeader>Edit Profile Picture</ModalHeader>
+                            <ModalHeader>Profile Picture</ModalHeader>
                             <ModalDescText>
                                 Drag and drop your new profile picture from your
                                 files, or click 'Upload file'.
@@ -307,7 +309,13 @@ const ProfilePictureModal = ({
                                 </PreviewTextContainer>
                             </DropContainer>
                         </PictureContainer>
-                        <SettingsContainer></SettingsContainer>
+                        <SettingsContainer>
+                            <ModalHeader>Customization</ModalHeader>
+                            <ModalDescText>
+                                Modify your new profile picture with many
+                                different options.
+                            </ModalDescText>
+                        </SettingsContainer>
                     </ContentWrapper>
                 </ModalContainer>
             </Modal>
