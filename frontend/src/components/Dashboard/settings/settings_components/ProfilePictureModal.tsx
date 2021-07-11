@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import Modal from '@material-ui/core/Modal';
 import GeneralButton from '../../general_components/GeneralButton';
 import FileInput from './FileInput';
+import Slider from '@material-ui/core/Slider';
 
 import AvatarEditor from 'react-avatar-editor';
 import DropZone from 'react-dropzone';
@@ -10,7 +11,6 @@ import DropZone from 'react-dropzone';
 //Redux
 import { connect } from 'react-redux';
 import { userAddNewProfilePicture } from '../../../../redux/userSettings/UserSettingActions';
-import { AnyAaaaRecord } from 'dns';
 
 //Styles:
 const fadein = keyframes`
@@ -126,6 +126,9 @@ const PreviewImageContainer = styled.div`
 const SettingsContainer = styled.div`
     padding: 2rem 2rem;
 `;
+
+const CustomizationContainer = styled.div``;
+
 //Interface:
 interface ProfilePictureModalProps {
     openState: boolean;
@@ -206,16 +209,18 @@ const ProfilePictureModal = ({
 
     //Matches the preview to editor picture on image change
     const matchPreviewToEditor = () => {
-        const previewImg = (editorRef as any).current
-            .getImageScaledToCanvas()
-            .toDataURL();
-        const previewRect = (editorRef as any).current.getCroppingRect();
+        if (avatarState.image !== '') {
+            const previewImg = (editorRef as any).current
+                .getImageScaledToCanvas()
+                .toDataURL();
+            const previewRect = (editorRef as any).current.getCroppingRect();
 
-        setPreview({
-            ...preview,
-            image: previewImg,
-            rect: previewRect,
-        });
+            setPreview({
+                ...preview,
+                image: previewImg,
+                rect: previewRect,
+            });
+        }
     };
 
     //Avatar Adjustment Handler
@@ -312,9 +317,10 @@ const ProfilePictureModal = ({
                         <SettingsContainer>
                             <ModalHeader>Customization</ModalHeader>
                             <ModalDescText>
-                                Modify your new profile picture with many
-                                different options.
+                                Modify your new profile picture with a few
+                                options.
                             </ModalDescText>
+                            <CustomizationContainer></CustomizationContainer>
                         </SettingsContainer>
                     </ContentWrapper>
                 </ModalContainer>
