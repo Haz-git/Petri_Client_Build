@@ -14,6 +14,7 @@ import LoginForm from '../components/loginPage/LoginForm';
 import AuthenticatedComponents from '../components/authComponents/AuthenticatedComponents';
 
 //Authenticated Components:
+import Snackbar from '../components/Dashboard/general_components/Snackbar';
 import MainDashboard from '../components/Dashboard/homePage/MainDashboard';
 import Calendar from './Dashboard/calendar/Calendar';
 import Messenger from '../components/Dashboard/messenger/Messenger';
@@ -96,6 +97,7 @@ const App = () => {
                                 />
                                 <AuthenticatedComponents>
                                     <DashboardGlobalStyles />
+                                    <Snackbar timeout={5000} />
                                     <DashboardContainer>
                                         <Route
                                             exact
