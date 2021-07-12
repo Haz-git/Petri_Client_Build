@@ -127,7 +127,9 @@ const SettingsContainer = styled.div`
     padding: 2rem 2rem;
 `;
 
-const CustomizationContainer = styled.div``;
+const CustomizationContainer = styled.div`
+    margin: 2rem 0;
+`;
 
 const OptionContainer = styled.div`
     margin: 1rem 0;
@@ -237,13 +239,11 @@ const ProfilePictureModal = ({
     };
 
     //Avatar Adjustment Handler
-    const adjustAvatarState = (e: any, value?: any) => {
-        console.log(value);
-        console.log(e);
+    const adjustAvatarRotation = (e: any, value?: any) => {
         if (avatarState.image !== '') {
             setAvatarState({
                 ...avatarState,
-                [e.target.name]: value,
+                rotate: value,
             });
         }
     };
@@ -348,6 +348,17 @@ const ProfilePictureModal = ({
                             </ModalDescText>
                             <CustomizationContainer>
                                 <OptionContainer>
+                                    <OptionText>Position</OptionText>
+                                    <OptionText
+                                        style={{
+                                            opacity: '0.7',
+                                        }}
+                                    >
+                                        Click and drag the canvas to position
+                                        your profile picture.
+                                    </OptionText>
+                                </OptionContainer>
+                                <OptionContainer>
                                     <OptionText>Scale</OptionText>
                                     <Slider
                                         name="scale"
@@ -356,6 +367,17 @@ const ProfilePictureModal = ({
                                         min={1}
                                         max={20}
                                         step={1}
+                                    />
+                                </OptionContainer>
+                                <OptionContainer>
+                                    <OptionText>Rotate</OptionText>
+                                    <Slider
+                                        name="scale"
+                                        value={avatarState.rotate}
+                                        onChange={adjustAvatarRotation}
+                                        min={1}
+                                        max={360}
+                                        step={10}
                                     />
                                 </OptionContainer>
                             </CustomizationContainer>
