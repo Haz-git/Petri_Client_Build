@@ -220,6 +220,12 @@ const ProfilePictureModal = ({
             ...avatarState,
             image: dropped[0],
         });
+
+        if (dropped[0].name.length >= 20) {
+            setUploadedFileName(`Uploaded: ...${dropped[0].name.substr(-12)}`);
+        } else {
+            setUploadedFileName(`Uploaded: ${dropped[0].name}`);
+        }
     };
 
     //File Input handler
