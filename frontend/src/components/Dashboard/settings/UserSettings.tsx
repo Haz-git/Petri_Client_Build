@@ -18,6 +18,7 @@ import Toggler from '../../../components/Styling/Toggler';
 
 //Styles:
 import defaultAvatar from '../../../Img/default_avatar.png';
+import { deviceMin } from '../../../devices/breakpoints';
 
 const PageHeaderContainer = styled.div`
     padding: 1rem 1rem;
@@ -36,12 +37,30 @@ const MainContainer = styled.div`
 const ContentWrapper = styled.div`
     display: grid;
     grid-template-columns: 1.5fr 4fr;
+
+    @media ${deviceMin.laptopSs} {
+        display: block;
+    }
+
+    @media ${deviceMin.tablet} {
+        display: grid;
+    }
 `;
 
 const LinkContainer = styled.div`
     border-right: 3px solid #f8f8ff;
     display: flex;
     flex-direction: column;
+
+    @media ${deviceMin.laptopSs} {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    @media ${deviceMin.tablet} {
+        flex-direction: column;
+    }
 `;
 
 const LinkButton = styled.button<LinkButtonProps>`
@@ -73,6 +92,14 @@ const FormContainer = styled.div`
 const ProfileImageContainer = styled.div`
     text-align: center;
     border-bottom: 3px solid #f8f8ff;
+
+    @media ${deviceMin.laptopSs} {
+        padding: 0;
+    }
+
+    @media ${deviceMin.tablet} {
+        padding: 0;
+    }
 `;
 
 const StyledCustomAvatar = styled.img`
@@ -85,6 +112,21 @@ const StyledCustomAvatar = styled.img`
     border: 5px solid ${(props) => props.theme.settingsAvatarBorderC};
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
         rgba(0, 0, 0, 0.23) 0px 6px 6px;
+
+    @media ${deviceMin.laptopSs} {
+        height: 5rem;
+        width: 5rem;
+    }
+
+    @media ${deviceMin.tablet} {
+        height: 10rem;
+        width: 10rem;
+    }
+
+    @media ${deviceMin.laptopS} {
+        height: 12.5rem;
+        width: 12.5rem;
+    }
 `;
 
 const StyledDefaultAvatar = styled.img`
@@ -98,6 +140,16 @@ const StyledDefaultAvatar = styled.img`
     border: 5px solid ${(props) => props.theme.settingsAvatarBorderC};
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
         rgba(0, 0, 0, 0.23) 0px 6px 6px;
+
+    @media ${deviceMin.laptopSs} {
+        height: 12.5rem;
+        width: 12.5rem;
+    }
+
+    @media ${deviceMin.tablet} {
+        height: 10rem;
+        width: 10rem;
+    }
 `;
 
 const AvatarName = styled.p`
@@ -106,6 +158,14 @@ const AvatarName = styled.p`
     font-weight: 900;
     color: ${(props) => props.theme.text};
     opacity: 1;
+
+    @media ${deviceMin.laptopSs} {
+        font-size: 1em;
+    }
+
+    @media ${deviceMin.tablet} {
+        font-size: 1.2em;
+    }
 `;
 
 const AvatarSpacer = styled.div`

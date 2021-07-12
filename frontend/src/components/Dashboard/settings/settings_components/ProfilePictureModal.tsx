@@ -4,6 +4,7 @@ import Modal from '@material-ui/core/Modal';
 import GeneralButton from '../../general_components/GeneralButton';
 import FileInput from './FileInput';
 import Slider from '@material-ui/core/Slider';
+import { deviceMin } from '../../../../devices/breakpoints';
 
 import AvatarEditor from 'react-avatar-editor';
 import DropZone from 'react-dropzone';
