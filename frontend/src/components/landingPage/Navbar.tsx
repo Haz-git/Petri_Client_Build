@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getJWT } from '../../utils/jwthelper';
 import { logoutHelper } from '../../utils/logouthelper';
+import { deviceMin } from '../../devices/breakpoints';
 
 //Styled-icons:
 
@@ -122,6 +123,14 @@ const DashboardNavbar = styled.div`
     text-align: center;
     transition: all 0.5s linear;
     border-right: ${(props) => props.theme.navBorderColor};
+
+    @media ${deviceMin.laptopSs} {
+        width: 60px;
+    }
+
+    @media ${deviceMin.tablet} {
+        width: 100px;
+    }
 `;
 
 const DashboardLink = styled(Link)`
@@ -297,6 +306,16 @@ const StyledDashboardLogo = styled.img`
     width: 65px;
     color: ${(props) => props.theme.navIconHoverColor};
     object-fit: cover;
+
+    @media ${deviceMin.laptopSs} {
+        height: 48px;
+        width: 48px;
+    }
+
+    @media ${deviceMin.tablet} {
+        height: 65px;
+        width: 65px;
+    }
 `;
 
 const StyledLinkLabel = styled.label`
@@ -309,6 +328,14 @@ const StyledLinkLabel = styled.label`
 
     ${DashboardLink}:hover & {
         color: ${(props) => props.theme.navIconHoverColor};
+    }
+
+    @media ${deviceMin.laptopSs} {
+        display: none;
+    }
+
+    @media ${deviceMin.tablet} {
+        display: block;
     }
 `;
 
