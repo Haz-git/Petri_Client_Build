@@ -144,6 +144,8 @@ const OptionText = styled.p`
     text-align: left;
 `;
 
+const ButtonContainer = styled.div``;
+
 //Interface:
 interface ProfilePictureModalProps {
     openState: boolean;
@@ -381,6 +383,9 @@ const ProfilePictureModal = ({
                                     />
                                 </OptionContainer>
                             </CustomizationContainer>
+                            <ButtonContainer>
+                                <GeneralButton buttonLabel="Update Profile Picture" />
+                            </ButtonContainer>
                         </SettingsContainer>
                     </ContentWrapper>
                 </ModalContainer>
