@@ -1,6 +1,8 @@
 //Creating Global Style:
 import { createGlobalStyle } from 'styled-components';
 
+import { deviceMin } from '../../devices/breakpoints';
+
 //Trying to create two global styles.. one for the landing page and one for the dashboard.
 //It seems as though whoever is nested higher takes precedent and overrules the lower level.
 
@@ -22,6 +24,14 @@ export const DashboardGlobalStyles = createGlobalStyle`
     background: ${({ theme }) => theme.background};
     min-height: 100%;
     margin-left: 100px;
+
+    @media ${deviceMin.laptopSs} {
+      margin-left: 60px;
+    }
+
+    @media ${deviceMin.tablet} {
+      margin-left: 100px;
+    }
   }
 
   h1 {
