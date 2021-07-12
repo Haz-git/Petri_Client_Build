@@ -60,6 +60,8 @@ const LinkContainer = styled.div`
 
     @media ${deviceMin.tablet} {
         flex-direction: column;
+        align-items: stretch;
+        justify-content: stretch;
     }
 `;
 
