@@ -46,7 +46,12 @@ export function userGetProfilePicture() {
     };
 }
 
-export function userAddNewProfilePicture(imgURL: any, imgConstraints: any) {
+export function userAddNewProfilePicture(
+    imgURL: any,
+    imgConstraints: any,
+    renderSnackbar: (message: string) => void,
+    btnCallback: (status: boolean) => void
+) {
     return async (
         dispatch: Dispatch<SettingsAction>,
         getState: () => State
@@ -65,12 +70,15 @@ export function userAddNewProfilePicture(imgURL: any, imgConstraints: any) {
             imgConstraints,
         });
 
+        if (response) {
+            renderSnackbar('Your new profile picture has been saved');
+            btnCallback(false);
+        }
+
         dispatch({
             type: SettingsActionType.USER_ADD_NEW_PROFILE_PICTURE,
             payload: response.data.responseUpdatedProfilePic,
         });
-
-        historyObject.push('/settings');
     };
 }
 
