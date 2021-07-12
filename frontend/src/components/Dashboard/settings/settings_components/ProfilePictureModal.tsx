@@ -11,6 +11,7 @@ import DropZone from 'react-dropzone';
 //Redux
 import { connect } from 'react-redux';
 import { userAddNewProfilePicture } from '../../../../redux/userSettings/UserSettingActions';
+import { toggleSnackbarOpen } from '../../../../redux/snackBar/snackBarActions';
 
 //Styles:
 const fadein = keyframes`
@@ -35,7 +36,7 @@ const ModalContainer = styled.div`
     margin-left: calc(100px + 5rem);
     margin-right: 5rem;
     position: relative;
-    top: 40%;
+    top: 45%;
     -webkit-transform: translateY(-50%);
     -ms-transform: translateY(-50%);
     transform: translateY(-50%);
@@ -144,22 +145,36 @@ const OptionText = styled.p`
     text-align: left;
 `;
 
-const ButtonContainer = styled.div``;
+const ButtonContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+`;
 
 //Interface:
 interface ProfilePictureModalProps {
     openState: boolean;
     closeFunc: () => void;
-    userAddNewProfilePicture: (img: any, rect: any) => void;
+    userAddNewProfilePicture: (
+        img: any,
+        rect: any,
+        snackbarCallback: (msg: string) => void,
+        btnCallback: (flag: boolean) => void
+    ) => void;
+    toggleSnackbarOpen: (msg: string) => void;
 }
 
 const ProfilePictureModal = ({
     openState,
     closeFunc,
     userAddNewProfilePicture,
+    toggleSnackbarOpen,
 }: ProfilePictureModalProps): JSX.Element => {
     //Editor ref
     const editorRef = useRef();
+
+    //Button state:
+    const [isButtonLoading, setIsButtonLoading] = useState(false);
 
     //Avatar Customization State:
     const [avatarState, setAvatarState] = useState({
@@ -280,6 +295,28 @@ const ProfilePictureModal = ({
         }
     };
 
+    //Handle save new profile picture:
+    const handleSave = () => {
+        if (avatarState.image !== '') {
+            setIsButtonLoading(true);
+            const img = (editorRef as any).current
+                .getImageScaledToCanvas()
+                .toDataURL();
+            const rect = (editorRef as any).current.getCroppingRect();
+            userAddNewProfilePicture(
+                img,
+                rect,
+                toggleSnackbarOpen,
+                setButtonState
+            );
+        }
+    };
+
+    //Buttonstate handlers:
+    const setButtonState = (status: boolean) => {
+        setIsButtonLoading(status);
+    };
+
     return (
         <MainContainer>
             <Modal open={openState} onClose={closeFunc}>
@@ -384,7 +421,11 @@ const ProfilePictureModal = ({
                                 </OptionContainer>
                             </CustomizationContainer>
                             <ButtonContainer>
-                                <GeneralButton buttonLabel="Update Profile Picture" />
+                                <GeneralButton
+                                    buttonLabel="Save Profile Picture"
+                                    onClick={handleSave}
+                                    isDisabledOnLoading={isButtonLoading}
+                                />
                             </ButtonContainer>
                         </SettingsContainer>
                     </ContentWrapper>
@@ -394,4 +435,6 @@ const ProfilePictureModal = ({
     );
 };
 
-export default connect(null, { userAddNewProfilePicture })(ProfilePictureModal);
+export default connect(null, { userAddNewProfilePicture, toggleSnackbarOpen })(
+    ProfilePictureModal
+);
