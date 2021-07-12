@@ -238,10 +238,23 @@ const ProfilePictureModal = ({
 
     //Avatar Adjustment Handler
     const adjustAvatarState = (e: any, value?: any) => {
+        console.log(value);
+        console.log(e);
         if (avatarState.image !== '') {
             setAvatarState({
                 ...avatarState,
                 [e.target.name]: value,
+            });
+        }
+    };
+
+    //Avatar scale handler
+
+    const adjustAvatarScale = (e: any, value: any) => {
+        if (avatarState.image !== '') {
+            setAvatarState({
+                ...avatarState,
+                scale: value,
             });
         }
     };
@@ -339,7 +352,10 @@ const ProfilePictureModal = ({
                                     <Slider
                                         name="scale"
                                         value={avatarState.scale}
-                                        onChange={adjustAvatarState}
+                                        onChange={adjustAvatarScale}
+                                        min={1}
+                                        max={20}
+                                        step={1}
                                     />
                                 </OptionContainer>
                             </CustomizationContainer>
