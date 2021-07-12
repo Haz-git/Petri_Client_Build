@@ -6,7 +6,6 @@ import { toggleSnackbarOpen } from '../../../redux/snackBar/snackBarActions';
 
 //Components:
 import PageHeader from '../general_components/PageHeader';
-import Snackbar from '../general_components/Snackbar';
 import ProfilePictureModal from './settings_components/ProfilePictureModal';
 
 //Wizard form views:
@@ -245,7 +244,6 @@ const UserSettings = ({
 
     return (
         <>
-            <Snackbar timeout={3000} />
             <PageHeaderContainer>
                 <PageHeader
                     headerTitle="Settings"
