@@ -44,13 +44,14 @@ const MainWrapper = styled.div`
     justify-content: center;
     align-items: center;
     position: fixed;
-    z-index: 1000;
+    z-index: 99999 !important;
     top: 1rem;
     left: 50%;
     transform: translateX(-50%);
     height: auto;
     border-radius: 0.3rem;
     border: transparent;
+    margin-left: 100px;
 `;
 
 const Container = styled.div`
