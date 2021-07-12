@@ -28,7 +28,6 @@ import Collection from './Dashboard/sciTools/Collection';
 import LacZ from './Dashboard/sciTools/LacZ';
 import LacZCompareCharts from './Dashboard/sciTools/LacZCompareCharts';
 import UserSettings from './Dashboard/settings/UserSettings';
-import EditProfilePicture from './Dashboard/settings/EditProfilePicture';
 
 //Themes and global styles:
 import { ThemeProvider } from 'styled-components';
@@ -170,11 +169,6 @@ const App = () => {
                                                     }
                                                 />
                                             )}
-                                        />
-                                        <Route
-                                            exact
-                                            path="/settings/editProfilePicture/:id"
-                                            component={EditProfilePicture}
                                         />
                                     </DashboardContainer>
                                 </AuthenticatedComponents>
