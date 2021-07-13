@@ -64,120 +64,104 @@ const App = () => {
         setAppTheme(modeValue);
     };
 
-    const grabbedTheme =
-        appTheme === 'light' || appTheme === '' ? lightTheme : darkTheme;
+    const grabbedTheme = lightTheme;
 
     const renderApp = () => {
-        if (appTheme === '') {
-            console.log('AppTheme is null');
-            return null;
-        } else {
-            //Meetings route set to main dashboard because currently in construction.
-            return (
-                <>
-                    <ThemeProvider theme={grabbedTheme}>
-                        <Router history={history}>
-                            <Navbar />
-                            <Switch>
-                                <Route
-                                    exact
-                                    path="/"
-                                    component={MainLandingPage}
-                                />
-                                <Route
-                                    exact
-                                    path="/signup"
-                                    component={SignUpForm}
-                                />
-                                <Route
-                                    exact
-                                    path="/login"
-                                    component={LoginForm}
-                                />
-                                <AuthenticatedComponents>
-                                    <DashboardGlobalStyles />
-                                    <Snackbar timeout={5000} />
-                                    <DashboardContainer>
-                                        <Route
-                                            exact
-                                            path="/dashboard"
-                                            component={MainDashboard}
-                                        />
-                                        <Route
-                                            exact
-                                            path="/calendar"
-                                            component={Calendar}
-                                        />
-                                        <Route
-                                            exact
-                                            path="/messenger"
-                                            component={Messenger}
-                                        />
-                                        <Route
-                                            exact
-                                            path="/createbionote"
-                                            component={CreateBioNote}
-                                        />
-                                        <Route
-                                            exact
-                                            path="/newbionote"
-                                            component={NewBioNote}
-                                        />
-                                        <Route
-                                            exact
-                                            path="/readbionote/:id"
-                                            component={ReadBioNote}
-                                        />
-                                        <Route
-                                            exact
-                                            path="/editbionote/:id"
-                                            component={EditBioNote}
-                                        />
-                                        <Route
-                                            exact
-                                            path="/scitools"
-                                            component={SciToolsLanding}
-                                        />
-                                        <Route
-                                            exact
-                                            path="/scitools/lazylacz"
-                                            component={LazyLacZ}
-                                        />
-                                        <Route
-                                            exact
-                                            path="/scitools/lazylacz/collection/:id"
-                                            component={Collection}
-                                        />
-                                        <Route
-                                            exact
-                                            path="/scitools/lazylacz/lacz/:id"
-                                            component={LacZ}
-                                        />
-                                        <Route
-                                            exact
-                                            path="/scitools/lazylacz/lacz/compare/:id"
-                                            component={LacZCompareCharts}
-                                        />
-                                        <Route
-                                            exact
-                                            path="/settings"
-                                            render={(props) => (
-                                                <UserSettings
-                                                    {...props}
-                                                    modeStatus={
-                                                        changeModeStatus
-                                                    }
-                                                />
-                                            )}
-                                        />
-                                    </DashboardContainer>
-                                </AuthenticatedComponents>
-                            </Switch>
-                        </Router>
-                    </ThemeProvider>
-                </>
-            );
-        }
+        //Meetings route set to main dashboard because currently in construction.
+        return (
+            <>
+                <ThemeProvider theme={grabbedTheme}>
+                    <Router history={history}>
+                        <Navbar />
+                        <Switch>
+                            <Route exact path="/" component={MainLandingPage} />
+                            <Route
+                                exact
+                                path="/signup"
+                                component={SignUpForm}
+                            />
+                            <Route exact path="/login" component={LoginForm} />
+                            <AuthenticatedComponents>
+                                <DashboardGlobalStyles />
+                                <Snackbar timeout={5000} />
+                                <DashboardContainer>
+                                    <Route
+                                        exact
+                                        path="/dashboard"
+                                        component={MainDashboard}
+                                    />
+                                    <Route
+                                        exact
+                                        path="/calendar"
+                                        component={Calendar}
+                                    />
+                                    <Route
+                                        exact
+                                        path="/messenger"
+                                        component={Messenger}
+                                    />
+                                    <Route
+                                        exact
+                                        path="/createbionote"
+                                        component={CreateBioNote}
+                                    />
+                                    <Route
+                                        exact
+                                        path="/newbionote"
+                                        component={NewBioNote}
+                                    />
+                                    <Route
+                                        exact
+                                        path="/readbionote/:id"
+                                        component={ReadBioNote}
+                                    />
+                                    <Route
+                                        exact
+                                        path="/editbionote/:id"
+                                        component={EditBioNote}
+                                    />
+                                    <Route
+                                        exact
+                                        path="/scitools"
+                                        component={SciToolsLanding}
+                                    />
+                                    <Route
+                                        exact
+                                        path="/scitools/lazylacz"
+                                        component={LazyLacZ}
+                                    />
+                                    <Route
+                                        exact
+                                        path="/scitools/lazylacz/collection/:id"
+                                        component={Collection}
+                                    />
+                                    <Route
+                                        exact
+                                        path="/scitools/lazylacz/lacz/:id"
+                                        component={LacZ}
+                                    />
+                                    <Route
+                                        exact
+                                        path="/scitools/lazylacz/lacz/compare/:id"
+                                        component={LacZCompareCharts}
+                                    />
+                                    <Route
+                                        exact
+                                        path="/settings"
+                                        render={(props) => (
+                                            <UserSettings
+                                                {...props}
+                                                modeStatus={changeModeStatus}
+                                            />
+                                        )}
+                                    />
+                                </DashboardContainer>
+                            </AuthenticatedComponents>
+                        </Switch>
+                    </Router>
+                </ThemeProvider>
+            </>
+        );
     };
 
     return <>{renderApp()}</>;
