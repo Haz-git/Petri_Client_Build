@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleSnackbarClose } from '../../../redux/snackBar/snackBarActions';
 import { FiX } from 'react-icons/fi';
 import { CheckCircle } from '@styled-icons/bootstrap/CheckCircle';
+import { deviceMin } from '../../../devices/breakpoints';
 
 //Styles:
 
@@ -34,6 +35,16 @@ const CheckIcon = styled(CheckCircle)`
     width: 1.7rem;
     color: #20861b;
     margin-right: 0.75rem;
+
+    @media ${deviceMin.laptopSs} {
+        height: 1.4rem;
+        width: 1.4rem;
+    }
+
+    @media ${deviceMin.tablet} {
+        height: 1.7rem;
+        width: 1.7rem;
+    }
 `;
 
 const MainWrapper = styled.div`
@@ -42,16 +53,25 @@ const MainWrapper = styled.div`
     animation: ${fadein} 0.5s, ${fadeout} 0.5s ${(props) => props.time};
     display: flex;
     justify-content: center;
+
     align-items: center;
     position: fixed;
     z-index: 99999 !important;
     top: 1rem;
     left: 50%;
     transform: translateX(-50%);
-    height: auto;
+    height: 4rem;
     border-radius: 0.3rem;
     border: transparent;
-    margin-left: 100px;
+    width: fit-content;
+
+    @media ${deviceMin.laptopSs} {
+        margin-left: 30px;
+    }
+
+    @media ${deviceMin.laptopS} {
+        margin-left: 100px;
+    }
 `;
 
 const Container = styled.div`
@@ -60,6 +80,14 @@ const Container = styled.div`
     align-items: center;
     padding-left: 0.8rem;
     padding-right: 0.8rem;
+
+    @media ${deviceMin.laptopSs} {
+        max-width: 20rem;
+    }
+
+    @media ${deviceMin.tablet} {
+        max-width: none;
+    }
 `;
 
 const Message = styled.p`
@@ -69,6 +97,14 @@ const Message = styled.p`
     color: ${(props) => props.theme.text};
     margin: 0;
     padding: 0;
+
+    @media ${deviceMin.laptopSs} {
+        font-size: 0.9em;
+    }
+
+    @media ${deviceMin.tablet} {
+        font-size: 1em;
+    }
 `;
 
 const ButtonContainer = styled.div`
@@ -89,6 +125,16 @@ const Button = styled.button`
 
     &:hover {
         background-color: rgba(0, 0, 34, 0.1);
+    }
+
+    @media ${deviceMin.laptopSs} {
+        height: 1.45rem;
+        width: 1.45rem;
+    }
+
+    @media ${deviceMin.tablet} {
+        height: 1.75rem;
+        width: 1.75rem;
     }
 `;
 
