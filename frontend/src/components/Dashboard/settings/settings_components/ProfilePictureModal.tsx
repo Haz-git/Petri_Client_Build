@@ -66,6 +66,12 @@ const ModalContainer = styled.div`
     }
 
     @media ${deviceMin.laptopS} {
+        margin-left: calc(100px + 3rem);
+        margin-right: 3rem;
+        height: auto;
+    }
+
+    @media ${deviceMin.laptop} {
         margin-left: calc(100px + 5rem);
         margin-right: 5rem;
         height: auto;
@@ -90,7 +96,7 @@ const ContentWrapper = styled.div`
 
     @media ${deviceMin.laptopS} {
         display: grid;
-        grid-template-columns: 65% 35%;
+        grid-template-columns: 55% 45%;
         overflow-y: hidden;
     }
 
@@ -214,6 +220,7 @@ const PreviewImageContainer = styled.div`
 `;
 
 const SettingsContainer = styled.div`
+    position: relative;
     padding: 2rem 2rem;
 `;
 
@@ -237,7 +244,14 @@ const OptionText = styled.p`
 const ButtonContainer = styled.div`
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 1rem 1rem;
+`;
+
+const ButtonSpacer = styled.div`
+    margin: 0 0.25rem;
 `;
 
 //Interface:
@@ -517,7 +531,14 @@ const ProfilePictureModal = ({
                             </CustomizationContainer>
                             <ButtonContainer>
                                 <GeneralButton
-                                    buttonLabel="Save Profile Picture"
+                                    buttonLabel="Cancel"
+                                    buttonBackground="rgba(0, 0, 34, 0.1)"
+                                    buttonTextColor="rgba(5, 5, 20, 0.7)"
+                                    onClick={closeFunc}
+                                />
+                                <ButtonSpacer />
+                                <GeneralButton
+                                    buttonLabel="Save"
                                     onClick={handleSave}
                                     isDisabledOnLoading={isButtonLoading}
                                 />
