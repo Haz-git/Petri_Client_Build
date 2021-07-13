@@ -138,6 +138,14 @@ const UploadFileContainer = styled.div`
     /* margin: 1rem 0; */
     text-align: left;
     margin-bottom: 1rem;
+
+    @media ${deviceMin.laptopSs} {
+        display: block;
+    }
+
+    @media ${deviceMin.tablet} {
+        display: flex;
+    }
 `;
 
 const UploadFileText = styled.p`
@@ -148,6 +156,16 @@ const UploadFileText = styled.p`
     opacity: 1;
     text-align: left;
     margin-left: 1rem;
+
+    @media ${deviceMin.laptopSs} {
+        margin-left: 0;
+        margin-top: 1rem;
+    }
+
+    @media ${deviceMin.tablet} {
+        margin-top: 0;
+        margin-left: 1rem;
+    }
 `;
 
 const DropContainer = styled.div`
