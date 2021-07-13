@@ -149,8 +149,8 @@ const StyledCustomAvatar = styled.img`
     }
 
     @media ${deviceMin.tablet} {
-        height: 10rem;
-        width: 10rem;
+        height: 8.5rem;
+        width: 8.5rem;
     }
 
     @media ${deviceMin.laptopS} {
@@ -172,13 +172,18 @@ const StyledDefaultAvatar = styled.img`
         rgba(0, 0, 0, 0.23) 0px 6px 6px;
 
     @media ${deviceMin.laptopSs} {
-        height: 12.5rem;
-        width: 12.5rem;
+        height: 5rem;
+        width: 5rem;
     }
 
     @media ${deviceMin.tablet} {
-        height: 10rem;
-        width: 10rem;
+        height: 8.5rem;
+        width: 8.5rem;
+    }
+
+    @media ${deviceMin.laptopS} {
+        height: 12.5rem;
+        width: 12.5rem;
     }
 `;
 
