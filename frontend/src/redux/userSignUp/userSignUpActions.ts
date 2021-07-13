@@ -2,7 +2,7 @@ import { Dispatch } from 'redux';
 import { SignUpActionType } from './action-types';
 import { UserSignUpActionInterface } from './userSignUpInterfaces';
 
-import authRequestAPI from '../../api/authRequest';
+import api from '../../api';
 import history from '../../historyObject';
 
 //Form Values is given as an object.
@@ -11,7 +11,7 @@ const userSignUp =
     (formValues: {}) =>
     async (dispatch: Dispatch<UserSignUpActionInterface>) => {
         //Send redux form values to DB:
-        const response = await authRequestAPI.post('/users/signup', {
+        const response = await api.post('/users/signup', {
             ...formValues,
         });
 
