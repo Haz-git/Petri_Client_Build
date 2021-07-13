@@ -538,7 +538,11 @@ const ProfilePictureModal = ({
                                 />
                                 <ButtonSpacer />
                                 <GeneralButton
-                                    buttonLabel="Save"
+                                    buttonLabel={
+                                        isButtonLoading === false
+                                            ? 'Save'
+                                            : 'Saving...'
+                                    }
                                     onClick={handleSave}
                                     isDisabledOnLoading={isButtonLoading}
                                 />
