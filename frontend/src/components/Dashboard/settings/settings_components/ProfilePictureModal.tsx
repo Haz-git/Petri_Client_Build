@@ -48,11 +48,59 @@ const ModalContainer = styled.div`
         rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 
     animation: ${fadein} 0.5s ease-in-out;
+
+    @media ${deviceMin.laptopSs} {
+        margin-left: calc(60px + 2rem);
+        margin-right: 2rem;
+        top: 50%;
+        max-height: 40rem;
+        height: 100%;
+    }
+
+    @media ${deviceMin.tablet} {
+        margin-left: calc(60px + 3rem);
+        margin-right: 3rem;
+        top: 45%;
+        max-height: 40rem;
+        height: 100%;
+    }
+
+    @media ${deviceMin.laptopS} {
+        margin-left: calc(100px + 5rem);
+        margin-right: 5rem;
+        height: auto;
+    }
 `;
 
 const ContentWrapper = styled.div`
     display: grid;
     grid-template-columns: 65% 35%;
+
+    @media ${deviceMin.laptopSs} {
+        display: block;
+        height: 100%;
+        overflow-y: scroll;
+    }
+
+    @media ${deviceMin.tablet} {
+        display: block;
+        height: 100%;
+        overflow-y: scroll;
+    }
+
+    @media ${deviceMin.laptopS} {
+        display: grid;
+        grid-template-columns: 65% 35%;
+        overflow-y: hidden;
+    }
+
+    @media ${deviceMin.laptop} {
+        grid-template-columns: 55% 45%;
+    }
+
+    @media ${deviceMin.laptopL} {
+        grid-template-columns: 65% 35%;
+    }
 `;
 
 const ModalHeader = styled.h1`
@@ -75,8 +123,13 @@ const ModalDescText = styled.h2`
 `;
 
 const PictureContainer = styled.div`
-    border-right: 3px solid rgba(0, 0, 34, 0.1);
     padding: 2rem 2rem;
+    border-bottom: 3px solid rgba(0, 0, 34, 0.1);
+
+    @media ${deviceMin.laptopS} {
+        border-right: 3px solid rgba(0, 0, 34, 0.1);
+        border-bottom: none;
+    }
 `;
 
 const UploadFileContainer = styled.div`
@@ -102,9 +155,30 @@ const DropContainer = styled.div`
     grid-template-columns: 50% 50%;
     text-align: left;
     margin: 1rem 0;
+
+    @media ${deviceMin.laptopSs} {
+        display: block;
+    }
+
+    @media ${deviceMin.laptopL} {
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
 `;
 
 const DropWrapper = styled.div``;
+
+const PreviewTextContainer = styled.div`
+    border-left: 3px solid rgba(0, 0, 34, 0.1);
+
+    @media ${deviceMin.laptopSs} {
+        display: none;
+    }
+
+    @media ${deviceMin.laptopL} {
+        display: block;
+    }
+`;
 
 const PreviewText = styled.p`
     font-family: 'Lato', sans-serif;
@@ -115,10 +189,6 @@ const PreviewText = styled.p`
     text-align: center;
     margin-top: 0.25rem;
     margin-bottom: 1rem;
-`;
-
-const PreviewTextContainer = styled.div`
-    border-left: 3px solid rgba(0, 0, 34, 0.1);
 `;
 
 const PreviewImageContainer = styled.div`
