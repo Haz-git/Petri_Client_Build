@@ -7,10 +7,13 @@ import { useLocation } from 'react-router-dom';
 const AuthenticatedComponents = ({ children }): JSX.Element => {
     const [access, setAccess] = useState(false);
 
+    const location = useLocation();
+
     useEffect(() => {
         // Use helper function to grab JWT from localstorage.
         const jwt = getJWT();
 
+        console.log('useEffect ran');
         //If there's no JWT present in the localstorage, no JWT must be sent over from server, meaning that login is wrong. Push the user back to the login page.
         if (
             !jwt ||
@@ -41,7 +44,7 @@ const AuthenticatedComponents = ({ children }): JSX.Element => {
 
         //If the user's JWT is present: set the React state to 'temp' instead of undefined
         setAccess(true);
-    }, []);
+    }, [location]);
 
     return <>{access === true ? <>{children}</> : null}</>;
     //If the react state is undefined, return a small statement. Else, return the app dashboard.
