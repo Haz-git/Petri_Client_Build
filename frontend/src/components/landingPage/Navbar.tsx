@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getJWT } from '../../utils/jwthelper';
 import { logoutHelper } from '../../utils/logouthelper';
@@ -364,10 +364,12 @@ const Navbar = ({ StateJwt }) => {
 
     const [JWT, setJWT] = useState(undefined);
 
+    const location = useLocation();
+
     useEffect(() => {
         const jwt2 = getJWT();
         setJWT(jwt2);
-    }, [StateJwt]);
+    }, [location]);
 
     const renderNavOnJWT = (jwt) => {
         if (
