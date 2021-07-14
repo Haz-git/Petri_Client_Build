@@ -12,8 +12,6 @@ const AuthenticatedComponents = ({ children }): JSX.Element => {
     useEffect(() => {
         // Use helper function to grab JWT from localstorage.
         const jwt = getJWT();
-
-        console.log('useEffect ran');
         //If there's no JWT present in the localstorage, no JWT must be sent over from server, meaning that login is wrong. Push the user back to the login page.
         if (
             !jwt ||
