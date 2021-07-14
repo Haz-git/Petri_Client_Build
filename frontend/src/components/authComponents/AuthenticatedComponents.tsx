@@ -43,18 +43,7 @@ const AuthenticatedComponents = ({ children }): JSX.Element => {
         setAccess(true);
     }, []);
 
-    return (
-        <>
-            {access === true ? (
-                <>{children}</>
-            ) : (
-                <h1>
-                    The route you are trying to access is private. Please sign
-                    in to continue
-                </h1>
-            )}
-        </>
-    );
+    return <>{access === true ? <>{children}</> : null}</>;
     //If the react state is undefined, return a small statement. Else, return the app dashboard.
 };
 
