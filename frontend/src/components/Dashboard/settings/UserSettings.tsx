@@ -139,7 +139,7 @@ const StyledCustomAvatar = styled.img`
     /* padding: 1rem 1rem; */
     border-radius: 50%;
     vertical-align: middle;
-    border: 5px solid ${(props) => props.theme.settingsAvatarBorderC};
+    border: 3px solid ${(props) => props.theme.settingsAvatarBorderC};
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
         rgba(0, 0, 0, 0.23) 0px 6px 6px;
 
@@ -167,7 +167,7 @@ const StyledDefaultAvatar = styled.img`
     background-color: white;
     border-radius: 50%;
     vertical-align: middle;
-    border: 5px solid ${(props) => props.theme.settingsAvatarBorderC};
+    border: 3px solid ${(props) => props.theme.settingsAvatarBorderC};
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
         rgba(0, 0, 0, 0.23) 0px 6px 6px;
 
