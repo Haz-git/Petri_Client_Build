@@ -3,16 +3,16 @@ import styled from 'styled-components';
 
 //Icons:
 
-import { DocumentOnePage } from '@styled-icons/fluentui-system-filled/DocumentOnePage';
-import { Folder } from '@styled-icons/fluentui-system-filled/Folder';
+import { FileEarmarkText } from '@styled-icons/bootstrap/FileEarmarkText';
+import { Folder2 } from '@styled-icons/bootstrap/Folder2';
 
-const DocumentIcon = styled(DocumentOnePage)`
+const DocumentIcon = styled(FileEarmarkText)`
     color: #423c3c;
     height: 1.5rem;
     width: 1.5rem;
 `;
 
-const FolderIcon = styled(Folder)`
+const FolderIcon = styled(Folder2)`
     color: #423c3c;
     height: 1.5rem;
     width: 1.5rem;
@@ -44,6 +44,7 @@ const EntityNameText = styled.p`
     font-size: 1.1em;
     font-weight: 900;
     color: #3c4042;
+    margin-top: 0.2rem;
 `;
 
 const EntityDetails = styled.p`
