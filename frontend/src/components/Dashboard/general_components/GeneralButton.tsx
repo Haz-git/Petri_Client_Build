@@ -9,15 +9,18 @@ const StyledGeneralButton = styled.button<IGeneralButtonProps>`
     justify-content: center;
     border: none;
     background: ${(props) => props.buttonBackground};
-    padding: 0.7rem 1rem;
-    border-radius: 0.3rem;
+    padding: 0.8rem 1rem;
+    border-radius: 0.4rem;
     font-family: 'Lato', sans-serif;
-    font-size: 1em;
+    font-size: ${(props) => props.fontSize};
     font-weight: 600;
     color: ${(props) => props.buttonTextColor};
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-        rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    box-shadow: ${(props) =>
+        props.disableShadow === true
+            ? 'none'
+            : 'rgba(0, 0, 0, 0.4) 0px 2px 4px,rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,rgba(0, 0, 0, 0.2) 0px -3px 0px inset;'};
     overflow: hidden;
+    width: fit-content;
 
     transition: all 0.1s ease-in;
 
@@ -28,6 +31,10 @@ const StyledGeneralButton = styled.button<IGeneralButtonProps>`
     &:hover {
         transform: scale(1.05);
     }
+`;
+
+const IconContainer = styled.div<IGeneralButtonProps>`
+    margin-right: ${(props) => props.iconMargin};
 `;
 
 const LoaderContainer = styled.div`
@@ -44,16 +51,22 @@ interface IGeneralButtonProps {
     buttonTextColor?: string;
     isDisabledOnLoading?: boolean;
     buttonIcon?: JSX.Element;
+    disableShadow?: boolean;
+    iconMargin?: string;
+    fontSize?: string;
 }
 
 const GeneralButton = ({
     buttonLabel = 'Button',
     name = 'Button',
-    buttonBackground = '#222444',
+    buttonBackground = '#4263EB',
     buttonTextColor = 'white',
     onClick,
     isDisabledOnLoading = false,
     buttonIcon,
+    disableShadow = false,
+    iconMargin = '0.25rem',
+    fontSize = '1em',
 }: IGeneralButtonProps): JSX.Element => {
     return (
         <>
@@ -63,7 +76,12 @@ const GeneralButton = ({
                 buttonBackground={buttonBackground}
                 buttonTextColor={buttonTextColor}
                 disabled={isDisabledOnLoading}
+                disableShadow={disableShadow}
+                fontSize={fontSize}
             >
+                <IconContainer iconMargin={iconMargin}>
+                    {buttonIcon && buttonIcon}
+                </IconContainer>
                 {buttonLabel}
                 {isDisabledOnLoading === true ? (
                     <LoaderContainer>
