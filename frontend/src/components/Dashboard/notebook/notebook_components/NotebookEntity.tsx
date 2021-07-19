@@ -43,7 +43,7 @@ const EntityNameText = styled.p`
     font-family: 'Lato', sans-serif;
     font-size: 1.1em;
     font-weight: 900;
-    color: #423c3c;
+    color: #3c4042;
 `;
 
 const EntityDetails = styled.p`
