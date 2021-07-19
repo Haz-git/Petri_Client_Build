@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import GeneralButton from '../general_components/GeneralButton';
+import Searchbar from '../general_components/Searchbar';
 
 import { Add } from '@styled-icons/material/Add';
 import { Star } from '@styled-icons/evaicons-solid/Star';
@@ -51,7 +52,7 @@ const Sidebar = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20%;
+    margin-top: 5rem;
     /* border-right: 1px solid #ececec; */
     padding: 1rem 1rem;
 `;
@@ -74,6 +75,7 @@ const FileContainer = styled.div`
 const PathwayContainer = styled.div`
     padding: 1em 1em;
     background: #ececec;
+    width: 100%;
 `;
 
 const PathwayText = styled.h2`
@@ -81,6 +83,33 @@ const PathwayText = styled.h2`
     font-size: 1.2em;
     font-weight: 700;
     color: #423c3c;
+`;
+
+const SearchbarContainer = styled.div`
+    margin-top: 2.6rem;
+    padding: 0 2rem;
+    max-width: 60rem;
+`;
+
+const FilesWrapper = styled.div`
+    margin-top: 4rem;
+    padding: 0 2rem;
+`;
+
+const FilesTextHeader = styled.div`
+    display: grid;
+    grid-template-columns: repeat(4, minmax(200px, 2fr));
+`;
+
+const HeaderText = styled.p`
+    font-family: 'Lato', sans-serif;
+    font-size: 1em;
+    font-weight: 600;
+    color: #423c3c;
+`;
+
+const FilesTextLine = styled.div`
+    border: 1px solid #81898f;
 `;
 
 //Interface:
@@ -138,7 +167,18 @@ const MainNotebook = () => {
                 <PathwayContainer>
                     <PathwayText>Path: // Root</PathwayText>
                 </PathwayContainer>
-                Files
+                <SearchbarContainer>
+                    <Searchbar />
+                </SearchbarContainer>
+                <FilesWrapper>
+                    <FilesTextHeader>
+                        <HeaderText>Name</HeaderText>
+                        <HeaderText>Owner</HeaderText>
+                        <HeaderText>Date Created</HeaderText>
+                        <HeaderText>Last Modified</HeaderText>
+                    </FilesTextHeader>
+                    <FilesTextLine />
+                </FilesWrapper>
             </FileContainer>
         </MainContainer>
     );
