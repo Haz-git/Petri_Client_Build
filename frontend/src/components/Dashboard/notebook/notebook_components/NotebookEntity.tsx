@@ -1,16 +1,64 @@
 import React from 'react';
 import styled from 'styled-components';
 
+//Icons:
+
+import { DocumentOnePage } from '@styled-icons/fluentui-system-filled/DocumentOnePage';
+import { Folder } from '@styled-icons/fluentui-system-filled/Folder';
+
+const DocumentIcon = styled(DocumentOnePage)`
+    color: #423c3c;
+    height: 1.5rem;
+    width: 1.5rem;
+`;
+
+const FolderIcon = styled(Folder)`
+    color: #423c3c;
+    height: 1.5rem;
+    width: 1.5rem;
+`;
+
 //Styles:
 
-const MainContainer = styled.div``;
+const MainContainer = styled.div`
+    padding: 1rem 1rem;
+    border-bottom: 1px solid #cabbbb;
+`;
 
+const IconContainer = styled.div`
+    margin-right: 0.5rem;
+`;
+
+const EntityContainer = styled.div`
+    display: grid;
+    grid-template-columns: repeat(4, minmax(200px, 2fr));
+`;
+
+const EntityNameContainer = styled.div`
+    display: flex;
+    align-items: center;
+`;
+
+const EntityNameText = styled.p`
+    font-family: 'Lato', sans-serif;
+    font-size: 1.1em;
+    font-weight: 900;
+    color: #423c3c;
+`;
+
+const EntityDetails = styled.p`
+    font-family: 'Lato', sans-serif;
+    font-size: 1.1em;
+    font-weight: 400;
+    color: #81898f;
+`;
 //Interface:
 
 interface MainNotebookProps {
     noteId?: string;
     noteName?: string;
     folderName?: string;
+    folderId?: string;
     parentId?: string;
     ownerName?: string;
     dateCreated?: string;
@@ -24,8 +72,27 @@ const NotebookEntity = ({
     parentId,
     dateCreated,
     lastModified,
+    ownerName,
 }: MainNotebookProps): JSX.Element => {
-    return <div>Test Notebook Entity</div>;
+    return (
+        <MainContainer>
+            <EntityContainer>
+                <EntityNameContainer>
+                    <IconContainer>
+                        {noteId !== undefined ? (
+                            <DocumentIcon />
+                        ) : (
+                            <FolderIcon />
+                        )}
+                    </IconContainer>
+                    <EntityNameText>{noteName}</EntityNameText>
+                </EntityNameContainer>
+                <EntityDetails>{ownerName}</EntityDetails>
+                <EntityDetails>{dateCreated}</EntityDetails>
+                <EntityDetails>{lastModified}</EntityDetails>
+            </EntityContainer>
+        </MainContainer>
+    );
 };
 
 export default NotebookEntity;
