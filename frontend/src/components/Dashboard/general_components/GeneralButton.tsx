@@ -43,6 +43,7 @@ interface IGeneralButtonProps {
     buttonBackground?: string;
     buttonTextColor?: string;
     isDisabledOnLoading?: boolean;
+    buttonIcon?: JSX.Element;
 }
 
 const GeneralButton = ({
@@ -52,6 +53,7 @@ const GeneralButton = ({
     buttonTextColor = 'white',
     onClick,
     isDisabledOnLoading = false,
+    buttonIcon,
 }: IGeneralButtonProps): JSX.Element => {
     return (
         <>
