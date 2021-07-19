@@ -109,8 +109,17 @@ const HeaderText = styled.p`
 `;
 
 const FilesTextLine = styled.div`
-    margin: 0.5rem 0;
+    margin-top: 0.5rem;
     border-bottom: 2px solid #81898f;
+`;
+
+const DirectoryText = styled.div`
+    font-family: 'Lato', sans-serif;
+    font-size: 1.1em;
+    font-weight: 400;
+    color: #423c3c;
+    background: #ececec;
+    padding: 1rem 1rem;
 `;
 
 //Interface:
@@ -183,6 +192,7 @@ const MainNotebook = () => {
                         <HeaderText>Last Modified</HeaderText>
                     </FilesTextHeader>
                     <FilesTextLine />
+                    <DirectoryText>All Files in: Root</DirectoryText>
                 </FilesWrapper>
             </FileContainer>
         </MainContainer>
