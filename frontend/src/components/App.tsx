@@ -18,6 +18,7 @@ import Snackbar from '../components/Dashboard/general_components/Snackbar';
 import MainDashboard from '../components/Dashboard/homePage/MainDashboard';
 import Calendar from './Dashboard/calendar/Calendar';
 import Messenger from '../components/Dashboard/messenger/Messenger';
+import MainNotebook from '../components/Dashboard/notebook/MainNotebook';
 import CreateBioNote from '../components/Dashboard/bioNotes/CreateBioNote';
 import NewBioNote from '../components/Dashboard/bioNotes/NewBioNote';
 import ReadBioNote from '../components/Dashboard/bioNotes/ReadBioNote';
@@ -103,7 +104,7 @@ const App = () => {
                                     <Route
                                         exact
                                         path="/createbionote"
-                                        component={CreateBioNote}
+                                        component={MainNotebook}
                                     />
                                     <Route
                                         exact
