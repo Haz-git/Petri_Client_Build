@@ -1,15 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
+
+//Components:
 import GeneralButton from '../general_components/GeneralButton';
 import Searchbar from '../general_components/Searchbar';
+import NotebookEntity from './notebook_components/NotebookEntity';
 
+//Icons:
 import { Add } from '@styled-icons/material/Add';
 import { Star } from '@styled-icons/evaicons-solid/Star';
 import { Users } from '@styled-icons/heroicons-solid/Users';
 import { Timelapse } from '@styled-icons/material-outlined/Timelapse';
 import { FilePaper2 } from '@styled-icons/remix-fill/FilePaper2';
 
-//Icons:
 const AddIcon = styled(Add)`
     color: #ffffff;
     height: 1.5rem;
@@ -45,7 +48,7 @@ const MainContainer = styled.div`
     /* min-height: 100%; */
     height: 100vh;
     display: grid;
-    grid-template-columns: 0.75fr 4fr;
+    grid-template-columns: 1fr 4fr;
 `;
 
 const Sidebar = styled.div`
@@ -110,7 +113,7 @@ const HeaderText = styled.p`
 
 const FilesTextLine = styled.div`
     margin-top: 0.5rem;
-    border-bottom: 2px solid #81898f;
+    border-bottom: 2px solid #423c3c;
 `;
 
 const DirectoryText = styled.div`
@@ -121,6 +124,8 @@ const DirectoryText = styled.div`
     background: #ececec;
     padding: 1rem 1rem;
 `;
+
+const NotebookEntityWrapper = styled.div``;
 
 //Interface:
 
@@ -192,7 +197,10 @@ const MainNotebook = () => {
                         <HeaderText>Last Modified</HeaderText>
                     </FilesTextHeader>
                     <FilesTextLine />
-                    <DirectoryText>All Files in: Root</DirectoryText>
+                    <DirectoryText>All Entities in: Root</DirectoryText>
+                    <NotebookEntityWrapper>
+                        <NotebookEntity />
+                    </NotebookEntityWrapper>
                 </FilesWrapper>
             </FileContainer>
         </MainContainer>
