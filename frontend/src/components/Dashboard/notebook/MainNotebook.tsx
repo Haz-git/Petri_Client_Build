@@ -92,7 +92,7 @@ const SearchbarContainer = styled.div`
 `;
 
 const FilesWrapper = styled.div`
-    margin-top: 4rem;
+    margin-top: 4.7rem;
     padding: 0 2rem;
 `;
 
@@ -103,13 +103,14 @@ const FilesTextHeader = styled.div`
 
 const HeaderText = styled.p`
     font-family: 'Lato', sans-serif;
-    font-size: 1em;
+    font-size: 1.1em;
     font-weight: 600;
     color: #423c3c;
 `;
 
 const FilesTextLine = styled.div`
-    border: 1px solid #81898f;
+    margin: 0.5rem 0;
+    border-bottom: 2px solid #81898f;
 `;
 
 //Interface:
@@ -122,7 +123,7 @@ const MainNotebook = () => {
                     <GeneralButton
                         buttonLabel="Add New"
                         buttonIcon={<AddIcon />}
-                        fontSize="1em"
+                        fontSize="1.2em"
                     />
                 </AddButtonContainer>
                 <FileOptions>
@@ -133,6 +134,7 @@ const MainNotebook = () => {
                         buttonTextColor="#3C4042"
                         buttonBackground="transparent"
                         iconMargin="2rem"
+                        fontSize="1.2em"
                     />
                     <FileOptionSpacer />
                     <GeneralButton
@@ -142,6 +144,7 @@ const MainNotebook = () => {
                         buttonTextColor="#3C4042"
                         buttonBackground="transparent"
                         iconMargin="2rem"
+                        fontSize="1.2em"
                     />
                     <FileOptionSpacer />
                     <GeneralButton
@@ -151,6 +154,7 @@ const MainNotebook = () => {
                         buttonTextColor="#3C4042"
                         buttonBackground="transparent"
                         iconMargin="2rem"
+                        fontSize="1.2em"
                     />
                     <FileOptionSpacer />
                     <GeneralButton
@@ -160,6 +164,7 @@ const MainNotebook = () => {
                         buttonTextColor="#3C4042"
                         buttonBackground="transparent"
                         iconMargin="2rem"
+                        fontSize="1.2em"
                     />
                 </FileOptions>
             </Sidebar>
