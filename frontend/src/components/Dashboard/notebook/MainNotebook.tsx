@@ -102,6 +102,7 @@ const FilesWrapper = styled.div`
 const FilesTextHeader = styled.div`
     display: grid;
     grid-template-columns: repeat(4, minmax(200px, 2fr));
+    padding: 0 1rem;
 `;
 
 const HeaderText = styled.p`
@@ -199,7 +200,20 @@ const MainNotebook = () => {
                     <FilesTextLine />
                     <DirectoryText>All Entities in: Root</DirectoryText>
                     <NotebookEntityWrapper>
-                        <NotebookEntity />
+                        <NotebookEntity
+                            noteName="Test Note"
+                            ownerName="Me"
+                            dateCreated="7/23/2021"
+                            lastModified="Just now"
+                            noteId="testididieide"
+                        />
+                        <NotebookEntity
+                            noteName="Test Folder"
+                            ownerName="Me"
+                            dateCreated="7/23/2021"
+                            lastModified="Just now"
+                            folderId="adfasfsad"
+                        />
                     </NotebookEntityWrapper>
                 </FilesWrapper>
             </FileContainer>
