@@ -66,7 +66,6 @@ const AddEntityDropdown = () => {
                 fontSize="1.2em"
                 onClick={toggleDropdown}
                 hoverTransform="none"
-                hoverShadow="rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;"
             />
             <OutsideClickHandler onOutsideClick={() => setShowDropdown(false)}>
                 <DropdownContainer
@@ -82,6 +81,7 @@ const AddEntityDropdown = () => {
                         fontSize="1.1em"
                         hoverColor="#ececec"
                         fontWeight="400"
+                        hoverShadow="none"
                     />
                     <GeneralButton
                         buttonLabel="Note"
@@ -93,6 +93,7 @@ const AddEntityDropdown = () => {
                         fontSize="1.1em"
                         hoverColor="#ececec"
                         fontWeight="400"
+                        hoverShadow="none"
                     />
                 </DropdownContainer>
             </OutsideClickHandler>

@@ -187,6 +187,7 @@ const MainNotebook = ({
                         buttonBackground="transparent"
                         iconMargin="2rem"
                         fontSize="1.2em"
+                        hoverShadow="none"
                     />
                     <FileOptionSpacer />
                     <GeneralButton
@@ -197,6 +198,7 @@ const MainNotebook = ({
                         buttonBackground="transparent"
                         iconMargin="2rem"
                         fontSize="1.2em"
+                        hoverShadow="none"
                     />
                     <FileOptionSpacer />
                     <GeneralButton
@@ -207,6 +209,7 @@ const MainNotebook = ({
                         buttonBackground="transparent"
                         iconMargin="2rem"
                         fontSize="1.2em"
+                        hoverShadow="none"
                     />
                     <FileOptionSpacer />
                     <GeneralButton
@@ -217,6 +220,7 @@ const MainNotebook = ({
                         buttonBackground="transparent"
                         iconMargin="2rem"
                         fontSize="1.2em"
+                        hoverShadow="none"
                     />
                 </FileOptions>
             </Sidebar>
