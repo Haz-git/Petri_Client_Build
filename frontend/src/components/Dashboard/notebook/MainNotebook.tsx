@@ -8,20 +8,14 @@ import { getNotebook } from '../../../redux/userNotebook/notebookActions';
 //Components:
 import GeneralButton from '../general_components/GeneralButton';
 import Searchbar from '../general_components/Searchbar';
+import AddEntityDropdown from './notebook_components/AddEntityDropdown';
 import NotebookEntity from './notebook_components/NotebookEntity';
 
 //Icons:
-import { Add } from '@styled-icons/material/Add';
 import { Star } from '@styled-icons/evaicons-solid/Star';
 import { Users } from '@styled-icons/heroicons-solid/Users';
 import { Timelapse } from '@styled-icons/material-outlined/Timelapse';
 import { FilePaper2 } from '@styled-icons/remix-fill/FilePaper2';
-
-const AddIcon = styled(Add)`
-    color: #ffffff;
-    height: 1.5rem;
-    width: 1.5rem;
-`;
 
 const StarIcon = styled(Star)`
     color: #3c4042;
@@ -182,11 +176,7 @@ const MainNotebook = ({
         <MainContainer>
             <Sidebar>
                 <AddButtonContainer>
-                    <GeneralButton
-                        buttonLabel="Add New"
-                        buttonIcon={<AddIcon />}
-                        fontSize="1.2em"
-                    />
+                    <AddEntityDropdown />
                 </AddButtonContainer>
                 <FileOptions>
                     <GeneralButton
