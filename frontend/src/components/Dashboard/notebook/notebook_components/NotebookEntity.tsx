@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import dayjs from 'dayjs';
 
 //Icons:
 
@@ -76,9 +78,11 @@ const NotebookEntity = ({
     dateModified,
     ownerName,
 }: MainNotebookProps): JSX.Element => {
+    dayjs.extend(relativeTime);
+
     const truncateName = (entityName: string) => {
-        if (entityName.length > 25) {
-            return entityName.substr(0, 25).concat('...');
+        if (entityName.length > 20) {
+            return entityName.substr(0, 20).concat('...');
         } else {
             return entityName;
         }
@@ -100,6 +104,15 @@ const NotebookEntity = ({
         return <FolderIcon />;
     };
 
+    const parseDateCreated = () => {
+        return dayjs(dateCreated).format('MM/DD/YYYY');
+    };
+
+    const parseLastModified = () => {
+        let currTime = dayjs();
+        return dayjs(dateModified).from(currTime);
+    };
+
     return (
         <MainContainer>
             <EntityContainer>
@@ -108,8 +121,8 @@ const NotebookEntity = ({
                     <EntityNameText>{parseName()}</EntityNameText>
                 </EntityNameContainer>
                 <EntityDetails>{ownerName}</EntityDetails>
-                <EntityDetails>{dateCreated}</EntityDetails>
-                <EntityDetails>{dateModified}</EntityDetails>
+                <EntityDetails>{parseDateCreated()}</EntityDetails>
+                <EntityDetails>{parseLastModified()}</EntityDetails>
             </EntityContainer>
         </MainContainer>
     );
