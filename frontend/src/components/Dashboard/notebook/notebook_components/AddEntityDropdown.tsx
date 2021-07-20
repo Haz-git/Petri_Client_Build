@@ -7,6 +7,20 @@ import OutsideClickHandler from 'react-outside-click-handler';
 
 //Styles:
 import { Add } from '@styled-icons/material/Add';
+import { FileEarmarkText } from '@styled-icons/bootstrap/FileEarmarkText';
+import { Folder2 } from '@styled-icons/bootstrap/Folder2';
+
+const DocumentIcon = styled(FileEarmarkText)`
+    color: #423c3c;
+    height: 1rem;
+    width: 1rem;
+`;
+
+const FolderIcon = styled(Folder2)`
+    color: #423c3c;
+    height: 1rem;
+    width: 1rem;
+`;
 
 const AddIcon = styled(Add)`
     color: #ffffff;
@@ -19,15 +33,21 @@ const MainContainer = styled.div`
 `;
 
 const DropdownContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
     position: absolute;
+    right: 0;
     top: 0;
-    left: 0;
     background: #ffffff;
     z-index: 99 !important;
-    border: 1px solid black;
+    border: 1px solid #ececec;
     border-radius: 0.4rem;
-    padding: 1rem 1rem;
+    padding: 0.75rem 0.75rem;
     visibility: ${(props) => props.isVisible};
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+        rgba(0, 0, 0, 0.22) 0px 15px 12px;
 `;
 
 //Interfaces:
@@ -49,7 +69,26 @@ const AddEntityDropdown = () => {
                 <DropdownContainer
                     isVisible={showDropdown === true ? 'visible' : 'hidden'}
                 >
-                    Test
+                    <GeneralButton
+                        buttonLabel="Folder"
+                        disableShadow={true}
+                        buttonIcon={<FolderIcon />}
+                        buttonTextColor="#3C4042"
+                        buttonBackground="transparent"
+                        iconMargin=".5rem"
+                        fontSize="1em"
+                        hoverColor="#ececec"
+                    />
+                    <GeneralButton
+                        buttonLabel="Note"
+                        disableShadow={true}
+                        buttonIcon={<DocumentIcon />}
+                        buttonTextColor="#3C4042"
+                        buttonBackground="transparent"
+                        iconMargin=".5rem"
+                        fontSize="1em"
+                        hoverColor="#ececec"
+                    />
                 </DropdownContainer>
             </OutsideClickHandler>
         </MainContainer>
