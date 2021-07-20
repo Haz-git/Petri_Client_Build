@@ -170,6 +170,9 @@ const MainNotebook = ({
                     parentId={entity.parentId}
                     folderName={entity.folderName}
                     folderId={entity.folderId}
+                    ownerName={entity.ownerName}
+                    dateCreated={entity.dateCreated}
+                    dateModified={entity.dateModified}
                 />
             ));
         }
