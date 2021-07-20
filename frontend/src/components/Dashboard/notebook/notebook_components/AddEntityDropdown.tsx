@@ -12,14 +12,14 @@ import { Folder2 } from '@styled-icons/bootstrap/Folder2';
 
 const DocumentIcon = styled(FileEarmarkText)`
     color: #423c3c;
-    height: 1rem;
-    width: 1rem;
+    height: 1.3rem;
+    width: 1.3rem;
 `;
 
 const FolderIcon = styled(Folder2)`
     color: #423c3c;
-    height: 1rem;
-    width: 1rem;
+    height: 1.3rem;
+    width: 1.3rem;
 `;
 
 const AddIcon = styled(Add)`
@@ -38,16 +38,17 @@ const DropdownContainer = styled.div`
     align-items: flex-start;
     justify-content: flex-start;
     position: absolute;
-    right: 0;
     top: 0;
     background: #ffffff;
     z-index: 99 !important;
     border: 1px solid #ececec;
     border-radius: 0.4rem;
-    padding: 0.75rem 0.75rem;
+    padding: 0.5rem 0.5rem;
     visibility: ${(props) => props.isVisible};
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
         rgba(0, 0, 0, 0.22) 0px 15px 12px;
+
+    width: 9rem;
 `;
 
 //Interfaces:
@@ -64,6 +65,8 @@ const AddEntityDropdown = () => {
                 buttonIcon={<AddIcon />}
                 fontSize="1.2em"
                 onClick={toggleDropdown}
+                hoverTransform="none"
+                hoverShadow="rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;"
             />
             <OutsideClickHandler onOutsideClick={() => setShowDropdown(false)}>
                 <DropdownContainer
@@ -75,9 +78,10 @@ const AddEntityDropdown = () => {
                         buttonIcon={<FolderIcon />}
                         buttonTextColor="#3C4042"
                         buttonBackground="transparent"
-                        iconMargin=".5rem"
-                        fontSize="1em"
+                        iconMargin="1rem"
+                        fontSize="1.1em"
                         hoverColor="#ececec"
+                        fontWeight="400"
                     />
                     <GeneralButton
                         buttonLabel="Note"
@@ -85,9 +89,10 @@ const AddEntityDropdown = () => {
                         buttonIcon={<DocumentIcon />}
                         buttonTextColor="#3C4042"
                         buttonBackground="transparent"
-                        iconMargin=".5rem"
-                        fontSize="1em"
+                        iconMargin="1rem"
+                        fontSize="1.1em"
                         hoverColor="#ececec"
+                        fontWeight="400"
                     />
                 </DropdownContainer>
             </OutsideClickHandler>
