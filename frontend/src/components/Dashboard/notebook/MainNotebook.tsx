@@ -103,6 +103,10 @@ const FilesWrapper = styled.div`
     padding: 0 2rem;
 `;
 
+const FilesScrollableHeader = styled.div`
+    position: sticky;
+`;
+
 const FilesTextHeader = styled.div`
     display: grid;
     grid-template-columns: repeat(4, minmax(200px, 2fr));
@@ -130,7 +134,9 @@ const DirectoryText = styled.div`
     padding: 1rem 1rem;
 `;
 
-const NotebookEntityWrapper = styled.div``;
+const NotebookEntityWrapper = styled.div`
+    overflow-y: scroll;
+`;
 
 //Interfaces:
 
@@ -138,10 +144,25 @@ interface IDispatchProps {
     getNotebook: () => void;
 }
 
-const MainNotebook = ({ getNotebook }: IDispatchProps): JSX.Element => {
+interface IMapStateToProps {
+    notebook: {};
+}
+
+type MainNotebookProps = IDispatchProps & IMapStateToProps;
+
+const MainNotebook = ({
+    getNotebook,
+    notebook,
+}: MainNotebookProps): JSX.Element => {
     useEffect(() => {
         getNotebook();
     }, []);
+
+    const renderNotebookEntities = () => {
+        if (notebook !== undefined && notebook !== null) {
+            console.log(notebook);
+        }
+    };
 
     return (
         <MainContainer>
@@ -203,15 +224,18 @@ const MainNotebook = ({ getNotebook }: IDispatchProps): JSX.Element => {
                     <Searchbar />
                 </SearchbarContainer>
                 <FilesWrapper>
-                    <FilesTextHeader>
-                        <HeaderText>Name</HeaderText>
-                        <HeaderText>Owner</HeaderText>
-                        <HeaderText>Date Created</HeaderText>
-                        <HeaderText>Last Modified</HeaderText>
-                    </FilesTextHeader>
-                    <FilesTextLine />
-                    <DirectoryText>All Entities in: Root</DirectoryText>
+                    <FilesScrollableHeader>
+                        <FilesTextHeader>
+                            <HeaderText>Name</HeaderText>
+                            <HeaderText>Owner</HeaderText>
+                            <HeaderText>Date Created</HeaderText>
+                            <HeaderText>Last Modified</HeaderText>
+                        </FilesTextHeader>
+                        <FilesTextLine />
+                        <DirectoryText>All Entities in: Root</DirectoryText>
+                    </FilesScrollableHeader>
                     <NotebookEntityWrapper>
+                        {renderNotebookEntities()}
                         <NotebookEntity
                             noteName="Test Note"
                             ownerName="Me"
@@ -233,4 +257,10 @@ const MainNotebook = ({ getNotebook }: IDispatchProps): JSX.Element => {
     );
 };
 
-export default connect(null, { getNotebook })(MainNotebook);
+const mapStateToProps = (state: any, ownProps: any) => {
+    return {
+        notebook: state.notebook.notebook,
+    };
+};
+
+export default connect(mapStateToProps, { getNotebook })(MainNotebook);
