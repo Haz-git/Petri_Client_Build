@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
+
+//Redux:
+import { connect } from 'react-redux';
+import { getNotebook } from '../../../redux/userNotebook/notebookActions';
 
 //Components:
 import GeneralButton from '../general_components/GeneralButton';
@@ -128,9 +132,17 @@ const DirectoryText = styled.div`
 
 const NotebookEntityWrapper = styled.div``;
 
-//Interface:
+//Interfaces:
 
-const MainNotebook = () => {
+interface IDispatchProps {
+    getNotebook: () => void;
+}
+
+const MainNotebook = ({ getNotebook }: IDispatchProps): JSX.Element => {
+    useEffect(() => {
+        getNotebook();
+    }, []);
+
     return (
         <MainContainer>
             <Sidebar>
@@ -221,4 +233,4 @@ const MainNotebook = () => {
     );
 };
 
-export default MainNotebook;
+export default connect(null, { getNotebook })(MainNotebook);
