@@ -13,7 +13,7 @@ const StyledGeneralButton = styled.button<IGeneralButtonProps>`
     border-radius: 0.4rem;
     font-family: 'Lato', sans-serif;
     font-size: ${(props) => props.fontSize};
-    font-weight: 600;
+    font-weight: ${(props) => props.fontWeight};
     color: ${(props) => props.buttonTextColor};
     box-shadow: ${(props) =>
         props.disableShadow === true
@@ -29,8 +29,9 @@ const StyledGeneralButton = styled.button<IGeneralButtonProps>`
     }
 
     &:hover {
+        box-shadow: ${(props) => props.hoverShadow}
         background-color: ${(props) => props.hoverColor};
-        transform: scale(1.05);
+        transform: ${(props) => props.hoverTransform};
     }
 `;
 
@@ -56,6 +57,9 @@ interface IGeneralButtonProps {
     iconMargin?: string;
     fontSize?: string;
     hoverColor?: string;
+    fontWeight?: string;
+    hoverTransform?: string;
+    hoverShadow?: string;
 }
 
 const GeneralButton = ({
@@ -70,6 +74,9 @@ const GeneralButton = ({
     iconMargin = '0.25rem',
     fontSize = '1em',
     hoverColor = 'none',
+    fontWeight = '600',
+    hoverTransform = 'scale(1.05)',
+    hoverShadow,
 }: IGeneralButtonProps): JSX.Element => {
     return (
         <>
@@ -82,6 +89,9 @@ const GeneralButton = ({
                 disableShadow={disableShadow}
                 fontSize={fontSize}
                 hoverColor={hoverColor}
+                fontWeight={fontWeight}
+                hoverTransform={hoverTransform}
+                hoverShadow={hoverShadow}
             >
                 <IconContainer iconMargin={iconMargin}>
                     {buttonIcon && buttonIcon}
