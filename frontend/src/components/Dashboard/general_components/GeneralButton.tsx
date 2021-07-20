@@ -20,7 +20,7 @@ const StyledGeneralButton = styled.button<IGeneralButtonProps>`
             ? 'none'
             : 'rgba(0, 0, 0, 0.4) 0px 2px 4px,rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,rgba(0, 0, 0, 0.2) 0px -3px 0px inset;'};
     overflow: hidden;
-    width: fit-content;
+    width: 100%;
 
     transition: all 0.1s ease-in;
 
@@ -29,6 +29,7 @@ const StyledGeneralButton = styled.button<IGeneralButtonProps>`
     }
 
     &:hover {
+        background-color: ${(props) => props.hoverColor};
         transform: scale(1.05);
     }
 `;
@@ -54,6 +55,7 @@ interface IGeneralButtonProps {
     disableShadow?: boolean;
     iconMargin?: string;
     fontSize?: string;
+    hoverColor?: string;
 }
 
 const GeneralButton = ({
@@ -67,6 +69,7 @@ const GeneralButton = ({
     disableShadow = false,
     iconMargin = '0.25rem',
     fontSize = '1em',
+    hoverColor = 'none',
 }: IGeneralButtonProps): JSX.Element => {
     return (
         <>
@@ -78,6 +81,7 @@ const GeneralButton = ({
                 disabled={isDisabledOnLoading}
                 disableShadow={disableShadow}
                 fontSize={fontSize}
+                hoverColor={hoverColor}
             >
                 <IconContainer iconMargin={iconMargin}>
                     {buttonIcon && buttonIcon}
