@@ -145,7 +145,7 @@ interface IDispatchProps {
 }
 
 interface IMapStateToProps {
-    notebook: {};
+    notebook: { rootFiles: any; rootFolders: any };
 }
 
 type MainNotebookProps = IDispatchProps & IMapStateToProps;
@@ -160,7 +160,18 @@ const MainNotebook = ({
 
     const renderNotebookEntities = () => {
         if (notebook !== undefined && notebook !== null) {
-            console.log(notebook);
+            let totalEntities = notebook.rootFolders.concat(notebook.rootFiles);
+            totalEntities = totalEntities.filter((x) => x.parentId === 'root');
+
+            return totalEntities.map((entity) => (
+                <NotebookEntity
+                    noteName={entity.noteName}
+                    noteId={entity.noteId}
+                    parentId={entity.parentId}
+                    folderName={entity.folderName}
+                    folderId={entity.folderId}
+                />
+            ));
         }
     };
 
@@ -236,20 +247,6 @@ const MainNotebook = ({
                     </FilesScrollableHeader>
                     <NotebookEntityWrapper>
                         {renderNotebookEntities()}
-                        <NotebookEntity
-                            noteName="Test Note"
-                            ownerName="Me"
-                            dateCreated="7/23/2021"
-                            lastModified="Just now"
-                            noteId="testididieide"
-                        />
-                        <NotebookEntity
-                            noteName="Test Folder"
-                            ownerName="Me"
-                            dateCreated="7/23/2021"
-                            lastModified="Just now"
-                            folderId="adfasfsad"
-                        />
                     </NotebookEntityWrapper>
                 </FilesWrapper>
             </FileContainer>
