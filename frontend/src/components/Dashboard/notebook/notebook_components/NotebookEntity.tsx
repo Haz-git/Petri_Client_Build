@@ -57,8 +57,8 @@ const EntityDetails = styled.p`
 
 interface MainNotebookProps {
     noteId?: string;
-    noteName?: string;
-    folderName?: string;
+    noteName: string;
+    folderName: string;
     folderId?: string;
     parentId?: string;
     ownerName?: string;
@@ -68,6 +68,7 @@ interface MainNotebookProps {
 
 const NotebookEntity = ({
     noteId,
+    folderId,
     noteName,
     folderName,
     parentId,
@@ -75,18 +76,36 @@ const NotebookEntity = ({
     lastModified,
     ownerName,
 }: MainNotebookProps): JSX.Element => {
+    const truncateName = (entityName: string) => {
+        if (entityName.length > 16) {
+            return entityName.substr(0, 14).concat('...');
+        } else {
+            return entityName;
+        }
+    };
+
+    const parseName = () => {
+        if (folderId !== undefined) {
+            return truncateName(folderName);
+        }
+
+        return truncateName(noteName);
+    };
+
+    const parseIcon = () => {
+        if (noteId !== undefined) {
+            return <DocumentIcon />;
+        }
+
+        return <FolderIcon />;
+    };
+
     return (
         <MainContainer>
             <EntityContainer>
                 <EntityNameContainer>
-                    <IconContainer>
-                        {noteId !== undefined ? (
-                            <DocumentIcon />
-                        ) : (
-                            <FolderIcon />
-                        )}
-                    </IconContainer>
-                    <EntityNameText>{noteName}</EntityNameText>
+                    <IconContainer>{parseIcon()}</IconContainer>
+                    <EntityNameText>{parseName()}</EntityNameText>
                 </EntityNameContainer>
                 <EntityDetails>{ownerName}</EntityDetails>
                 <EntityDetails>{dateCreated}</EntityDetails>
