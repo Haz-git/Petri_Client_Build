@@ -63,7 +63,7 @@ interface MainNotebookProps {
     parentId?: string;
     ownerName?: string;
     dateCreated?: string;
-    lastModified?: string;
+    dateModified?: string;
 }
 
 const NotebookEntity = ({
@@ -73,12 +73,12 @@ const NotebookEntity = ({
     folderName,
     parentId,
     dateCreated,
-    lastModified,
+    dateModified,
     ownerName,
 }: MainNotebookProps): JSX.Element => {
     const truncateName = (entityName: string) => {
-        if (entityName.length > 16) {
-            return entityName.substr(0, 14).concat('...');
+        if (entityName.length > 25) {
+            return entityName.substr(0, 25).concat('...');
         } else {
             return entityName;
         }
@@ -109,7 +109,7 @@ const NotebookEntity = ({
                 </EntityNameContainer>
                 <EntityDetails>{ownerName}</EntityDetails>
                 <EntityDetails>{dateCreated}</EntityDetails>
-                <EntityDetails>{lastModified}</EntityDetails>
+                <EntityDetails>{dateModified}</EntityDetails>
             </EntityContainer>
         </MainContainer>
     );
