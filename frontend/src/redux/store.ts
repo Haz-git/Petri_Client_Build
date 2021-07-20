@@ -7,6 +7,7 @@ import bionotesReducer from './userBioNote/bionoteReducer';
 import calendarReducer from './userCalendar/calendarReducer';
 import lacZReducer from './userLacZ/LacZReducer';
 import userReducer from './userSettings/UserSettingReducer';
+import notebookReducer from './userNotebook/notebookReducer';
 import snackbarReducer from './snackBar/snackBarReducer';
 import { reducer as formReducer } from 'redux-form';
 import reduxThunk from 'redux-thunk';
@@ -41,6 +42,7 @@ const appReducer = combineReducers({
     laczAssayProtocols: lacZReducer,
     userSettings: userReducer,
     snackBar: snackBarReducer,
+    notebook: notebookReducer,
 });
 
 const rootReducer = (state: any, action: any) => {
