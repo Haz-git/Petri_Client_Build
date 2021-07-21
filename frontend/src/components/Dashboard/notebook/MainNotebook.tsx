@@ -43,10 +43,9 @@ const FileIcon = styled(FilePaper2)`
 
 //Styles:
 const MainContainer = styled.div`
-    /* min-height: 100%; */
     height: 100vh;
     display: grid;
-    grid-template-columns: 0.75fr 4fr;
+    grid-template-columns: 1fr 4fr;
 `;
 
 const Sidebar = styled.div`
@@ -54,14 +53,20 @@ const Sidebar = styled.div`
     flex-direction: column;
     align-items: center;
     margin-top: 5rem;
-    /* border-right: 1px solid #ececec; */
     padding: 1rem 1rem;
+    min-width: 15rem;
 `;
 
-const AddButtonContainer = styled.div``;
+const AddButtonContainer = styled.div`
+    position: fixed;
+    top: 6rem;
+`;
 
 const FileOptions = styled.div`
-    margin-top: 4rem;
+    /* margin-top: 4rem; */
+    position: fixed;
+    top: 13rem;
+    text-align: left;
 `;
 
 const FileOptionSpacer = styled.div`
@@ -71,6 +76,12 @@ const FileOptionSpacer = styled.div`
 const FileContainer = styled.div`
     border-left: 1px solid #ececec;
     text-align: left;
+`;
+
+const ScrollableWrapperContainer = styled.div`
+    top: 0;
+    position: sticky;
+    background: #ffffff;
 `;
 
 const PathwayContainer = styled.div`
@@ -97,9 +108,7 @@ const FilesWrapper = styled.div`
     padding: 0 2rem;
 `;
 
-const FilesScrollableHeader = styled.div`
-    position: sticky;
-`;
+const FilesScrollableHeader = styled.div``;
 
 const FilesTextHeader = styled.div`
     display: grid;
@@ -129,6 +138,7 @@ const DirectoryText = styled.div`
 `;
 
 const NotebookEntityWrapper = styled.div`
+    padding: 0 2rem;
     overflow-y: scroll;
 `;
 
@@ -159,6 +169,7 @@ const MainNotebook = ({
 
             return totalEntities.map((entity) => (
                 <NotebookEntity
+                    key={entity.noteId || entity.folderId}
                     noteName={entity.noteName}
                     noteId={entity.noteId}
                     parentId={entity.parentId}
@@ -213,7 +224,7 @@ const MainNotebook = ({
                     />
                     <FileOptionSpacer />
                     <GeneralButton
-                        buttonLabel="Suggested"
+                        buttonLabel="Frequent"
                         buttonIcon={<FileIcon />}
                         disableShadow={true}
                         buttonTextColor="#3C4042"
@@ -225,27 +236,29 @@ const MainNotebook = ({
                 </FileOptions>
             </Sidebar>
             <FileContainer>
-                <PathwayContainer>
-                    <PathwayText>Path: // Root</PathwayText>
-                </PathwayContainer>
-                <SearchbarContainer>
-                    <Searchbar />
-                </SearchbarContainer>
-                <FilesWrapper>
-                    <FilesScrollableHeader>
-                        <FilesTextHeader>
-                            <HeaderText>Name</HeaderText>
-                            <HeaderText>Owner</HeaderText>
-                            <HeaderText>Date Created</HeaderText>
-                            <HeaderText>Last Modified</HeaderText>
-                        </FilesTextHeader>
-                        <FilesTextLine />
-                        <DirectoryText>All Entities in: Root</DirectoryText>
-                    </FilesScrollableHeader>
-                    <NotebookEntityWrapper>
-                        {renderNotebookEntities()}
-                    </NotebookEntityWrapper>
-                </FilesWrapper>
+                <ScrollableWrapperContainer>
+                    <PathwayContainer>
+                        <PathwayText>Path: // Root</PathwayText>
+                    </PathwayContainer>
+                    <SearchbarContainer>
+                        <Searchbar />
+                    </SearchbarContainer>
+                    <FilesWrapper>
+                        <FilesScrollableHeader>
+                            <FilesTextHeader>
+                                <HeaderText>Name</HeaderText>
+                                <HeaderText>Owner</HeaderText>
+                                <HeaderText>Date Created</HeaderText>
+                                <HeaderText>Last Modified</HeaderText>
+                            </FilesTextHeader>
+                            <FilesTextLine />
+                            <DirectoryText>All Entities in: Root</DirectoryText>
+                        </FilesScrollableHeader>
+                    </FilesWrapper>
+                </ScrollableWrapperContainer>
+                <NotebookEntityWrapper>
+                    {renderNotebookEntities()}
+                </NotebookEntityWrapper>
             </FileContainer>
         </MainContainer>
     );
