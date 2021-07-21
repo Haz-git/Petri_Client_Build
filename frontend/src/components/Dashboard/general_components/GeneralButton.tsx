@@ -18,7 +18,7 @@ const StyledGeneralButton = styled.button<IGeneralButtonProps>`
     box-shadow: ${(props) =>
         props.disableShadow === true
             ? 'none'
-            : 'rgba(0, 0, 0, 0.18) 0px 2px 4px'};
+            : 'rgba(0, 0, 0, 0.5) 0px 2px 4px'};
     overflow: hidden;
     width: 100%;
 
@@ -29,7 +29,7 @@ const StyledGeneralButton = styled.button<IGeneralButtonProps>`
     }
 
     &:hover {
-        box-shadow: ${(props) => props.hoverShadow}
+        box-shadow: ${(props) => props.hoverShadow};
         background-color: ${(props) => props.hoverColor};
         transform: ${(props) => props.hoverTransform};
     }
