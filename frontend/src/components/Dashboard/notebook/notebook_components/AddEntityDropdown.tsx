@@ -2,6 +2,13 @@ import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { Transition } from 'react-transition-group';
 
+//Redux:
+import { connect } from 'react-redux';
+import {
+    createNewNote,
+    createNewFolder,
+} from '../../../../redux/userNotebook/notebookActions';
+
 //Components:
 import GeneralButton from '../../general_components/GeneralButton';
 import OutsideClickHandler from 'react-outside-click-handler';
@@ -33,11 +40,13 @@ const openAnimation = keyframes`
     from {
         opacity: 0;
         transform: scaleY(.7);
+        height: 0;
     }
 
     to {
         opacity: 1;
         transform: scaleY(1);
+        height: 7rem;
     }
 `;
 
@@ -45,11 +54,13 @@ const closeAnimation = keyframes`
     from {
         opacity: 1;
         transform: scaleY(1);
+        height: 7rem;
     }
 
     to {
         opacity: 0;
-        transform: scaleY(.7);
+        transform: scaleY(.9);
+        height: 0;
     }
 `;
 
@@ -72,7 +83,7 @@ const DropdownContainer = styled.div`
     visibility: ${(props) => props.isVisible};
     animation: ${({ isVisible }) =>
             isVisible === 'visible' ? openAnimation : closeAnimation}
-        150ms ease-in-out forwards;
+        200ms ease-in-out forwards;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
         rgba(0, 0, 0, 0.22) 0px 15px 12px;
 
@@ -81,7 +92,15 @@ const DropdownContainer = styled.div`
 
 //Interfaces:
 
-const AddEntityDropdown = () => {
+interface AddEntityDropdownProps {
+    createNewNote: (name: string, htmlState: any, parentId: string) => void;
+    createNewFolder: (folderName: string, parentId: string) => void;
+}
+
+const AddEntityDropdown = ({
+    createNewNote,
+    createNewFolder,
+}: AddEntityDropdownProps): JSX.Element => {
     const [showDropdown, setShowDropdown] = useState(false);
 
     const toggleDropdown = () => setShowDropdown(!showDropdown);
@@ -129,4 +148,6 @@ const AddEntityDropdown = () => {
     );
 };
 
-export default AddEntityDropdown;
+export default connect(null, { createNewNote, createNewFolder })(
+    AddEntityDropdown
+);
