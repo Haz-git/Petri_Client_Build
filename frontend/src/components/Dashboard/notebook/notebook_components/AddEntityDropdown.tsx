@@ -106,19 +106,29 @@ const AddEntityDropdown = ({
 
     const currentPathLocation = useLocation();
 
-    const handleCreateNewNote = () => {
-        let parentId;
+    const detectFilePath = () => {
         if (
             currentPathLocation.pathname === '/notebook' &&
             currentPathLocation.pathname.slice(9) === ''
         ) {
-            parentId = 'root';
+            return 'root';
         } else {
-            parentId = currentPathLocation.pathname.slice(10);
+            return currentPathLocation.pathname.slice(10);
         }
+    };
+
+    const handleCreateNewNote = () => {
+        const parentId = detectFilePath();
         const name = 'Untitled note';
         const htmlState = 'TempState';
         createNewNote(name, htmlState, parentId);
+        setShowDropdown(false);
+    };
+
+    const handleCreateNewFolder = () => {
+        const parentId = detectFilePath();
+        const name = 'Untitled folder';
+        createNewFolder(name, parentId);
         setShowDropdown(false);
     };
 
@@ -146,6 +156,7 @@ const AddEntityDropdown = ({
                         hoverColor="#ececec"
                         fontWeight="400"
                         hoverShadow="none"
+                        onClick={handleCreateNewFolder}
                     />
                     <GeneralButton
                         buttonLabel="Note"
