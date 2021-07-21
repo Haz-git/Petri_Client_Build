@@ -116,7 +116,7 @@ const AddEntityDropdown = ({
         } else {
             parentId = currentPathLocation.pathname.slice(10);
         }
-        const name = 'Untitled Note';
+        const name = 'Untitled note';
         const htmlState = 'TempState';
         createNewNote(name, htmlState, parentId);
         setShowDropdown(false);
