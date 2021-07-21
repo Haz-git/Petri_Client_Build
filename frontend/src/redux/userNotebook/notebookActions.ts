@@ -71,6 +71,32 @@ export const createNewNote = (
     };
 };
 
+export const deleteNote = (noteId: string, parentId: string) => {
+    return async (
+        dispatch: Dispatch<NotebookAction>,
+        getState: () => State
+    ) => {
+        const {
+            auth: {
+                userLogIn: {
+                    data: { _id },
+                },
+            },
+        } = getState();
+
+        const response = await api.post('/users/notebook/note/create', {
+            _id,
+            noteId,
+            parentId,
+        });
+
+        dispatch({
+            type: NotebookActionType.USER_DELETE_NOTE,
+            payload: response.data.userNotebook,
+        });
+    };
+};
+
 /*Folder-specific action creators*/
 
 export const createNewFolder = (folderName: string, parentId: string) => {
@@ -94,6 +120,32 @@ export const createNewFolder = (folderName: string, parentId: string) => {
 
         dispatch({
             type: NotebookActionType.USER_ADD_FOLDER,
+            payload: response.data.userNotebook,
+        });
+    };
+};
+
+export const deleteFolder = (folderId: string, parentId: string) => {
+    return async (
+        dispatch: Dispatch<NotebookAction>,
+        getState: () => State
+    ) => {
+        const {
+            auth: {
+                userLogIn: {
+                    data: { _id },
+                },
+            },
+        } = getState();
+
+        const response = await api.post('/users/notebook/note/create', {
+            _id,
+            folderId,
+            parentId,
+        });
+
+        dispatch({
+            type: NotebookActionType.USER_DELETE_FOLDER,
             payload: response.data.userNotebook,
         });
     };
