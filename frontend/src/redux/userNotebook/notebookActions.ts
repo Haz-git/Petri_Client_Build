@@ -31,8 +31,6 @@ export const getNotebook = () => {
 
         const response = await api.post('/users/notebook/get', { _id });
 
-        console.log(response);
-
         dispatch({
             type: NotebookActionType.USER_GET_NOTEBOOK,
             payload: response.data.userNotebook,
@@ -84,7 +82,7 @@ export const deleteNote = (noteId: string, parentId: string) => {
             },
         } = getState();
 
-        const response = await api.post('/users/notebook/note/create', {
+        const response = await api.post('/users/notebook/note/delete', {
             _id,
             noteId,
             parentId,
@@ -138,7 +136,7 @@ export const deleteFolder = (folderId: string, parentId: string) => {
             },
         } = getState();
 
-        const response = await api.post('/users/notebook/note/create', {
+        const response = await api.post('/users/notebook/folder/delete', {
             _id,
             folderId,
             parentId,
