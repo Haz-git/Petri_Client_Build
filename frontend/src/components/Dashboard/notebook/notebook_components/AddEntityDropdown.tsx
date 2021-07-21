@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+import { Transition } from 'react-transition-group';
 
 //Components:
 import GeneralButton from '../../general_components/GeneralButton';
@@ -28,6 +29,30 @@ const AddIcon = styled(Add)`
     width: 1.5rem;
 `;
 
+const openAnimation = keyframes`
+    from {
+        opacity: 0;
+        transform: scaleY(.7);
+    }
+
+    to {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+`;
+
+const closeAnimation = keyframes`
+    from {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: scaleY(.7);
+    }
+`;
+
 const MainContainer = styled.div`
     position: relative;
 `;
@@ -45,6 +70,9 @@ const DropdownContainer = styled.div`
     border-radius: 0.4rem;
     padding: 0.5rem 0.5rem;
     visibility: ${(props) => props.isVisible};
+    animation: ${({ isVisible }) =>
+            isVisible === 'visible' ? openAnimation : closeAnimation}
+        150ms ease-in-out forwards;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
         rgba(0, 0, 0, 0.22) 0px 15px 12px;
 
