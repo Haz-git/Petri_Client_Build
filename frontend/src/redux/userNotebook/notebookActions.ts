@@ -41,7 +41,7 @@ export const getNotebook = () => {
 };
 
 export const createNewNote = (
-    name: string,
+    noteName: string,
     htmlState: any,
     parentId: string
 ) => {
@@ -57,9 +57,9 @@ export const createNewNote = (
             },
         } = getState();
 
-        const response = await api.post('/users/bionote/create', {
+        const response = await api.post('/users/notebook/note/create', {
             _id,
-            bioName: name,
+            noteName,
             htmlState,
             parentId,
         });
