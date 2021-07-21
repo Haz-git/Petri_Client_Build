@@ -5,19 +5,49 @@ import 'react-contexify/dist/ReactContexify.css';
 
 //Redux:
 import { connect } from 'react-redux';
+import {
+    deleteNote,
+    deleteFolder,
+} from '../../../../redux/userNotebook/notebookActions';
 
 //Styles:
 
 //Interfaces:
 
-interface ContextMenuProps {
+interface IDispatchProps {
+    deleteNote: (entityId: string, entityParentId: string) => void;
+    deleteFolder: (entityId: string, entityParentId: string) => void;
+}
+interface IComponentProps {
     id: string | number;
 }
 
-const NotebookContextMenu = ({ id }: ContextMenuProps): JSX.Element => {
+type NotebookContextMenuProps = IDispatchProps & IComponentProps;
+
+const NotebookContextMenu = ({
+    id,
+    deleteFolder,
+    deleteNote,
+}: NotebookContextMenuProps): JSX.Element => {
+    const itemHandler = (props: any) => {
+        const itemProps = props.props;
+        const { entityId, entityName, entityParentId, entityType } = itemProps;
+
+        switch (entityType) {
+            case 'FOLDER':
+                deleteFolder(entityId, entityParentId);
+                break;
+            case 'NOTE':
+                deleteNote(entityId, entityParentId);
+                break;
+            default:
+                throw new Error('No entity type was passed.');
+        }
+    };
+
     return (
         <Menu id={id} theme={theme.light} animation={animation.fade}>
-            <Item>Item 1</Item>
+            <Item onClick={itemHandler}>Delete</Item>
             <Separator />
             <Item>Item2</Item>
             <Separator />
@@ -26,4 +56,4 @@ const NotebookContextMenu = ({ id }: ContextMenuProps): JSX.Element => {
     );
 };
 
-export default NotebookContextMenu;
+export default connect(null, { deleteFolder, deleteNote })(NotebookContextMenu);
