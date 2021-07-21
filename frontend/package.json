@@ -39,6 +39,7 @@
         "react": "^16.14.0",
         "react-avatar-editor": "^11.1.0",
         "react-bootstrap": "^1.6.1",
+        "react-contexify": "^5.0.0",
         "react-device-detect": "^1.17.0",
         "react-dom": "^16.14.0",
         "react-dropzone": "^11.3.2",
