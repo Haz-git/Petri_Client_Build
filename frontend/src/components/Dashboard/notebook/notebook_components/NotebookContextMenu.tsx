@@ -1,6 +1,10 @@
 import React from 'react';
 import { Menu, Item, Separator, theme, animation } from 'react-contexify';
+import styled from 'styled-components';
 import 'react-contexify/dist/ReactContexify.css';
+
+//Redux:
+import { connect } from 'react-redux';
 
 //Styles:
 
@@ -10,7 +14,7 @@ interface ContextMenuProps {
     id: string | number;
 }
 
-const ContextMenu = ({ id }: ContextMenuProps): JSX.Element => {
+const NotebookContextMenu = ({ id }: ContextMenuProps): JSX.Element => {
     return (
         <Menu id={id} theme={theme.light} animation={animation.fade}>
             <Item>Item 1</Item>
@@ -22,4 +26,4 @@ const ContextMenu = ({ id }: ContextMenuProps): JSX.Element => {
     );
 };
 
-export default ContextMenu;
+export default NotebookContextMenu;
