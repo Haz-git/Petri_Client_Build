@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { Transition } from 'react-transition-group';
+import { useLocation } from 'react-router-dom';
 
 //Redux:
 import { connect } from 'react-redux';
@@ -83,7 +83,7 @@ const DropdownContainer = styled.div`
     visibility: ${(props) => props.isVisible};
     animation: ${({ isVisible }) =>
             isVisible === 'visible' ? openAnimation : closeAnimation}
-        200ms ease-in-out forwards;
+        150ms ease-in forwards;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
         rgba(0, 0, 0, 0.22) 0px 15px 12px;
 
@@ -102,8 +102,25 @@ const AddEntityDropdown = ({
     createNewFolder,
 }: AddEntityDropdownProps): JSX.Element => {
     const [showDropdown, setShowDropdown] = useState(false);
-
     const toggleDropdown = () => setShowDropdown(!showDropdown);
+
+    const currentPathLocation = useLocation();
+
+    const handleCreateNewNote = () => {
+        let parentId;
+        if (
+            currentPathLocation.pathname === '/notebook' &&
+            currentPathLocation.pathname.slice(9) === ''
+        ) {
+            parentId = 'root';
+        } else {
+            parentId = currentPathLocation.pathname.slice(10);
+        }
+        const name = 'Untitled Note';
+        const htmlState = 'TempState';
+        createNewNote(name, htmlState, parentId);
+        setShowDropdown(false);
+    };
 
     return (
         <MainContainer>
@@ -141,6 +158,7 @@ const AddEntityDropdown = ({
                         hoverColor="#ececec"
                         fontWeight="400"
                         hoverShadow="none"
+                        onClick={handleCreateNewNote}
                     />
                 </DropdownContainer>
             </OutsideClickHandler>
