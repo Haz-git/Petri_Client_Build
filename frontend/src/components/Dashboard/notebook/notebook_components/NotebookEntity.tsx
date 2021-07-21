@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useContextMenu } from 'react-contexify';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import dayjs from 'dayjs';
-import ContextMenu from './ContextMenu';
+import NotebookContextMenu from './NotebookContextMenu';
 
 //Icons:
 
@@ -139,7 +139,7 @@ const NotebookEntity = ({
                     <EntityDetails>{parseLastModified()}</EntityDetails>
                 </EntityContainer>
             </MainContainer>
-            <ContextMenu id={MENU_ID} />
+            <NotebookContextMenu id={MENU_ID} />
         </>
     );
 };
