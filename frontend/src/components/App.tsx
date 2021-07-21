@@ -103,7 +103,7 @@ const App = () => {
                                     />
                                     <Route
                                         exact
-                                        path="/createbionote"
+                                        path="/notebook"
                                         component={MainNotebook}
                                     />
                                     <Route
