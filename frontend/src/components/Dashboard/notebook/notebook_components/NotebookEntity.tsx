@@ -86,6 +86,12 @@ const NotebookEntity = ({
     const MENU_ID = 'NOTEBOOKCONTEXTMENU';
     const { show } = useContextMenu({
         id: MENU_ID,
+        props: {
+            entityId: folderId || noteId,
+            entityParentId: parentId,
+            entityName: noteName || folderName,
+            entityType: folderId === undefined ? 'NOTE' : 'FOLDER',
+        },
     });
 
     const truncateName = (entityName: string) => {
