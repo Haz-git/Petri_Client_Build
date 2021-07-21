@@ -1,7 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+
+import { useContextMenu } from 'react-contexify';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import dayjs from 'dayjs';
+import ContextMenu from './ContextMenu';
 
 //Icons:
 
@@ -80,6 +83,11 @@ const NotebookEntity = ({
 }: MainNotebookProps): JSX.Element => {
     dayjs.extend(relativeTime);
 
+    const MENU_ID = 'NOTEBOOKCONTEXTMENU';
+    const { show } = useContextMenu({
+        id: MENU_ID,
+    });
+
     const truncateName = (entityName: string) => {
         if (entityName.length > 20) {
             return entityName.substr(0, 20).concat('...');
@@ -113,18 +121,26 @@ const NotebookEntity = ({
         return dayjs(dateModified).from(currTime);
     };
 
+    const displayContextMenu = (event: React.MouseEvent) => {
+        event.preventDefault();
+        show(event);
+    };
+
     return (
-        <MainContainer>
-            <EntityContainer>
-                <EntityNameContainer>
-                    <IconContainer>{parseIcon()}</IconContainer>
-                    <EntityNameText>{parseName()}</EntityNameText>
-                </EntityNameContainer>
-                <EntityDetails>{ownerName}</EntityDetails>
-                <EntityDetails>{parseDateCreated()}</EntityDetails>
-                <EntityDetails>{parseLastModified()}</EntityDetails>
-            </EntityContainer>
-        </MainContainer>
+        <>
+            <MainContainer onContextMenu={displayContextMenu}>
+                <EntityContainer>
+                    <EntityNameContainer>
+                        <IconContainer>{parseIcon()}</IconContainer>
+                        <EntityNameText>{parseName()}</EntityNameText>
+                    </EntityNameContainer>
+                    <EntityDetails>{ownerName}</EntityDetails>
+                    <EntityDetails>{parseDateCreated()}</EntityDetails>
+                    <EntityDetails>{parseLastModified()}</EntityDetails>
+                </EntityContainer>
+            </MainContainer>
+            <ContextMenu id={MENU_ID} />
+        </>
     );
 };
 
