@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import { deviceMin } from '../../../devices/breakpoints';
+import { deviceMin } from '../../../../devices/breakpoints';
 
 //Components:
 import Modal from '@material-ui/core/Modal';
-import GeneralButton from '../general_components/GeneralButton';
-import GeneralTextField from '../general_components/GeneralTextField';
+import GeneralButton from '../../general_components/GeneralButton';
+import GeneralTextField from '../../general_components/GeneralTextField';
 
 //Redux:
 import { connect } from 'react-redux';
 import {
     renameNote,
     renameFolder,
-} from '../../../redux/userNotebook/notebookActions';
+} from '../../../../redux/userNotebook/notebookActions';
 
 //Styles:
 import styled, { keyframes } from 'styled-components';
@@ -19,7 +19,7 @@ import {
     fadein,
     ModalContainer,
     ModalHeader,
-} from '../settings/settings_components/ProfilePictureModal';
+} from '../../settings/settings_components/ProfilePictureModal';
 
 const RestyledModalContainer = styled.div`
     margin: 0 auto;
@@ -84,9 +84,9 @@ interface IDispatchProps {
     ) => void;
 }
 
-type SimpleModalProps = IComponentProps & IDispatchProps;
+type NotebookRenameModalProps = IComponentProps & IDispatchProps;
 
-const SimpleModal = ({
+const NotebookRenameModal = ({
     openState,
     closeFunc,
     entityId,
@@ -95,7 +95,7 @@ const SimpleModal = ({
     entityType,
     renameNote,
     renameFolder,
-}: SimpleModalProps): JSX.Element => {
+}: NotebookRenameModalProps): JSX.Element => {
     const [newEntityName, setNewEntityName] = useState('');
     const [inputHasError, setInputHasError] = useState(false);
 
@@ -174,4 +174,4 @@ const SimpleModal = ({
     );
 };
 
-export default connect(null, { renameNote, renameFolder })(SimpleModal);
+export default connect(null, { renameNote, renameFolder })(NotebookRenameModal);

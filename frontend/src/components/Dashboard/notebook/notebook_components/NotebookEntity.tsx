@@ -6,7 +6,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import dayjs from 'dayjs';
 import NotebookContextMenu from './NotebookContextMenu';
 
-import SimpleModal from '../../general_components/SimpleModal';
+import NotebookRenameModal from './NotebookRenameModal';
 
 //Icons:
 
@@ -149,7 +149,7 @@ const NotebookEntity = ({
 
     return (
         <>
-            <SimpleModal
+            <NotebookRenameModal
                 openState={stateRenameModal}
                 closeFunc={closeRenameModal}
                 entityId={folderId === undefined ? noteId : folderId}
