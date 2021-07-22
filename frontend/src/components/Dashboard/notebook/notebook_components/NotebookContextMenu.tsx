@@ -73,7 +73,7 @@ const NotebookContextMenu = ({
     };
 
     return (
-        <Menu id={id} theme={theme.light} animation={animation.slide}>
+        <Menu id={id} theme={theme.light} animation={animation.fade}>
             <Item onClick={itemRenameHandler}>
                 <EditIcon />
                 <IconSeparator />
