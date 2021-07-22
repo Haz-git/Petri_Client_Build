@@ -184,83 +184,87 @@ const MainNotebook = ({
     };
 
     return (
-        <MainContainer>
-            <Sidebar>
-                <AddButtonContainer>
-                    <AddEntityDropdown />
-                </AddButtonContainer>
-                <FileOptions>
-                    <GeneralButton
-                        buttonLabel="Starred"
-                        buttonIcon={<StarIcon />}
-                        disableShadow={true}
-                        buttonTextColor="#3C4042"
-                        buttonBackground="transparent"
-                        iconMargin="2rem"
-                        fontSize="1.2em"
-                        hoverShadow="none"
-                    />
-                    <FileOptionSpacer />
-                    <GeneralButton
-                        buttonLabel="Shared"
-                        buttonIcon={<UsersIcon />}
-                        disableShadow={true}
-                        buttonTextColor="#3C4042"
-                        buttonBackground="transparent"
-                        iconMargin="2rem"
-                        fontSize="1.2em"
-                        hoverShadow="none"
-                    />
-                    <FileOptionSpacer />
-                    <GeneralButton
-                        buttonLabel="Recent"
-                        buttonIcon={<TimelapseIcon />}
-                        disableShadow={true}
-                        buttonTextColor="#3C4042"
-                        buttonBackground="transparent"
-                        iconMargin="2rem"
-                        fontSize="1.2em"
-                        hoverShadow="none"
-                    />
-                    <FileOptionSpacer />
-                    <GeneralButton
-                        buttonLabel="Frequent"
-                        buttonIcon={<FileIcon />}
-                        disableShadow={true}
-                        buttonTextColor="#3C4042"
-                        buttonBackground="transparent"
-                        iconMargin="2rem"
-                        fontSize="1.2em"
-                        hoverShadow="none"
-                    />
-                </FileOptions>
-            </Sidebar>
-            <FileContainer>
-                <ScrollableWrapperContainer>
-                    <PathwayContainer>
-                        <PathwayText>Path: // Root</PathwayText>
-                    </PathwayContainer>
-                    <SearchbarContainer>
-                        <Searchbar />
-                    </SearchbarContainer>
-                    <FilesWrapper>
-                        <FilesScrollableHeader>
-                            <FilesTextHeader>
-                                <HeaderText>Name</HeaderText>
-                                <HeaderText>Owner</HeaderText>
-                                <HeaderText>Date Created</HeaderText>
-                                <HeaderText>Last Modified</HeaderText>
-                            </FilesTextHeader>
-                            <FilesTextLine />
-                            <DirectoryText>All Entities in: Root</DirectoryText>
-                        </FilesScrollableHeader>
-                    </FilesWrapper>
-                </ScrollableWrapperContainer>
-                <NotebookEntityWrapper>
-                    {renderNotebookEntities()}
-                </NotebookEntityWrapper>
-            </FileContainer>
-        </MainContainer>
+        <>
+            <MainContainer>
+                <Sidebar>
+                    <AddButtonContainer>
+                        <AddEntityDropdown />
+                    </AddButtonContainer>
+                    <FileOptions>
+                        <GeneralButton
+                            buttonLabel="Starred"
+                            buttonIcon={<StarIcon />}
+                            disableShadow={true}
+                            buttonTextColor="#3C4042"
+                            buttonBackground="transparent"
+                            iconMargin="2rem"
+                            fontSize="1.2em"
+                            hoverShadow="none"
+                        />
+                        <FileOptionSpacer />
+                        <GeneralButton
+                            buttonLabel="Shared"
+                            buttonIcon={<UsersIcon />}
+                            disableShadow={true}
+                            buttonTextColor="#3C4042"
+                            buttonBackground="transparent"
+                            iconMargin="2rem"
+                            fontSize="1.2em"
+                            hoverShadow="none"
+                        />
+                        <FileOptionSpacer />
+                        <GeneralButton
+                            buttonLabel="Recent"
+                            buttonIcon={<TimelapseIcon />}
+                            disableShadow={true}
+                            buttonTextColor="#3C4042"
+                            buttonBackground="transparent"
+                            iconMargin="2rem"
+                            fontSize="1.2em"
+                            hoverShadow="none"
+                        />
+                        <FileOptionSpacer />
+                        <GeneralButton
+                            buttonLabel="Frequent"
+                            buttonIcon={<FileIcon />}
+                            disableShadow={true}
+                            buttonTextColor="#3C4042"
+                            buttonBackground="transparent"
+                            iconMargin="2rem"
+                            fontSize="1.2em"
+                            hoverShadow="none"
+                        />
+                    </FileOptions>
+                </Sidebar>
+                <FileContainer>
+                    <ScrollableWrapperContainer>
+                        <PathwayContainer>
+                            <PathwayText>Path: // Root</PathwayText>
+                        </PathwayContainer>
+                        <SearchbarContainer>
+                            <Searchbar />
+                        </SearchbarContainer>
+                        <FilesWrapper>
+                            <FilesScrollableHeader>
+                                <FilesTextHeader>
+                                    <HeaderText>Name</HeaderText>
+                                    <HeaderText>Owner</HeaderText>
+                                    <HeaderText>Date Created</HeaderText>
+                                    <HeaderText>Last Modified</HeaderText>
+                                </FilesTextHeader>
+                                <FilesTextLine />
+                                <DirectoryText>
+                                    All Entities in: Root
+                                </DirectoryText>
+                            </FilesScrollableHeader>
+                        </FilesWrapper>
+                    </ScrollableWrapperContainer>
+                    <NotebookEntityWrapper>
+                        {renderNotebookEntities()}
+                    </NotebookEntityWrapper>
+                </FileContainer>
+            </MainContainer>
+        </>
     );
 };
 
