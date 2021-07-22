@@ -93,27 +93,46 @@ const SimpleModal = ({
     entityParentId,
     entityName,
     entityType,
+    renameNote,
+    renameFolder,
 }: SimpleModalProps): JSX.Element => {
     const [newEntityName, setNewEntityName] = useState('');
     const [inputHasError, setInputHasError] = useState(false);
 
     const handleRenameUserInput = (e: React.FormEvent<HTMLInputElement>) => {
+        if (inputHasError === true) setInputHasError(false);
         setNewEntityName(e.currentTarget.value);
     };
 
     const handleRenameAction = () => {
         switch (entityType) {
             case 'NOTE':
-                renameNote(
-                    entityId as any,
-                    entityParentId,
-                    'UPDATE_NAME',
-                    'None',
-                    newEntityName
-                );
+                if (newEntityName !== '') {
+                    renameNote(
+                        entityId as any,
+                        entityParentId,
+                        'UPDATE_NAME',
+                        'None',
+                        newEntityName
+                    );
+
+                    closeFunc();
+                } else {
+                    setInputHasError(true);
+                }
                 break;
             case 'FOLDER':
-                renameFolder(entityId as any, entityParentId, newEntityName);
+                if (newEntityName !== '') {
+                    renameFolder(
+                        entityId as any,
+                        entityParentId,
+                        newEntityName
+                    );
+
+                    closeFunc();
+                } else {
+                    setInputHasError(true);
+                }
                 break;
             default:
                 throw new Error(
@@ -143,7 +162,11 @@ const SimpleModal = ({
                             onClick={closeFunc}
                         />
                         <ButtonSpacer />
-                        <GeneralButton buttonLabel="Rename" width="5rem" />
+                        <GeneralButton
+                            buttonLabel="Rename"
+                            width="5rem"
+                            onClick={handleRenameAction}
+                        />
                     </ButtonContainer>
                 </RestyledModalContainer>
             </Modal>
