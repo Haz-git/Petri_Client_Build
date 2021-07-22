@@ -114,7 +114,7 @@ export const renameNote = (
             },
         } = getState();
 
-        const response = await api.post('/users/notebook/note/update', {
+        const response = await api.patch('/users/notebook/note/update', {
             _id,
             noteId,
             parentId,
@@ -207,6 +207,8 @@ export const renameFolder = (
             parentId,
             newFolderName,
         });
+
+        console.log(response);
 
         dispatch({
             type: NotebookActionType.USER_RENAME_FOLDER,
