@@ -84,7 +84,7 @@ const App = () => {
                             <Route exact path="/login" component={LoginForm} />
                             <AuthenticatedComponents>
                                 <DashboardGlobalStyles />
-                                <Snackbar timeout={5000} />
+                                <Snackbar timeout={2500} />
                                 <DashboardContainer>
                                     <Route
                                         exact
