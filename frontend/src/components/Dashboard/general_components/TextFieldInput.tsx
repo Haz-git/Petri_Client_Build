@@ -14,6 +14,7 @@ interface ITextField {
     InputLabelProps?: {};
     onChange?: React.ChangeEventHandler<HTMLInputElement>;
     helperText?: string;
+    size?: 'small' | 'medium' | undefined;
 }
 
 const TextFieldInput = ({
@@ -26,6 +27,7 @@ const TextFieldInput = ({
     InputLabelProps,
     onChange,
     helperText,
+    size,
 }: ITextField): JSX.Element => {
     return (
         <>
@@ -39,6 +41,7 @@ const TextFieldInput = ({
                 InputLabelProps={InputLabelProps}
                 helperText={helperText}
                 onChange={onChange}
+                size={size}
             />
         </>
     );
