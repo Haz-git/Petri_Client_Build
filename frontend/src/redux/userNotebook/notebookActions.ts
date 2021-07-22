@@ -95,6 +95,41 @@ export const deleteNote = (noteId: string, parentId: string) => {
     };
 };
 
+export const renameNote = (
+    noteId: string,
+    parentId: string,
+    requestType: string,
+    updatedHTMLState: string,
+    updatedNoteName: string
+) => {
+    return async (
+        dispatch: Dispatch<NotebookAction>,
+        getState: () => State
+    ) => {
+        const {
+            auth: {
+                userLogIn: {
+                    data: { _id },
+                },
+            },
+        } = getState();
+
+        const response = await api.post('/users/notebook/note/update', {
+            _id,
+            noteId,
+            parentId,
+            requestType,
+            updatedHTMLState,
+            updatedNoteName,
+        });
+
+        dispatch({
+            type: NotebookActionType.USER_UPDATE_NOTE,
+            payload: response.data.userNotebook,
+        });
+    };
+};
+
 /*Folder-specific action creators*/
 
 export const createNewFolder = (folderName: string, parentId: string) => {
@@ -144,6 +179,37 @@ export const deleteFolder = (folderId: string, parentId: string) => {
 
         dispatch({
             type: NotebookActionType.USER_DELETE_FOLDER,
+            payload: response.data.userNotebook,
+        });
+    };
+};
+
+export const renameFolder = (
+    folderId: string,
+    parentId: string,
+    newFolderName: string
+) => {
+    return async (
+        dispatch: Dispatch<NotebookAction>,
+        getState: () => State
+    ) => {
+        const {
+            auth: {
+                userLogIn: {
+                    data: { _id },
+                },
+            },
+        } = getState();
+
+        const response = await api.post('/users/notebook/folder/edit', {
+            _id,
+            folderId,
+            parentId,
+            newFolderName,
+        });
+
+        dispatch({
+            type: NotebookActionType.USER_RENAME_FOLDER,
             payload: response.data.userNotebook,
         });
     };
