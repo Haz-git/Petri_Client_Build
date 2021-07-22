@@ -33,6 +33,7 @@ interface GeneralTextFieldProps {
     type?: string;
     value?: string;
     hasError?: boolean;
+    onKeyPress?: (e: React.KeyboardEvent) => void;
 }
 
 const GeneralTextField = ({
@@ -44,6 +45,7 @@ const GeneralTextField = ({
     type,
     value,
     hasError = false,
+    onKeyPress,
 }: GeneralTextFieldProps): JSX.Element => {
     return (
         <div>
@@ -59,6 +61,7 @@ const GeneralTextField = ({
                 placeholder={placeholder}
                 type={type}
                 value={value}
+                onKeyPress={onKeyPress}
             />
         </div>
     );
