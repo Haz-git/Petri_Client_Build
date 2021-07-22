@@ -15,6 +15,7 @@ import {
     ModalContainer,
     ButtonContainer,
     ButtonSpacer,
+    Divider,
 } from '../notebook/notebook_components/NotebookRenameModal';
 
 //Interfaces:
@@ -38,6 +39,7 @@ const GeneralDeleteModal = ({
                         This item and everything it holds will be permanently
                         deleted.
                     </ModalDescText>
+                    <Divider />
                     <ButtonContainer>
                         <GeneralButton
                             buttonLabel="Cancel"

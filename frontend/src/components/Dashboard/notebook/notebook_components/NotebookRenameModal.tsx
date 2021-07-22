@@ -18,6 +18,7 @@ import styled, { keyframes } from 'styled-components';
 import {
     fadein,
     ModalHeader,
+    ModalDescText,
 } from '../../settings/settings_components/ProfilePictureModal';
 
 export const ModalContainer = styled.div`
@@ -42,6 +43,10 @@ const TextFieldContainer = styled.div`
     text-align: left;
     margin-top: 1rem;
     width: 100%;
+`;
+
+export const Divider = styled.div`
+    height: 1rem;
 `;
 
 export const ButtonContainer = styled.div`
@@ -149,6 +154,7 @@ const NotebookRenameModal = ({
             <Modal open={openState} onClose={closeFunc}>
                 <ModalContainer>
                     <ModalHeader>Rename</ModalHeader>
+                    <ModalDescText>Please input a new name.</ModalDescText>
                     <TextFieldContainer>
                         <GeneralTextField
                             placeholder={entityName}
@@ -157,6 +163,7 @@ const NotebookRenameModal = ({
                             onKeyPress={handleEnterPress}
                         />
                     </TextFieldContainer>
+                    <Divider />
                     <ButtonContainer>
                         <GeneralButton
                             buttonLabel="Cancel"
