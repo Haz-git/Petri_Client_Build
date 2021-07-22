@@ -15,7 +15,7 @@ import { userAddNewProfilePicture } from '../../../../redux/userSettings/UserSet
 import { toggleSnackbarOpen } from '../../../../redux/snackBar/snackBarActions';
 
 //Styles:
-const fadein = keyframes`
+export const fadein = keyframes`
     from {
         opacity: 0;
         -webkit-transform: translateY(300%);
@@ -33,7 +33,7 @@ const fadein = keyframes`
 
 const MainContainer = styled.div``;
 
-const ModalContainer = styled.div`
+export const ModalContainer = styled.div`
     margin-left: calc(100px + 5rem);
     margin-right: 5rem;
     position: relative;
@@ -109,7 +109,7 @@ const ContentWrapper = styled.div`
     }
 `;
 
-const ModalHeader = styled.h1`
+export const ModalHeader = styled.h1`
     font-family: 'Lato', sans-serif;
     font-size: 1.4em;
     font-weight: 700;
