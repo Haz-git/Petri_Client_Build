@@ -18,9 +18,9 @@ import { toggleSnackbarOpen } from '../../../../redux/snackBar/snackBarActions';
 export const fadein = keyframes`
     from {
         opacity: 0;
-        -webkit-transform: translateY(300%);
-        -ms-transform: translateY(300%);
-        transform: translateY(300%)
+        -webkit-transform: translateY(50%);
+        -ms-transform: translateY(50%);
+        transform: translateY(50%)
     }
 
     to {
@@ -44,9 +44,11 @@ export const ModalContainer = styled.div`
     background-color: white;
     text-align: center;
     border-radius: 0.5rem;
+    -webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+        rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
         rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-
+    -webkit-animation: ${fadein} 0.4s ease-in-out;
     animation: ${fadein} 0.4s ease-in-out;
 
     @media ${deviceMin.laptopSs} {
