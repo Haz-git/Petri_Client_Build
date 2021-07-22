@@ -20,7 +20,7 @@ const StyledGeneralButton = styled.button<IGeneralButtonProps>`
             ? 'none'
             : 'rgba(0, 0, 0, 0.5) 0px 2px 4px'};
     overflow: hidden;
-    width: 100%;
+    width: ${(props) => props.width};
 
     transition: all 0.1s ease-in;
 
@@ -60,6 +60,7 @@ interface IGeneralButtonProps {
     fontWeight?: string;
     hoverTransform?: string;
     hoverShadow?: string;
+    width?: string;
 }
 
 const GeneralButton = ({
@@ -77,6 +78,7 @@ const GeneralButton = ({
     fontWeight = '600',
     hoverTransform = 'scale(1.05)',
     hoverShadow = 'rgba(0, 0, 0, 0.4) 0px 2px 4px,rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,rgba(0, 0, 0, 0.2) 0px -3px 0px inset;',
+    width = '100%',
 }: IGeneralButtonProps): JSX.Element => {
     return (
         <>
@@ -92,6 +94,7 @@ const GeneralButton = ({
                 fontWeight={fontWeight}
                 hoverTransform={hoverTransform}
                 hoverShadow={hoverShadow}
+                width={width}
             >
                 <IconContainer iconMargin={iconMargin}>
                     {buttonIcon && buttonIcon}
