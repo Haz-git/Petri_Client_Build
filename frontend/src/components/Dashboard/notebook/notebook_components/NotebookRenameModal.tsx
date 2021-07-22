@@ -140,6 +140,10 @@ const NotebookRenameModal = ({
         }
     };
 
+    const handleEnterPress = (e: React.KeyboardEvent) => {
+        if (e.key === 'Enter') handleRenameAction();
+    };
+
     return (
         <>
             <Modal open={openState} onClose={closeFunc}>
@@ -150,6 +154,7 @@ const NotebookRenameModal = ({
                             placeholder={entityName}
                             onChange={handleRenameUserInput}
                             hasError={inputHasError}
+                            onKeyPress={handleEnterPress}
                         />
                     </TextFieldContainer>
                     <ButtonContainer>
