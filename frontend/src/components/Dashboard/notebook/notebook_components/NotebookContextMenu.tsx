@@ -12,6 +12,25 @@ import {
 
 //Styles:
 
+import { Trash } from '@styled-icons/boxicons-regular/Trash';
+import { EditAlt } from '@styled-icons/boxicons-regular/EditAlt';
+
+const TrashIcon = styled(Trash)`
+    height: 1.4rem;
+    width: 1.4rem;
+    color: inherit;
+`;
+
+const EditIcon = styled(EditAlt)`
+    height: 1.4rem;
+    width: 1.4rem;
+    color: inherit;
+`;
+
+const IconSeparator = styled.div`
+    width: 0.5rem;
+`;
+
 //Interfaces:
 
 interface IDispatchProps {
@@ -53,10 +72,18 @@ const NotebookContextMenu = ({
     };
 
     return (
-        <Menu id={id} theme={theme.light} animation={animation.fade}>
-            <Item onClick={itemRenameHandler}>Rename</Item>
+        <Menu id={id} theme={theme.light} animation={animation.slide}>
+            <Item onClick={itemRenameHandler}>
+                <EditIcon />
+                <IconSeparator />
+                Rename
+            </Item>
             <Separator />
-            <Item onClick={itemDeletionHandler}>Delete</Item>
+            <Item onClick={itemDeletionHandler}>
+                <TrashIcon />
+                <IconSeparator />
+                Delete
+            </Item>
         </Menu>
     );
 };
