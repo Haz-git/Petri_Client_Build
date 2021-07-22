@@ -9,6 +9,13 @@ import NotebookContextMenu from './NotebookContextMenu';
 import NotebookRenameModal from './NotebookRenameModal';
 import GeneralDeleteModal from '../../general_components/GeneralDeleteModal';
 
+//Redux:
+import { connect } from 'react-redux';
+import {
+    deleteNote,
+    deleteFolder,
+} from '../../../../redux/userNotebook/notebookActions';
+
 //Icons:
 
 import { FileEarmarkText } from '@styled-icons/bootstrap/FileEarmarkText';
@@ -61,9 +68,15 @@ const EntityDetails = styled.p`
     font-weight: 400;
     color: #81898f;
 `;
+
 //Interface:
 
-interface MainNotebookProps {
+interface IDispatchProps {
+    deleteNote: (noteId: string, parentId: string) => void;
+    deleteFolder: (folderId: string, parentId: string) => void;
+}
+
+interface IComponentProps {
     noteId: string | undefined;
     noteName: string;
     folderName: string;
@@ -74,6 +87,8 @@ interface MainNotebookProps {
     dateModified?: string;
 }
 
+type NotebookEntityProps = IDispatchProps & IComponentProps;
+
 const NotebookEntity = ({
     noteId,
     folderId,
@@ -83,7 +98,9 @@ const NotebookEntity = ({
     dateCreated,
     dateModified,
     ownerName,
-}: MainNotebookProps): JSX.Element => {
+    deleteFolder,
+    deleteNote,
+}: NotebookEntityProps): JSX.Element => {
     dayjs.extend(relativeTime);
 
     const [stateRenameModal, setStateRenameModal] = useState(false);
@@ -111,10 +128,6 @@ const NotebookEntity = ({
     const { show } = useContextMenu({
         id: MENU_ID,
         props: {
-            entityId: folderId || noteId,
-            entityParentId: parentId,
-            entityName: noteName || folderName,
-            entityType: folderId === undefined ? 'NOTE' : 'FOLDER',
             openRenameModal,
             closeRenameModal,
             openDeleteModal,
@@ -160,11 +173,42 @@ const NotebookEntity = ({
         show(event);
     };
 
+    const NotebookEntity = {
+        entityId: folderId === undefined ? noteId : folderId,
+        entityParentId: parentId,
+        entityName: folderName === undefined ? noteName : folderName,
+        entityType: folderId === undefined ? 'NOTE' : 'FOLDER',
+    };
+
+    const entityDeletionConfirmationHandler = () => {
+        switch (NotebookEntity.entityType) {
+            case 'FOLDER':
+                deleteFolder(
+                    NotebookEntity.entityId as any,
+                    NotebookEntity.entityParentId
+                );
+                break;
+            case 'NOTE':
+                deleteNote(
+                    NotebookEntity.entityId as any,
+                    NotebookEntity.entityParentId
+                );
+                break;
+            default:
+                throw new Error(
+                    'No entity type was passed. Item was not deleted.'
+                );
+        }
+
+        closeDeleteModal();
+    };
+
     return (
         <>
             <GeneralDeleteModal
                 openState={stateDeleteModal}
                 closeFunc={closeDeleteModal}
+                deleteHandler={entityDeletionConfirmationHandler}
             />
             <NotebookRenameModal
                 openState={stateRenameModal}
@@ -190,4 +234,4 @@ const NotebookEntity = ({
     );
 };
 
-export default NotebookEntity;
+export default connect(null, { deleteNote, deleteFolder })(NotebookEntity);
