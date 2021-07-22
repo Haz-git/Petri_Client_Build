@@ -208,8 +208,6 @@ export const renameFolder = (
             newFolderName,
         });
 
-        console.log(response);
-
         dispatch({
             type: NotebookActionType.USER_RENAME_FOLDER,
             payload: response.data.userNotebook,
