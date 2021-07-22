@@ -119,7 +119,7 @@ export const ModalHeader = styled.h1`
     margin-bottom: 0.5rem;
 `;
 
-const ModalDescText = styled.h2`
+export const ModalDescText = styled.h2`
     font-family: 'Lato', sans-serif;
     font-size: 1em;
     font-weight: 600;
