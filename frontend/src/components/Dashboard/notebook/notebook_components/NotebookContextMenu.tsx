@@ -29,9 +29,14 @@ const NotebookContextMenu = ({
     deleteFolder,
     deleteNote,
 }: NotebookContextMenuProps): JSX.Element => {
-    const itemHandler = (props: any) => {
+    const itemRenameHandler = (props: any) => {
         const itemProps = props.props;
-        const { entityId, entityName, entityParentId, entityType } = itemProps;
+        itemProps.openRenameModal();
+    };
+
+    const itemDeletionHandler = (props: any) => {
+        const itemProps = props.props;
+        const { entityId, entityParentId, entityType } = itemProps;
 
         switch (entityType) {
             case 'FOLDER':
@@ -41,15 +46,17 @@ const NotebookContextMenu = ({
                 deleteNote(entityId, entityParentId);
                 break;
             default:
-                throw new Error('No entity type was passed.');
+                throw new Error(
+                    'No entity type was passed. Item was not deleted.'
+                );
         }
     };
 
     return (
         <Menu id={id} theme={theme.light} animation={animation.fade}>
-            <Item onClick={itemHandler}>Delete</Item>
+            <Item onClick={itemRenameHandler}>Rename</Item>
             <Separator />
-            <Item>Item2</Item>
+            <Item onClick={itemDeletionHandler}>Delete</Item>
             <Separator />
             <Item>Item3</Item>
         </Menu>
