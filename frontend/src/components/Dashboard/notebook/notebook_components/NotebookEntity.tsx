@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import { useContextMenu } from 'react-contexify';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import dayjs from 'dayjs';
 import NotebookContextMenu from './NotebookContextMenu';
+
+import SimpleModal from '../../general_components/SimpleModal';
 
 //Icons:
 
@@ -61,11 +63,11 @@ const EntityDetails = styled.p`
 //Interface:
 
 interface MainNotebookProps {
-    noteId?: string;
+    noteId: string | undefined;
     noteName: string;
     folderName: string;
-    folderId?: string;
-    parentId?: string;
+    folderId: string | undefined;
+    parentId: string;
     ownerName?: string;
     dateCreated?: string;
     dateModified?: string;
@@ -83,6 +85,17 @@ const NotebookEntity = ({
 }: MainNotebookProps): JSX.Element => {
     dayjs.extend(relativeTime);
 
+    const [stateRenameModal, setStateRenameModal] = useState(false);
+
+    //Rename Modal handler:
+    const openRenameModal = () => {
+        setStateRenameModal(true);
+    };
+
+    const closeRenameModal = () => {
+        setStateRenameModal(false);
+    };
+
     const MENU_ID = 'NOTEBOOKCONTEXTMENU';
     const { show } = useContextMenu({
         id: MENU_ID,
@@ -91,6 +104,8 @@ const NotebookEntity = ({
             entityParentId: parentId,
             entityName: noteName || folderName,
             entityType: folderId === undefined ? 'NOTE' : 'FOLDER',
+            openRenameModal,
+            closeRenameModal,
         },
     });
 
@@ -134,6 +149,14 @@ const NotebookEntity = ({
 
     return (
         <>
+            <SimpleModal
+                openState={stateRenameModal}
+                closeFunc={closeRenameModal}
+                entityId={folderId === undefined ? noteId : folderId}
+                entityParentId={parentId}
+                entityName={noteName === undefined ? folderName : noteName}
+                entityType={folderId === undefined ? 'NOTE' : 'FOLDER'}
+            />
             <MainContainer onContextMenu={displayContextMenu}>
                 <EntityContainer>
                     <EntityNameContainer>
