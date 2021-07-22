@@ -51,7 +51,7 @@ const GeneralTextField = ({
                 hasError={
                     hasError === false
                         ? '2px solid transparent'
-                        : '2px solid red'
+                        : '2px solid #D7002E'
                 }
                 name={name}
                 onChange={onChange}
