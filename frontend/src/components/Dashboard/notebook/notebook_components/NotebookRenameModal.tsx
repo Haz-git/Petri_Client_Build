@@ -17,11 +17,10 @@ import {
 import styled, { keyframes } from 'styled-components';
 import {
     fadein,
-    ModalContainer,
     ModalHeader,
 } from '../../settings/settings_components/ProfilePictureModal';
 
-const RestyledModalContainer = styled.div`
+export const ModalContainer = styled.div`
     margin: 0 auto;
     width: 22rem;
     padding: 2rem 2rem;
@@ -45,14 +44,14 @@ const TextFieldContainer = styled.div`
     width: 100%;
 `;
 
-const ButtonContainer = styled.div`
+export const ButtonContainer = styled.div`
     display: flex;
     justify-content: flex-end;
     text-align: right;
     margin-top: 1rem;
 `;
 
-const ButtonSpacer = styled.div`
+export const ButtonSpacer = styled.div`
     width: 0.5rem;
 `;
 
@@ -144,7 +143,7 @@ const NotebookRenameModal = ({
     return (
         <>
             <Modal open={openState} onClose={closeFunc}>
-                <RestyledModalContainer>
+                <ModalContainer>
                     <ModalHeader>Rename</ModalHeader>
                     <TextFieldContainer>
                         <GeneralTextField
@@ -168,7 +167,7 @@ const NotebookRenameModal = ({
                             onClick={handleRenameAction}
                         />
                     </ButtonContainer>
-                </RestyledModalContainer>
+                </ModalContainer>
             </Modal>
         </>
     );

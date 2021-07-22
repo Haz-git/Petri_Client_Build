@@ -56,19 +56,20 @@ const NotebookContextMenu = ({
     const itemDeletionHandler = (props: any) => {
         const itemProps = props.props;
         const { entityId, entityParentId, entityType } = itemProps;
+        itemProps.openDeleteModal();
 
-        switch (entityType) {
-            case 'FOLDER':
-                deleteFolder(entityId, entityParentId);
-                break;
-            case 'NOTE':
-                deleteNote(entityId, entityParentId);
-                break;
-            default:
-                throw new Error(
-                    'No entity type was passed. Item was not deleted.'
-                );
-        }
+        // switch (entityType) {
+        //     case 'FOLDER':
+        //         deleteFolder(entityId, entityParentId);
+        //         break;
+        //     case 'NOTE':
+        //         deleteNote(entityId, entityParentId);
+        //         break;
+        //     default:
+        //         throw new Error(
+        //             'No entity type was passed. Item was not deleted.'
+        //         );
+        // }
     };
 
     return (

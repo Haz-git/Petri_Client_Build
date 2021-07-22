@@ -7,6 +7,7 @@ import dayjs from 'dayjs';
 import NotebookContextMenu from './NotebookContextMenu';
 
 import NotebookRenameModal from './NotebookRenameModal';
+import GeneralDeleteModal from '../../general_components/GeneralDeleteModal';
 
 //Icons:
 
@@ -86,6 +87,7 @@ const NotebookEntity = ({
     dayjs.extend(relativeTime);
 
     const [stateRenameModal, setStateRenameModal] = useState(false);
+    const [stateDeleteModal, setStateDeleteModal] = useState(false);
 
     //Rename Modal handler:
     const openRenameModal = () => {
@@ -94,6 +96,15 @@ const NotebookEntity = ({
 
     const closeRenameModal = () => {
         setStateRenameModal(false);
+    };
+
+    //Delete Modal Handler:
+    const openDeleteModal = () => {
+        setStateDeleteModal(true);
+    };
+
+    const closeDeleteModal = () => {
+        setStateDeleteModal(false);
     };
 
     const MENU_ID = 'NOTEBOOKCONTEXTMENU';
@@ -106,6 +117,8 @@ const NotebookEntity = ({
             entityType: folderId === undefined ? 'NOTE' : 'FOLDER',
             openRenameModal,
             closeRenameModal,
+            openDeleteModal,
+            closeDeleteModal,
         },
     });
 
@@ -149,6 +162,10 @@ const NotebookEntity = ({
 
     return (
         <>
+            <GeneralDeleteModal
+                openState={stateDeleteModal}
+                closeFunc={closeDeleteModal}
+            />
             <NotebookRenameModal
                 openState={stateRenameModal}
                 closeFunc={closeRenameModal}
