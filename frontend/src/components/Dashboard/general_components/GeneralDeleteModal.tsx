@@ -21,11 +21,13 @@ import {
 interface IComponentProps {
     openState: boolean;
     closeFunc: () => void;
+    deleteHandler: () => void;
 }
 
 const GeneralDeleteModal = ({
     openState,
     closeFunc,
+    deleteHandler,
 }: IComponentProps): JSX.Element => {
     return (
         <>
@@ -49,6 +51,7 @@ const GeneralDeleteModal = ({
                             buttonLabel="Delete"
                             buttonBackground="#D7002E"
                             width="5rem"
+                            onClick={deleteHandler}
                         />
                     </ButtonContainer>
                 </ModalContainer>
