@@ -11,6 +11,7 @@ import GeneralDeleteModal from '../../general_components/GeneralDeleteModal';
 
 //Redux:
 import { connect } from 'react-redux';
+import { toggleSnackbarOpen } from '../../../../redux/snackBar/snackBarActions';
 import {
     deleteNote,
     deleteFolder,
@@ -72,8 +73,17 @@ const EntityDetails = styled.p`
 //Interface:
 
 interface IDispatchProps {
-    deleteNote: (noteId: string, parentId: string) => void;
-    deleteFolder: (folderId: string, parentId: string) => void;
+    deleteNote: (
+        noteId: string,
+        parentId: string,
+        snackbarCallback: (message: string) => void
+    ) => void;
+    deleteFolder: (
+        folderId: string,
+        parentId: string,
+        snackbarCallback: (message: string) => void
+    ) => void;
+    toggleSnackbarOpen: (message: string) => void;
 }
 
 interface IComponentProps {
@@ -100,6 +110,7 @@ const NotebookEntity = ({
     ownerName,
     deleteFolder,
     deleteNote,
+    toggleSnackbarOpen,
 }: NotebookEntityProps): JSX.Element => {
     dayjs.extend(relativeTime);
 
@@ -185,13 +196,15 @@ const NotebookEntity = ({
             case 'FOLDER':
                 deleteFolder(
                     NotebookEntity.entityId as any,
-                    NotebookEntity.entityParentId
+                    NotebookEntity.entityParentId,
+                    toggleSnackbarOpen
                 );
                 break;
             case 'NOTE':
                 deleteNote(
                     NotebookEntity.entityId as any,
-                    NotebookEntity.entityParentId
+                    NotebookEntity.entityParentId,
+                    toggleSnackbarOpen
                 );
                 break;
             default:
@@ -217,6 +230,7 @@ const NotebookEntity = ({
                 entityParentId={parentId}
                 entityName={noteName === undefined ? folderName : noteName}
                 entityType={folderId === undefined ? 'NOTE' : 'FOLDER'}
+                snackbar={toggleSnackbarOpen}
             />
             <MainContainer onContextMenu={displayContextMenu}>
                 <EntityContainer>
@@ -234,4 +248,6 @@ const NotebookEntity = ({
     );
 };
 
-export default connect(null, { deleteNote, deleteFolder })(NotebookEntity);
+export default connect(null, { deleteNote, deleteFolder, toggleSnackbarOpen })(
+    NotebookEntity
+);

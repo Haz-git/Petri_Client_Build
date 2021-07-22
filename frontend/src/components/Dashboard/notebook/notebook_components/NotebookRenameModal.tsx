@@ -79,13 +79,16 @@ interface IDispatchProps {
         parentId: string,
         requestType: string,
         updatedHTMLState: string,
-        updatedNoteName: string
+        updatedNoteName: string,
+        snackbarCallback: (message: string) => void
     ) => void;
     renameFolder: (
         folderId: string,
         parentId: string,
-        newFolderName: string
+        newFolderName: string,
+        snackbarCallback: (message: string) => void
     ) => void;
+    snackbar: (message: string) => void;
 }
 
 type NotebookRenameModalProps = IComponentProps & IDispatchProps;
@@ -99,6 +102,7 @@ const NotebookRenameModal = ({
     entityType,
     renameNote,
     renameFolder,
+    snackbar,
 }: NotebookRenameModalProps): JSX.Element => {
     const [newEntityName, setNewEntityName] = useState('');
     const [inputHasError, setInputHasError] = useState(false);
@@ -117,7 +121,8 @@ const NotebookRenameModal = ({
                         entityParentId,
                         'UPDATE_NAME',
                         'None',
-                        newEntityName
+                        newEntityName,
+                        snackbar
                     );
 
                     closeFunc();
@@ -130,7 +135,8 @@ const NotebookRenameModal = ({
                     renameFolder(
                         entityId as any,
                         entityParentId,
-                        newEntityName
+                        newEntityName,
+                        snackbar
                     );
 
                     closeFunc();

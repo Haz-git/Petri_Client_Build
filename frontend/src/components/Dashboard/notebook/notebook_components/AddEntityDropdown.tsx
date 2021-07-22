@@ -8,6 +8,7 @@ import {
     createNewNote,
     createNewFolder,
 } from '../../../../redux/userNotebook/notebookActions';
+import { toggleSnackbarOpen } from '../../../../redux/snackBar/snackBarActions';
 
 //Components:
 import GeneralButton from '../../general_components/GeneralButton';
@@ -93,13 +94,24 @@ const DropdownContainer = styled.div`
 //Interfaces:
 
 interface AddEntityDropdownProps {
-    createNewNote: (name: string, htmlState: any, parentId: string) => void;
-    createNewFolder: (folderName: string, parentId: string) => void;
+    createNewNote: (
+        name: string,
+        htmlState: any,
+        parentId: string,
+        snackbarCallback: (message: string) => void
+    ) => void;
+    createNewFolder: (
+        folderName: string,
+        parentId: string,
+        snackbarCallback: (message: string) => void
+    ) => void;
+    toggleSnackbarOpen: (message: string) => void;
 }
 
 const AddEntityDropdown = ({
     createNewNote,
     createNewFolder,
+    toggleSnackbarOpen,
 }: AddEntityDropdownProps): JSX.Element => {
     const [showDropdown, setShowDropdown] = useState(false);
     const toggleDropdown = () => setShowDropdown(!showDropdown);
@@ -121,14 +133,14 @@ const AddEntityDropdown = ({
         const parentId = detectFilePath();
         const name = 'Untitled note';
         const htmlState = 'TempState';
-        createNewNote(name, htmlState, parentId);
+        createNewNote(name, htmlState, parentId, toggleSnackbarOpen);
         setShowDropdown(false);
     };
 
     const handleCreateNewFolder = () => {
         const parentId = detectFilePath();
         const name = 'Untitled folder';
-        createNewFolder(name, parentId);
+        createNewFolder(name, parentId, toggleSnackbarOpen);
         setShowDropdown(false);
     };
 
@@ -177,6 +189,8 @@ const AddEntityDropdown = ({
     );
 };
 
-export default connect(null, { createNewNote, createNewFolder })(
-    AddEntityDropdown
-);
+export default connect(null, {
+    createNewNote,
+    createNewFolder,
+    toggleSnackbarOpen,
+})(AddEntityDropdown);

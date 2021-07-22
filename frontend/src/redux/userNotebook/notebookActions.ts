@@ -41,7 +41,8 @@ export const getNotebook = () => {
 export const createNewNote = (
     noteName: string,
     htmlState: any,
-    parentId: string
+    parentId: string,
+    snackbarCallback: (message: string) => void
 ) => {
     return async (
         dispatch: Dispatch<NotebookAction>,
@@ -62,6 +63,10 @@ export const createNewNote = (
             parentId,
         });
 
+        if (response) {
+            snackbarCallback('Your note has been created.');
+        }
+
         dispatch({
             type: NotebookActionType.USER_ADD_NOTE,
             payload: response.data.userNotebook,
@@ -69,7 +74,11 @@ export const createNewNote = (
     };
 };
 
-export const deleteNote = (noteId: string, parentId: string) => {
+export const deleteNote = (
+    noteId: string,
+    parentId: string,
+    snackbarCallback: (message: string) => void
+) => {
     return async (
         dispatch: Dispatch<NotebookAction>,
         getState: () => State
@@ -88,6 +97,10 @@ export const deleteNote = (noteId: string, parentId: string) => {
             parentId,
         });
 
+        if (response) {
+            snackbarCallback('Your note has been removed.');
+        }
+
         dispatch({
             type: NotebookActionType.USER_DELETE_NOTE,
             payload: response.data.userNotebook,
@@ -100,7 +113,8 @@ export const renameNote = (
     parentId: string,
     requestType: string,
     updatedHTMLState: string,
-    updatedNoteName: string
+    updatedNoteName: string,
+    snackbarCallback: (message: string) => void
 ) => {
     return async (
         dispatch: Dispatch<NotebookAction>,
@@ -123,6 +137,10 @@ export const renameNote = (
             updatedNoteName,
         });
 
+        if (response) {
+            snackbarCallback('Your note has been renamed.');
+        }
+
         dispatch({
             type: NotebookActionType.USER_UPDATE_NOTE,
             payload: response.data.userNotebook,
@@ -132,7 +150,11 @@ export const renameNote = (
 
 /*Folder-specific action creators*/
 
-export const createNewFolder = (folderName: string, parentId: string) => {
+export const createNewFolder = (
+    folderName: string,
+    parentId: string,
+    snackbarCallback: (message: string) => void
+) => {
     return async (
         dispatch: Dispatch<NotebookAction>,
         getState: () => State
@@ -151,6 +173,10 @@ export const createNewFolder = (folderName: string, parentId: string) => {
             parentId,
         });
 
+        if (response) {
+            snackbarCallback('Your folder has been created.');
+        }
+
         dispatch({
             type: NotebookActionType.USER_ADD_FOLDER,
             payload: response.data.userNotebook,
@@ -158,7 +184,11 @@ export const createNewFolder = (folderName: string, parentId: string) => {
     };
 };
 
-export const deleteFolder = (folderId: string, parentId: string) => {
+export const deleteFolder = (
+    folderId: string,
+    parentId: string,
+    snackbarCallback: (message: string) => void
+) => {
     return async (
         dispatch: Dispatch<NotebookAction>,
         getState: () => State
@@ -176,6 +206,9 @@ export const deleteFolder = (folderId: string, parentId: string) => {
             folderId,
             parentId,
         });
+        if (response) {
+            snackbarCallback('Your folder has been removed.');
+        }
 
         dispatch({
             type: NotebookActionType.USER_DELETE_FOLDER,
@@ -187,7 +220,8 @@ export const deleteFolder = (folderId: string, parentId: string) => {
 export const renameFolder = (
     folderId: string,
     parentId: string,
-    newFolderName: string
+    newFolderName: string,
+    snackbarCallback: (message: string) => void
 ) => {
     return async (
         dispatch: Dispatch<NotebookAction>,
@@ -207,6 +241,10 @@ export const renameFolder = (
             parentId,
             newFolderName,
         });
+
+        if (response) {
+            snackbarCallback('Your folder has been renamed.');
+        }
 
         dispatch({
             type: NotebookActionType.USER_RENAME_FOLDER,
