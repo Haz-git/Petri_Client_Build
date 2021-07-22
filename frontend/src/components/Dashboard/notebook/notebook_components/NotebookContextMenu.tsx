@@ -57,8 +57,6 @@ const NotebookContextMenu = ({
             <Item onClick={itemRenameHandler}>Rename</Item>
             <Separator />
             <Item onClick={itemDeletionHandler}>Delete</Item>
-            <Separator />
-            <Item>Item3</Item>
         </Menu>
     );
 };
