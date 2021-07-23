@@ -41,6 +41,7 @@ const MainContainer = styled.div`
     border-bottom: 1px solid #cabbbb;
     background: ${({ isSelected }) =>
         isSelected === true ? 'rgba(66, 99, 235, .2)' : 'none'};
+    cursor: default;
 `;
 
 const IconContainer = styled.div`
