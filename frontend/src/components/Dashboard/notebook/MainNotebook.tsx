@@ -205,7 +205,7 @@ const MainNotebook = ({
                     ownerName={entity.ownerName}
                     dateCreated={entity.dateCreated}
                     dateModified={entity.dateModified}
-                    onClick={() =>
+                    onClickSelection={() =>
                         toggleSelectedEntity(entity.noteId || entity.folderId)
                     }
                     isSelected={checkSelectedEntity(
