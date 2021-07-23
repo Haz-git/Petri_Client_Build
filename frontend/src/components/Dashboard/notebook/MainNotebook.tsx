@@ -10,6 +10,7 @@ import GeneralButton from '../general_components/GeneralButton';
 import Searchbar from '../general_components/Searchbar';
 import AddEntityDropdown from './notebook_components/AddEntityDropdown';
 import NotebookEntity from './notebook_components/NotebookEntity';
+import NotebookContextMenu from './notebook_components/NotebookContextMenu';
 
 //Icons:
 import { Star } from '@styled-icons/evaicons-solid/Star';
@@ -264,6 +265,7 @@ const MainNotebook = ({
                     </NotebookEntityWrapper>
                 </FileContainer>
             </MainContainer>
+            <NotebookContextMenu id={'NOTEBOOKCONTEXTMENU'} />
         </>
     );
 };

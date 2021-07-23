@@ -243,7 +243,6 @@ const NotebookEntity = ({
                     <EntityDetails>{parseLastModified()}</EntityDetails>
                 </EntityContainer>
             </MainContainer>
-            <NotebookContextMenu id={MENU_ID} />
         </>
     );
 };
