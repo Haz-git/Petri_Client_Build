@@ -175,6 +175,20 @@ const MainNotebook = ({
         getNotebook(setLoadedStatus);
     }, []);
 
+    //Entity background selection state: the entity color property should be changed on first click, to indicate selection of item. Double-click should enter/edit the entity.
+    const [selectedEntity, setSelectedEntity] = useState('');
+
+    const toggleSelectedEntity = (entityId: string) => {
+        setSelectedEntity(entityId);
+    };
+
+    const checkSelectedEntity = (noteId: string, folderId: string) => {
+        let trueId = noteId === undefined ? folderId : noteId;
+
+        if (trueId === selectedEntity) return true;
+        else return false;
+    };
+
     const renderNotebookEntities = () => {
         if (notebook !== undefined && notebook !== null) {
             let totalEntities = notebook.rootFolders.concat(notebook.rootFiles);
@@ -191,6 +205,13 @@ const MainNotebook = ({
                     ownerName={entity.ownerName}
                     dateCreated={entity.dateCreated}
                     dateModified={entity.dateModified}
+                    onClick={() =>
+                        toggleSelectedEntity(entity.noteId || entity.folderId)
+                    }
+                    isSelected={checkSelectedEntity(
+                        entity.noteId,
+                        entity.folderId
+                    )}
                 />
             ));
         }

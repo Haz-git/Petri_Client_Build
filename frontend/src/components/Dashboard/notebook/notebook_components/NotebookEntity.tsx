@@ -39,6 +39,8 @@ const FolderIcon = styled(Folder2)`
 const MainContainer = styled.div`
     padding: 1rem 1rem;
     border-bottom: 1px solid #cabbbb;
+    background: ${({ isSelected }) =>
+        isSelected === true ? 'rgba(66, 99, 235, .2)' : 'none'};
 `;
 
 const IconContainer = styled.div`
@@ -59,15 +61,17 @@ const EntityNameText = styled.p`
     font-family: 'Lato', sans-serif;
     font-size: 1.1em;
     font-weight: 900;
-    color: #3c4042;
     margin-top: 0.2rem;
+    color: ${({ isSelected }) =>
+        isSelected === true ? 'rgba(66, 99, 235, 1)' : '#3c4042'};
 `;
 
 const EntityDetails = styled.p`
     font-family: 'Lato', sans-serif;
     font-size: 1.1em;
     font-weight: 400;
-    color: #81898f;
+    color: ${({ isSelected }) =>
+        isSelected === true ? 'rgba(66, 99, 235, 1)' : '#81898f'};
 `;
 
 //Interface:
@@ -97,6 +101,8 @@ interface IComponentProps {
     ownerName?: string;
     dateCreated?: string;
     dateModified?: string;
+    onClick?: any;
+    isSelected?: boolean;
 }
 
 type NotebookEntityProps = IDispatchProps & IComponentProps;
@@ -113,11 +119,15 @@ const NotebookEntity = ({
     deleteFolder,
     deleteNote,
     toggleSnackbarOpen,
+    isSelected,
+    onClick,
 }: NotebookEntityProps): JSX.Element => {
     dayjs.extend(relativeTime);
 
+    //Button Loading states:
     const [isButtonLoading, setIsButtonLoading] = useState(false);
 
+    //Modal states:
     const [stateRenameModal, setStateRenameModal] = useState(false);
     const [stateDeleteModal, setStateDeleteModal] = useState(false);
 
@@ -242,15 +252,27 @@ const NotebookEntity = ({
                 entityType={folderId === undefined ? 'NOTE' : 'FOLDER'}
                 snackbar={toggleSnackbarOpen}
             />
-            <MainContainer onContextMenu={displayContextMenu}>
+            <MainContainer
+                onContextMenu={displayContextMenu}
+                isSelected={isSelected}
+                onClick={onClick}
+            >
                 <EntityContainer>
                     <EntityNameContainer>
                         <IconContainer>{parseIcon()}</IconContainer>
-                        <EntityNameText>{parseName()}</EntityNameText>
+                        <EntityNameText isSelected={isSelected}>
+                            {parseName()}
+                        </EntityNameText>
                     </EntityNameContainer>
-                    <EntityDetails>{ownerName}</EntityDetails>
-                    <EntityDetails>{parseDateCreated()}</EntityDetails>
-                    <EntityDetails>{parseLastModified()}</EntityDetails>
+                    <EntityDetails isSelected={isSelected}>
+                        {ownerName}
+                    </EntityDetails>
+                    <EntityDetails isSelected={isSelected}>
+                        {parseDateCreated()}
+                    </EntityDetails>
+                    <EntityDetails isSelected={isSelected}>
+                        {parseLastModified()}
+                    </EntityDetails>
                 </EntityContainer>
             </MainContainer>
         </>
