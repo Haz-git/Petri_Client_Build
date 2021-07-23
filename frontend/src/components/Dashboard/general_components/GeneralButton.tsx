@@ -52,7 +52,7 @@ interface IGeneralButtonProps {
     buttonBackground?: string;
     buttonTextColor?: string;
     isDisabledOnLoading?: boolean;
-    buttonIcon?: JSX.Element;
+    buttonIcon?: JSX.Element | null;
     disableShadow?: boolean;
     iconMargin?: string;
     fontSize?: string;
