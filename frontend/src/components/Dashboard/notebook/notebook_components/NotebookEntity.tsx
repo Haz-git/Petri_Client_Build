@@ -102,7 +102,7 @@ interface IComponentProps {
     ownerName?: string;
     dateCreated?: string;
     dateModified?: string;
-    onClick?: any;
+    onClickSelection: () => void;
     isSelected?: boolean;
 }
 
@@ -121,7 +121,7 @@ const NotebookEntity = ({
     deleteNote,
     toggleSnackbarOpen,
     isSelected,
-    onClick,
+    onClickSelection,
 }: NotebookEntityProps): JSX.Element => {
     dayjs.extend(relativeTime);
 
@@ -202,6 +202,7 @@ const NotebookEntity = ({
         show(event);
     };
 
+    //Current Entity values:
     const NotebookEntity = {
         entityId: folderId === undefined ? noteId : folderId,
         entityParentId: parentId,
@@ -237,6 +238,17 @@ const NotebookEntity = ({
         closeDeleteModal();
     };
 
+    const EntityClickHandler = (e: React.MouseEvent) => {
+        //Treat single click and double clicks differently:
+
+        if (e.detail === 1) {
+            onClickSelection();
+        } else if (e.detail === 2) {
+            //Highlight the entity:
+            onClickSelection();
+        }
+    };
+
     return (
         <>
             <GeneralDeleteModal
@@ -247,16 +259,16 @@ const NotebookEntity = ({
             <NotebookRenameModal
                 openState={stateRenameModal}
                 closeFunc={closeRenameModal}
-                entityId={folderId === undefined ? noteId : folderId}
-                entityParentId={parentId}
-                entityName={noteName === undefined ? folderName : noteName}
-                entityType={folderId === undefined ? 'NOTE' : 'FOLDER'}
+                entityId={NotebookEntity.entityId}
+                entityParentId={NotebookEntity.entityParentId}
+                entityName={NotebookEntity.entityName}
+                entityType={NotebookEntity.entityType}
                 snackbar={toggleSnackbarOpen}
             />
             <MainContainer
                 onContextMenu={displayContextMenu}
                 isSelected={isSelected}
-                onClick={onClick}
+                onClick={EntityClickHandler}
             >
                 <EntityContainer>
                     <EntityNameContainer>
