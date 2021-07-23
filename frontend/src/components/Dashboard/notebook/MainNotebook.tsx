@@ -161,11 +161,20 @@ interface IMapStateToProps {
     notebook: { rootFiles: any; rootFolders: any };
 }
 
-type MainNotebookProps = IDispatchProps & IMapStateToProps;
+interface IComponentProps {
+    match: {
+        params: { id: any };
+    };
+}
+
+type MainNotebookProps = IDispatchProps & IMapStateToProps & IComponentProps;
 
 const MainNotebook = ({
     getNotebook,
     notebook,
+    match: {
+        params: { id },
+    },
 }: MainNotebookProps): JSX.Element => {
     const [isNotebookLoaded, setIsNotebookLoaded] = useState(false);
 
@@ -192,7 +201,7 @@ const MainNotebook = ({
     const renderNotebookEntities = () => {
         if (notebook !== undefined && notebook !== null) {
             let totalEntities = notebook.rootFolders.concat(notebook.rootFiles);
-            totalEntities = totalEntities.filter((x) => x.parentId === 'root');
+            totalEntities = totalEntities.filter((x) => x.parentId === id);
 
             return totalEntities.map((entity) => (
                 <NotebookEntity
