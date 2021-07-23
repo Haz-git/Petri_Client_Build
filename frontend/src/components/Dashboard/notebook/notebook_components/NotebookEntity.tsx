@@ -5,6 +5,7 @@ import { useContextMenu } from 'react-contexify';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import dayjs from 'dayjs';
 import NotebookContextMenu from './NotebookContextMenu';
+import historyObject from '../../../../historyObject';
 
 import NotebookRenameModal from './NotebookRenameModal';
 import GeneralDeleteModal from '../../general_components/GeneralDeleteModal';
@@ -251,6 +252,7 @@ const NotebookEntity = ({
                 //Access Note editing mode:
             } else if (NotebookEntity.entityType === 'FOLDER') {
                 //Access contents of folder:
+                historyObject.push(`/notebook/${NotebookEntity.entityId}`);
             }
         }
     };
