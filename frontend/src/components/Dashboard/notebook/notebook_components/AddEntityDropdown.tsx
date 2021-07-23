@@ -160,7 +160,7 @@ const AddEntityDropdown = ({
         <MainContainer>
             <GeneralButton
                 buttonLabel={isButtonLoading === true ? 'Adding...' : 'Add New'}
-                buttonIcon={<AddIcon />}
+                buttonIcon={isButtonLoading === true ? null : <AddIcon />}
                 fontSize="1.2em"
                 onClick={toggleDropdown}
                 hoverTransform="none"
