@@ -10,7 +10,7 @@ const jumpingDots = keyframes`
     }
 
     50% {
-        transform: translateY(-1em);
+        transform: translateY(-.8em);
     }
 `;
 
@@ -21,10 +21,10 @@ const Dot = styled.span`
     border-radius: 50%;
     display: inline-block;
     animation-name: ${jumpingDots};
-    animation-duration: 0.9s;
+    animation-duration: 1s;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
-    background: #81898f;
+    background: #3c4042;
 
     :nth-child(2) {
         animation-delay: 0.2s;
@@ -33,21 +33,11 @@ const Dot = styled.span`
     :nth-child(3) {
         animation-delay: 0.4s;
     }
-
-    :nth-child(4) {
-        animation-delay: 0.6s;
-    }
-
-    :nth-child(5) {
-        animation-delay: 0.8s;
-    }
 `;
 
 const LoadingDots = () => {
     return (
         <>
-            <Dot />
-            <Dot />
             <Dot />
             <Dot />
             <Dot />
