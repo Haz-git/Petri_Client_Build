@@ -394,7 +394,7 @@ const Navbar = ({ StateJwt }) => {
                         <StyledCalendar />
                         <StyledLinkLabel>CALENDAR</StyledLinkLabel>
                     </DashboardLink>
-                    <DashboardLink to="/notebook">
+                    <DashboardLink to="/notebook/root">
                         <StyledFolder />
                         <StyledLinkLabel>NOTEBOOK</StyledLinkLabel>
                     </DashboardLink>
