@@ -246,6 +246,12 @@ const NotebookEntity = ({
         } else if (e.detail === 2) {
             //Highlight the entity:
             onClickSelection();
+
+            if (NotebookEntity.entityType === 'NOTE') {
+                //Access Note editing mode:
+            } else if (NotebookEntity.entityType === 'FOLDER') {
+                //Access contents of folder:
+            }
         }
     };
 
