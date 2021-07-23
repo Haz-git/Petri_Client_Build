@@ -226,6 +226,19 @@ const MainNotebook = ({
         }
     };
 
+    const findNameOfCurrentDirectory = () => {
+        if (notebook !== undefined && notebook !== null) {
+            if (id !== 'root') {
+                const currFolder = notebook.rootFolders.find(
+                    (x) => x.folderId === id
+                );
+                return currFolder.folderName;
+            }
+
+            return 'root';
+        }
+    };
+
     const renderLoadingStatus = () => {
         return (
             <LoadingContainer>
@@ -305,7 +318,8 @@ const MainNotebook = ({
                                 </FilesTextHeader>
                                 <FilesTextLine />
                                 <DirectoryText>
-                                    All Entities in: Root
+                                    All Entities in:{' /'}
+                                    {findNameOfCurrentDirectory()}
                                 </DirectoryText>
                             </FilesScrollableHeader>
                         </FilesWrapper>
