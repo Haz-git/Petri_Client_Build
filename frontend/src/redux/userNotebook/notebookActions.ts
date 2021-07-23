@@ -42,7 +42,8 @@ export const createNewNote = (
     noteName: string,
     htmlState: any,
     parentId: string,
-    snackbarCallback: (message: string) => void
+    snackbarCallback: (message: string) => void,
+    buttonCallback: (status: boolean) => void
 ) => {
     return async (
         dispatch: Dispatch<NotebookAction>,
@@ -64,6 +65,7 @@ export const createNewNote = (
         });
 
         if (response) {
+            buttonCallback(false);
             snackbarCallback('Your note has been created.');
         }
 
@@ -153,7 +155,8 @@ export const renameNote = (
 export const createNewFolder = (
     folderName: string,
     parentId: string,
-    snackbarCallback: (message: string) => void
+    snackbarCallback: (message: string) => void,
+    buttonCallback: (status: boolean) => void
 ) => {
     return async (
         dispatch: Dispatch<NotebookAction>,
@@ -174,6 +177,7 @@ export const createNewFolder = (
         });
 
         if (response) {
+            buttonCallback(false);
             snackbarCallback('Your folder has been created.');
         }
 
