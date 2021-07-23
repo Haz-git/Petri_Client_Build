@@ -98,12 +98,14 @@ interface AddEntityDropdownProps {
         name: string,
         htmlState: any,
         parentId: string,
-        snackbarCallback: (message: string) => void
+        snackbarCallback: (message: string) => void,
+        buttonCallback: (status: boolean) => void
     ) => void;
     createNewFolder: (
         folderName: string,
         parentId: string,
-        snackbarCallback: (message: string) => void
+        snackbarCallback: (message: string) => void,
+        buttonCallback: (status: boolean) => void
     ) => void;
     toggleSnackbarOpen: (message: string) => void;
 }
@@ -113,8 +115,10 @@ const AddEntityDropdown = ({
     createNewFolder,
     toggleSnackbarOpen,
 }: AddEntityDropdownProps): JSX.Element => {
+    const [isButtonLoading, setIsButtonLoading] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
     const toggleDropdown = () => setShowDropdown(!showDropdown);
+    const toggleBtnLoading = (status: boolean) => setIsButtonLoading(status);
 
     const currentPathLocation = useLocation();
 
@@ -130,28 +134,37 @@ const AddEntityDropdown = ({
     };
 
     const handleCreateNewNote = () => {
+        setShowDropdown(false);
+        toggleBtnLoading(true);
         const parentId = detectFilePath();
         const name = 'Untitled note';
         const htmlState = 'TempState';
-        createNewNote(name, htmlState, parentId, toggleSnackbarOpen);
-        setShowDropdown(false);
+        createNewNote(
+            name,
+            htmlState,
+            parentId,
+            toggleSnackbarOpen,
+            toggleBtnLoading
+        );
     };
 
     const handleCreateNewFolder = () => {
+        setShowDropdown(false);
+        toggleBtnLoading(true);
         const parentId = detectFilePath();
         const name = 'Untitled folder';
-        createNewFolder(name, parentId, toggleSnackbarOpen);
-        setShowDropdown(false);
+        createNewFolder(name, parentId, toggleSnackbarOpen, toggleBtnLoading);
     };
 
     return (
         <MainContainer>
             <GeneralButton
-                buttonLabel="Add New"
+                buttonLabel={isButtonLoading === true ? 'Adding...' : 'Add New'}
                 buttonIcon={<AddIcon />}
                 fontSize="1.2em"
                 onClick={toggleDropdown}
                 hoverTransform="none"
+                isDisabledOnLoading={isButtonLoading}
             />
             <OutsideClickHandler onOutsideClick={() => setShowDropdown(false)}>
                 <DropdownContainer
