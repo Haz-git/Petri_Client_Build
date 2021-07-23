@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 //Redux:
@@ -11,6 +11,7 @@ import Searchbar from '../general_components/Searchbar';
 import AddEntityDropdown from './notebook_components/AddEntityDropdown';
 import NotebookEntity from './notebook_components/NotebookEntity';
 import NotebookContextMenu from './notebook_components/NotebookContextMenu';
+import LoadingDots from '../general_components/animations/LoadingDots';
 
 //Icons:
 import { Star } from '@styled-icons/evaicons-solid/Star';
@@ -143,10 +144,17 @@ const NotebookEntityWrapper = styled.div`
     overflow-y: scroll;
 `;
 
+//Loading Animation:
+
+const LoadingContainer = styled.div`
+    text-align: center;
+    margin: 10rem auto;
+`;
+
 //Interfaces:
 
 interface IDispatchProps {
-    getNotebook: () => void;
+    getNotebook: (statusCallback: (status: boolean) => void) => void;
 }
 
 interface IMapStateToProps {
@@ -159,8 +167,12 @@ const MainNotebook = ({
     getNotebook,
     notebook,
 }: MainNotebookProps): JSX.Element => {
+    const [isNotebookLoaded, setIsNotebookLoaded] = useState(false);
+
+    const setLoadedStatus = (status: boolean) => setIsNotebookLoaded(status);
+
     useEffect(() => {
-        getNotebook();
+        getNotebook(setLoadedStatus);
     }, []);
 
     const renderNotebookEntities = () => {
@@ -182,6 +194,14 @@ const MainNotebook = ({
                 />
             ));
         }
+    };
+
+    const renderLoadingStatus = () => {
+        return (
+            <LoadingContainer>
+                <LoadingDots />
+            </LoadingContainer>
+        );
     };
 
     return (
@@ -261,7 +281,9 @@ const MainNotebook = ({
                         </FilesWrapper>
                     </ScrollableWrapperContainer>
                     <NotebookEntityWrapper>
-                        {renderNotebookEntities()}
+                        {isNotebookLoaded === true
+                            ? renderNotebookEntities()
+                            : renderLoadingStatus()}
                     </NotebookEntityWrapper>
                 </FileContainer>
             </MainContainer>

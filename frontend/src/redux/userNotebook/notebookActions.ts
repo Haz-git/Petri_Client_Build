@@ -16,7 +16,7 @@ interface State {
 
 /* Note-specific action creators */
 
-export const getNotebook = () => {
+export const getNotebook = (statusCallback: (status: boolean) => void) => {
     return async (
         dispatch: Dispatch<NotebookAction>,
         getState: () => State
@@ -30,6 +30,10 @@ export const getNotebook = () => {
         } = getState();
 
         const response = await api.post('/users/notebook/get', { _id });
+
+        if (response) {
+            statusCallback(true);
+        }
 
         dispatch({
             type: NotebookActionType.USER_GET_NOTEBOOK,
