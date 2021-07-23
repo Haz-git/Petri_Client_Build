@@ -79,7 +79,8 @@ export const createNewNote = (
 export const deleteNote = (
     noteId: string,
     parentId: string,
-    snackbarCallback: (message: string) => void
+    snackbarCallback: (message: string) => void,
+    buttonCallback: (status: boolean) => void
 ) => {
     return async (
         dispatch: Dispatch<NotebookAction>,
@@ -100,6 +101,7 @@ export const deleteNote = (
         });
 
         if (response) {
+            buttonCallback(false);
             snackbarCallback('Your note has been removed.');
         }
 
@@ -116,7 +118,8 @@ export const renameNote = (
     requestType: string,
     updatedHTMLState: string,
     updatedNoteName: string,
-    snackbarCallback: (message: string) => void
+    snackbarCallback: (message: string) => void,
+    buttonCallback: (status: boolean) => void
 ) => {
     return async (
         dispatch: Dispatch<NotebookAction>,
@@ -140,6 +143,7 @@ export const renameNote = (
         });
 
         if (response) {
+            buttonCallback(false);
             snackbarCallback('Your note has been renamed.');
         }
 
@@ -191,7 +195,8 @@ export const createNewFolder = (
 export const deleteFolder = (
     folderId: string,
     parentId: string,
-    snackbarCallback: (message: string) => void
+    snackbarCallback: (message: string) => void,
+    buttonCallback: (status: boolean) => void
 ) => {
     return async (
         dispatch: Dispatch<NotebookAction>,
@@ -211,6 +216,7 @@ export const deleteFolder = (
             parentId,
         });
         if (response) {
+            buttonCallback(false);
             snackbarCallback('Your folder has been removed.');
         }
 
@@ -225,7 +231,8 @@ export const renameFolder = (
     folderId: string,
     parentId: string,
     newFolderName: string,
-    snackbarCallback: (message: string) => void
+    snackbarCallback: (message: string) => void,
+    buttonCallback: (status: boolean) => void
 ) => {
     return async (
         dispatch: Dispatch<NotebookAction>,
@@ -247,6 +254,7 @@ export const renameFolder = (
         });
 
         if (response) {
+            buttonCallback(false);
             snackbarCallback('Your folder has been renamed.');
         }
 

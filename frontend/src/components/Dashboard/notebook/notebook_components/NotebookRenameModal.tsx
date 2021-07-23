@@ -80,13 +80,15 @@ interface IDispatchProps {
         requestType: string,
         updatedHTMLState: string,
         updatedNoteName: string,
-        snackbarCallback: (message: string) => void
+        snackbarCallback: (message: string) => void,
+        buttonCallback: (status: boolean) => void
     ) => void;
     renameFolder: (
         folderId: string,
         parentId: string,
         newFolderName: string,
-        snackbarCallback: (message: string) => void
+        snackbarCallback: (message: string) => void,
+        buttonCallback: (status: boolean) => void
     ) => void;
     snackbar: (message: string) => void;
 }
@@ -104,8 +106,11 @@ const NotebookRenameModal = ({
     renameFolder,
     snackbar,
 }: NotebookRenameModalProps): JSX.Element => {
+    const [isButtonLoading, setIsButtonLoading] = useState(false);
     const [newEntityName, setNewEntityName] = useState('');
     const [inputHasError, setInputHasError] = useState(false);
+
+    const setButtonState = (status: boolean) => setIsButtonLoading(status);
 
     const handleRenameUserInput = (e: React.FormEvent<HTMLInputElement>) => {
         if (inputHasError === true) setInputHasError(false);
@@ -116,13 +121,15 @@ const NotebookRenameModal = ({
         switch (entityType) {
             case 'NOTE':
                 if (newEntityName !== '') {
+                    setButtonState(true);
                     renameNote(
                         entityId as any,
                         entityParentId,
                         'UPDATE_NAME',
                         'None',
                         newEntityName,
-                        snackbar
+                        snackbar,
+                        setButtonState
                     );
 
                     closeFunc();
@@ -132,11 +139,13 @@ const NotebookRenameModal = ({
                 break;
             case 'FOLDER':
                 if (newEntityName !== '') {
+                    setButtonState(true);
                     renameFolder(
                         entityId as any,
                         entityParentId,
                         newEntityName,
-                        snackbar
+                        snackbar,
+                        setButtonState
                     );
 
                     closeFunc();
@@ -175,13 +184,17 @@ const NotebookRenameModal = ({
                             buttonLabel="Cancel"
                             buttonBackground="rgba(0, 0, 34, 0.1)"
                             buttonTextColor="rgba(5, 5, 20, 0.7)"
-                            width="5rem"
+                            width="6rem"
                             onClick={closeFunc}
                         />
                         <ButtonSpacer />
                         <GeneralButton
-                            buttonLabel="Rename"
-                            width="5rem"
+                            buttonLabel={
+                                isButtonLoading === true
+                                    ? 'Renaming...'
+                                    : 'Rename'
+                            }
+                            width="6rem"
                             onClick={handleRenameAction}
                         />
                     </ButtonContainer>

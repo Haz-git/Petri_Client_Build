@@ -76,12 +76,14 @@ interface IDispatchProps {
     deleteNote: (
         noteId: string,
         parentId: string,
-        snackbarCallback: (message: string) => void
+        snackbarCallback: (message: string) => void,
+        buttonCallback: (status: boolean) => void
     ) => void;
     deleteFolder: (
         folderId: string,
         parentId: string,
-        snackbarCallback: (message: string) => void
+        snackbarCallback: (message: string) => void,
+        buttonCallback: (status: boolean) => void
     ) => void;
     toggleSnackbarOpen: (message: string) => void;
 }
@@ -114,8 +116,13 @@ const NotebookEntity = ({
 }: NotebookEntityProps): JSX.Element => {
     dayjs.extend(relativeTime);
 
+    const [isButtonLoading, setIsButtonLoading] = useState(false);
+
     const [stateRenameModal, setStateRenameModal] = useState(false);
     const [stateDeleteModal, setStateDeleteModal] = useState(false);
+
+    //Button Handler:
+    const setButtonState = (status: boolean) => setIsButtonLoading(status);
 
     //Rename Modal handler:
     const openRenameModal = () => {
@@ -192,19 +199,22 @@ const NotebookEntity = ({
     };
 
     const entityDeletionConfirmationHandler = () => {
+        setButtonState(true);
         switch (NotebookEntity.entityType) {
             case 'FOLDER':
                 deleteFolder(
                     NotebookEntity.entityId as any,
                     NotebookEntity.entityParentId,
-                    toggleSnackbarOpen
+                    toggleSnackbarOpen,
+                    setButtonState
                 );
                 break;
             case 'NOTE':
                 deleteNote(
                     NotebookEntity.entityId as any,
                     NotebookEntity.entityParentId,
-                    toggleSnackbarOpen
+                    toggleSnackbarOpen,
+                    setButtonState
                 );
                 break;
             default:
