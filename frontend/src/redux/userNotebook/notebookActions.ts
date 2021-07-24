@@ -137,7 +137,7 @@ export const renameNote = (
             },
         } = getState();
 
-        const response = await api.patch('/users/notebook/note/update', {
+        const response = await api.post('/users/notebook/note/update', {
             _id,
             noteId,
             parentId,
