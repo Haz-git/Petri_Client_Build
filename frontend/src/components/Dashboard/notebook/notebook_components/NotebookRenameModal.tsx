@@ -122,6 +122,7 @@ const NotebookRenameModal = ({
             case 'NOTE':
                 if (newEntityName !== '') {
                     setButtonState(true);
+                    console.log(entityId, entityParentId);
                     renameNote(
                         entityId as any,
                         entityParentId,
