@@ -176,6 +176,9 @@ const MainNotebook = ({
         params: { id },
     },
 }: MainNotebookProps): JSX.Element => {
+    const [directoryPathway, setDirectoryPathway] = useState<object[]>([
+        { folderName: 'root' },
+    ]);
     const [isNotebookLoaded, setIsNotebookLoaded] = useState(false);
 
     const setLoadedStatus = (status: boolean) => setIsNotebookLoaded(status);
@@ -232,10 +235,57 @@ const MainNotebook = ({
                 const currFolder = notebook.rootFolders.find(
                     (x) => x.folderId === id
                 );
+
                 return currFolder.folderName;
             }
-
             return 'root';
+        }
+    };
+
+    const createDirectoryPathway = () => {
+        if (notebook !== undefined && notebook !== null) {
+            if (id !== 'root') {
+                let notebookCopy = notebook;
+                let dirPath: { folderId: string; folderName: string }[] = [];
+
+                let currFolder = notebookCopy.rootFolders.find(
+                    (x) => x.folderId === id
+                );
+                let currObj = {
+                    folderId: currFolder.folderId,
+                    folderName: currFolder.folderName,
+                };
+
+                dirPath.push(currObj);
+
+                let parentFolder = notebookCopy.rootFolders.find(
+                    (x) => x.parentId === currFolder.parentId
+                );
+
+                console.log('Parent', parentFolder);
+
+                let parentObj = {
+                    folderId: parentFolder.folderId,
+                    folderName: parentFolder.folderName,
+                };
+
+                dirPath.push(parentObj);
+
+                currFolder = parentFolder;
+
+                console.log('curr', currFolder);
+                console.log(dirPath);
+            }
+
+            /*TODO - Fix looping:
+                1. Insert the current folder into dirPath.
+                2. Find current folder's parentId
+                3. Find the parentFolder, make that the current folder(?)
+                4. Repeat until the parentId === 'root'
+
+            */
+
+            // setDirectoryPathway([...directoryPathway, currFolder]);
         }
     };
 
@@ -303,7 +353,9 @@ const MainNotebook = ({
                 <FileContainer>
                     <ScrollableWrapperContainer>
                         <PathwayContainer>
-                            <PathwayText>Path: // Root</PathwayText>
+                            <PathwayText>
+                                {createDirectoryPathway()}
+                            </PathwayText>
                         </PathwayContainer>
                         <SearchbarContainer>
                             <Searchbar />
@@ -318,7 +370,7 @@ const MainNotebook = ({
                                 </FilesTextHeader>
                                 <FilesTextLine />
                                 <DirectoryText>
-                                    All Entities in:{' /'}
+                                    All Entities in:{'  '}
                                     {findNameOfCurrentDirectory()}
                                 </DirectoryText>
                             </FilesScrollableHeader>
