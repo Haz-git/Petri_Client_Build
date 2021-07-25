@@ -87,6 +87,9 @@ const ScrollableWrapperContainer = styled.div`
 `;
 
 const PathwayContainer = styled.div`
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
     padding: 1em 1em;
     background: #ececec;
     width: 100%;
@@ -242,6 +245,23 @@ const MainNotebook = ({
         }
     };
 
+    const pushParentDir = (currDir: any, notebook: any, dirPath: any) => {
+        if (currDir === undefined || currDir === null) return;
+
+        let currObj = {
+            folderId: currDir.folderId,
+            folderName: currDir.folderName,
+        };
+
+        dirPath.push(currObj);
+
+        let parentFolder = notebook.rootFolders.find(
+            (x) => x.folderId === currDir.parentId
+        );
+
+        return pushParentDir(parentFolder, notebook, dirPath);
+    };
+
     const createDirectoryPathway = () => {
         if (notebook !== undefined && notebook !== null) {
             if (id !== 'root') {
@@ -251,30 +271,10 @@ const MainNotebook = ({
                 let currFolder = notebookCopy.rootFolders.find(
                     (x) => x.folderId === id
                 );
-                let currObj = {
-                    folderId: currFolder.folderId,
-                    folderName: currFolder.folderName,
-                };
 
-                dirPath.push(currObj);
+                pushParentDir(currFolder, notebookCopy, dirPath);
 
-                let parentFolder = notebookCopy.rootFolders.find(
-                    (x) => x.parentId === currFolder.parentId
-                );
-
-                console.log('Parent', parentFolder);
-
-                let parentObj = {
-                    folderId: parentFolder.folderId,
-                    folderName: parentFolder.folderName,
-                };
-
-                dirPath.push(parentObj);
-
-                currFolder = parentFolder;
-
-                console.log('curr', currFolder);
-                console.log(dirPath);
+                return dirPath;
             }
 
             /*TODO - Fix looping:
@@ -286,6 +286,21 @@ const MainNotebook = ({
             */
 
             // setDirectoryPathway([...directoryPathway, currFolder]);
+        }
+    };
+
+    const renderDirectoryPathway = () => {
+        let currPathway = createDirectoryPathway();
+        currPathway = currPathway?.reverse();
+
+        if (currPathway && currPathway.length < 15) {
+            return currPathway.map((directory) => (
+                <PathwayText key={directory.folderId}>
+                    {`${directory.folderName}/`}
+                </PathwayText>
+            ));
+        } else {
+            return null;
         }
     };
 
@@ -353,9 +368,8 @@ const MainNotebook = ({
                 <FileContainer>
                     <ScrollableWrapperContainer>
                         <PathwayContainer>
-                            <PathwayText>
-                                {createDirectoryPathway()}
-                            </PathwayText>
+                            <PathwayText>Path: //Root/</PathwayText>
+                            {renderDirectoryPathway()}
                         </PathwayContainer>
                         <SearchbarContainer>
                             <Searchbar />
