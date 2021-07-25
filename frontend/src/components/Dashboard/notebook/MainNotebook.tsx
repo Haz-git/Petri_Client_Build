@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
+//React Router:
+import { Link } from 'react-router-dom';
+
 //Redux:
 import { connect } from 'react-redux';
 import { getNotebook } from '../../../redux/userNotebook/notebookActions';
@@ -18,6 +21,7 @@ import { Star } from '@styled-icons/evaicons-solid/Star';
 import { Users } from '@styled-icons/heroicons-solid/Users';
 import { Timelapse } from '@styled-icons/material-outlined/Timelapse';
 import { FilePaper2 } from '@styled-icons/remix-fill/FilePaper2';
+import { KeyboardArrowRight } from '@styled-icons/material-outlined/KeyboardArrowRight';
 
 const StarIcon = styled(Star)`
     color: #3c4042;
@@ -39,6 +43,12 @@ const TimelapseIcon = styled(Timelapse)`
 
 const FileIcon = styled(FilePaper2)`
     color: #3c4042;
+    height: 1.5rem;
+    width: 1.5rem;
+`;
+
+const RightArrowIcon = styled(KeyboardArrowRight)`
+    color: #423c3c;
     height: 1.5rem;
     width: 1.5rem;
 `;
@@ -88,18 +98,33 @@ const ScrollableWrapperContainer = styled.div`
 
 const PathwayContainer = styled.div`
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: flex-start;
     padding: 1em 1em;
     background: #ececec;
     width: 100%;
 `;
 
-const PathwayText = styled.h2`
+const PathwayButton = styled(Link)`
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
     font-family: 'Lato', sans-serif;
     font-size: 1.2em;
     font-weight: 700;
     color: #423c3c;
+    cursor: pointer;
+
+    &:focus {
+        outline: none;
+        text-decoration: none;
+    }
+
+    &:hover {
+        text-decoration: none;
+        color: #4263eb;
+    }
 `;
 
 const SearchbarContainer = styled.div`
@@ -294,9 +319,13 @@ const MainNotebook = ({
 
         if (currPathway && currPathway.length < 15) {
             return currPathway.map((directory) => (
-                <PathwayText key={directory.folderId}>
-                    {`${directory.folderName}/`}
-                </PathwayText>
+                <PathwayButton
+                    to={`/notebook/${directory.folderId}`}
+                    key={directory.folderId}
+                >
+                    {`${directory.folderName}`}
+                    <RightArrowIcon />
+                </PathwayButton>
             ));
         } else {
             return null;
@@ -367,7 +396,10 @@ const MainNotebook = ({
                 <FileContainer>
                     <ScrollableWrapperContainer>
                         <PathwayContainer>
-                            <PathwayText>Path: //Root/</PathwayText>
+                            <PathwayButton to={`/notebook/root`}>
+                                Root
+                                <RightArrowIcon />
+                            </PathwayButton>
                             {renderDirectoryPathway()}
                         </PathwayContainer>
                         <SearchbarContainer>
