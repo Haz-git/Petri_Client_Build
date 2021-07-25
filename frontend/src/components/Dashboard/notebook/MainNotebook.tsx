@@ -323,8 +323,8 @@ const MainNotebook = ({
                     to={`/notebook/${directory.folderId}`}
                     key={directory.folderId}
                 >
-                    {`${directory.folderName}`}
                     <RightArrowIcon />
+                    {`${directory.folderName}`}
                 </PathwayButton>
             ));
         } else {
@@ -398,7 +398,6 @@ const MainNotebook = ({
                         <PathwayContainer>
                             <PathwayButton to={`/notebook/root`}>
                                 Root
-                                <RightArrowIcon />
                             </PathwayButton>
                             {renderDirectoryPathway()}
                         </PathwayContainer>
