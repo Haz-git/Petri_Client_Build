@@ -179,9 +179,6 @@ const MainNotebook = ({
         params: { id },
     },
 }: MainNotebookProps): JSX.Element => {
-    const [directoryPathway, setDirectoryPathway] = useState<object[]>([
-        { folderName: 'root' },
-    ]);
     const [isNotebookLoaded, setIsNotebookLoaded] = useState(false);
 
     const setLoadedStatus = (status: boolean) => setIsNotebookLoaded(status);
@@ -209,26 +206,34 @@ const MainNotebook = ({
             let totalEntities = notebook.rootFolders.concat(notebook.rootFiles);
             totalEntities = totalEntities.filter((x) => x.parentId === id);
 
-            return totalEntities.map((entity) => (
-                <NotebookEntity
-                    key={entity.noteId || entity.folderId}
-                    noteName={entity.noteName}
-                    noteId={entity.noteId}
-                    parentId={entity.parentId}
-                    folderName={entity.folderName}
-                    folderId={entity.folderId}
-                    ownerName={entity.ownerName}
-                    dateCreated={entity.dateCreated}
-                    dateModified={entity.dateModified}
-                    onClickSelection={() =>
-                        toggleSelectedEntity(entity.noteId || entity.folderId)
-                    }
-                    isSelected={checkSelectedEntity(
-                        entity.noteId,
-                        entity.folderId
-                    )}
-                />
-            ));
+            if (totalEntities !== undefined && totalEntities !== null) {
+                return totalEntities.map((entity) => (
+                    <NotebookEntity
+                        key={entity.noteId || entity.folderId}
+                        noteName={entity.noteName}
+                        noteId={entity.noteId}
+                        parentId={entity.parentId}
+                        folderName={entity.folderName}
+                        folderId={entity.folderId}
+                        ownerName={entity.ownerName}
+                        dateCreated={entity.dateCreated}
+                        dateModified={entity.dateModified}
+                        onClickSelection={() =>
+                            toggleSelectedEntity(
+                                entity.noteId || entity.folderId
+                            )
+                        }
+                        isSelected={checkSelectedEntity(
+                            entity.noteId,
+                            entity.folderId
+                        )}
+                    />
+                ));
+            } else {
+                return (
+                    <h1>Sorry, we're unable to find your notebook page...</h1>
+                );
+            }
         }
     };
 
@@ -239,7 +244,11 @@ const MainNotebook = ({
                     (x) => x.folderId === id
                 );
 
-                return currFolder.folderName;
+                if (currFolder !== undefined && currFolder !== null) {
+                    return currFolder.folderName;
+                }
+
+                return 'Error: Unable to find notebook page.';
             }
             return 'root';
         }
@@ -276,16 +285,6 @@ const MainNotebook = ({
 
                 return dirPath;
             }
-
-            /*TODO - Fix looping:
-                1. Insert the current folder into dirPath.
-                2. Find current folder's parentId
-                3. Find the parentFolder, make that the current folder(?)
-                4. Repeat until the parentId === 'root'
-
-            */
-
-            // setDirectoryPathway([...directoryPathway, currFolder]);
         }
     };
 
