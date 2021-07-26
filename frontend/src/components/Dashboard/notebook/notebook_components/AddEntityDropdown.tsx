@@ -138,7 +138,7 @@ const AddEntityDropdown = ({
         toggleBtnLoading(true);
         const parentId = detectFilePath();
         const name = 'Untitled note';
-        const htmlState = 'TempState';
+        const htmlState = '';
         createNewNote(
             name,
             htmlState,
