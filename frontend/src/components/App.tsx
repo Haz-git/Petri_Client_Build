@@ -19,6 +19,7 @@ import MainDashboard from '../components/Dashboard/homePage/MainDashboard';
 import Calendar from './Dashboard/calendar/Calendar';
 import Messenger from '../components/Dashboard/messenger/Messenger';
 import MainNotebook from '../components/Dashboard/notebook/MainNotebook';
+import EditNotePage from '../components/Dashboard/notebook/notebook_components/EditNotePage';
 import CreateBioNote from '../components/Dashboard/bioNotes/CreateBioNote';
 import NewBioNote from '../components/Dashboard/bioNotes/NewBioNote';
 import ReadBioNote from '../components/Dashboard/bioNotes/ReadBioNote';
@@ -105,6 +106,11 @@ const App = () => {
                                         exact
                                         path="/notebook/:id"
                                         component={MainNotebook}
+                                    />
+                                    <Route
+                                        exact
+                                        path="/notebook/note/:id"
+                                        component={EditNotePage}
                                     />
                                     <Route
                                         exact
