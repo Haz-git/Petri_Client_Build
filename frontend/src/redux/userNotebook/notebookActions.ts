@@ -116,7 +116,7 @@ export const deleteNote = (
     };
 };
 
-export const renameNote = (
+export const updateNote = (
     noteId: string,
     parentId: string,
     requestType: string,
@@ -148,7 +148,7 @@ export const renameNote = (
 
         if (response) {
             buttonCallback(false);
-            snackbarCallback('Your note has been renamed.');
+            snackbarCallback('Your note has been updated.');
         }
 
         dispatch({
