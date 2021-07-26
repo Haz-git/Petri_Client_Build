@@ -250,6 +250,7 @@ const NotebookEntity = ({
 
             if (NotebookEntity.entityType === 'NOTE') {
                 //Access Note editing mode:
+                historyObject.push(`/notebook/note/${NotebookEntity.entityId}`);
             } else if (NotebookEntity.entityType === 'FOLDER') {
                 //Access contents of folder:
                 historyObject.push(`/notebook/${NotebookEntity.entityId}`);
