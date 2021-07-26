@@ -48,6 +48,7 @@ interface IComponentProps {
 type EditNotePageProps = IDispatchProps & IMapStateToProps & IComponentProps;
 
 const EditNotePage = ({
+    updateNote,
     getNotebook,
     notebook,
     match: {
@@ -66,26 +67,40 @@ const EditNotePage = ({
 
     //Editor Change State:
     const [editorChange, setEditorChange] = useState('');
+    const [isNewNote, setIsNewNote] = useState(true);
 
     useEffect(() => {
         getNotebook(setLoadedStatus);
-
-        if (isNoteLoaded !== false) findEditorState();
     }, []);
 
+    useEffect(() => {
+        findEditorState();
+    }, [notebook]);
+
+    console.log(isNoteLoaded);
+
     const findEditorState = () => {
-        if (isNoteLoaded !== false) {
+        if (
+            isNoteLoaded !== false &&
+            notebook !== undefined &&
+            notebook !== null
+        ) {
             const currentNote = notebook.rootFiles.find(
                 (note) => note.noteId === id
             );
 
-            const fixedHTML = unescape(currentNote.htmlState);
-            setEditorState(fixedHTML);
+            if (currentNote.htmlState !== '') {
+                setIsNewNote(false);
+                const fixedHTML = unescape(currentNote.htmlState);
+                setEditorState(fixedHTML);
+            }
+
+            console.log('Editor state should be updated...');
         }
     };
 
     const renderCKEditor = () => {
-        if (editorState !== '') {
+        if (editorState !== '' && isNewNote !== true) {
             return (
                 <CKEditor
                     editor={Editor}
@@ -94,8 +109,25 @@ const EditNotePage = ({
                     data={editorState}
                 />
             );
+        } else if (isNewNote !== false) {
+            return (
+                <CKEditor
+                    editor={Editor}
+                    config={editorConfiguration}
+                    onChange={handleCKEditorChange}
+                    onInit={(editor) => {
+                        editor.editing.view.change((writer) => {
+                            writer.setStyle(
+                                'height',
+                                '100%',
+                                editor.editing.view.document.getRoot()
+                            );
+                        });
+                    }}
+                />
+            );
         } else {
-            console.log('No editor state');
+            console.log('Something wrong with renderCKEditor()');
         }
     };
 
@@ -105,7 +137,9 @@ const EditNotePage = ({
         setEditorChange(dataHTML);
     };
 
-    return <MainContainer>{renderCKEditor()}</MainContainer>;
+    return (
+        <>{isNoteLoaded && <MainContainer>{renderCKEditor()}</MainContainer>}</>
+    );
 };
 
 const mapStateToProps = (state: any, ownProps: any) => {
