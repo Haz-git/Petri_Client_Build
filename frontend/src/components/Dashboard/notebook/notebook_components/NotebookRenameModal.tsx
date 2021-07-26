@@ -9,7 +9,7 @@ import GeneralTextField from '../../general_components/GeneralTextField';
 //Redux:
 import { connect } from 'react-redux';
 import {
-    renameNote,
+    updateNote,
     renameFolder,
 } from '../../../../redux/userNotebook/notebookActions';
 
@@ -74,7 +74,7 @@ interface IComponentProps {
 }
 
 interface IDispatchProps {
-    renameNote: (
+    updateNote: (
         noteId: string,
         parentId: string,
         requestType: string,
@@ -102,7 +102,7 @@ const NotebookRenameModal = ({
     entityParentId,
     entityName,
     entityType,
-    renameNote,
+    updateNote,
     renameFolder,
     snackbar,
 }: NotebookRenameModalProps): JSX.Element => {
@@ -123,7 +123,7 @@ const NotebookRenameModal = ({
                 if (newEntityName !== '') {
                     setButtonState(true);
                     console.log(entityId, entityParentId);
-                    renameNote(
+                    updateNote(
                         entityId as any,
                         entityParentId,
                         'UPDATE_NAME',
@@ -205,4 +205,4 @@ const NotebookRenameModal = ({
     );
 };
 
-export default connect(null, { renameNote, renameFolder })(NotebookRenameModal);
+export default connect(null, { updateNote, renameFolder })(NotebookRenameModal);
