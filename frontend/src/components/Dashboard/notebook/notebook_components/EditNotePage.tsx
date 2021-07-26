@@ -231,7 +231,10 @@ const EditNotePage = ({
         <MainContainer>
             <UpperContainer>
                 <TextFieldContainer>
-                    <GeneralTextField placeholder={noteName} />
+                    <GeneralTextField
+                        placeholder={noteName}
+                        onChange={handleNewNoteNameChange}
+                    />
                 </TextFieldContainer>
                 <ButtonContainer>
                     <GeneralButton
