@@ -219,6 +219,7 @@ export const deleteFolder = (
             folderId,
             parentId,
         });
+
         if (response) {
             buttonCallback(false);
             snackbarCallback('Your folder has been removed.');
