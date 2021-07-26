@@ -7,6 +7,13 @@ import {
     updateNote,
 } from '../../../../redux/userNotebook/notebookActions';
 
+//Components:
+import GeneralTextField from '../../general_components/GeneralTextField';
+import GeneralButton from '../../general_components/GeneralButton';
+
+//Hooks:
+import useWindowDimensions from '../../../../utils/hooks/useWindowDimensions';
+
 //CKEditor:
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import Editor from 'ckeditor5-custom-build/build/ckeditor';
@@ -16,7 +23,23 @@ import { unescape } from 'html-escaper';
 //Styles:
 import styled from 'styled-components';
 
-const MainContainer = styled.div``;
+const MainContainer = styled.div`
+    overflow-y: hidden;
+`;
+
+const NameContainer = styled.div`
+    padding: 1rem 1rem;
+`;
+
+const EditorWrapper = styled.div`
+    padding: 1rem 1rem;
+`;
+
+const EditorContainer = styled.div`
+    .ck-editor__editable {
+        height: ${(props) => `${props.editorHeight - 168}px`};
+    }
+`;
 
 //Interfaces:
 
@@ -59,6 +82,9 @@ const EditNotePage = ({
     const [isNoteLoaded, setIsNoteLoaded] = useState(false);
     const setLoadedStatus = (status: boolean) => setIsNoteLoaded(status);
 
+    //Window dimensions:
+    const { height, width } = useWindowDimensions();
+
     //Note name:
     const [noteName, setNoteName] = useState('');
 
@@ -76,8 +102,6 @@ const EditNotePage = ({
     useEffect(() => {
         findEditorState();
     }, [notebook]);
-
-    console.log(isNoteLoaded);
 
     const findEditorState = () => {
         if (
@@ -99,6 +123,8 @@ const EditNotePage = ({
         }
     };
 
+    console.log(height);
+
     const renderCKEditor = () => {
         if (editorState !== '' && isNewNote !== true) {
             return (
@@ -115,15 +141,6 @@ const EditNotePage = ({
                     editor={Editor}
                     config={editorConfiguration}
                     onChange={handleCKEditorChange}
-                    onInit={(editor) => {
-                        editor.editing.view.change((writer) => {
-                            writer.setStyle(
-                                'height',
-                                '100%',
-                                editor.editing.view.document.getRoot()
-                            );
-                        });
-                    }}
                 />
             );
         } else {
@@ -138,7 +155,17 @@ const EditNotePage = ({
     };
 
     return (
-        <>{isNoteLoaded && <MainContainer>{renderCKEditor()}</MainContainer>}</>
+        <MainContainer>
+            <NameContainer>
+                Name
+                <GeneralTextField />
+            </NameContainer>
+            <EditorWrapper>
+                <EditorContainer editorHeight={height}>
+                    {renderCKEditor()}
+                </EditorContainer>
+            </EditorWrapper>
+        </MainContainer>
     );
 };
 
