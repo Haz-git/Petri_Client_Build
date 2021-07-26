@@ -54,4 +54,5 @@ export const DashboardGlobalStyles = createGlobalStyle`
     padding: 0;
   }
 
+
 `;
