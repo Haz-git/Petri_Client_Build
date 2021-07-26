@@ -47,7 +47,7 @@ const EditorWrapper = styled.div`
 const EditorContainer = styled.div`
     overflow-x: hidden;
     .ck-editor__editable {
-        height: ${(props) => `${props.editorHeight - 168}px`};
+        height: ${(props) => `${props.editorHeight - 150}px`};
     }
 `;
 
@@ -182,7 +182,6 @@ const EditNotePage = ({
 
     const handleCKEditorChange = (event, editor) => {
         const dataHTML = editor.getData();
-
         setEditorChange(dataHTML);
     };
 
@@ -192,8 +191,16 @@ const EditNotePage = ({
         setNewNoteName(e.target.value);
     };
 
+    //Check for editorChange or newNoteName Change (prompt for unsaved information)
+
+    //Send User to notebook:
+    const sendUserToNotebook = () => {
+        historyObject.push('/notebook/root');
+    };
+
     //Button Handlers:
     const onEditorSaveHandler = () => {
+        setButtonState(true);
         if (editorChange !== '' && newNoteName !== '') {
             updateNote(
                 id,
@@ -224,6 +231,11 @@ const EditNotePage = ({
                 toggleSnackbarOpen,
                 setButtonState
             );
+        } else {
+            alert(
+                'An error occurred, your note could not be saved. Please submit a bug report.'
+            );
+            setButtonState(false);
         }
     };
 
@@ -241,11 +253,15 @@ const EditNotePage = ({
                         buttonLabel="Return"
                         buttonBackground="rgba(0, 0, 34, 0.1)"
                         buttonTextColor="rgba(5, 5, 20, 0.7)"
+                        onClick={sendUserToNotebook}
                     />
                     <ButtonSpacer />
                     <GeneralButton
-                        buttonLabel="Save"
+                        buttonLabel={
+                            isButtonLoading === true ? 'Saving...' : 'Save'
+                        }
                         onClick={onEditorSaveHandler}
+                        isDisabledOnLoading={isButtonLoading}
                     />
                 </ButtonContainer>
             </UpperContainer>
