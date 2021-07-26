@@ -7,11 +7,11 @@ const StyledTextInput = styled.input<GeneralTextFieldProps>`
     /* border: 2px solid #909090; */
     border: ${(props) => props.hasError};
     width: 100%;
-    padding: 0.6rem 1rem;
-    border-radius: 0.3rem;
+    padding: 0.8rem 1rem;
+    border-radius: 0.4rem;
     font-family: 'Lato', sans-serif;
     font-size: 1em;
-    font-weight: 400;
+    font-weight: 600;
     color: ${(props) => props.theme.text};
     opacity: 1;
     background: #dfdfdf;
