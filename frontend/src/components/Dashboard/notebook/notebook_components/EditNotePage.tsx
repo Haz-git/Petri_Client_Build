@@ -6,8 +6,10 @@ import {
     getNotebook,
     updateNote,
 } from '../../../../redux/userNotebook/notebookActions';
+import { toggleSnackbarOpen } from '../../../../redux/snackBar/snackBarActions';
 
 //Components:
+import historyObject from '../../../../historyObject';
 import GeneralTextField from '../../general_components/GeneralTextField';
 import GeneralButton from '../../general_components/GeneralButton';
 
@@ -23,22 +25,39 @@ import { unescape } from 'html-escaper';
 //Styles:
 import styled from 'styled-components';
 
-const MainContainer = styled.div`
-    overflow-y: hidden;
+const MainContainer = styled.div``;
+
+const UpperContainer = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 1rem 0.5rem 1rem;
 `;
 
-const NameContainer = styled.div`
-    padding: 1rem 1rem;
+const TextFieldContainer = styled.div`
+    width: 100%;
+    max-width: 50rem;
+    margin-right: 2rem;
 `;
 
 const EditorWrapper = styled.div`
-    padding: 1rem 1rem;
+    padding: 0.5rem 1rem;
 `;
 
 const EditorContainer = styled.div`
+    overflow-x: hidden;
     .ck-editor__editable {
         height: ${(props) => `${props.editorHeight - 168}px`};
     }
+`;
+
+const ButtonContainer = styled.div`
+    display: flex;
+    align-items: center;
+`;
+
+const ButtonSpacer = styled.div`
+    width: 2rem;
 `;
 
 //Interfaces:
@@ -54,6 +73,7 @@ interface IDispatchProps {
         snackbarCallback: (message: string) => void,
         buttonCallback: (status: boolean) => void
     ) => void;
+    toggleSnackbarOpen: (message: string) => void;
 }
 
 interface IMapStateToProps {
@@ -71,6 +91,7 @@ interface IComponentProps {
 type EditNotePageProps = IDispatchProps & IMapStateToProps & IComponentProps;
 
 const EditNotePage = ({
+    toggleSnackbarOpen,
     updateNote,
     getNotebook,
     notebook,
@@ -82,11 +103,18 @@ const EditNotePage = ({
     const [isNoteLoaded, setIsNoteLoaded] = useState(false);
     const setLoadedStatus = (status: boolean) => setIsNoteLoaded(status);
 
+    //Button state:
+    const [isButtonLoading, setIsButtonLoading] = useState(false);
+
     //Window dimensions:
     const { height, width } = useWindowDimensions();
 
     //Note name:
     const [noteName, setNoteName] = useState('');
+    const [newNoteName, setNewNoteName] = useState('');
+
+    //parentId
+    const [noteParentId, setNoteParentId] = useState('');
 
     //EditorState:
     const [editorState, setEditorState] = useState('');
@@ -113,17 +141,19 @@ const EditNotePage = ({
                 (note) => note.noteId === id
             );
 
-            if (currentNote.htmlState !== '') {
-                setIsNewNote(false);
-                const fixedHTML = unescape(currentNote.htmlState);
-                setEditorState(fixedHTML);
-            }
+            if (currentNote) {
+                setNoteParentId(currentNote.parentId);
+                setNoteName(currentNote.noteName);
+                if (currentNote.htmlState !== '') {
+                    setIsNewNote(false);
+                    const fixedHTML = unescape(currentNote.htmlState);
+                    setEditorState(fixedHTML);
+                }
 
-            console.log('Editor state should be updated...');
+                console.log('Editor state should be updated...');
+            }
         }
     };
-
-    console.log(height);
 
     const renderCKEditor = () => {
         if (editorState !== '' && isNewNote !== true) {
@@ -148,18 +178,74 @@ const EditNotePage = ({
         }
     };
 
+    const setButtonState = (status: boolean) => setIsButtonLoading(status);
+
     const handleCKEditorChange = (event, editor) => {
         const dataHTML = editor.getData();
 
         setEditorChange(dataHTML);
     };
 
+    const handleNewNoteNameChange = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        setNewNoteName(e.target.value);
+    };
+
+    //Button Handlers:
+    const onEditorSaveHandler = () => {
+        if (editorChange !== '' && newNoteName !== '') {
+            updateNote(
+                id,
+                noteParentId,
+                'UPDATE_ALL',
+                editorChange,
+                newNoteName,
+                toggleSnackbarOpen,
+                setButtonState
+            );
+        } else if (editorChange !== '' && newNoteName === '') {
+            updateNote(
+                id,
+                noteParentId,
+                'UPDATE_HTML',
+                editorChange,
+                newNoteName,
+                toggleSnackbarOpen,
+                setButtonState
+            );
+        } else if (newNoteName !== '' && editorChange === '') {
+            updateNote(
+                id,
+                noteParentId,
+                'UPDATE_NAME',
+                editorChange,
+                newNoteName,
+                toggleSnackbarOpen,
+                setButtonState
+            );
+        }
+    };
+
     return (
         <MainContainer>
-            <NameContainer>
-                Name
-                <GeneralTextField />
-            </NameContainer>
+            <UpperContainer>
+                <TextFieldContainer>
+                    <GeneralTextField placeholder={noteName} />
+                </TextFieldContainer>
+                <ButtonContainer>
+                    <GeneralButton
+                        buttonLabel="Return"
+                        buttonBackground="rgba(0, 0, 34, 0.1)"
+                        buttonTextColor="rgba(5, 5, 20, 0.7)"
+                    />
+                    <ButtonSpacer />
+                    <GeneralButton
+                        buttonLabel="Save"
+                        onClick={onEditorSaveHandler}
+                    />
+                </ButtonContainer>
+            </UpperContainer>
             <EditorWrapper>
                 <EditorContainer editorHeight={height}>
                     {renderCKEditor()}
@@ -175,6 +261,8 @@ const mapStateToProps = (state: any, ownProps: any) => {
     };
 };
 
-export default connect(mapStateToProps, { updateNote, getNotebook })(
-    EditNotePage
-);
+export default connect(mapStateToProps, {
+    updateNote,
+    getNotebook,
+    toggleSnackbarOpen,
+})(EditNotePage);
