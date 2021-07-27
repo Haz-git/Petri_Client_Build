@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 //Redux:
 import { connect } from 'react-redux';
@@ -13,6 +13,7 @@ import historyObject from '../../../../historyObject';
 import GeneralTextField from '../../general_components/GeneralTextField';
 import GeneralButton from '../../general_components/GeneralButton';
 import LoadingDots from '../../general_components/animations/LoadingDots';
+import GeneralConfirmationModal from '../../general_components/GeneralConfirmationModal';
 
 //Hooks:
 import useWindowDimensions from '../../../../utils/hooks/useWindowDimensions';
@@ -132,6 +133,9 @@ const EditNotePage = ({
     const [editorChange, setEditorChange] = useState('');
     const [isNewNote, setIsNewNote] = useState(true);
 
+    //Modal state:
+    const [stateConfirmationModal, setStateConfirmationModal] = useState(false);
+
     useEffect(() => {
         getNotebook(setLoadedStatus);
     }, []);
@@ -139,6 +143,11 @@ const EditNotePage = ({
     useEffect(() => {
         findEditorState();
     }, [notebook]);
+
+    //Modal Handler:
+    const closeConfirmationModal = () => {
+        setStateConfirmationModal(false);
+    };
 
     const findEditorState = () => {
         if (
@@ -251,39 +260,50 @@ const EditNotePage = ({
     return (
         <>
             {isNoteLoaded === true ? (
-                <MainContainer>
-                    <UpperContainer>
-                        <TextFieldContainer>
-                            <GeneralTextField
-                                placeholder={noteName}
-                                onChange={handleNewNoteNameChange}
-                            />
-                        </TextFieldContainer>
-                        <ButtonContainer>
-                            <GeneralButton
-                                buttonLabel="Return"
-                                buttonBackground="rgba(0, 0, 34, 0.1)"
-                                buttonTextColor="rgba(5, 5, 20, 0.7)"
-                                onClick={sendUserToNotebook}
-                            />
-                            <ButtonSpacer />
-                            <GeneralButton
-                                buttonLabel={
-                                    isButtonLoading === true
-                                        ? 'Saving...'
-                                        : 'Save'
-                                }
-                                onClick={onEditorSaveHandler}
-                                isDisabledOnLoading={isButtonLoading}
-                            />
-                        </ButtonContainer>
-                    </UpperContainer>
-                    <EditorWrapper>
-                        <EditorContainer editorHeight={height}>
-                            {renderCKEditor()}
-                        </EditorContainer>
-                    </EditorWrapper>
-                </MainContainer>
+                <>
+                    <GeneralConfirmationModal
+                        openState={stateConfirmationModal}
+                        closeFunc={closeConfirmationModal}
+                        deleteHandler={sendUserToNotebook}
+                        modalHeader="Unsaved Changes"
+                        modalDesc="You potentially have unsaved changes. Please be sure to save before you go."
+                    />
+                    <MainContainer>
+                        <UpperContainer>
+                            <TextFieldContainer>
+                                <GeneralTextField
+                                    placeholder={noteName}
+                                    onChange={handleNewNoteNameChange}
+                                />
+                            </TextFieldContainer>
+                            <ButtonContainer>
+                                <GeneralButton
+                                    buttonLabel="Return"
+                                    buttonBackground="rgba(0, 0, 34, 0.1)"
+                                    buttonTextColor="rgba(5, 5, 20, 0.7)"
+                                    onClick={() =>
+                                        setStateConfirmationModal(true)
+                                    }
+                                />
+                                <ButtonSpacer />
+                                <GeneralButton
+                                    buttonLabel={
+                                        isButtonLoading === true
+                                            ? 'Saving...'
+                                            : 'Save'
+                                    }
+                                    onClick={onEditorSaveHandler}
+                                    isDisabledOnLoading={isButtonLoading}
+                                />
+                            </ButtonContainer>
+                        </UpperContainer>
+                        <EditorWrapper>
+                            <EditorContainer editorHeight={height}>
+                                {renderCKEditor()}
+                            </EditorContainer>
+                        </EditorWrapper>
+                    </MainContainer>
+                </>
             ) : (
                 <LoadingDotsContainer>
                     <LoadingDots />
