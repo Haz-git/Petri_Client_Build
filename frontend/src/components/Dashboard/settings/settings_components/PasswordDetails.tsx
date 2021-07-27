@@ -11,12 +11,18 @@ import {
     FormHeader,
     FormContainer,
     TextFieldContainer,
-    ButtonContainer,
     ButtonSpacer,
 } from './ProfileDetails';
 import SettingsInputTextField from './SettingsInputTextField';
 import GeneralButton from '../../general_components/GeneralButton';
 import ErrorText from '../settings_components/ErrorText';
+
+const ButtonContainer = styled.div`
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+`;
 
 //Styles:
 
@@ -233,6 +239,7 @@ const PasswordDetails = ({
                     }
                     onClick={submitUserPasswordChange}
                     isDisabledOnLoading={isButtonLoading}
+                    width="7rem"
                 />
                 <ButtonSpacer />
                 <GeneralButton
@@ -240,6 +247,7 @@ const PasswordDetails = ({
                     buttonBackground="rgba(0, 0, 34, 0.1)"
                     buttonTextColor="rgba(5, 5, 20, 0.7)"
                     onClick={resetAllUserSubmissions}
+                    width="7rem"
                 />
             </ButtonContainer>
         </MainContainer>
