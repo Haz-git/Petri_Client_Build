@@ -327,7 +327,11 @@ const MainNotebook = ({
                     key={directory.folderId}
                 >
                     <RightArrowIcon />
-                    {`${directory.folderName}`}
+                    {`${
+                        directory.folderName.length > 8
+                            ? directory.folderName.substr(0, 8).concat('...')
+                            : directory.folderName
+                    }`}
                 </PathwayButton>
             ));
         } else {
