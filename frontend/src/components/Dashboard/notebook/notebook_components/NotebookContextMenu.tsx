@@ -39,7 +39,7 @@ const StyledMenu = styled(Menu)`
         > .react-contexify__item__content,
     .react-contexify__item:not(.react-contexify__item--disabled):focus
         > .react-contexify__item__content {
-        background-color: #4263eb;
+        background-color: rgba(66, 99, 235, 0.85);
     }
 `;
 
