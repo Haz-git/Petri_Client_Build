@@ -21,6 +21,10 @@ const StyledTextInput = styled.input<GeneralTextFieldProps>`
         border: 1px solid #4263eb;
         box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;
     }
+
+    &::placeholder {
+        color: #3c4042;
+    }
 `;
 
 //Interfaces:
