@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import { Search } from '@styled-icons/ionicons-solid/Search';
+import OutsideClickHandler from 'react-outside-click-handler';
 
 //Icons:
 const SearchIcon = styled(Search)`
@@ -17,9 +18,15 @@ const MainContainer = styled.div`
     align-items: center;
     justify-content: flex-start;
     padding: 0.75rem 0.75rem;
-    background: #ececec;
+    background: ${({ isActive }) =>
+        isActive === false ? '#ececec' : '#f9f9f9'};
     width: 100%;
     border-radius: 0.4em;
+    border: ${({ isActive }) =>
+        isActive === false ? '1px solid #ececec' : '1px solid #4263eb'};
+
+    box-shadow: ${({ isActive }) =>
+        isActive === false ? 'none' : 'rgba(0, 0, 0, 0.2) 0px 2px 4px'};
 `;
 
 const StyledSearchInput = styled.input`
@@ -39,11 +46,17 @@ const StyledSearchInput = styled.input`
 //Interface:
 
 const Searchbar = () => {
+    const [isActive, setIsActive] = useState(false);
+
+    const toggleIsActive = () => setIsActive(true);
+
     return (
-        <MainContainer>
-            <SearchIcon />
-            <StyledSearchInput placeholder="Search" />
-        </MainContainer>
+        <OutsideClickHandler onOutsideClick={() => setIsActive(false)}>
+            <MainContainer onClick={toggleIsActive} isActive={isActive}>
+                <SearchIcon />
+                <StyledSearchInput placeholder="Search" isActive={isActive} />
+            </MainContainer>
+        </OutsideClickHandler>
     );
 };
 
