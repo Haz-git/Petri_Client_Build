@@ -28,6 +28,7 @@ const DocumentIcon = styled(FileEarmarkText)`
     color: #423c3c;
     height: 1.4rem;
     width: 1.4rem;
+    margin-bottom: 0.15rem;
 `;
 
 const FolderIcon = styled(Folder2)`
