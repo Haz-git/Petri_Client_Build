@@ -243,6 +243,7 @@ const MainNotebook = ({
                         ownerName={entity.ownerName}
                         dateCreated={entity.dateCreated}
                         dateModified={entity.dateModified}
+                        isStarred={entity.isStarred}
                         onClickSelection={() =>
                             toggleSelectedEntity(
                                 entity.noteId || entity.folderId
