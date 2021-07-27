@@ -22,17 +22,25 @@ import {
 
 import { FileEarmarkText } from '@styled-icons/bootstrap/FileEarmarkText';
 import { Folder2 } from '@styled-icons/bootstrap/Folder2';
+import { StarFill } from '@styled-icons/bootstrap/StarFill';
 
 const DocumentIcon = styled(FileEarmarkText)`
     color: #423c3c;
-    height: 1.5rem;
-    width: 1.5rem;
+    height: 1.4rem;
+    width: 1.4rem;
 `;
 
 const FolderIcon = styled(Folder2)`
     color: #423c3c;
-    height: 1.5rem;
+    height: 1.4rem;
     width: 1.5rem;
+`;
+
+const StarIcon = styled(StarFill)`
+    color: #81898f;
+    height: 1.2rem;
+    width: 1.2rem;
+    margin-bottom: 0.15rem;
 `;
 
 //Styles:
@@ -52,6 +60,7 @@ const IconContainer = styled.div`
 const EntityContainer = styled.div`
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr;
+    align-items: center;
 `;
 
 const EntityNameContainer = styled.div`
@@ -63,9 +72,10 @@ const EntityNameText = styled.p`
     font-family: 'Lato', sans-serif;
     font-size: 1.1em;
     font-weight: 900;
-    margin-top: 0.2rem;
     color: ${({ isSelected }) =>
         isSelected === true ? 'rgba(66, 99, 235, 1)' : '#3c4042'};
+    margin-right: 1rem;
+    padding-top: 0.2rem;
 `;
 
 const EntityDetails = styled.p`
@@ -75,6 +85,8 @@ const EntityDetails = styled.p`
     color: ${({ isSelected }) =>
         isSelected === true ? 'rgba(66, 99, 235, 1)' : '#81898f'};
 `;
+
+const StarContainer = styled.div``;
 
 //Interface:
 
@@ -105,6 +117,7 @@ interface IComponentProps {
     dateModified?: string;
     onClickSelection: () => void;
     isSelected?: boolean;
+    isStarred: string;
 }
 
 type NotebookEntityProps = IDispatchProps & IComponentProps;
@@ -123,6 +136,7 @@ const NotebookEntity = ({
     toggleSnackbarOpen,
     isSelected,
     onClickSelection,
+    isStarred,
 }: NotebookEntityProps): JSX.Element => {
     dayjs.extend(relativeTime);
 
@@ -285,6 +299,11 @@ const NotebookEntity = ({
                         <EntityNameText isSelected={isSelected}>
                             {parseName()}
                         </EntityNameText>
+                        {isStarred === 'TRUE' ? (
+                            <StarContainer>
+                                <StarIcon />
+                            </StarContainer>
+                        ) : null}
                     </EntityNameContainer>
                     <EntityDetails isSelected={isSelected}>
                         {ownerName}
