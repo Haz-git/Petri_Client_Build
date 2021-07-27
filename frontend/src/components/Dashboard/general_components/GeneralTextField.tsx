@@ -14,11 +14,11 @@ const StyledTextInput = styled.input<GeneralTextFieldProps>`
     font-weight: 600;
     color: ${(props) => props.theme.text};
     opacity: 1;
-    background: #dfdfdf;
+    background: #f9f9f9;
 
     &:focus {
         /* background: #ffffff; */
-        border: 2px solid #4263eb;
+        border: 1px solid #4263eb;
         box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;
     }
 `;
@@ -52,8 +52,8 @@ const GeneralTextField = ({
             <StyledTextInput
                 hasError={
                     hasError === false
-                        ? '2px solid transparent'
-                        : '2px solid #D7002E'
+                        ? '1px solid #dfdfdf'
+                        : '1px solid #D7002E'
                 }
                 name={name}
                 onChange={onChange}
