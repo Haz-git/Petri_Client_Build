@@ -24,6 +24,25 @@ const IconSeparator = styled.div`
     width: 0.5rem;
 `;
 
+const StyledMenu = styled(Menu)`
+    .react-contexify__separator {
+        background: #dfdfdf;
+    }
+    .react-contexify__item {
+        color: #423c3c;
+        font-size: 1em;
+        font-weight: 400;
+        font-family: 'Lato';
+    }
+
+    .react-contexify__item:not(.react-contexify__item--disabled):hover
+        > .react-contexify__item__content,
+    .react-contexify__item:not(.react-contexify__item--disabled):focus
+        > .react-contexify__item__content {
+        background-color: #4263eb;
+    }
+`;
+
 //Interfaces:
 
 interface IComponentProps {
@@ -44,7 +63,7 @@ const NotebookContextMenu = ({ id }: NotebookContextMenuProps): JSX.Element => {
     };
 
     return (
-        <Menu id={id} theme={theme.light} animation={animation.fade}>
+        <StyledMenu id={id} animation={animation.fade}>
             <Item onClick={itemRenameHandler}>
                 <EditIcon />
                 <IconSeparator />
@@ -56,7 +75,7 @@ const NotebookContextMenu = ({ id }: NotebookContextMenuProps): JSX.Element => {
                 <IconSeparator />
                 Delete
             </Item>
-        </Menu>
+        </StyledMenu>
     );
 };
 
