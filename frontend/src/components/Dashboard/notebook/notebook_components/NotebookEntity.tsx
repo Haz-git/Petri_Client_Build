@@ -166,8 +166,8 @@ const NotebookEntity = ({
     });
 
     const truncateName = (entityName: string) => {
-        if (entityName.length > 30) {
-            return entityName.substr(0, 30).concat('...');
+        if (entityName.length > 25) {
+            return entityName.substr(0, 25).concat('...');
         } else {
             return entityName;
         }
