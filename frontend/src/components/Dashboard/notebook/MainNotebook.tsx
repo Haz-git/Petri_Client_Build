@@ -71,13 +71,13 @@ const Sidebar = styled.div`
 
 const AddButtonContainer = styled.div`
     position: fixed;
-    top: 6rem;
+    top: 6.25rem;
 `;
 
 const FileOptions = styled.div`
     /* margin-top: 4rem; */
     position: fixed;
-    top: 13rem;
+    top: 13.3rem;
     text-align: left;
 `;
 
@@ -360,17 +360,6 @@ const MainNotebook = ({
                         />
                         <FileOptionSpacer />
                         <GeneralButton
-                            buttonLabel="Shared"
-                            buttonIcon={<UsersIcon />}
-                            disableShadow={true}
-                            buttonTextColor="#3C4042"
-                            buttonBackground="transparent"
-                            iconMargin="2rem"
-                            fontSize="1.2em"
-                            hoverShadow="none"
-                        />
-                        <FileOptionSpacer />
-                        <GeneralButton
                             buttonLabel="Recent"
                             buttonIcon={<TimelapseIcon />}
                             disableShadow={true}
@@ -381,16 +370,6 @@ const MainNotebook = ({
                             hoverShadow="none"
                         />
                         <FileOptionSpacer />
-                        <GeneralButton
-                            buttonLabel="Frequent"
-                            buttonIcon={<FileIcon />}
-                            disableShadow={true}
-                            buttonTextColor="#3C4042"
-                            buttonBackground="transparent"
-                            iconMargin="2rem"
-                            fontSize="1.2em"
-                            hoverShadow="none"
-                        />
                     </FileOptions>
                 </Sidebar>
                 <FileContainer>
