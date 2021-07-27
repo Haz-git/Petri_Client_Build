@@ -51,7 +51,8 @@ const IconContainer = styled.div`
 
 const EntityContainer = styled.div`
     display: grid;
-    grid-template-columns: repeat(4, minmax(200px, 2fr));
+    /* grid-template-columns: repeat(4, minmax(200px, 2fr)); */
+    grid-template-columns: 2fr 1fr 1fr 1fr;
 `;
 
 const EntityNameContainer = styled.div`
