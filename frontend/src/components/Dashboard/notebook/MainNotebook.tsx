@@ -270,11 +270,14 @@ const MainNotebook = ({
                 );
 
                 if (currFolder !== undefined && currFolder !== null) {
-                    return currFolder.folderName;
+                    return currFolder.folderName.length > 70
+                        ? currFolder.folderName.substr(0, 70).concat('.....')
+                        : currFolder.folderName;
                 }
 
                 return 'Error: Unable to find notebook page.';
             }
+
             return 'root';
         }
     };
