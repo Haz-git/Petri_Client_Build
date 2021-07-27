@@ -12,6 +12,7 @@ import { toggleSnackbarOpen } from '../../../../redux/snackBar/snackBarActions';
 import historyObject from '../../../../historyObject';
 import GeneralTextField from '../../general_components/GeneralTextField';
 import GeneralButton from '../../general_components/GeneralButton';
+import LoadingDots from '../../general_components/animations/LoadingDots';
 
 //Hooks:
 import useWindowDimensions from '../../../../utils/hooks/useWindowDimensions';
@@ -58,6 +59,14 @@ const ButtonContainer = styled.div`
 
 const ButtonSpacer = styled.div`
     width: 2rem;
+`;
+
+const LoadingDotsContainer = styled.div`
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 `;
 
 //Interfaces:
@@ -240,37 +249,47 @@ const EditNotePage = ({
     };
 
     return (
-        <MainContainer>
-            <UpperContainer>
-                <TextFieldContainer>
-                    <GeneralTextField
-                        placeholder={noteName}
-                        onChange={handleNewNoteNameChange}
-                    />
-                </TextFieldContainer>
-                <ButtonContainer>
-                    <GeneralButton
-                        buttonLabel="Return"
-                        buttonBackground="rgba(0, 0, 34, 0.1)"
-                        buttonTextColor="rgba(5, 5, 20, 0.7)"
-                        onClick={sendUserToNotebook}
-                    />
-                    <ButtonSpacer />
-                    <GeneralButton
-                        buttonLabel={
-                            isButtonLoading === true ? 'Saving...' : 'Save'
-                        }
-                        onClick={onEditorSaveHandler}
-                        isDisabledOnLoading={isButtonLoading}
-                    />
-                </ButtonContainer>
-            </UpperContainer>
-            <EditorWrapper>
-                <EditorContainer editorHeight={height}>
-                    {renderCKEditor()}
-                </EditorContainer>
-            </EditorWrapper>
-        </MainContainer>
+        <>
+            {isNoteLoaded === true ? (
+                <MainContainer>
+                    <UpperContainer>
+                        <TextFieldContainer>
+                            <GeneralTextField
+                                placeholder={noteName}
+                                onChange={handleNewNoteNameChange}
+                            />
+                        </TextFieldContainer>
+                        <ButtonContainer>
+                            <GeneralButton
+                                buttonLabel="Return"
+                                buttonBackground="rgba(0, 0, 34, 0.1)"
+                                buttonTextColor="rgba(5, 5, 20, 0.7)"
+                                onClick={sendUserToNotebook}
+                            />
+                            <ButtonSpacer />
+                            <GeneralButton
+                                buttonLabel={
+                                    isButtonLoading === true
+                                        ? 'Saving...'
+                                        : 'Save'
+                                }
+                                onClick={onEditorSaveHandler}
+                                isDisabledOnLoading={isButtonLoading}
+                            />
+                        </ButtonContainer>
+                    </UpperContainer>
+                    <EditorWrapper>
+                        <EditorContainer editorHeight={height}>
+                            {renderCKEditor()}
+                        </EditorContainer>
+                    </EditorWrapper>
+                </MainContainer>
+            ) : (
+                <LoadingDotsContainer>
+                    <LoadingDots />
+                </LoadingDotsContainer>
+            )}
+        </>
     );
 };
 
