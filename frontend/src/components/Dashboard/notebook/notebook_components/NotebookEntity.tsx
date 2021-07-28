@@ -16,6 +16,8 @@ import { toggleSnackbarOpen } from '../../../../redux/snackBar/snackBarActions';
 import {
     deleteNote,
     deleteFolder,
+    updateNoteStarredStatus,
+    updateFolderStarredStatus,
 } from '../../../../redux/userNotebook/notebookActions';
 
 //Icons:
@@ -105,6 +107,16 @@ interface IDispatchProps {
         buttonCallback: (status: boolean) => void
     ) => void;
     toggleSnackbarOpen: (message: string) => void;
+    updateNoteStarredStatus: (
+        noteId: string,
+        parentId: string,
+        requestType: string
+    ) => void;
+    updateFolderStarredStatus: (
+        folderId: string,
+        parentId: string,
+        requestType: string
+    ) => void;
 }
 
 interface IComponentProps {
@@ -138,6 +150,8 @@ const NotebookEntity = ({
     isSelected,
     onClickSelection,
     isStarred,
+    updateFolderStarredStatus,
+    updateNoteStarredStatus,
 }: NotebookEntityProps): JSX.Element => {
     dayjs.extend(relativeTime);
 
@@ -169,6 +183,15 @@ const NotebookEntity = ({
         setStateDeleteModal(false);
     };
 
+    //Current Entity values:
+    const NotebookEntity = {
+        entityId: folderId === undefined ? noteId : folderId,
+        entityParentId: parentId,
+        entityName: folderName === undefined ? noteName : folderName,
+        entityType: folderId === undefined ? 'NOTE' : 'FOLDER',
+        entityStarredStatus: isStarred,
+    };
+
     const MENU_ID = 'NOTEBOOKCONTEXTMENU';
     const { show } = useContextMenu({
         id: MENU_ID,
@@ -177,6 +200,12 @@ const NotebookEntity = ({
             closeRenameModal,
             openDeleteModal,
             closeDeleteModal,
+            entityId: NotebookEntity.entityId,
+            entityParentId: NotebookEntity.entityParentId,
+            entityType: NotebookEntity.entityType,
+            entityStarredStatus: NotebookEntity.entityStarredStatus,
+            updateFolderStarredStatus,
+            updateNoteStarredStatus,
         },
     });
 
@@ -216,14 +245,6 @@ const NotebookEntity = ({
     const displayContextMenu = (event: React.MouseEvent) => {
         event.preventDefault();
         show(event);
-    };
-
-    //Current Entity values:
-    const NotebookEntity = {
-        entityId: folderId === undefined ? noteId : folderId,
-        entityParentId: parentId,
-        entityName: folderName === undefined ? noteName : folderName,
-        entityType: folderId === undefined ? 'NOTE' : 'FOLDER',
     };
 
     const entityDeletionConfirmationHandler = () => {
@@ -321,6 +342,10 @@ const NotebookEntity = ({
     );
 };
 
-export default connect(null, { deleteNote, deleteFolder, toggleSnackbarOpen })(
-    NotebookEntity
-);
+export default connect(null, {
+    updateNoteStarredStatus,
+    updateFolderStarredStatus,
+    deleteNote,
+    deleteFolder,
+    toggleSnackbarOpen,
+})(NotebookEntity);
