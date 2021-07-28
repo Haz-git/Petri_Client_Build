@@ -158,6 +158,37 @@ export const updateNote = (
     };
 };
 
+export const updateNoteStarredStatus = (
+    noteId: string,
+    parentId: string,
+    requestType: string
+) => {
+    return async (
+        dispatch: Dispatch<NotebookAction>,
+        getState: () => State
+    ) => {
+        const {
+            auth: {
+                userLogIn: {
+                    data: { _id },
+                },
+            },
+        } = getState();
+
+        const response = await api.post('/users/notebook/note/starred/update', {
+            _id,
+            noteId,
+            parentId,
+            requestType,
+        });
+
+        dispatch({
+            type: NotebookActionType.USER_UPDATE_NOTE,
+            payload: response.data.userNotebook,
+        });
+    };
+};
+
 /*Folder-specific action creators*/
 
 export const createNewFolder = (
@@ -265,6 +296,40 @@ export const renameFolder = (
 
         dispatch({
             type: NotebookActionType.USER_RENAME_FOLDER,
+            payload: response.data.userNotebook,
+        });
+    };
+};
+
+export const updateFolderStarredStatus = (
+    folderId: string,
+    parentId: string,
+    requestType: string
+) => {
+    return async (
+        dispatch: Dispatch<NotebookAction>,
+        getState: () => State
+    ) => {
+        const {
+            auth: {
+                userLogIn: {
+                    data: { _id },
+                },
+            },
+        } = getState();
+
+        const response = await api.post(
+            '/users/notebook/folder/starred/update',
+            {
+                _id,
+                folderId,
+                parentId,
+                requestType,
+            }
+        );
+
+        dispatch({
+            type: NotebookActionType.USER_UPDATE_FOLDER,
             payload: response.data.userNotebook,
         });
     };
