@@ -7,6 +7,7 @@ import 'react-contexify/dist/ReactContexify.css';
 
 import { Trash } from '@styled-icons/boxicons-regular/Trash';
 import { EditAlt } from '@styled-icons/boxicons-regular/EditAlt';
+import { Star } from '@styled-icons/boxicons-solid/Star';
 
 const TrashIcon = styled(Trash)`
     height: 1.4rem;
@@ -15,6 +16,12 @@ const TrashIcon = styled(Trash)`
 `;
 
 const EditIcon = styled(EditAlt)`
+    height: 1.4rem;
+    width: 1.4rem;
+    color: inherit;
+`;
+
+const StarIcon = styled(Star)`
     height: 1.4rem;
     width: 1.4rem;
     color: inherit;
@@ -29,9 +36,9 @@ const StyledMenu = styled(Menu)`
         background: #dfdfdf;
     }
     .react-contexify__item {
-        color: #423c3c;
+        color: #81898f;
         font-size: 1em;
-        font-weight: 400;
+        font-weight: 500;
         font-family: 'Lato';
     }
 
@@ -53,13 +60,58 @@ type NotebookContextMenuProps = IComponentProps;
 
 const NotebookContextMenu = ({ id }: NotebookContextMenuProps): JSX.Element => {
     const itemRenameHandler = (props: any) => {
-        const itemProps = props.props;
-        itemProps.openRenameModal();
+        const { openRenameModal } = props.props;
+        openRenameModal();
     };
 
     const itemDeletionHandler = (props: any) => {
-        const itemProps = props.props;
-        itemProps.openDeleteModal();
+        const { openDeleteModal } = props.props;
+        openDeleteModal();
+    };
+
+    const itemStarredHandler = (props: any) => {
+        const {
+            entityType,
+            entityId,
+            entityParentId,
+            entityStarredStatus,
+            updateNoteStarredStatus,
+            updateFolderStarredStatus,
+        } = props.props;
+
+        switch (entityType) {
+            case 'NOTE':
+                if (entityStarredStatus !== 'TRUE') {
+                    return updateNoteStarredStatus(
+                        entityId,
+                        entityParentId,
+                        'ADD_NOTE_TO_STARRED'
+                    );
+                }
+                return updateNoteStarredStatus(
+                    entityId,
+                    entityParentId,
+                    'REMOVE_NOTE_FROM_STARRED'
+                );
+            case 'FOLDER':
+                if (entityStarredStatus !== 'TRUE') {
+                    return updateFolderStarredStatus(
+                        entityId,
+                        entityParentId,
+                        'ADD_FOLDER_TO_STARRED'
+                    );
+                }
+                return updateFolderStarredStatus(
+                    entityId,
+                    entityParentId,
+                    'REMOVE_FOLDER_FROM_STARRED'
+                );
+
+            default:
+                throw new Error(
+                    'Something went wrong starring/unstarring your notebook entity. No entityType was provided.'
+                );
+        }
     };
 
     return (
@@ -68,6 +120,12 @@ const NotebookContextMenu = ({ id }: NotebookContextMenuProps): JSX.Element => {
                 <EditIcon />
                 <IconSeparator />
                 Rename
+            </Item>
+            <Separator />
+            <Item onClick={itemStarredHandler}>
+                <StarIcon />
+                <IconSeparator />
+                Star / Unstar
             </Item>
             <Separator />
             <Item onClick={itemDeletionHandler}>
