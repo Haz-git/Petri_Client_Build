@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import {
     getNotebook,
     updateNote,
+    updateNoteStarredStatus,
 } from '../../../../redux/userNotebook/notebookActions';
 import { toggleSnackbarOpen } from '../../../../redux/snackBar/snackBarActions';
 
@@ -27,6 +28,23 @@ import { unescape } from 'html-escaper';
 //Styles:
 import styled from 'styled-components';
 
+//Icons:
+
+import { Star } from '@styled-icons/octicons/Star';
+import { StarFill } from '@styled-icons/octicons/StarFill';
+
+const StyledStarOutline = styled(Star)`
+    color: #3c4042;
+    height: 2rem;
+    width: 2rem;
+`;
+
+const StyledStarFilled = styled(StarFill)`
+    color: #ffd700;
+    height: 2rem;
+    width: 2rem;
+`;
+
 const MainContainer = styled.div``;
 
 const UpperContainer = styled.div`
@@ -37,8 +55,10 @@ const UpperContainer = styled.div`
 `;
 
 const TextFieldContainer = styled.div`
-    width: 100%;
-    max-width: 50rem;
+    width: 60rem;
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    align-items: center;
     margin-right: 2rem;
 `;
 
@@ -70,6 +90,23 @@ const LoadingDotsContainer = styled.div`
     transform: translate(-50%, -50%);
 `;
 
+const StarButton = styled.button`
+    margin-left: 2rem;
+    width: fit-content;
+    padding: 0.25rem 0.25rem;
+    border-radius: 0.4rem;
+    background: transparent;
+
+    &:hover {
+        background: #f9f9f9;
+    }
+
+    &:focus {
+        outline: none;
+        text-decoration: none;
+    }
+`;
+
 //Interfaces:
 
 interface IDispatchProps {
@@ -82,6 +119,11 @@ interface IDispatchProps {
         updatedNoteName: string,
         snackbarCallback: (message: string) => void,
         buttonCallback: (status: boolean) => void
+    ) => void;
+    updateNoteStarredStatus: (
+        noteId: string,
+        parentId: string,
+        requestType: string
     ) => void;
     toggleSnackbarOpen: (message: string) => void;
 }
@@ -104,6 +146,7 @@ const EditNotePage = ({
     toggleSnackbarOpen,
     updateNote,
     getNotebook,
+    updateNoteStarredStatus,
     notebook,
     match: {
         params: { id },
@@ -136,6 +179,9 @@ const EditNotePage = ({
     //Modal state:
     const [stateConfirmationModal, setStateConfirmationModal] = useState(false);
 
+    //Starred State:
+    const [starredState, setStarredState] = useState('');
+
     useEffect(() => {
         getNotebook(setLoadedStatus);
     }, []);
@@ -162,13 +208,12 @@ const EditNotePage = ({
             if (currentNote) {
                 setNoteParentId(currentNote.parentId);
                 setNoteName(currentNote.noteName);
+                setStarredState(currentNote.isStarred);
                 if (currentNote.htmlState !== '') {
                     setIsNewNote(false);
                     const fixedHTML = unescape(currentNote.htmlState);
                     setEditorState(fixedHTML);
                 }
-
-                console.log('Editor state should be updated...');
             }
         }
     };
@@ -257,6 +302,35 @@ const EditNotePage = ({
         }
     };
 
+    const renderStarredIcon = () => {
+        if (
+            isNoteLoaded !== false &&
+            starredState !== '' &&
+            notebook !== undefined &&
+            notebook !== null
+        ) {
+            if (starredState !== 'FALSE') return <StyledStarFilled />;
+
+            return <StyledStarOutline />;
+        }
+    };
+
+    const updateStarredState = () => {
+        if (starredState !== '') {
+            if (starredState !== 'TRUE')
+                return updateNoteStarredStatus(
+                    id,
+                    noteParentId,
+                    'ADD_NOTE_TO_STARRED'
+                );
+            return updateNoteStarredStatus(
+                id,
+                noteParentId,
+                'REMOVE_NOTE_FROM_STARRED'
+            );
+        }
+    };
+
     return (
         <>
             {isNoteLoaded === true ? (
@@ -275,6 +349,9 @@ const EditNotePage = ({
                                     placeholder={noteName}
                                     onChange={handleNewNoteNameChange}
                                 />
+                                <StarButton onClick={updateStarredState}>
+                                    {renderStarredIcon()}
+                                </StarButton>
                             </TextFieldContainer>
                             <ButtonContainer>
                                 <GeneralButton
@@ -323,4 +400,5 @@ export default connect(mapStateToProps, {
     updateNote,
     getNotebook,
     toggleSnackbarOpen,
+    updateNoteStarredStatus,
 })(EditNotePage);
