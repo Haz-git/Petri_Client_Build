@@ -17,6 +17,8 @@ export default (state: Object = initialState, action: NotebookAction) => {
             return { ...state, notebook: action.payload };
         case NotebookActionType.USER_RENAME_FOLDER:
             return { ...state, notebook: action.payload };
+        case NotebookActionType.USER_UPDATE_FOLDER:
+            return { ...state, notebook: action.payload };
         case NotebookActionType.USER_GET_NOTEBOOK:
             return { ...state, notebook: action.payload };
         default:

@@ -35,6 +35,11 @@ export interface getNotebook {
     payload?: any;
 }
 
+export interface updateFolder {
+    type: NotebookActionType.USER_UPDATE_FOLDER;
+    payload?: any;
+}
+
 export type NotebookAction =
     | addNote
     | updateNote
@@ -42,4 +47,5 @@ export type NotebookAction =
     | addFolder
     | deleteFolder
     | renameFolder
+    | updateFolder
     | getNotebook;
