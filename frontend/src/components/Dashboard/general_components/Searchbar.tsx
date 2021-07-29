@@ -19,7 +19,7 @@ const MainContainer = styled.div`
     justify-content: flex-start;
     padding: 0.75rem 0.75rem;
     background: ${({ isActive }) =>
-        isActive === false ? '#ececec' : '#f9f9f9'};
+        isActive === false ? '#ececec' : '#ffffff'};
     width: 100%;
     border-radius: 0.4em;
     border: ${({ isActive }) =>
