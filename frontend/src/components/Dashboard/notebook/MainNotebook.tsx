@@ -204,6 +204,10 @@ const MainNotebook = ({
         params: { id },
     },
 }: MainNotebookProps): JSX.Element => {
+    //View Controller for Notebook: DEFAULT || STARRED || RECENT
+
+    const [notebookView, setNotebookView] = useState('DEFAULT');
+
     const [isNotebookLoaded, setIsNotebookLoaded] = useState(false);
 
     const setLoadedStatus = (status: boolean) => setIsNotebookLoaded(status);
@@ -229,7 +233,41 @@ const MainNotebook = ({
     const renderNotebookEntities = () => {
         if (notebook !== undefined && notebook !== null) {
             let totalEntities = notebook.rootFolders.concat(notebook.rootFiles);
-            totalEntities = totalEntities.filter((x) => x.parentId === id);
+
+            switch (notebookView) {
+                case 'DEFAULT':
+                    if (id === 'root') {
+                        totalEntities = totalEntities.filter(
+                            (x) => x.parentId === id
+                        );
+                    } else {
+                        let currentEntity = totalEntities.find((x) => {
+                            if (x.noteId === id || x.folderId === id)
+                                return true;
+                        });
+
+                        totalEntities = currentEntity.children;
+                    }
+                    console.log('default view');
+                    break;
+                case 'STARRED':
+                    totalEntities = totalEntities.filter(
+                        (x) => x.isStarred === 'TRUE'
+                    );
+                    console.log('starred view');
+                    break;
+                case 'RECENT':
+                    totalEntities = totalEntities.sort(
+                        (a, b) => a.dateModified - b.dateModified
+                    );
+
+                    console.log('recent view');
+                    break;
+                default:
+                    throw new Error(
+                        'Something when wrong rendering your notebook views. The notebookView was not specified.'
+                    );
+            }
 
             if (totalEntities !== undefined && totalEntities !== null) {
                 return totalEntities.map((entity) => (
@@ -348,6 +386,18 @@ const MainNotebook = ({
         );
     };
 
+    const StarredViewToggler = () => {
+        if (notebookView === 'STARRED') setNotebookView('DEFAULT');
+
+        setNotebookView('STARRED');
+    };
+
+    const RecentViewToggler = () => {
+        if (notebookView === 'RECENT') setNotebookView('DEFAULT');
+
+        setNotebookView('RECENT');
+    };
+
     return (
         <>
             <MainContainer>
@@ -365,6 +415,7 @@ const MainNotebook = ({
                             iconMargin="2rem"
                             fontSize="1.2em"
                             hoverShadow="none"
+                            onClick={StarredViewToggler}
                         />
                         <FileOptionSpacer />
                         <GeneralButton
@@ -376,6 +427,7 @@ const MainNotebook = ({
                             iconMargin="2rem"
                             fontSize="1.2em"
                             hoverShadow="none"
+                            onClick={RecentViewToggler}
                         />
                         <FileOptionSpacer />
                     </FileOptions>
