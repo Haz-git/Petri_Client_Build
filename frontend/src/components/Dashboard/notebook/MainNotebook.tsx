@@ -22,6 +22,7 @@ import { Users } from '@styled-icons/heroicons-solid/Users';
 import { Timelapse } from '@styled-icons/material-outlined/Timelapse';
 import { FilePaper2 } from '@styled-icons/remix-fill/FilePaper2';
 import { KeyboardArrowRight } from '@styled-icons/material-outlined/KeyboardArrowRight';
+import historyObject from '../../../historyObject';
 
 const StarIcon = styled(Star)`
     color: #3c4042;
@@ -241,20 +242,17 @@ const MainNotebook = ({
                             (x) => x.parentId === id
                         );
                     }
-                    console.log('default view');
                     break;
                 case 'STARRED':
                     totalEntities = totalEntities.filter(
                         (x) => x.isStarred === 'TRUE'
                     );
-                    console.log('starred view');
+
                     break;
                 case 'RECENT':
                     totalEntities = totalEntities.sort(
                         (a, b) => -a.dateModified.localeCompare(b.dateModified)
                     );
-
-                    console.log('recent view');
                     break;
                 default:
                     throw new Error(
@@ -267,7 +265,7 @@ const MainNotebook = ({
                     if (x.noteId === id || x.folderId === id) return true;
                 });
 
-                totalEntities = currentEntity.children;
+                totalEntities = currentEntity?.children;
             }
 
             if (totalEntities !== undefined && totalEntities !== null) {
@@ -304,21 +302,33 @@ const MainNotebook = ({
 
     const findNameOfCurrentDirectory = () => {
         if (notebook !== undefined && notebook !== null) {
-            if (id !== 'root') {
-                const currFolder = notebook.rootFolders.find(
-                    (x) => x.folderId === id
-                );
+            switch (notebookView) {
+                case 'DEFAULT':
+                    if (id !== 'root') {
+                        const currFolder = notebook.rootFolders.find(
+                            (x) => x.folderId === id
+                        );
 
-                if (currFolder !== undefined && currFolder !== null) {
-                    return currFolder.folderName.length > 70
-                        ? currFolder.folderName.substr(0, 70).concat('.....')
-                        : currFolder.folderName;
-                }
+                        if (currFolder !== undefined && currFolder !== null) {
+                            return `All Entities in: ${
+                                currFolder.folderName.length > 70
+                                    ? currFolder.folderName
+                                          .substr(0, 70)
+                                          .concat('.....')
+                                    : currFolder.folderName
+                            }`;
+                        }
 
-                return 'Error: Unable to find notebook page.';
+                        return 'Error: Unable to find notebook page.';
+                    }
+                    break;
+                case 'STARRED':
+                    return 'All Entities: Starred';
+                case 'RECENT':
+                    return 'All Entities: Recently Modified';
             }
 
-            return 'root';
+            return 'All Entities in: Root';
         }
     };
 
@@ -388,15 +398,15 @@ const MainNotebook = ({
     };
 
     const StarredViewToggler = () => {
+        if (id !== 'root') historyObject.push('/notebook/root');
         if (notebookView === 'STARRED') setNotebookView('DEFAULT');
-
-        setNotebookView('STARRED');
+        else setNotebookView('STARRED');
     };
 
     const RecentViewToggler = () => {
+        if (id !== 'root') historyObject.push('/notebook/root');
         if (notebookView === 'RECENT') setNotebookView('DEFAULT');
-
-        setNotebookView('RECENT');
+        else setNotebookView('RECENT');
     };
 
     return (
@@ -436,7 +446,10 @@ const MainNotebook = ({
                 <FileContainer>
                     <ScrollableWrapperContainer>
                         <PathwayContainer>
-                            <PathwayButton to={`/notebook/root`}>
+                            <PathwayButton
+                                to={`/notebook/root`}
+                                onClick={() => setNotebookView('DEFAULT')}
+                            >
                                 Root
                             </PathwayButton>
                             {renderDirectoryPathway()}
@@ -454,7 +467,6 @@ const MainNotebook = ({
                                 </FilesTextHeader>
                                 <FilesTextLine />
                                 <DirectoryText>
-                                    All Entities in:{'  '}
                                     {findNameOfCurrentDirectory()}
                                 </DirectoryText>
                             </FilesScrollableHeader>
