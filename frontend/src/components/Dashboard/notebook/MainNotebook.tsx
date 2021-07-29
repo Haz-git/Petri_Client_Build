@@ -59,7 +59,7 @@ const RightArrowIcon = styled(KeyboardArrowRight)`
 const MainContainer = styled.div`
     height: 100vh;
     display: grid;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 1fr 8fr;
 `;
 
 const Sidebar = styled.div`
