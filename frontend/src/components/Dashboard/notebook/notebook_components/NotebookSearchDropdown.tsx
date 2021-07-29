@@ -8,6 +8,24 @@ import OutsideClickHandler from 'react-outside-click-handler';
 //Styles
 import styled from 'styled-components';
 
+//icons:
+import { FileEarmarkText } from '@styled-icons/bootstrap/FileEarmarkText';
+import { Folder2 } from '@styled-icons/bootstrap/Folder2';
+
+const DocumentIcon = styled(FileEarmarkText)`
+    color: #423c3c;
+    height: 1rem;
+    width: 1rem;
+    margin-right: 0.5rem;
+`;
+
+const FolderIcon = styled(Folder2)`
+    color: #423c3c;
+    height: 1.05rem;
+    width: 1.05rem;
+    margin-right: 0.5rem;
+`;
+
 const MainContainer = styled.div`
     width: 100%;
     position: relative;
@@ -23,6 +41,9 @@ const DropdownContainer = styled.div`
 `;
 
 const EntityItem = styled(Link)`
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
     z-index: 99;
     background: #ffffff;
     width: 100%;
@@ -44,8 +65,7 @@ const EntityNameText = styled.p`
     font-size: 1em;
     font-weight: 400;
     color: #3c4042;
-    margin-right: 1rem;
-    padding: 0.25rem 0;
+    padding-bottom: 0.05rem;
 `;
 
 //Interface:
@@ -113,12 +133,14 @@ const NotebookSearchDropdown = ({
                             to={`/notebook/note/${entityId}`}
                             key={entityId}
                         >
+                            <DocumentIcon />
                             <EntityNameText>{entityName}</EntityNameText>
                         </EntityItem>
                     );
                 } else if (entityType === 'FOLDER') {
                     return (
                         <EntityItem to={`/notebook/${entityId}`} key={entityId}>
+                            <FolderIcon />
                             <EntityNameText>{entityName}</EntityNameText>
                         </EntityItem>
                     );
