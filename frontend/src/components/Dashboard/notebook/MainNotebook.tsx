@@ -240,13 +240,6 @@ const MainNotebook = ({
                         totalEntities = totalEntities.filter(
                             (x) => x.parentId === id
                         );
-                    } else {
-                        let currentEntity = totalEntities.find((x) => {
-                            if (x.noteId === id || x.folderId === id)
-                                return true;
-                        });
-
-                        totalEntities = currentEntity.children;
                     }
                     console.log('default view');
                     break;
@@ -258,7 +251,7 @@ const MainNotebook = ({
                     break;
                 case 'RECENT':
                     totalEntities = totalEntities.sort(
-                        (a, b) => a.dateModified - b.dateModified
+                        (a, b) => -a.dateModified.localeCompare(b.dateModified)
                     );
 
                     console.log('recent view');
@@ -267,6 +260,14 @@ const MainNotebook = ({
                     throw new Error(
                         'Something when wrong rendering your notebook views. The notebookView was not specified.'
                     );
+            }
+
+            if (id !== 'root') {
+                let currentEntity = totalEntities.find((x) => {
+                    if (x.noteId === id || x.folderId === id) return true;
+                });
+
+                totalEntities = currentEntity.children;
             }
 
             if (totalEntities !== undefined && totalEntities !== null) {
