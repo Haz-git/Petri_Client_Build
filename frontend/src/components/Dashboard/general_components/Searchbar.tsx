@@ -43,9 +43,13 @@ const StyledSearchInput = styled.input`
     }
 `;
 
+interface SearchbarProps {
+    inputHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
 //Interface:
 
-const Searchbar = () => {
+const Searchbar = ({ inputHandler }: SearchbarProps): JSX.Element => {
     const [isActive, setIsActive] = useState(false);
 
     const toggleIsActive = () => setIsActive(true);
@@ -54,7 +58,11 @@ const Searchbar = () => {
         <OutsideClickHandler onOutsideClick={() => setIsActive(false)}>
             <MainContainer onClick={toggleIsActive} isActive={isActive}>
                 <SearchIcon />
-                <StyledSearchInput placeholder="Search" isActive={isActive} />
+                <StyledSearchInput
+                    onChange={inputHandler}
+                    placeholder="Search"
+                    isActive={isActive}
+                />
             </MainContainer>
         </OutsideClickHandler>
     );
