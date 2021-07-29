@@ -422,7 +422,11 @@ const MainNotebook = ({
                             buttonIcon={<StarIcon />}
                             disableShadow={true}
                             buttonTextColor="#3C4042"
-                            buttonBackground="transparent"
+                            buttonBackground={
+                                notebookView === 'STARRED'
+                                    ? '#ECECEC'
+                                    : 'transparent'
+                            }
                             iconMargin="2rem"
                             fontSize="1.2em"
                             hoverShadow="none"
@@ -434,7 +438,11 @@ const MainNotebook = ({
                             buttonIcon={<TimelapseIcon />}
                             disableShadow={true}
                             buttonTextColor="#3C4042"
-                            buttonBackground="transparent"
+                            buttonBackground={
+                                notebookView === 'RECENT'
+                                    ? '#ECECEC'
+                                    : 'transparent'
+                            }
                             iconMargin="2rem"
                             fontSize="1.2em"
                             hoverShadow="none"
