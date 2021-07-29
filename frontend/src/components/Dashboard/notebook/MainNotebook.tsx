@@ -10,7 +10,7 @@ import { getNotebook } from '../../../redux/userNotebook/notebookActions';
 
 //Components:
 import GeneralButton from '../general_components/GeneralButton';
-import Searchbar from '../general_components/Searchbar';
+import NotebookSearchDropdown from './notebook_components/NotebookSearchDropdown';
 import AddEntityDropdown from './notebook_components/AddEntityDropdown';
 import NotebookEntity from './notebook_components/NotebookEntity';
 import NotebookContextMenu from './notebook_components/NotebookContextMenu';
@@ -23,6 +23,7 @@ import { Timelapse } from '@styled-icons/material-outlined/Timelapse';
 import { FilePaper2 } from '@styled-icons/remix-fill/FilePaper2';
 import { KeyboardArrowRight } from '@styled-icons/material-outlined/KeyboardArrowRight';
 import historyObject from '../../../historyObject';
+import { Notebook } from '@styled-icons/fluentui-system-regular';
 
 const StarIcon = styled(Star)`
     color: #3c4042;
@@ -206,11 +207,12 @@ const MainNotebook = ({
     },
 }: MainNotebookProps): JSX.Element => {
     //View Controller for Notebook: DEFAULT || STARRED || RECENT
-
     const [notebookView, setNotebookView] = useState('DEFAULT');
 
+    //Loaded State
     const [isNotebookLoaded, setIsNotebookLoaded] = useState(false);
 
+    //Loaded State handler
     const setLoadedStatus = (status: boolean) => setIsNotebookLoaded(status);
 
     useEffect(() => {
@@ -397,6 +399,8 @@ const MainNotebook = ({
         );
     };
 
+    //View Togglers
+
     const StarredViewToggler = () => {
         if (id !== 'root') historyObject.push('/notebook/root');
         if (notebookView === 'STARRED') setNotebookView('DEFAULT');
@@ -463,7 +467,9 @@ const MainNotebook = ({
                             {renderDirectoryPathway()}
                         </PathwayContainer>
                         <SearchbarContainer>
-                            <Searchbar />
+                            <NotebookSearchDropdown
+                                notebookEntities={notebook}
+                            />
                         </SearchbarContainer>
                         <FilesWrapper>
                             <FilesScrollableHeader>
