@@ -1,22 +1,51 @@
 import React, { useState } from 'react';
 
 //Components:
+import { Link } from 'react-router-dom';
 import Searchbar from '../../general_components/Searchbar';
+import OutsideClickHandler from 'react-outside-click-handler';
 
 //Styles
 import styled from 'styled-components';
 
 const MainContainer = styled.div`
+    width: 100%;
     position: relative;
 `;
 
 const DropdownContainer = styled.div`
+    width: 100%;
     position: absolute;
-    background: #ececec;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px;
 `;
 
-const EntityItem = styled.div`
+const EntityItem = styled(Link)`
     z-index: 99;
+    background: #ffffff;
+    width: 100%;
+    border-bottom: 1px solid #ececec;
+    padding: 0.5rem 0.5rem;
+
+    &:hover {
+        text-decoration: none;
+        background: #ececec;
+    }
+
+    &:focus {
+        text-decoration: none;
+    }
+`;
+
+const EntityNameText = styled.p`
+    font-family: 'Lato', sans-serif;
+    font-size: 1em;
+    font-weight: 400;
+    color: #3c4042;
+    margin-right: 1rem;
+    padding: 0.25rem 0;
 `;
 
 //Interface:
@@ -36,49 +65,70 @@ const NotebookSearchDropdown = ({
 
     //Searchbar input handler:
     const onSearchbarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchbarInput(e.target.value);
-        if (e.target.value !== '') {
-            let totalEntities = notebookEntities.rootFolders.concat(
-                notebookEntities.rootFiles
-            );
+        if (notebookEntities !== undefined && notebookEntities !== null) {
+            setSearchbarInput(e.target.value);
+            if (e.target.value !== '') {
+                let totalEntities = notebookEntities.rootFolders.concat(
+                    notebookEntities.rootFiles
+                );
 
-            let filteredEntities = totalEntities.filter((entity) => {
-                let entityType =
-                    entity.noteName === undefined ? 'FOLDER' : 'NOTE';
+                let filteredEntities = totalEntities.filter((entity) => {
+                    let entityType =
+                        entity.noteName === undefined ? 'FOLDER' : 'NOTE';
 
-                if (entityType !== 'NOTE') {
-                    return entity.folderName
-                        .trim()
-                        .toLowerCase()
-                        .includes(e.target.value.trim().toLowerCase());
-                } else {
-                    return entity.noteName
-                        .trim()
-                        .toLowerCase()
-                        .includes(e.target.value.trim().toLowerCase());
-                }
-            });
+                    if (entityType !== 'NOTE') {
+                        return entity.folderName
+                            .trim()
+                            .toLowerCase()
+                            .includes(e.target.value.trim().toLowerCase());
+                    } else {
+                        return entity.noteName
+                            .trim()
+                            .toLowerCase()
+                            .includes(e.target.value.trim().toLowerCase());
+                    }
+                });
 
-            setSortedEntities(filteredEntities);
+                setSortedEntities(filteredEntities);
+            }
         }
     };
 
     const mapFilteredEntities = () => {
         if (sortedEntities.length !== 0 && searchbarInput !== '') {
-            return sortedEntities.map((entity) => (
-                <EntityItem
-                    key={
-                        entity.noteId === undefined
-                            ? entity.folderId
-                            : entity.noteId
-                    }
-                >
-                    {entity.noteName === undefined
+            return sortedEntities.map((entity) => {
+                const entityId =
+                    entity.noteId === undefined
+                        ? entity.folderId
+                        : entity.noteId;
+                const entityType =
+                    entity.noteId === undefined ? 'FOLDER' : 'NOTE';
+                const entityName =
+                    entity.noteId === undefined
                         ? entity.folderName
-                        : entity.noteName}
-                </EntityItem>
-            ));
+                        : entity.noteName;
+                if (entityType === 'NOTE') {
+                    return (
+                        <EntityItem
+                            to={`/notebook/note/${entityId}`}
+                            key={entityId}
+                        >
+                            <EntityNameText>{entityName}</EntityNameText>
+                        </EntityItem>
+                    );
+                } else if (entityType === 'FOLDER') {
+                    return (
+                        <EntityItem to={`/notebook/${entityId}`} key={entityId}>
+                            <EntityNameText>{entityName}</EntityNameText>
+                        </EntityItem>
+                    );
+                } else {
+                    return <>An error occurred. </>;
+                }
+            });
         }
+
+        return null;
     };
 
     /* 
@@ -90,10 +140,12 @@ const NotebookSearchDropdown = ({
     */
 
     return (
-        <MainContainer>
-            <Searchbar inputHandler={onSearchbarChange} />
-            <DropdownContainer>{mapFilteredEntities()}</DropdownContainer>
-        </MainContainer>
+        <OutsideClickHandler onOutsideClick={() => setSortedEntities([])}>
+            <MainContainer>
+                <Searchbar inputHandler={onSearchbarChange} />
+                <DropdownContainer>{mapFilteredEntities()}</DropdownContainer>
+            </MainContainer>
+        </OutsideClickHandler>
     );
 };
 
