@@ -6,7 +6,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import dayjs from 'dayjs';
 import NotebookContextMenu from './NotebookContextMenu';
 import historyObject from '../../../../historyObject';
-
+import NotebookMoveModal from '../notebook_components/NotebookMoveModal';
 import NotebookRenameModal from './NotebookRenameModal';
 import GeneralDeleteModal from '../../general_components/GeneralDeleteModal';
 
@@ -161,27 +161,22 @@ const NotebookEntity = ({
     //Modal states:
     const [stateRenameModal, setStateRenameModal] = useState(false);
     const [stateDeleteModal, setStateDeleteModal] = useState(false);
+    const [stateMoveModal, setStateMoveModal] = useState(false);
 
     //Button Handler:
     const setButtonState = (status: boolean) => setIsButtonLoading(status);
 
     //Rename Modal handler:
-    const openRenameModal = () => {
-        setStateRenameModal(true);
-    };
-
-    const closeRenameModal = () => {
-        setStateRenameModal(false);
-    };
+    const openRenameModal = () => setStateRenameModal(true);
+    const closeRenameModal = () => setStateRenameModal(false);
 
     //Delete Modal Handler:
-    const openDeleteModal = () => {
-        setStateDeleteModal(true);
-    };
+    const openDeleteModal = () => setStateDeleteModal(true);
+    const closeDeleteModal = () => setStateDeleteModal(false);
 
-    const closeDeleteModal = () => {
-        setStateDeleteModal(false);
-    };
+    //Move Modal Handler:
+    const openMoveModal = () => setStateMoveModal(true);
+    const closeMoveModal = () => setStateMoveModal(false);
 
     //Current Entity values:
     const NotebookEntity = {
@@ -200,6 +195,8 @@ const NotebookEntity = ({
             closeRenameModal,
             openDeleteModal,
             closeDeleteModal,
+            openMoveModal,
+            closeMoveModal,
             entityId: NotebookEntity.entityId,
             entityParentId: NotebookEntity.entityParentId,
             entityType: NotebookEntity.entityType,
@@ -296,6 +293,10 @@ const NotebookEntity = ({
 
     return (
         <>
+            <NotebookMoveModal
+                openState={stateMoveModal}
+                closeFunc={closeMoveModal}
+            />
             <GeneralDeleteModal
                 openState={stateDeleteModal}
                 closeFunc={closeDeleteModal}
