@@ -12,14 +12,14 @@ import styled from 'styled-components';
 import petriLogoEdit2 from '../../Img/petriLogoEdit2.png';
 
 import Button from '@material-ui/core/Button';
-import { HomeHeart } from '@styled-icons/boxicons-solid/HomeHeart';
+import { Home } from '@styled-icons/material-rounded/Home';
 import { VideoCamera } from '@styled-icons/entypo/VideoCamera';
-import { ChatLeftDotsFill } from '@styled-icons/bootstrap/ChatLeftDotsFill';
-import { Calendar } from '@styled-icons/foundation/Calendar';
-import { Folder } from '@styled-icons/entypo/Folder';
-import { Tools } from '@styled-icons/entypo/Tools';
+import { Message } from '@styled-icons/material-rounded/Message';
+import { CalendarToday } from '@styled-icons/material-rounded/CalendarToday';
+import { Folder } from '@styled-icons/material-rounded/Folder';
+import { BarChart } from '@styled-icons/material-rounded/BarChart';
 import { LogOut } from '@styled-icons/ionicons-sharp/LogOut';
-import { SettingsApplications } from '@styled-icons/material/SettingsApplications';
+import { Settings } from '@styled-icons/material-rounded/Settings';
 
 //Styling:
 
@@ -112,7 +112,7 @@ const LogoLink = styled(Link)`
 
 const DashboardNavbar = styled.div`
     height: 100%;
-    width: 100px;
+    width: 10rem;
     position: fixed;
     z-index: 99999;
     top: 0;
@@ -120,24 +120,24 @@ const DashboardNavbar = styled.div`
     background-color: ${(props) => props.theme.navBgColor};
     overflow-x: hidden;
     padding-top: 10px;
-    text-align: center;
+    text-align: left;
     transition: all 0.5s linear;
     border-right: ${(props) => props.theme.navBorderColor};
 
     @media ${deviceMin.laptopSs} {
-        width: 60px;
+        width: 100px;
     }
 
     @media ${deviceMin.tablet} {
-        width: 100px;
+        width: 10rem;
     }
 `;
 
 const DashboardLink = styled(Link)`
-    padding: 10px 10px;
+    display: flex;
+    align-items: center;
+    padding: 1rem 1rem;
     text-decoration: none !important;
-    font-size: 25px;
-    display: block;
 `;
 const StyledImg = styled.img`
     /* max-width: 500px; */
@@ -224,10 +224,9 @@ const StyledMiniLogo = styled.p`
         margin-left: 5px;
     }
 `;
-const StyledHomeHeart = styled(HomeHeart)`
-    margin-bottom: 3px;
-    height: 31px;
-    width: 31px;
+const StyledHomeHeart = styled(Home)`
+    height: 2rem;
+    width: 2rem;
     color: ${(props) => props.theme.navIconColor};
     cursor: pointer;
     ${DashboardLink}:hover & {
@@ -236,9 +235,8 @@ const StyledHomeHeart = styled(HomeHeart)`
 `;
 
 const StyledVideoCamera = styled(VideoCamera)`
-    margin-bottom: 3px;
-    height: 30px;
-    width: 27px;
+    height: 2rem;
+    width: 2rem;
     color: ${(props) => props.theme.navIconColor};
     cursor: pointer;
     ${DashboardLink}:hover & {
@@ -246,10 +244,9 @@ const StyledVideoCamera = styled(VideoCamera)`
     }
 `;
 
-const StyledChatIcon = styled(ChatLeftDotsFill)`
-    margin-bottom: 3px;
-    height: 30px;
-    width: 27px;
+const StyledChatIcon = styled(Message)`
+    height: 2rem;
+    width: 2rem;
     color: ${(props) => props.theme.navIconColor};
     cursor: pointer;
     ${DashboardLink}:hover & {
@@ -257,10 +254,9 @@ const StyledChatIcon = styled(ChatLeftDotsFill)`
     }
 `;
 
-const StyledCalendar = styled(Calendar)`
-    margin-bottom: 3px;
-    height: 35px;
-    width: 35px;
+const StyledCalendar = styled(CalendarToday)`
+    height: 2rem;
+    width: 2rem;
     color: ${(props) => props.theme.navIconColor};
     cursor: pointer;
     ${DashboardLink}:hover & {
@@ -269,9 +265,8 @@ const StyledCalendar = styled(Calendar)`
 `;
 
 const StyledFolder = styled(Folder)`
-    margin-bottom: 3px;
-    height: 30px;
-    width: 30px;
+    height: 2rem;
+    width: 2rem;
     color: ${(props) => props.theme.navIconColor};
     cursor: pointer;
     ${DashboardLink}:hover & {
@@ -279,10 +274,9 @@ const StyledFolder = styled(Folder)`
     }
 `;
 
-const StyledTools = styled(Tools)`
-    margin-bottom: 3px;
-    height: 30px;
-    width: 30px;
+const StyledTools = styled(BarChart)`
+    height: 2rem;
+    width: 2rem;
     color: ${(props) => props.theme.navIconColor};
     cursor: pointer;
     ${DashboardLink}:hover & {
@@ -319,10 +313,9 @@ const StyledDashboardLogo = styled.img`
 `;
 
 const StyledLinkLabel = styled.label`
-    display: block;
-    font-family: 'Nunito', sans-serif;
-    font-size: 10px;
-    margin-top: 0px;
+    font-family: 'Lato', sans-serif;
+    font-size: 1rem;
+    font-weight: 900;
     color: ${(props) => props.theme.navIconColor};
     cursor: pointer;
 
@@ -339,7 +332,7 @@ const StyledLinkLabel = styled.label`
     }
 `;
 
-const StyledCogs = styled(SettingsApplications)`
+const StyledCogs = styled(Settings)`
     margin-bottom: 3px;
     height: 37px;
     width: 37px;
@@ -384,27 +377,27 @@ const Navbar = ({ StateJwt }) => {
                     <StyledDivider />
                     <DashboardLink to="/dashboard">
                         <StyledHomeHeart />
-                        <StyledLinkLabel>DASHBOARD</StyledLinkLabel>
+                        <StyledLinkLabel>Dashboard</StyledLinkLabel>
                     </DashboardLink>
                     <DashboardLink to="/messenger">
                         <StyledChatIcon />
-                        <StyledLinkLabel>MESSENGER</StyledLinkLabel>
+                        <StyledLinkLabel>Messenger</StyledLinkLabel>
                     </DashboardLink>
                     <DashboardLink to="/calendar">
                         <StyledCalendar />
-                        <StyledLinkLabel>CALENDAR</StyledLinkLabel>
+                        <StyledLinkLabel>Calendar</StyledLinkLabel>
                     </DashboardLink>
                     <DashboardLink to="/notebook/root">
                         <StyledFolder />
-                        <StyledLinkLabel>NOTEBOOK</StyledLinkLabel>
+                        <StyledLinkLabel>Notebook</StyledLinkLabel>
                     </DashboardLink>
                     <DashboardLink to="/scitools">
                         <StyledTools />
-                        <StyledLinkLabel>SCI-TOOLS</StyledLinkLabel>
+                        <StyledLinkLabel>Sci-Tools</StyledLinkLabel>
                     </DashboardLink>
                     <DashboardLink to="/settings">
                         <StyledCogs />
-                        <StyledLinkLabel>SETTINGS</StyledLinkLabel>
+                        <StyledLinkLabel>Settings</StyledLinkLabel>
                     </DashboardLink>
                     {/* <DashboardLink to="/logout">
                         <StyledLogOut />
