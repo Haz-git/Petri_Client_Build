@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getJWT } from '../../utils/jwthelper';
 import { logoutHelper } from '../../utils/logouthelper';
 import { deviceMin } from '../../devices/breakpoints';
+import GeneralButton from '../Dashboard/general_components/GeneralButton';
 
 //Styled-icons:
 
@@ -449,17 +451,11 @@ const Navbar = ({ StateJwt }) => {
                         <StyledCogs />
                         <StyledLinkLabel>Settings</StyledLinkLabel>
                     </DashboardLink>
-                    {/* <DashboardLink to="/logout">
-                        <StyledLogOut />
-                        <StyledLinkLabel>LOGOUT</StyledLinkLabel>
-                    </DashboardLink> */}
-                    <Button
-                        variant="contained"
-                        color="primary"
+                    <GeneralButton
+                        buttonLabel="Logout"
                         onClick={logoutHelper}
-                    >
-                        Logout
-                    </Button>
+                        buttonBackground="#D7002E"
+                    />
                 </DashboardNavbar>
             );
         } else {
