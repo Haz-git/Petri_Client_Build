@@ -20,13 +20,19 @@ import {
 interface IComponentProps {
     openState: boolean;
     closeFunc: () => void;
-    deleteHandler: () => void;
+    entityType?: string;
+    entityName?: string;
+    entityParentId?: string;
+    entityId?: string;
 }
 
 const NotebookMoveModal = ({
     openState,
     closeFunc,
-    deleteHandler,
+    entityType,
+    entityId,
+    entityName,
+    entityParentId,
 }: IComponentProps): JSX.Element => {
     return (
         <Modal open={openState} onClose={closeFunc}>
