@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getJWT } from '../../utils/jwthelper';
 import { logoutHelper } from '../../utils/logouthelper';
@@ -112,7 +112,7 @@ const LogoLink = styled(Link)`
 
 const DashboardNavbar = styled.div`
     height: 100%;
-    width: 10rem;
+    width: 13rem;
     position: fixed;
     z-index: 99999;
     top: 0;
@@ -129,14 +129,16 @@ const DashboardNavbar = styled.div`
     }
 
     @media ${deviceMin.tablet} {
-        width: 10rem;
+        width: 13rem;
     }
 `;
 
-const DashboardLink = styled(Link)`
+const DashboardLink = styled(NavLink)`
     display: flex;
     align-items: center;
-    padding: 1rem 1rem;
+    margin: 0.5rem 1rem;
+    padding: 0.5rem 0.5rem;
+    border-radius: 0.4rem;
     text-decoration: none !important;
 `;
 const StyledImg = styled.img`
@@ -318,6 +320,7 @@ const StyledLinkLabel = styled.label`
     font-weight: 900;
     color: ${(props) => props.theme.navIconColor};
     cursor: pointer;
+    margin-left: 1rem;
 
     ${DashboardLink}:hover & {
         color: ${(props) => props.theme.navIconHoverColor};
@@ -333,9 +336,8 @@ const StyledLinkLabel = styled.label`
 `;
 
 const StyledCogs = styled(Settings)`
-    margin-bottom: 3px;
-    height: 37px;
-    width: 37px;
+    height: 2rem;
+    width: 2rem;
     color: ${(props) => props.theme.navIconColor};
     cursor: pointer;
     ${DashboardLink}:hover & {
@@ -375,27 +377,69 @@ const Navbar = ({ StateJwt }) => {
                 <DashboardNavbar>
                     <StyledDashboardLogo src={petriLogoEdit2} />
                     <StyledDivider />
-                    <DashboardLink to="/dashboard">
+                    <DashboardLink
+                        to="/dashboard"
+                        activeStyle={{
+                            background: '#4263EB',
+                            boxShadow:
+                                'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,rgba(0, 0, 0, 0.3) 0px 1px 3px -1px',
+                        }}
+                    >
                         <StyledHomeHeart />
                         <StyledLinkLabel>Dashboard</StyledLinkLabel>
                     </DashboardLink>
-                    <DashboardLink to="/messenger">
+                    <DashboardLink
+                        to="/messenger"
+                        activeStyle={{
+                            background: '#4263EB',
+                            boxShadow:
+                                'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,rgba(0, 0, 0, 0.3) 0px 1px 3px -1px',
+                        }}
+                    >
                         <StyledChatIcon />
                         <StyledLinkLabel>Messenger</StyledLinkLabel>
                     </DashboardLink>
-                    <DashboardLink to="/calendar">
+                    <DashboardLink
+                        to="/calendar"
+                        activeStyle={{
+                            background: '#4263EB',
+                            boxShadow:
+                                'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,rgba(0, 0, 0, 0.3) 0px 1px 3px -1px',
+                        }}
+                    >
                         <StyledCalendar />
                         <StyledLinkLabel>Calendar</StyledLinkLabel>
                     </DashboardLink>
-                    <DashboardLink to="/notebook/root">
+                    <DashboardLink
+                        to="/notebook/root"
+                        activeStyle={{
+                            background: '#4263EB',
+                            boxShadow:
+                                'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,rgba(0, 0, 0, 0.3) 0px 1px 3px -1px',
+                        }}
+                    >
                         <StyledFolder />
                         <StyledLinkLabel>Notebook</StyledLinkLabel>
                     </DashboardLink>
-                    <DashboardLink to="/scitools">
+                    <DashboardLink
+                        to="/scitools"
+                        activeStyle={{
+                            background: '#4263EB',
+                            boxShadow:
+                                'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,rgba(0, 0, 0, 0.3) 0px 1px 3px -1px',
+                        }}
+                    >
                         <StyledTools />
                         <StyledLinkLabel>Sci-Tools</StyledLinkLabel>
                     </DashboardLink>
-                    <DashboardLink to="/settings">
+                    <DashboardLink
+                        to="/settings"
+                        activeStyle={{
+                            background: '#4263EB',
+                            boxShadow:
+                                'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,rgba(0, 0, 0, 0.3) 0px 1px 3px -1px',
+                        }}
+                    >
                         <StyledCogs />
                         <StyledLinkLabel>Settings</StyledLinkLabel>
                     </DashboardLink>

@@ -6,14 +6,14 @@ export const lightTheme = {
     background: '#FFFFFF',
     //Main Dashboard
     navAvatarBorder: '#293241',
-    navBgColor: '#FFFFFF',
-    navBorderColor: '1px solid #ECECEC',
+    navBgColor: '#323C40',
+    navBorderColor: 'none',
     navDetailUserName: '#141628',
     navDetailName: '#141628',
     navDetailEmail: '#141628',
     LogoDividerColor: '#293241',
-    navIconColor: '#3C4042',
-    navIconHoverColor: '#01348e',
+    navIconColor: '#FFFFFF',
+    navIconHoverColor: '#ffffff',
     mdTodoBgColor: 'white',
     //MDsciCard
     sciCardMainContainerBG: 'white',
