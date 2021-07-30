@@ -23,14 +23,14 @@ export const DashboardGlobalStyles = createGlobalStyle`
   body {
     background: ${({ theme }) => theme.background};
     min-height: 100%;
-    margin-left: 100px;
+    margin-left: 10rem;
 
     @media ${deviceMin.laptopSs} {
-      margin-left: 60px;
+      margin-left: 100px;
     }
 
     @media ${deviceMin.tablet} {
-      margin-left: 100px;
+      margin-left: 10rem;
     }
   }
 
@@ -50,6 +50,11 @@ export const DashboardGlobalStyles = createGlobalStyle`
   }
 
   p {
+    margin: 0;
+    padding: 0;
+  }
+
+  label {
     margin: 0;
     padding: 0;
   }
