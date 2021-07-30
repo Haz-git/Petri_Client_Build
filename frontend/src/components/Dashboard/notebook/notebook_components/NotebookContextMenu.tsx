@@ -7,7 +7,8 @@ import 'react-contexify/dist/ReactContexify.css';
 
 import { Trash } from '@styled-icons/boxicons-regular/Trash';
 import { EditAlt } from '@styled-icons/boxicons-regular/EditAlt';
-import { Star } from '@styled-icons/boxicons-solid/Star';
+import { Star } from '@styled-icons/boxicons-regular/Star';
+import { Export } from '@styled-icons/boxicons-regular/Export';
 
 const TrashIcon = styled(Trash)`
     height: 1.4rem;
@@ -22,6 +23,12 @@ const EditIcon = styled(EditAlt)`
 `;
 
 const StarIcon = styled(Star)`
+    height: 1.4rem;
+    width: 1.4rem;
+    color: inherit;
+`;
+
+const MoveIcon = styled(Export)`
     height: 1.4rem;
     width: 1.4rem;
     color: inherit;
@@ -114,12 +121,23 @@ const NotebookContextMenu = ({ id }: NotebookContextMenuProps): JSX.Element => {
         }
     };
 
+    const itemMoveHandler = (props: any) => {
+        const { openMoveModal } = props.props;
+        openMoveModal();
+    };
+
     return (
         <StyledMenu id={id} animation={animation.fade}>
             <Item onClick={itemRenameHandler}>
                 <EditIcon />
                 <IconSeparator />
                 Rename
+            </Item>
+            <Separator />
+            <Item onClick={itemMoveHandler}>
+                <MoveIcon />
+                <IconSeparator />
+                Move
             </Item>
             <Separator />
             <Item onClick={itemStarredHandler}>
