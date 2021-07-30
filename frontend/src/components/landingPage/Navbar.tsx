@@ -296,6 +296,10 @@ const StyledLogOut = styled(LogOut)`
     }
 `;
 
+const DashboardLogoContainer = styled.div`
+    text-align: center;
+`;
+
 const StyledDashboardLogo = styled.img`
     margin-bottom: 10px;
     height: 65px;
@@ -375,7 +379,9 @@ const Navbar = ({ StateJwt }) => {
             //If the user has a JWT, render the dashboard navbar.
             return (
                 <DashboardNavbar>
-                    <StyledDashboardLogo src={petriLogoEdit2} />
+                    <DashboardLogoContainer>
+                        <StyledDashboardLogo src={petriLogoEdit2} />
+                    </DashboardLogoContainer>
                     <StyledDivider />
                     <DashboardLink
                         to="/dashboard"
