@@ -296,6 +296,10 @@ const NotebookEntity = ({
             <NotebookMoveModal
                 openState={stateMoveModal}
                 closeFunc={closeMoveModal}
+                entityId={NotebookEntity.entityId}
+                entityParentId={NotebookEntity.entityParentId}
+                entityName={NotebookEntity.entityName}
+                entityType={NotebookEntity.entityType}
             />
             <GeneralDeleteModal
                 openState={stateDeleteModal}
