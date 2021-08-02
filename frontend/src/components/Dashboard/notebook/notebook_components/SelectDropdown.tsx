@@ -8,15 +8,25 @@ const StyledSelect = styled.select``;
 //Interfaces:
 
 interface IComponentProps {
-    optionEntities: [];
+    optionEntities: any[];
 }
 
 const SelectDropdown = ({ optionEntities }: IComponentProps): JSX.Element => {
+    const renderOptions = () => {
+        if (
+            optionEntities !== undefined &&
+            optionEntities !== null &&
+            optionEntities.length !== 0
+        ) {
+            return optionEntities.map((entity) => (
+                <option>{entity.folderName}</option>
+            ));
+        }
+    };
+
     return (
         <>
-            <StyledSelect>
-                <option>Test</option>
-            </StyledSelect>
+            <StyledSelect>{renderOptions()}</StyledSelect>
         </>
     );
 };
