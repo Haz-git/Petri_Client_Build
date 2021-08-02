@@ -20,10 +20,6 @@ import Calendar from './Dashboard/calendar/Calendar';
 import Messenger from '../components/Dashboard/messenger/Messenger';
 import MainNotebook from '../components/Dashboard/notebook/MainNotebook';
 import EditNotePage from '../components/Dashboard/notebook/notebook_components/EditNotePage';
-import CreateBioNote from '../components/Dashboard/bioNotes/CreateBioNote';
-import NewBioNote from '../components/Dashboard/bioNotes/NewBioNote';
-import ReadBioNote from '../components/Dashboard/bioNotes/ReadBioNote';
-import EditBioNote from '../components/Dashboard/bioNotes/EditBioNote';
 import SciToolsLanding from './Dashboard/sciTools/SciToolsLanding';
 import LazyLacZ from './Dashboard/sciTools/LazyLacZ';
 import Collection from './Dashboard/sciTools/Collection';
@@ -111,21 +107,6 @@ const App = () => {
                                         exact
                                         path="/notebook/note/:id"
                                         component={EditNotePage}
-                                    />
-                                    <Route
-                                        exact
-                                        path="/newbionote"
-                                        component={NewBioNote}
-                                    />
-                                    <Route
-                                        exact
-                                        path="/readbionote/:id"
-                                        component={ReadBioNote}
-                                    />
-                                    <Route
-                                        exact
-                                        path="/editbionote/:id"
-                                        component={EditBioNote}
                                     />
                                     <Route
                                         exact
