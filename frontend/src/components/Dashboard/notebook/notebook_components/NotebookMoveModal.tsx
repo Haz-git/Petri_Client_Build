@@ -65,9 +65,10 @@ const NotebookMoveModal = ({
             <ModalContainer>
                 <ModalHeader>Move Item</ModalHeader>
                 <ModalDescText>
-                    Please select the new location of your item.
+                    We're Sorry! This feature is currently being worked on. We
+                    hope to bring it to you soon.
                 </ModalDescText>
-                <SelectDropdown optionEntities={notebook.rootFolders} />
+                {/* <SelectDropdown optionEntities={notebook.rootFolders} /> */}
             </ModalContainer>
         </Modal>
     );
