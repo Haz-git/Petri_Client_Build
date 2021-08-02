@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import { getNotebook } from '../../../../redux/userNotebook/notebookActions';
 
 //Styles:
+import styled from 'styled-components';
 import {
     ModalHeader,
     ModalDescText,
@@ -18,9 +19,13 @@ import {
     ModalContainer,
     ButtonContainer,
     ButtonSpacer,
-    Divider,
 } from '../notebook_components/NotebookRenameModal';
 import NotebookSearchDropdown from '../notebook_components/NotebookSearchDropdown';
+
+const DropdownContainer = styled.div`
+    padding: 1rem 0rem;
+    text-align: left;
+`;
 
 //Interfaces:
 
@@ -65,10 +70,22 @@ const NotebookMoveModal = ({
             <ModalContainer>
                 <ModalHeader>Move Item</ModalHeader>
                 <ModalDescText>
-                    We're Sorry! This feature is currently being worked on. We
-                    hope to bring it to you soon.
+                    Please select where you want to move this item.
                 </ModalDescText>
-                {/* <SelectDropdown optionEntities={notebook.rootFolders} /> */}
+                <DropdownContainer>
+                    <SelectDropdown optionEntities={notebook.rootFolders} />
+                </DropdownContainer>
+                <ButtonContainer>
+                    <GeneralButton
+                        buttonLabel="Cancel"
+                        buttonBackground="rgba(0, 0, 34, 0.1)"
+                        buttonTextColor="rgba(5, 5, 20, 0.7)"
+                        width="5rem"
+                        onClick={closeFunc}
+                    />
+                    <ButtonSpacer />
+                    <GeneralButton width="5rem" buttonLabel="Move" />
+                </ButtonContainer>
             </ModalContainer>
         </Modal>
     );
