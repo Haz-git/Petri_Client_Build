@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 //Components:
 import Modal from '@material-ui/core/Modal';
 import GeneralButton from '../../general_components/GeneralButton';
+import SelectDropdown from './SelectDropdown';
 
 //Redux:
 import { connect } from 'react-redux';
@@ -59,8 +60,6 @@ const NotebookMoveModal = ({
     //Loaded State handler
     const setLoadedStatus = (status: boolean) => setIsNotebookLoaded(status);
 
-    console.log(notebook);
-
     return (
         <Modal open={openState} onClose={closeFunc}>
             <ModalContainer>
@@ -68,7 +67,7 @@ const NotebookMoveModal = ({
                 <ModalDescText>
                     Please select the new location of your item.
                 </ModalDescText>
-                <NotebookSearchDropdown notebookEntities={notebook} />
+                <SelectDropdown optionEntities={notebook.rootFolders} />
             </ModalContainer>
         </Modal>
     );
