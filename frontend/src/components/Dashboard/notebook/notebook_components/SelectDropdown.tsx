@@ -22,15 +22,7 @@ const SelectDropdown = ({
             optionEntities !== null &&
             optionEntities.length !== 0
         ) {
-            let modifiedOptionEntities = optionEntities;
-
-            modifiedOptionEntities.unshift({
-                folderName: 'Root',
-                folderId: 'root',
-            });
-
-            console.log(modifiedOptionEntities);
-            return modifiedOptionEntities.map((entity) => (
+            return optionEntities.map((entity) => (
                 <option key={entity.folderId} value={entity.folderId}>
                     {entity.folderName}
                 </option>
@@ -46,6 +38,9 @@ const SelectDropdown = ({
             >
                 <option key={'disabled'} value="Select a location" disabled>
                     Select a location
+                </option>
+                <option key="root" value="root">
+                    Root
                 </option>
                 {renderOptions()}
             </StyledSelect>
