@@ -217,7 +217,7 @@ export const moveNote = (
 
         if (response) {
             buttonCallback(false);
-            snackbarCallback('Your folder has been renamed.');
+            snackbarCallback('Your note has been moved.');
         }
 
         dispatch({
@@ -401,7 +401,7 @@ export const moveFolder = (
 
         if (response) {
             buttonCallback(false);
-            snackbarCallback('Your folder has been renamed.');
+            snackbarCallback('Your folder has been moved.');
         }
 
         dispatch({
