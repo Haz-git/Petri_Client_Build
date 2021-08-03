@@ -7,7 +7,11 @@ import SelectDropdown from './SelectDropdown';
 
 //Redux:
 import { connect } from 'react-redux';
-import { getNotebook } from '../../../../redux/userNotebook/notebookActions';
+import {
+    moveNote,
+    moveFolder,
+} from '../../../../redux/userNotebook/notebookActions';
+import { toggleSnackbarOpen } from '../../../../redux/snackBar/snackBarActions';
 
 //Styles:
 import styled from 'styled-components';
@@ -30,7 +34,21 @@ const DropdownContainer = styled.div`
 //Interfaces:
 
 interface IDispatchProps {
-    getNotebook: (statusCallback: (status: boolean) => void) => void;
+    moveNote: (
+        noteId: string,
+        parentId: string,
+        targetParentId: string,
+        snackbarCallback: (message: string) => void,
+        buttonCallback: (status: boolean) => void
+    ) => void;
+    moveFolder: (
+        noteId: string,
+        parentId: string,
+        targetParentId: string,
+        snackbarCallback: (message: string) => void,
+        buttonCallback: (status: boolean) => void
+    ) => void;
+    toggleSnackbarOpen: (message: string) => void;
 }
 
 interface IMapStateToProps {
@@ -40,10 +58,10 @@ interface IMapStateToProps {
 interface IComponentProps {
     openState: boolean;
     closeFunc: () => void;
-    entityType?: string;
-    entityName?: string;
-    entityParentId?: string;
-    entityId?: string;
+    entityType: string;
+    entityName: string;
+    entityParentId: string;
+    entityId: string;
 }
 
 type NotebookMoveModalProps = IDispatchProps &
@@ -57,11 +75,16 @@ const NotebookMoveModal = ({
     entityId,
     entityName,
     entityParentId,
-    getNotebook,
+    moveNote,
+    moveFolder,
     notebook,
+    toggleSnackbarOpen,
 }: NotebookMoveModalProps): JSX.Element => {
     //Loader State:
     const [isNotebookLoaded, setIsNotebookLoaded] = useState(false);
+
+    //Button State:
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
     //SelectDropdown states:
     const [selectValue, setSelectValue] = useState('');
@@ -74,7 +97,42 @@ const NotebookMoveModal = ({
         setSelectValue(e.target.value);
     };
 
+    //Button handler:
+    const toggleButtonState = (status: boolean) => setIsButtonDisabled(status);
+
     //Submission handler
+    const onMoveSubmission = () => {
+        switch (entityType) {
+            case 'FOLDER':
+                if (selectValue !== '' && selectValue !== entityParentId) {
+                    toggleButtonState(true);
+                    moveFolder(
+                        entityId,
+                        entityParentId,
+                        selectValue,
+                        toggleSnackbarOpen,
+                        toggleButtonState
+                    );
+                }
+                break;
+            case 'NOTE':
+                if (selectValue !== '' && selectValue !== entityParentId) {
+                    toggleButtonState(true);
+                    moveNote(
+                        entityId,
+                        entityParentId,
+                        selectValue,
+                        toggleSnackbarOpen,
+                        toggleButtonState
+                    );
+                }
+                break;
+            default:
+                throw new Error(
+                    'onMoveSubmission Error. Your item has not been moved.'
+                );
+        }
+    };
 
     return (
         <Modal open={openState} onClose={closeFunc}>
@@ -94,11 +152,18 @@ const NotebookMoveModal = ({
                         buttonLabel="Cancel"
                         buttonBackground="rgba(0, 0, 34, 0.1)"
                         buttonTextColor="rgba(5, 5, 20, 0.7)"
-                        width="5rem"
+                        width="6rem"
                         onClick={closeFunc}
                     />
                     <ButtonSpacer />
-                    <GeneralButton width="5rem" buttonLabel="Move" />
+                    <GeneralButton
+                        width="6rem"
+                        buttonLabel={
+                            isButtonDisabled === true ? 'Moving..' : 'Move'
+                        }
+                        isDisabledOnLoading={isButtonDisabled}
+                        onClick={onMoveSubmission}
+                    />
                 </ButtonContainer>
             </ModalContainer>
         </Modal>
@@ -111,4 +176,8 @@ const mapStateToProps = (state: any, ownProps: any) => {
     };
 };
 
-export default connect(mapStateToProps, { getNotebook })(NotebookMoveModal);
+export default connect(mapStateToProps, {
+    moveNote,
+    moveFolder,
+    toggleSnackbarOpen,
+})(NotebookMoveModal);
