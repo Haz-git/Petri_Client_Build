@@ -60,10 +60,21 @@ const NotebookMoveModal = ({
     getNotebook,
     notebook,
 }: NotebookMoveModalProps): JSX.Element => {
+    //Loader State:
     const [isNotebookLoaded, setIsNotebookLoaded] = useState(false);
+
+    //SelectDropdown states:
+    const [selectValue, setSelectValue] = useState('');
 
     //Loaded State handler
     const setLoadedStatus = (status: boolean) => setIsNotebookLoaded(status);
+
+    //Selected value handler:
+    const handleUserSelection = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setSelectValue(e.target.value);
+    };
+
+    //Submission handler
 
     return (
         <Modal open={openState} onClose={closeFunc}>
@@ -73,7 +84,10 @@ const NotebookMoveModal = ({
                     Please select where you want to move this item.
                 </ModalDescText>
                 <DropdownContainer>
-                    <SelectDropdown optionEntities={notebook.rootFolders} />
+                    <SelectDropdown
+                        optionEntities={notebook.rootFolders}
+                        onChangeHandler={handleUserSelection}
+                    />
                 </DropdownContainer>
                 <ButtonContainer>
                     <GeneralButton
