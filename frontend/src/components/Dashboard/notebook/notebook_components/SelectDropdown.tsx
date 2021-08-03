@@ -9,24 +9,46 @@ const StyledSelect = styled.select``;
 
 interface IComponentProps {
     optionEntities: any[];
+    onChangeHandler: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-const SelectDropdown = ({ optionEntities }: IComponentProps): JSX.Element => {
+const SelectDropdown = ({
+    optionEntities,
+    onChangeHandler,
+}: IComponentProps): JSX.Element => {
     const renderOptions = () => {
         if (
             optionEntities !== undefined &&
             optionEntities !== null &&
             optionEntities.length !== 0
         ) {
-            return optionEntities.map((entity) => (
-                <option>{entity.folderName}</option>
+            let modifiedOptionEntities = optionEntities;
+
+            modifiedOptionEntities.unshift({
+                folderName: 'Root',
+                folderId: 'root',
+            });
+
+            console.log(modifiedOptionEntities);
+            return modifiedOptionEntities.map((entity) => (
+                <option key={entity.folderId} value={entity.folderId}>
+                    {entity.folderName}
+                </option>
             ));
         }
     };
 
     return (
         <>
-            <StyledSelect>{renderOptions()}</StyledSelect>
+            <StyledSelect
+                onChange={onChangeHandler}
+                defaultValue="Select a location"
+            >
+                <option key={'disabled'} value="Select a location" disabled>
+                    Select a location
+                </option>
+                {renderOptions()}
+            </StyledSelect>
         </>
     );
 };
