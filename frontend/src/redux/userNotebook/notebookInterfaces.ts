@@ -40,6 +40,16 @@ export interface updateFolder {
     payload?: any;
 }
 
+export interface moveFolder {
+    type: NotebookActionType.USER_MOVE_FOLDER;
+    payload?: any;
+}
+
+export interface moveNote {
+    type: NotebookActionType.USER_MOVE_NOTE;
+    payload?: any;
+}
+
 export type NotebookAction =
     | addNote
     | updateNote
@@ -48,4 +58,6 @@ export type NotebookAction =
     | deleteFolder
     | renameFolder
     | updateFolder
+    | moveFolder
+    | moveNote
     | getNotebook;

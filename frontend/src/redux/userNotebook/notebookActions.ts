@@ -189,6 +189,44 @@ export const updateNoteStarredStatus = (
     };
 };
 
+export const moveNote = (
+    noteId: string,
+    parentId: string,
+    targetParentId: string,
+    snackbarCallback: (message: string) => void,
+    buttonCallback: (status: boolean) => void
+) => {
+    return async (
+        dispatch: Dispatch<NotebookAction>,
+        getState: () => State
+    ) => {
+        const {
+            auth: {
+                userLogIn: {
+                    data: { _id },
+                },
+            },
+        } = getState();
+
+        const response = await api.post('/users/notebook/note/move', {
+            _id,
+            noteId,
+            parentId,
+            targetParentId,
+        });
+
+        if (response) {
+            buttonCallback(false);
+            snackbarCallback('Your folder has been renamed.');
+        }
+
+        dispatch({
+            type: NotebookActionType.USER_MOVE_NOTE,
+            payload: response.data.userNotebook,
+        });
+    };
+};
+
 /*Folder-specific action creators*/
 
 export const createNewFolder = (
@@ -330,6 +368,44 @@ export const updateFolderStarredStatus = (
 
         dispatch({
             type: NotebookActionType.USER_UPDATE_FOLDER,
+            payload: response.data.userNotebook,
+        });
+    };
+};
+
+export const moveFolder = (
+    folderId: string,
+    parentId: string,
+    targetParentId: string,
+    snackbarCallback: (message: string) => void,
+    buttonCallback: (status: boolean) => void
+) => {
+    return async (
+        dispatch: Dispatch<NotebookAction>,
+        getState: () => State
+    ) => {
+        const {
+            auth: {
+                userLogIn: {
+                    data: { _id },
+                },
+            },
+        } = getState();
+
+        const response = await api.post('/users/notebook/folder/move', {
+            _id,
+            folderId,
+            parentId,
+            targetParentId,
+        });
+
+        if (response) {
+            buttonCallback(false);
+            snackbarCallback('Your folder has been renamed.');
+        }
+
+        dispatch({
+            type: NotebookActionType.USER_MOVE_FOLDER,
             payload: response.data.userNotebook,
         });
     };
