@@ -89,8 +89,8 @@ Distributed under the MIT License. See ```LICENSE``` for more information.
 
 ### Contact
 ---
-Created By: Harry Zhou
-Email: harryzhou.swe@gmail.com
+- Created By: Harry Zhou
+- Email: harryzhou.swe@gmail.com
 
 ### Acknowledgements
 ---
