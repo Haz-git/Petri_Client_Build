@@ -15,6 +15,7 @@ import {
 import SettingsInputTextField from './SettingsInputTextField';
 import GeneralButton from '../../general_components/GeneralButton';
 import ErrorText from './ErrorText';
+import Toggler from '../../../../components/Styling/Toggler';
 
 //Styles:
 

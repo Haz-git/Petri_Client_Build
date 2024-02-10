@@ -471,6 +471,11 @@ const UserSettings = ({
                         </LinkButton>
                         <LinkButton>Security & Privacy</LinkButton>
                         <LinkButton>Upgrade</LinkButton>
+                        <Toggler
+                            theme={theme}
+                            toggleTheme={toggleTheme}
+                            callBack={modeStatus}
+                        />
                     </LinkContainer>
                     <FormContainer>
                         {renderSettingsView(stateView)}

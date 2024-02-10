@@ -42,7 +42,7 @@ const DashboardContainer = styled.div`
 const App = () => {
     //We need a way for React to know when localStorage theme value changes for re-render.
 
-    const [appTheme, setAppTheme] = useState('');
+    const [appTheme, setAppTheme] = useState('dark');
 
     useEffect(() => {
         //Initial render, we reach into localstorage to obtain the recently stored user theme preference.
@@ -50,7 +50,7 @@ const App = () => {
         async function initialState() {
             const initialModeValue = await getMode();
             //Nullish coalescing to set mode value to empty string if initial mode is null.
-            setAppTheme(initialModeValue ?? '');
+            setAppTheme(initialModeValue);
             console.log(`App initialized with theme: ${appTheme}`);
         }
 
@@ -62,7 +62,7 @@ const App = () => {
         setAppTheme(modeValue);
     };
 
-    const grabbedTheme = lightTheme;
+    const grabbedTheme = appTheme === 'light' ? lightTheme : darkTheme;
 
     const renderApp = () => {
         //Meetings route set to main dashboard because currently in construction.
