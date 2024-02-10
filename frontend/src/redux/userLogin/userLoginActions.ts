@@ -49,7 +49,7 @@ const userLogin =
                                 }
                             });
                     });
-            } catch (e) {
+            } catch (e: any) {
                 if (e.name === 'QuotaExceededError') {
                     localStorage.clear();
                     localStorage.setItem('jwt', response.data.token);
