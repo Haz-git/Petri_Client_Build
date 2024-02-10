@@ -275,7 +275,7 @@ export function userChangePassword(
                 );
                 btnCallback(false);
             }
-        } catch (error) {
+        } catch (error: any) {
             errorCallback(true, error.response.data.msg);
             btnCallback(false);
         }
